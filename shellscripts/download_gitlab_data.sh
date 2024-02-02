@@ -3,7 +3,7 @@ gitlab_token=''
 gitlab_project_id='262'
 gitlab_api_base_url='https://gitlab.oeaw.ac.at/api/v4/projects/'
 gitlab_api_request='/repository/archive?'
-output_archive="./flugblätter.tar.gz"
+output_archive="./flugblatter.tar.gz"
 custom_output_dir="./todesurteile_master/"
 # rm old data / create target dir
 if [ -d $custom_output_dir ]; then rm -r $custom_output_dir; fi
