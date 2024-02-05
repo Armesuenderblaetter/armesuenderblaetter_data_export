@@ -1,3 +1,4 @@
+#!/bin/bash
 env_file="secret.env"
 if [ -f $env_file ]; 
 then

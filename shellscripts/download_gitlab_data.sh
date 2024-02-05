@@ -1,3 +1,4 @@
+#!/bin/bash
 # get gitlab token & define some vars
 export_script="./shellscripts/export_env_variables.sh"
 source $export_script
