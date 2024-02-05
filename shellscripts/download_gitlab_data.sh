@@ -1,5 +1,5 @@
-# get gitlab token
-export_script="export_env_variables.sh"
+# get gitlab token & define some vars
+export_script="./shellscripts/export_env_variables.sh"
 source $export_script
 if [ -z $GITLAB_SOURCE_TOKEN ]
 then
@@ -11,6 +11,8 @@ gitlab_api_base_url='https://gitlab.oeaw.ac.at/api/v4/projects/'
 gitlab_api_request='/repository/archive?'
 output_archive="./flugblätter.tar.gz"
 custom_output_dir="./todesurteile_master/"
+
+# download and unzip
 # rm old data / create target dir
 if [ -d $custom_output_dir ]; then rm -r $custom_output_dir; fi
 mkdir $custom_output_dir
