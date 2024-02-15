@@ -2,6 +2,7 @@ import typing
 import glob
 import re
 import lxml
+import json
 from lxml import etree
 from acdh_tei_pyutils.tei import TeiReader
 from acdh_baserow_pyutils import BaseRowClient
@@ -158,6 +159,21 @@ class Offence(Event):
             self.completed = True
             self.aided = True
 
+    def parse_json(self):
+        return {
+            "id": self.get_global_id(),
+            "type": self.type,
+            "date": self.date,
+            "place": self.place,
+            "description": self.description,
+            "proven_by_persecution": self.proven_by_persecution if hasattr(
+                self, "proven_by_persecution") else None,
+            "completed": self.completed,
+            "aided": self.aided,
+            "offence_types": self.offence_types,
+            "tools": self.tools
+        }
+
 
 def extract_offences(doc:TeiReader, file_identifier: str):
     events = []
@@ -193,6 +209,7 @@ def extract_offences(doc:TeiReader, file_identifier: str):
 
 if __name__ == "__main__":
     events = []
+    events_json = {}
     counter = 0
     for file_path in glob.glob(cases_dir):
         counter += 1
@@ -208,10 +225,13 @@ if __name__ == "__main__":
 
     for e in events:
         e.check_4_empty_fields()
+        events_json[e.get_global_id()] = e.parse_json()
 
     if error_docs:
         print(f"\n\n{len(error_docs)} faulty docs:")
         for doc, err in error_docs.items():
             print(f"{doc}:\t{err}")
 
+    with open("out/events.json", "w") as f:
+        json.dump(events_json, f, indent=4)
     print(f"{events_with_missing_field} of {len(events)} events are missing infos in one or more of these fields: '{', '.join(list(set(all_missing_fields)))}'")
