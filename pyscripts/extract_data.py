@@ -37,7 +37,7 @@ class UniqueStringVals:
     def create_id(self):
         self.counter += 1
         return f"{self.id_suffix}{self.counter:0>self.id_nmbr_len}"
-    
+
     def create_entry(self, label):
         new_id = self.create_id()
         self.labels_2_ids[label] = new_id
@@ -111,6 +111,9 @@ class Event:
             ).decode()
         )
 
+    def get_etree(self):
+        return self.element
+
     def check_4_empty_fields(self):
         global all_missing_fields
         global events_with_missing_field
@@ -136,7 +139,7 @@ class Offence(Event):
             offence_types:list,
             tools:list ) -> None:
         Event.__init__(self, _type, _id, date, place, description, xml_element, file_identifier)
-        self.proven_by_persecution: bool
+        self.proven_by_persecution: bool = None
         self.completed: typing.Optional[bool]=None
         self.aided: typing.Optional[bool]=None
         self.offence_types: list = offence_types
@@ -166,8 +169,7 @@ class Offence(Event):
             "date": self.date,
             "place": self.place,
             "description": self.description,
-            "proven_by_persecution": self.proven_by_persecution if hasattr(
-                self, "proven_by_persecution") else None,
+            "proven_by_persecution": self.proven_by_persecution,
             "completed": self.completed,
             "aided": self.aided,
             "offence_types": self.offence_types,
@@ -210,6 +212,8 @@ def extract_offences(doc:TeiReader, file_identifier: str):
 if __name__ == "__main__":
     events = []
     events_json = {}
+    template_doc = TeiReader("template/events.xml")
+    listevent = template_doc.any_xpath(".//tei:listEvent[@type='offences']")[0]
     counter = 0
     for file_path in glob.glob(cases_dir):
         counter += 1
@@ -226,12 +230,14 @@ if __name__ == "__main__":
     for e in events:
         e.check_4_empty_fields()
         events_json[e.get_global_id()] = e.parse_json()
+        listevent.append(e.get_etree())
 
     if error_docs:
         print(f"\n\n{len(error_docs)} faulty docs:")
         for doc, err in error_docs.items():
             print(f"{doc}:\t{err}")
 
+    template_doc.tree_to_file("out/events.xml")
     with open("out/events.json", "w") as f:
         json.dump(events_json, f, indent=4)
     print(f"{events_with_missing_field} of {len(events)} events are missing infos in one or more of these fields: '{', '.join(list(set(all_missing_fields)))}'")
