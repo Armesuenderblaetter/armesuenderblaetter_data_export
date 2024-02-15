@@ -1,3 +1,5 @@
+[![Linting](https://github.com/Flugblatter/data/workflows/Lint/badge.svg)](https://github.com/Flugblatter/data/workflows/Lint/badge.svg)
+
 This repo provides a local copy of the flugblatt-data-repo from gh.
 For testing
 1. clone this repo
