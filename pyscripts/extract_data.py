@@ -3,6 +3,7 @@ import glob
 import re
 import lxml
 import json
+import os
 from lxml import etree
 from acdh_tei_pyutils.tei import TeiReader
 from acdh_baserow_pyutils import BaseRowClient
@@ -12,6 +13,8 @@ error_docs = {}
 all_missing_fields = []
 events_with_missing_field = 0
 used_ids = []
+file_output = "out"
+
 
 class DuplicatedIdError(Exception):
     pass
@@ -237,7 +240,8 @@ if __name__ == "__main__":
         for doc, err in error_docs.items():
             print(f"{doc}:\t{err}")
 
-    template_doc.tree_to_file("out/events.xml")
-    with open("out/events.json", "w") as f:
+    os.makedirs(file_output, exist_ok=True)
+    template_doc.tree_to_file(f"{file_output}/offences.xml")
+    with open(f"{file_output}/offences.json", "w") as f:
         json.dump(events_json, f, indent=4)
     print(f"{events_with_missing_field} of {len(events)} events are missing infos in one or more of these fields: '{', '.join(list(set(all_missing_fields)))}'")
