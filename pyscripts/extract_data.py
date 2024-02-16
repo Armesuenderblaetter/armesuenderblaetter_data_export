@@ -472,52 +472,6 @@ def extract_events(doc: TeiReader, file_identifier: str):
     return events
 
 
-def extract_offences(doc: TeiReader, file_identifier: str):
-    events = []
-    for event_element in doc.any_xpath(
-        ".//tei:listEvent[@type='offences']/tei:event"
-    ):
-        event_type: str = event_element.xpath(
-            "./@type", namespaces=doc.nsmap)[0]
-        # if more then 1 person is associtated with the event
-        # it just gets referenced, while data are doublicated (?)
-        xml_id: list = event_element.xpath(
-            "./@xml:id|./@ref", namespaces=doc.nsmap)
-        # desc cant contain:
-        # desc', 'ref', 'trait', 'placeName', 'date'
-        date: list = event_element.xpath(
-            "./tei:desc/tei:date/@when", namespaces=doc.nsmap)
-        place: list = event_element.xpath(
-            "./tei:desc/tei:placeName/text()[1]", namespaces=doc.nsmap)
-        description_str: list = event_element.xpath(
-            "./tei:desc/tei:desc/text()[1]", namespaces=doc.nsmap)
-        typed_offences: list = event_element.xpath(
-            '''./tei:desc/tei:trait[@type='typeOfOffence']/
-            tei:desc/tei:list/tei:item/text()''',
-            namespaces=doc.nsmap
-        )
-        typed_tools: list = event_element.xpath(
-            '''./tei:desc/tei:trait[@type='toolOfCrime']
-            /tei:desc/text()''',
-            namespaces=doc.nsmap)
-        try:
-            offence = Offence(
-                event_type,
-                xml_id,
-                date,
-                place,
-                description_str,
-                event_element,
-                file_identifier,
-                typed_offences,
-                typed_tools
-            )
-            events.append(offence)
-        except DuplicatedIdError:
-            pass
-    return events
-
-
 if __name__ == "__main__":
     events = []
     events_json = {}
