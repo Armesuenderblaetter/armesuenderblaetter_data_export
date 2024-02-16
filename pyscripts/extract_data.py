@@ -19,17 +19,19 @@ file_output = "out"
 class DuplicatedIdError(Exception):
     pass
 
+
 def check_global_id(new_glob_id):
     if new_glob_id in used_ids:
         print(f"Automatically created Id {new_glob_id} is already in use")
         raise DuplicatedIdError
     used_ids.append(new_glob_id)
 
+
 class UniqueStringVals:
-    def __init__(self, id_prefix:str, id_suffix:str, id_nmbr_len=2, default_labels=[]):
+    def __init__(self, id_prefix: str, id_suffix: str, id_nmbr_len=2, default_labels=[]):
         self.id_nmbr_len = id_nmbr_len
         self.counter = 0
-        self.id_suffix= id_suffix
+        self.id_suffix = id_suffix
         self.id_prefix = id_prefix
         self.labels_2_ids = {}
         self.ids_2_labels = {}
@@ -46,8 +48,8 @@ class UniqueStringVals:
         self.labels_2_ids[label] = new_id
         self.ids_2_labels[new_id] = label
 
-    def get_id_for_label(self, label:str):
-        if not label in self.labels_2_ids:
+    def get_id_for_label(self, label: str):
+        if label not in self.labels_2_ids:
             self.create_entry(label)
         return self.labels_2_ids[label]
 
@@ -56,13 +58,16 @@ class ToolTypes(UniqueStringVals):
     def __init__(self, id_prefix: str, id_suffix: str, id_nmbr_len=2):
         super().__init__(id_prefix, id_suffix, id_nmbr_len)
 
+
 class Places(UniqueStringVals):
     def __init__(self, id_prefix: str, id_suffix: str, id_nmbr_len=2):
         super().__init__(id_prefix, id_suffix, id_nmbr_len)
 
+
 class OffenceTypes(UniqueStringVals):
     def __init__(self, id_prefix: str, id_suffix: str, id_nmbr_len=2):
         super().__init__(id_prefix, id_suffix, id_nmbr_len)
+
 
 class Event:
     regulary_missing_fields = [
@@ -76,15 +81,16 @@ class Event:
         "proven_by_persecution"
     ]
     id_delim = "_"
+
     def __init__(
             self,
-            _type:list,
-            _id:list,
-            date:list,
-            place:list,
-            description:list,
+            _type: list,
+            _id: list,
+            date: list,
+            place: list,
+            description: list,
             xml_element: etree._Element,
-            file_identifier:str) -> None:
+            file_identifier: str) -> None:
         self.type: str = _type[0] if _type else ""
         self.id: str = _id[0].strip(" #") if _id else ""
         self.date: str = date[0] if date else ""
@@ -96,7 +102,8 @@ class Event:
         self.global_id_prefix = ""
 
     def create_global_id(self):
-        new_glob_id = self.global_id_prefix + Event.id_delim + self.file_identifier + Event.id_delim+self.id
+        new_glob_id = self.global_id_prefix + Event.id_delim + \
+            self.file_identifier + Event.id_delim+self.id
         check_global_id(new_glob_id)
         self.global_id = new_glob_id
         return self.global_id
@@ -120,7 +127,8 @@ class Event:
     def check_4_empty_fields(self):
         global all_missing_fields
         global events_with_missing_field
-        missing_vals = [field for field, val in vars(self).items() if (not field in Event.regulary_missing_fields and not bool(val))]
+        missing_vals = [field for field, val in vars(self).items() if (
+            field not in Event.regulary_missing_fields and not bool(val))]
         all_missing_fields += missing_vals
         if missing_vals:
             events_with_missing_field += 1
@@ -132,19 +140,20 @@ class Event:
 class Offence(Event):
     def __init__(
             self,
-            _type:list,
-            _id:list,
-            date:list,
-            place:list,
-            description:list,
+            _type: list,
+            _id: list,
+            date: list,
+            place: list,
+            description: list,
             xml_element: etree._Element,
-            file_identifier:str,
-            offence_types:list,
-            tools:list ) -> None:
-        Event.__init__(self, _type, _id, date, place, description, xml_element, file_identifier)
+            file_identifier: str,
+            offence_types: list,
+            tools: list) -> None:
+        Event.__init__(self, _type, _id, date, place,
+                       description, xml_element, file_identifier)
         self.proven_by_persecution: bool = None
-        self.completed: typing.Optional[bool]=None
-        self.aided: typing.Optional[bool]=None
+        self.completed: typing.Optional[bool] = None
+        self.aided: typing.Optional[bool] = None
         self.offence_types: list = offence_types
         self.tools: list = tools
         self.global_id_prefix = "offence"
@@ -180,19 +189,25 @@ class Offence(Event):
         }
 
 
-def extract_offences(doc:TeiReader, file_identifier: str):
+def extract_offences(doc: TeiReader, file_identifier: str):
     events = []
     for event_element in doc.any_xpath(".//tei:listEvent[@type='offences']/tei:event"):
         event_type: list = event_element.xpath("./@type", namespaces=doc.nsmap)
         #  if more then 1 person is associtated with the event it just gets referenced, while data are doublicated (?)
-        xml_id: list = event_element.xpath("./@xml:id|./@ref", namespaces=doc.nsmap)
+        xml_id: list = event_element.xpath(
+            "./@xml:id|./@ref", namespaces=doc.nsmap)
         # desc cant contain:
         # desc', 'ref', 'trait', 'placeName', 'date'
-        date: list = event_element.xpath("./tei:desc/tei:date/@when", namespaces=doc.nsmap)
-        place: list = event_element.xpath("./tei:desc/tei:placeName/text()[1]", namespaces=doc.nsmap)
-        description_str: list = event_element.xpath("./tei:desc/tei:desc/text()[1]", namespaces=doc.nsmap)
-        typed_offences: list = event_element.xpath("./tei:desc/tei:trait[@type='typeOfOffence']/tei:desc/tei:list/tei:item/text()", namespaces=doc.nsmap)
-        typed_tools: list = event_element.xpath("./tei:desc/tei:trait[@type='toolOfCrime']/tei:desc/text()", namespaces=doc.nsmap)
+        date: list = event_element.xpath(
+            "./tei:desc/tei:date/@when", namespaces=doc.nsmap)
+        place: list = event_element.xpath(
+            "./tei:desc/tei:placeName/text()[1]", namespaces=doc.nsmap)
+        description_str: list = event_element.xpath(
+            "./tei:desc/tei:desc/text()[1]", namespaces=doc.nsmap)
+        typed_offences: list = event_element.xpath(
+            "./tei:desc/tei:trait[@type='typeOfOffence']/tei:desc/tei:list/tei:item/text()", namespaces=doc.nsmap)
+        typed_tools: list = event_element.xpath(
+            "./tei:desc/tei:trait[@type='toolOfCrime']/tei:desc/text()", namespaces=doc.nsmap)
         try:
             offence = Offence(
                 event_type,
