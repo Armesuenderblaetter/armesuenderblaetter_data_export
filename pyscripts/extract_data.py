@@ -6,7 +6,8 @@ import json
 import os
 from lxml import etree
 from acdh_tei_pyutils.tei import TeiReader
-from acdh_baserow_pyutils import BaseRowClient
+
+
 cases_dir = "./todesurteile_master/303_annot_tei/*.xml"
 error_docs = {}
 
@@ -28,7 +29,13 @@ def check_global_id(new_glob_id):
 
 
 class UniqueStringVals:
-    def __init__(self, id_prefix: str, id_suffix: str, id_nmbr_len=2, default_labels=[]):
+    def __init__(
+        self,
+        id_prefix: str,
+        id_suffix: str,
+        id_nmbr_len=2,
+        default_labels=[]
+    ):
         self.id_nmbr_len = id_nmbr_len
         self.counter = 0
         self.id_suffix = id_suffix
@@ -191,9 +198,12 @@ class Offence(Event):
 
 def extract_offences(doc: TeiReader, file_identifier: str):
     events = []
-    for event_element in doc.any_xpath(".//tei:listEvent[@type='offences']/tei:event"):
+    for event_element in doc.any_xpath(
+        ".//tei:listEvent[@type='offences']/tei:event"
+    ):
         event_type: list = event_element.xpath("./@type", namespaces=doc.nsmap)
-        #  if more then 1 person is associtated with the event it just gets referenced, while data are doublicated (?)
+        # if more then 1 person is associtated with the event
+        # it just gets referenced, while data are doublicated (?)
         xml_id: list = event_element.xpath(
             "./@xml:id|./@ref", namespaces=doc.nsmap)
         # desc cant contain:
@@ -205,9 +215,14 @@ def extract_offences(doc: TeiReader, file_identifier: str):
         description_str: list = event_element.xpath(
             "./tei:desc/tei:desc/text()[1]", namespaces=doc.nsmap)
         typed_offences: list = event_element.xpath(
-            "./tei:desc/tei:trait[@type='typeOfOffence']/tei:desc/tei:list/tei:item/text()", namespaces=doc.nsmap)
+            '''./tei:desc/tei:trait[@type='typeOfOffence']/
+            tei:desc/tei:list/tei:item/text()''',
+            namespaces=doc.nsmap
+        )
         typed_tools: list = event_element.xpath(
-            "./tei:desc/tei:trait[@type='toolOfCrime']/tei:desc/text()", namespaces=doc.nsmap)
+            '''./tei:desc/tei:trait[@type='toolOfCrime']
+            /tei:desc/text()''',
+            namespaces=doc.nsmap)
         try:
             offence = Offence(
                 event_type,
@@ -222,7 +237,9 @@ def extract_offences(doc: TeiReader, file_identifier: str):
             )
             events.append(offence)
         except DuplicatedIdError:
-            # this can happen since some of the offences where commited by more then one person and get referenced/duplicated in the docs
+            # this can happen since some of the offences
+            # were commited by more then one person and
+            # get referenced/duplicated in the docs
             pass
     return events
 
@@ -259,4 +276,10 @@ if __name__ == "__main__":
     template_doc.tree_to_file(f"{file_output}/offences.xml")
     with open(f"{file_output}/offences.json", "w") as f:
         json.dump(events_json, f, indent=4)
-    print(f"{events_with_missing_field} of {len(events)} events are missing infos in one or more of these fields: '{', '.join(list(set(all_missing_fields)))}'")
+    missing_fields = ', '.join(list(set(all_missing_fields)))
+    if events_with_missing_field:
+        logmessage = (
+            f"{events_with_missing_field} of {len(events)} events are"
+            f"missing infos in one or more of these fields: '{missing_fields}'"
+        )
+        print(logmessage)
