@@ -6,3 +6,5 @@ For testing
 2. run `./shellscripts/download_gitlab_data.sh` locally from base dir
 3. add gitlab token to the created .env file
 4. run `./shellscripts/download_gitlab_data.sh` again
+
+(To test the export function run ./shellscripts/extract_infos.sh.)
