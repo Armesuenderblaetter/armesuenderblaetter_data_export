@@ -30,6 +30,8 @@ def check_global_id(new_glob_id):
 
 
 class UniqueStringVals:
+    spacer = "_"
+
     def __init__(
         self,
         id_prefix: str,
@@ -39,8 +41,8 @@ class UniqueStringVals:
     ):
         self.id_nmbr_len = id_nmbr_len
         self.counter = 0
-        self.id_suffix = id_suffix
-        self.id_prefix = id_prefix
+        self.id_suffix = UniqueStringVals.spacer + id_suffix if id_suffix else ""
+        self.id_prefix = id_prefix + UniqueStringVals.spacer
         self.labels_2_ids = {}
         self.ids_2_labels = {}
         if default_labels:
@@ -49,8 +51,10 @@ class UniqueStringVals:
 
     def create_id(self):
         self.counter += 1
-        return (self.id_suffix
-                + str(self.counter).zfill(self.id_nmbr_len))
+        return (self.id_prefix
+                + str(self.counter).zfill(self.id_nmbr_len)
+                + self.id_suffix
+                )
 
     def create_entry(self, label):
         new_id = self.create_id()
@@ -110,6 +114,8 @@ punishment_index = MethodsOfPunishment(
     id_nmbr_len=3
 )
 
+typed_indices = [tools_index, places_index, offence_index, punishment_index]
+
 
 class Event:
     # fields that if missing seem not to indicate error
@@ -162,8 +168,9 @@ class Event:
             self.is_probably_copy = False
             self.xml_source_id = ""
         self.date: str = date[0] if date else ""
-        self.place: str = place[0] if place else ""
-        self.description: str = description[0] if description else ""
+        self.places: list = self.get_places(place)
+        self.description: str = "".join(
+            [re.sub(" +", " ", desc) for desc in description])
         self.element: etree._Element = xml_element
         self.ref: str = xml_element.attrib.get("ref")
         self.file_identifier: str = file_identifier
@@ -223,12 +230,25 @@ class Event:
             print("\nsource:")
             self.print_source()
 
+    def get_places(self, places):
+        unique_places = []
+        for place in places:
+            label = place.strip()
+            p_id = places_index.get_id_for_label(label)
+            unique_places.append(
+                {
+                    "id": p_id,
+                    "label": label
+                }
+            )
+        return unique_places
+
     def to_json(self):
         return {
             "id": self.get_global_id(),
             "type": self.type,
             "date": self.date,
-            "place": self.place,
+            "place": self.places,
             "description": self.description
         }
 
@@ -316,6 +336,91 @@ class Punishment(Event):
         return json_base_dict | json_extra_dict
 
 
+class Execution(Event):
+    type_key = "execution"
+
+    def __init__(
+            self,
+            _type: str,
+            _id: list,
+            date: list,
+            place: list,
+            description: list,
+            xml_element: etree._Element,
+            file_identifier: str,
+            methods_xml: list
+    ):
+        super().__init__(
+            _type,
+            _id,
+            date,
+            place,
+            description,
+            xml_element,
+            file_identifier,
+            "trial_result"
+        )
+        self.methods_xml = methods_xml if methods_xml else []
+        self.methods: list = self.get_execution_methods()
+        self.carried_out = True if self.methods else False
+
+    def get_execution_methods(self):
+        methods = []
+        counter = 0
+        for punishment in self.punishments_xml:
+            counter += 1
+            number = int(punishment.get("n")) if punishment.get(
+                "n") else counter
+            label = punishment.text.strip()
+            p_id = punishment_index.get_id_for_label(label)
+            methods.append(
+                {
+                    "id": p_id,
+                    "order": number,
+                    "label": label
+                }
+            )
+        return methods
+
+    def to_json(self):
+        json_base_dict = super().to_json()
+        json_extra_dict = {
+            "xml": self.get_source_string(),
+            "methods": self.methods
+        }
+        return json_base_dict | json_extra_dict
+
+
+class Person:
+    def __init__(
+        self,
+        xml_id: str,
+        roles: dict,
+        forename: str,
+        surname: str,
+        birth_element: etree._Element,
+        death_element: etree._Element,
+        sex: str,
+        age: str,
+        type: str,
+        marriage_status: str,
+        faith: str,
+        occupation: str
+    ):
+        self.xml_id: str = xml_id
+        self.roles: dict = roles
+        self.forename: str = forename
+        self.surname: str = surname
+        self.birth_element: etree._Element = birth_element
+        self.death_element: etree._Element = death_element
+        self.sex: str = sex
+        self.age: str = age
+        self.type: str = type
+        self.marriage_status: str = marriage_status
+        self.faith: str = faith
+        self.occupation: str = occupation
+
+
 class Offence(Event):
     def __init__(
             self,
@@ -341,9 +446,35 @@ class Offence(Event):
         self.proven_by_persecution: bool = None
         self.completed: typing.Optional[bool] = None
         self.aided: typing.Optional[bool] = None
-        self.offence_types: list = offence_types
-        self.tools: list = tools
+        self.offence_types: list = []
+        self.get_offence_types(offence_types)
+        self.tools: list = []
+        self.get_typed_tools(tools)
         self.set_offence_status()
+
+    def get_typed_tools(self, raw_tools):
+        counter = 0
+        processed_tools = []
+        for t in raw_tools:
+            if t.strip():
+                if "," in t:
+                    ts = t.split(",")
+                    for sub_t in ts:
+                        if sub_t.strip():
+                            processed_tools.append(sub_t)
+                else:
+                    processed_tools.append(t)
+
+        for label in processed_tools:
+            counter += 1
+            tool_id = tools_index.get_id_for_label(label)
+            self.tools.append(
+                {
+                    "id": tool_id,
+                    "order": counter,
+                    "label": label
+                }
+            )
 
     def set_offence_status(self):
         if self.type == "offenceSuspected":
@@ -377,6 +508,19 @@ class Offence(Event):
         }
         return json_base_dict | json_extra_dict
 
+    def get_offence_types(self, offences: list):
+        counter = 0
+        for offence in offences:
+            counter += 1
+            offence_id = offence_index.get_id_for_label(offence.strip())
+            self.offence_types.append(
+                {
+                    "id": offence_id,
+                    "order": counter,
+                    "label": offence
+                }
+            )
+
 
 def extract_events(doc: TeiReader, file_identifier: str):
     events = []
@@ -398,7 +542,7 @@ def extract_events(doc: TeiReader, file_identifier: str):
         place: list = event_element.xpath(
             "./tei:desc/tei:placeName/text()[1]", namespaces=doc.nsmap)
         description_str: list = event_element.xpath(
-            "./tei:desc/tei:desc/text()", namespaces=doc.nsmap)
+            "./tei:desc/tei:desc//text()", namespaces=doc.nsmap)
         event_obj = None
         if event_type in Event.xml_offence_types:
             try:
@@ -409,7 +553,7 @@ def extract_events(doc: TeiReader, file_identifier: str):
                 )
                 typed_tools: list = event_element.xpath(
                     '''./tei:desc/tei:trait[@type='toolOfCrime']
-                    /tei:desc/text()''',
+                    /tei:desc//text()''',
                     namespaces=doc.nsmap
                 )
                 event_obj = Offence(
@@ -433,6 +577,26 @@ def extract_events(doc: TeiReader, file_identifier: str):
         elif event_type in Event.xml_trial_result_types:
             try:
                 if event_type == Punishment.type_key:
+                    punishments_xml = event_element.xpath(
+                        ".//tei:desc/tei:list/tei:item",
+                        namespaces=doc.nsmap
+                    )
+                    if not (punishments_xml):
+                        punishments_xml = event_element.xpath(
+                            ".//tei:desc//tei:desc",
+                            namespaces=doc.nsmap
+                        )
+                    event_obj = Punishment(
+                        _type=event_type,
+                        _id="",  # ids not necessary there
+                        date=date,
+                        place=place,
+                        description=description_str,
+                        xml_element=event_element,
+                        file_identifier=file_identifier,
+                        punishments_xml=punishments_xml
+                    )
+                elif event_type == Execution.type_key:
                     punishments_xml = event_element.xpath(
                         ".//tei:desc/tei:list/tei:item",
                         namespaces=doc.nsmap
