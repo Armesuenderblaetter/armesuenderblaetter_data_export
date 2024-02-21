@@ -35,3 +35,6 @@ then
 fi
 # remove the archive file, if existing
 if [ -f $output_archive ]; then rm $output_archive; fi
+
+# rename some files for arche/processing
+python3 ./pyscripts/renameFiles.py
