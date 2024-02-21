@@ -137,7 +137,7 @@ if __name__ == "__main__":
                 continue
 
         # get normalised (renamed) file name
-        newFile = normaliseName(origFileName.decode('utf-8'))
+        newFile = "fb_"+normaliseName(origFileName.decode('utf-8'))
         if len(newFile) > 30:
             suffix = ".xml"
             newFile = newFile.removesuffix(suffix)[0:30]+suffix
