@@ -809,10 +809,8 @@ if __name__ == "__main__":
     events_json = {}
     template_doc = TeiReader("template/events.xml")
     listevent = template_doc.any_xpath(".//tei:listEvent[@type='offences']")[0]
-    counter = 0
     for file_path in glob.glob(cases_dir):
-        counter += 1
-        file_identifier = str(counter).zfill(5)
+        file_identifier = file_path.split("/")[-1]
         filepaths_by_fileidentifiers[file_identifier] = file_path
         print(file_path)
         try:
