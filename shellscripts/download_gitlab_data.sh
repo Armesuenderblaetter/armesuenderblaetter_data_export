@@ -38,4 +38,4 @@ if [ -f $output_archive ]; then rm $output_archive; fi
 
 # rename some files for arche/processing
 python3 ./pyscripts/renameFiles.py
-add-attributes -g $custom_output_dir"/303_annot_tei/*.xml" -b "https://value/of-your/base.com"
+add-attributes -g $custom_output_dir"/303_annot_tei/*.xml" -b "."
