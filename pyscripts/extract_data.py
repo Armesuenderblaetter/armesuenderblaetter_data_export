@@ -699,9 +699,8 @@ def extract_event(
             )
         except DuplicatedIdError as e:
             if "unproblematic" in e.args[0]:
-                # existing_event_id = e.args[1]
-                # this id can later be used for referencing
-                pass
+                existing_event_id = e.args[1]
+                return existing_event_id
             else:
                 raise e
     elif event_type in Event.xml_trial_result_types:
@@ -758,7 +757,7 @@ def extract_event(
                 )
         except DuplicatedIdError as e:
             if "unproblematic" in e.args[0]:
-                pass
+                return e.args[1]
             else:
                 raise e
     return event_obj
@@ -776,10 +775,18 @@ def extract_events_and_persons(doc: TeiReader, file_identifier: str):
             namespaces=doc.nsmap
         ):
             event_obj = extract_event(
-                event_element, file_identifier, doc.nsmap)
+                event_element,
+                file_identifier,
+                doc.nsmap
+            )
             if event_obj:
-                events.append(event_obj)
-                person_obj.append_related_event(event_obj)
+                if isinstance(event_obj, str):
+                    person_obj.append_related_event(
+                        global_events_by_ids[event_obj]
+                    )
+                else:
+                    events.append(event_obj)
+                    person_obj.append_related_event(event_obj)
     return events, persons
 
 
