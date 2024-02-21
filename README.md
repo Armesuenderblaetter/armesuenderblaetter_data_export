@@ -7,8 +7,9 @@ For testing
         `python3 -m venv $dir_name` & 
         `source $dir_name/bin/activate`
 3. check if your python virtual environment is up
-4. run `./shellscripts/download_gitlab_data.sh` locally from base dir
-5. add gitlab token to the created .env file
-6. run `./shellscripts/download_gitlab_data.sh` again
+4. install pre-commit for hooks: `pip install pre-commit && pre-commit install`
+6. run `./shellscripts/download_gitlab_data.sh` locally from base dir
+7. add gitlab token to the created .env file
+8. run `./shellscripts/download_gitlab_data.sh` again
 
 (To test the export function run ./shellscripts/extract_infos.sh. Run this only in a virtual python environment!!)
