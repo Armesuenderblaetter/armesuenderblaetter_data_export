@@ -427,8 +427,10 @@ class Person:
         )
         self.forename: str = forename
         self.surname: str = surname
-        self.birth_element: etree._Element = birth_element[0] if birth_element else None
-        self.death_element: etree._Element = death_element[0] if death_element else None
+        self.birth_element: etree._Element = (birth_element[0]
+                                              if birth_element else None)
+        self.death_element: etree._Element = (death_element[0]
+                                              if death_element else None)
         self.sex: str = sex
         self.age: str = age
         self.type: str = _type
@@ -496,7 +498,9 @@ class Person:
             "faith": self.faith,
             "occupation": self.occupation,
             "file_identifier": self.file_identifier,
-            "related_events": [event.get_global_id() for event in self.related_events],
+            "related_events": [
+                event.get_global_id() for event in self.related_events
+            ],
             "element": self.get_source_string()
         }
 
@@ -602,13 +606,18 @@ class Offence(Event):
             )
 
 
-def extract_person(person_element: etree._Element, file_identifier: str, nsmap: dict) -> Person:
+def extract_person(
+        person_element: etree._Element,
+        file_identifier: str, nsmap: dict
+) -> Person:
     xml_id = person_element.xpath("@xml:id", namespaces=nsmap)
     roles = person_element.xpath("@role", namespaces=nsmap)
     forename = person_element.xpath(
         "./tei:persName/tei:forename/text()", namespaces=nsmap)
     surename = person_element.xpath(
-        "./tei:persName/tei:surname//text()[normalize-space(.)!='']", namespaces=nsmap)
+        "./tei:persName/tei:surname//text()[normalize-space(.)!='']",
+        namespaces=nsmap
+    )
     birth_element = person_element.xpath("./tei:birth", namespaces=nsmap)
     death_element = person_element.xpath("./tei:death", namespaces=nsmap)
     sex = person_element.xpath("./tei:sex/@value", namespaces=nsmap)
@@ -643,7 +652,11 @@ def extract_person(person_element: etree._Element, file_identifier: str, nsmap: 
     return person_obj
 
 
-def extract_event(event_element: etree._Element, file_identifier: str, nsmap: dict):
+def extract_event(
+    event_element: etree._Element,
+    file_identifier: str,
+    nsmap: dict
+):
     event_type: str = event_element.xpath(
         "./@type", namespaces=nsmap)[0]
     xml_id: list = event_element.xpath(
