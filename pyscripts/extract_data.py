@@ -802,6 +802,13 @@ def print_indices_to_json():
             json.dump(index.ids_2_labels, f, indent=4)
 
 
+def prepare_output_folder():
+    old_files = glob.glob(f"./{file_output}/*.json")
+    for old_file in old_files:
+        os.remove(old_file)
+    os.makedirs(file_output, exist_ok=True)
+
+
 if __name__ == "__main__":
     event_objs = []
     person_objs = []
@@ -834,7 +841,7 @@ if __name__ == "__main__":
             punishment_objects.append(event)
         listevent.append(event.get_etree())
 
-    os.makedirs(file_output, exist_ok=True)
+    prepare_output_folder()
     template_doc.tree_to_file(f"{file_output}/events.xml")
     print_to_json(offences_objects, "offences")
     print_to_json(punishment_objects, "punishments")
