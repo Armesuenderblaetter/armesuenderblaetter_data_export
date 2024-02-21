@@ -16,7 +16,6 @@ events_with_missing_field = 0
 used_ids = []
 file_output = "out"
 global_events_by_ids = {}
-filepaths_by_fileidentifiers = {}
 
 
 class DuplicatedIdError(Exception):
@@ -133,7 +132,8 @@ class Event:
         "proven_by_persecution",
         "is_probably_copy",
         "ref",
-        "xml_source_id"
+        "xml_source_id",
+        "places"
     ]
 
     xml_offence_types = [
@@ -485,11 +485,11 @@ class Person:
             "forename": self.forename,
             "surname": self.surname,
             "birth_element": etree.tostring(
-                self.birth_element[0]
-            ).decode() if self.birth_element else "",
+                self.birth_element
+            ).decode() if self.birth_element is not None else "",
             "death_element": etree.tostring(
-                self.death_element[0]
-            ).decode() if self.death_element else "",
+                self.death_element
+            ).decode() if self.death_element is not None else "",
             "roles": self.roles,
             "sex": self.sex,
             "age": self.age,
@@ -792,7 +792,6 @@ def extract_events_and_persons(doc: TeiReader, file_identifier: str):
 
 def print_to_json(objects, category):
     events_json = dict((obj.get_global_id(), obj.to_json()) for obj in objects)
-    print(events_json)
     with open(f"{file_output}/{category}.json", "w") as f:
         json.dump(events_json, f, indent=4)
 
@@ -811,7 +810,6 @@ if __name__ == "__main__":
     listevent = template_doc.any_xpath(".//tei:listEvent[@type='offences']")[0]
     for file_path in glob.glob(cases_dir):
         file_identifier = file_path.split("/")[-1]
-        filepaths_by_fileidentifiers[file_identifier] = file_path
         print(file_path)
         try:
             tei_doc = TeiReader(file_path)
