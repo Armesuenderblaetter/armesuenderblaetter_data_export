@@ -6,6 +6,7 @@ import json
 import os
 from lxml import etree
 from acdh_tei_pyutils.tei import TeiReader
+from copy import deepcopy
 
 
 cases_dir = "./todesurteile_master/303_annot_tei/*.xml"
@@ -41,7 +42,8 @@ class UniqueStringVals:
     ):
         self.id_nmbr_len = id_nmbr_len
         self.counter = 0
-        self.id_suffix = UniqueStringVals.spacer + id_suffix if id_suffix else ""
+        self.id_suffix = (UniqueStringVals.spacer
+                          + id_suffix if id_suffix else "")
         self.id_prefix = id_prefix
         self.labels_2_ids = {}
         self.ids_2_labels = {}
@@ -217,7 +219,7 @@ class Event:
         )
 
     def get_etree(self):
-        return self.element
+        return deepcopy(self.element)
 
     def check_4_empty_fields(self):
         global all_missing_fields
@@ -411,8 +413,10 @@ class Person:
         marriage_status: str,
         faith: str,
         occupation: str,
-        file_identifier: str
+        file_identifier: str,
+        xml_element: etree._Element
     ):
+        # what about role?
         self.xml_id: str = xml_id
         self.id = xml_id if xml_id else ""
         if not self.id:
@@ -423,8 +427,8 @@ class Person:
         )
         self.forename: str = forename
         self.surname: str = surname
-        self.birth_element: etree._Element = birth_element
-        self.death_element: etree._Element = death_element
+        self.birth_element: etree._Element = birth_element[0] if birth_element else None
+        self.death_element: etree._Element = death_element[0] if death_element else None
         self.sex: str = sex
         self.age: str = age
         self.type: str = _type
@@ -434,6 +438,7 @@ class Person:
         self.global_id = None
         self.file_identifier = file_identifier
         self.related_events = []
+        self.element: etree._Element = xml_element
 
     def create_global_id(self, override=False):
         if self.global_id is not None and not override:
@@ -463,6 +468,37 @@ class Person:
 
     def append_related_event(self, event):
         self.related_events.append(event)
+
+    def get_etree(self):
+        return deepcopy(self.element)
+
+    def get_source_string(self):
+        return etree.tostring(
+            self.element
+        ).decode()
+
+    def to_json(self):
+        return {
+            "global_id": self.global_id,
+            "forename": self.forename,
+            "surname": self.surname,
+            "birth_element": etree.tostring(
+                self.birth_element[0]
+            ).decode() if self.birth_element else "",
+            "death_element": etree.tostring(
+                self.death_element[0]
+            ).decode() if self.death_element else "",
+            "roles": self.roles,
+            "sex": self.sex,
+            "age": self.age,
+            "type": self.type,
+            "marriage_status": self.marriage_status,
+            "faith": self.faith,
+            "occupation": self.occupation,
+            "file_identifier": self.file_identifier,
+            "related_events": [event.get_global_id() for event in self.related_events],
+            "element": self.get_source_string()
+        }
 
 
 class Offence(Event):
@@ -566,161 +602,177 @@ class Offence(Event):
             )
 
 
-def extract_events(doc: TeiReader, file_identifier: str):
+def extract_person(person_element: etree._Element, file_identifier: str, nsmap: dict) -> Person:
+    xml_id = person_element.xpath("@xml:id", namespaces=nsmap)
+    roles = person_element.xpath("@role", namespaces=nsmap)
+    forename = person_element.xpath(
+        "./tei:persName/tei:forename/text()", namespaces=nsmap)
+    surename = person_element.xpath(
+        "./tei:persName/tei:surname//text()[normalize-space(.)!='']", namespaces=nsmap)
+    birth_element = person_element.xpath("./tei:birth", namespaces=nsmap)
+    death_element = person_element.xpath("./tei:death", namespaces=nsmap)
+    sex = person_element.xpath("./tei:sex/@value", namespaces=nsmap)
+    # age = person_element.xpath("./tei:age/@value", namespaces=nsmap)
+    age = person_element.xpath("./tei:age/text()", namespaces=nsmap)
+    _type = person_element.xpath("./tei:state/@type", namespaces=nsmap)
+    marriage_state = person_element.xpath(
+        "./tei:state/tei:desc//text()", namespaces=nsmap)[0]
+    faith = person_element.xpath("./tei:faith/text()", namespaces=nsmap)[0]
+    occupation = person_element.xpath(
+        "./tei:occupation/text()", namespaces=nsmap)
+    person_obj = Person(
+        xml_id=xml_id[0] if xml_id else "",
+        roles=roles,
+        forename=forename[0] if forename else "",
+        surname=surename[0] if surename else "",
+        birth_element=birth_element,
+        death_element=death_element,
+        sex=sex[0] if sex else "",
+        age=age[0] if age else "",
+        _type=_type[0] if _type else "",
+        marriage_status=marriage_state,
+        faith=faith,
+        occupation=occupation,
+        file_identifier=file_identifier,
+        xml_element=person_element
+    )
+    try:
+        person_obj.create_global_id()
+    except ValueError as e:
+        input(e)
+    return person_obj
+
+
+def extract_event(event_element: etree._Element, file_identifier: str, nsmap: dict):
+    event_type: str = event_element.xpath(
+        "./@type", namespaces=nsmap)[0]
+    xml_id: list = event_element.xpath(
+        "./@xml:id", namespaces=nsmap)
+    if not xml_id:
+        xml_id: list = event_element.xpath(
+            "./@ref", namespaces=nsmap
+        )
+        if xml_id and xml_id[0] != "#":
+            xml_id = [f"#{xml_id[0]}"]
+    date: list = event_element.xpath(
+        "./tei:desc/tei:date/@when", namespaces=nsmap)
+    place: list = event_element.xpath(
+        "./tei:desc/tei:placeName/text()[1]", namespaces=nsmap)
+    description_str: list = event_element.xpath(
+        "./tei:desc/tei:desc//text()", namespaces=nsmap)
+    event_obj = None
+    if event_type in Event.xml_offence_types:
+        try:
+            typed_offences: list = event_element.xpath(
+                '''./tei:desc/tei:trait[@type='typeOfOffence']/
+                tei:desc/tei:list/tei:item/text()''',
+                namespaces=nsmap
+            )
+            typed_tools: list = event_element.xpath(
+                '''./tei:desc/tei:trait[@type='toolOfCrime']
+                /tei:desc//text()''',
+                namespaces=nsmap
+            )
+            event_obj = Offence(
+                _type=event_type,
+                _id=xml_id,
+                date=date,
+                place=place,
+                description=description_str,
+                xml_element=event_element,
+                file_identifier=file_identifier,
+                offence_types=typed_offences,
+                tools=typed_tools,
+            )
+        except DuplicatedIdError as e:
+            if "unproblematic" in e.args[0]:
+                # existing_event_id = e.args[1]
+                # this id can later be used for referencing
+                pass
+            else:
+                raise e
+    elif event_type in Event.xml_trial_result_types:
+        try:
+            if event_type == Punishment.type_key:
+                punishments_xml = event_element.xpath(
+                    ".//tei:desc/tei:list/tei:item",
+                    namespaces=nsmap
+                )
+                if not (punishments_xml):
+                    punishments_xml = event_element.xpath(
+                        ".//tei:desc//tei:desc",
+                        namespaces=nsmap
+                    )
+                event_obj = Punishment(
+                    _type=event_type,
+                    _id="",  # ids not necessary there
+                    date=date,
+                    place=place,
+                    description=description_str,
+                    xml_element=event_element,
+                    file_identifier=file_identifier,
+                    punishments_xml=punishments_xml
+                )
+            elif event_type == Execution.type_key:
+                punishments_xml = event_element.xpath(
+                    ".//tei:desc/tei:list/tei:item",
+                    namespaces=nsmap
+                )
+                if not (punishments_xml):
+                    punishments_xml = event_element.xpath(
+                        ".//tei:desc//tei:desc",
+                        namespaces=nsmap
+                    )
+                event_obj = Punishment(
+                    _type=event_type,
+                    _id="",  # ids not necessary there
+                    date=date,
+                    place=place,
+                    description=description_str,
+                    xml_element=event_element,
+                    file_identifier=file_identifier,
+                    punishments_xml=punishments_xml
+                )
+            else:
+                event_obj = TrialResult(
+                    _type=event_type,
+                    _id="",  # ids not necessary there
+                    date=date,
+                    place=place,
+                    description=description_str,
+                    xml_element=event_element,
+                    file_identifier=file_identifier
+                )
+        except DuplicatedIdError as e:
+            if "unproblematic" in e.args[0]:
+                pass
+            else:
+                raise e
+    return event_obj
+
+
+def extract_events_and_persons(doc: TeiReader, file_identifier: str):
     events = []
     persons = []
-    for person in doc.any_xpath("//tei:person"):
-        xml_id = person.xpath("@xml:id", namespaces=doc.nsmap)
-        roles = person.xpath("@role", namespaces=doc.nsmap)
-        forename = person.xpath("./tei:forename/text()", namespaces=doc.nsmap)
-        surename = person.xpath("./tei:surename//text()", namespaces=doc.nsmap)
-        birth_element = person.xpath("./tei:birth", namespaces=doc.nsmap)
-        death_element = person.xpath("./tei:death", namespaces=doc.nsmap)
-        sex = person.xpath("./tei:sex/@value", namespaces=doc.nsmap)
-        age = person.xpath("./tei:age/@value", namespaces=doc.nsmap)
-        _type = person.xpath("./tei:state/@type", namespaces=doc.nsmap)
-        marriage_state = person.xpath(
-            "./tei:state/tei:desc//text()", namespaces=doc.nsmap)
-        faith = person.xpath("./tei:faith/text()", namespaces=doc.nsmap)
-        occupation = person.xpath(
-            "./tei:occupation/text()", namespaces=doc.nsmap)
-        person_obj = Person(
-            xml_id=xml_id[0] if xml_id else "",
-            roles=roles,
-            forename=forename[0] if forename else "",
-            surname=surename[0] if surename else "",
-            birth_element=birth_element,
-            death_element=death_element,
-            sex=sex[0] if sex else "",
-            age=age[0] if age else "",
-            _type=_type[0] if _type else "",
-            marriage_status=marriage_state,
-            faith=faith,
-            occupation=occupation,
-            file_identifier=file_identifier
-        )
-        try:
-            person_obj.create_global_id()
-        except ValueError as e:
-            input(e)
-
-        persons.append(person)
-        for event_element in person.xpath(
+    for person_element in doc.any_xpath("//tei:person"):
+        person_obj: Person = extract_person(
+            person_element, file_identifier, doc.nsmap)
+        persons.append(person_obj)
+        for event_element in person_element.xpath(
             ".//tei:event",
             namespaces=doc.nsmap
         ):
-            event_type: str = event_element.xpath(
-                "./@type", namespaces=doc.nsmap)[0]
-            xml_id: list = event_element.xpath(
-                "./@xml:id", namespaces=doc.nsmap)
-            if not xml_id:
-                xml_id: list = event_element.xpath(
-                    "./@ref", namespaces=doc.nsmap
-                )
-                if xml_id and xml_id[0] != "#":
-                    xml_id = [f"#{xml_id[0]}"]
-            date: list = event_element.xpath(
-                "./tei:desc/tei:date/@when", namespaces=doc.nsmap)
-            place: list = event_element.xpath(
-                "./tei:desc/tei:placeName/text()[1]", namespaces=doc.nsmap)
-            description_str: list = event_element.xpath(
-                "./tei:desc/tei:desc//text()", namespaces=doc.nsmap)
-            event_obj = None
-            if event_type in Event.xml_offence_types:
-                try:
-                    typed_offences: list = event_element.xpath(
-                        '''./tei:desc/tei:trait[@type='typeOfOffence']/
-                        tei:desc/tei:list/tei:item/text()''',
-                        namespaces=doc.nsmap
-                    )
-                    typed_tools: list = event_element.xpath(
-                        '''./tei:desc/tei:trait[@type='toolOfCrime']
-                        /tei:desc//text()''',
-                        namespaces=doc.nsmap
-                    )
-                    event_obj = Offence(
-                        _type=event_type,
-                        _id=xml_id,
-                        date=date,
-                        place=place,
-                        description=description_str,
-                        xml_element=event_element,
-                        file_identifier=file_identifier,
-                        offence_types=typed_offences,
-                        tools=typed_tools,
-                    )
-                except DuplicatedIdError as e:
-                    if "unproblematic" in e.args[0]:
-                        # existing_event_id = e.args[1]
-                        # this id can later be used for referencing
-                        pass
-                    else:
-                        raise e
-            elif event_type in Event.xml_trial_result_types:
-                try:
-                    if event_type == Punishment.type_key:
-                        punishments_xml = event_element.xpath(
-                            ".//tei:desc/tei:list/tei:item",
-                            namespaces=doc.nsmap
-                        )
-                        if not (punishments_xml):
-                            punishments_xml = event_element.xpath(
-                                ".//tei:desc//tei:desc",
-                                namespaces=doc.nsmap
-                            )
-                        event_obj = Punishment(
-                            _type=event_type,
-                            _id="",  # ids not necessary there
-                            date=date,
-                            place=place,
-                            description=description_str,
-                            xml_element=event_element,
-                            file_identifier=file_identifier,
-                            punishments_xml=punishments_xml
-                        )
-                    elif event_type == Execution.type_key:
-                        punishments_xml = event_element.xpath(
-                            ".//tei:desc/tei:list/tei:item",
-                            namespaces=doc.nsmap
-                        )
-                        if not (punishments_xml):
-                            punishments_xml = event_element.xpath(
-                                ".//tei:desc//tei:desc",
-                                namespaces=doc.nsmap
-                            )
-                        event_obj = Punishment(
-                            _type=event_type,
-                            _id="",  # ids not necessary there
-                            date=date,
-                            place=place,
-                            description=description_str,
-                            xml_element=event_element,
-                            file_identifier=file_identifier,
-                            punishments_xml=punishments_xml
-                        )
-                    else:
-                        event_obj = TrialResult(
-                            _type=event_type,
-                            _id="",  # ids not necessary there
-                            date=date,
-                            place=place,
-                            description=description_str,
-                            xml_element=event_element,
-                            file_identifier=file_identifier
-                        )
-                except DuplicatedIdError as e:
-                    if "unproblematic" in e.args[0]:
-                        pass
-                    else:
-                        raise e
+            event_obj = extract_event(
+                event_element, file_identifier, doc.nsmap)
             if event_obj:
                 events.append(event_obj)
                 person_obj.append_related_event(event_obj)
-    return events
+    return events, persons
 
 
 def print_to_json(objects, category):
     events_json = dict((obj.get_global_id(), obj.to_json()) for obj in objects)
+    print(events_json)
     with open(f"{file_output}/{category}.json", "w") as f:
         json.dump(events_json, f, indent=4)
 
@@ -732,7 +784,8 @@ def print_indices_to_json():
 
 
 if __name__ == "__main__":
-    events = []
+    event_objs = []
+    person_objs = []
     events_json = {}
     template_doc = TeiReader("template/events.xml")
     listevent = template_doc.any_xpath(".//tei:listEvent[@type='offences']")[0]
@@ -744,32 +797,43 @@ if __name__ == "__main__":
         print(file_path)
         try:
             tei_doc = TeiReader(file_path)
-            # events += extract_offences(tei_doc, file_identifier)
-            events += extract_events(tei_doc, file_identifier)
+            entitie_objects = extract_events_and_persons(
+                tei_doc,
+                file_identifier
+            )
+            event_objs += entitie_objects[0]
+            person_objs += entitie_objects[1]
         except lxml.etree.XMLSyntaxError as err:
             error_docs[file_path] = err
             continue
         doc_id = re.match(".*?/([^/]+).xml", file_path).group(1)
 
-    for e in events:
-        e.check_4_empty_fields()
-        events_json[e.get_global_id()] = e.to_json()
-        listevent.append(e.get_etree())
+    punishment_objects = []
+    offences_objects = []
+    for event in event_objs:
+        event.check_4_empty_fields()
+        if isinstance(event, Offence):
+            offences_objects.append(event)
+        else:
+            punishment_objects.append(event)
+        listevent.append(event.get_etree())
+
+    os.makedirs(file_output, exist_ok=True)
+    template_doc.tree_to_file(f"{file_output}/events.xml")
+    print_to_json(offences_objects, "offences")
+    print_to_json(punishment_objects, "punishments")
+    print_to_json(person_objs, "persons")
+    missing_fields = ', '.join(list(set(all_missing_fields)))
+    if events_with_missing_field:
+        logmessage = (
+            f"{events_with_missing_field} of {len(event_objs)} events are "
+            f"missing infos in one or more of these fields: '{missing_fields}'"
+        )
+        print(logmessage)
 
     if error_docs:
         print(f"\n\n{len(error_docs)} faulty docs:")
         for doc, err in error_docs.items():
             print(f"{doc}:\t{err}")
 
-    os.makedirs(file_output, exist_ok=True)
-    template_doc.tree_to_file(f"{file_output}/offences.xml")
-    with open(f"{file_output}/offences.json", "w") as f:
-        json.dump(events_json, f, indent=4)
-    missing_fields = ', '.join(list(set(all_missing_fields)))
-    if events_with_missing_field:
-        logmessage = (
-            f"{events_with_missing_field} of {len(events)} events are "
-            f"missing infos in one or more of these fields: '{missing_fields}'"
-        )
-        print(logmessage)
     print_indices_to_json()
