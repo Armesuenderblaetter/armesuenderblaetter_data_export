@@ -94,7 +94,7 @@ class MethodsOfPunishment(UniqueStringVals):
 
 
 tools_index = ToolTypes(
-    id_prefix="tool",
+    id_prefix="tool_type",
     id_suffix="",
     id_nmbr_len=3
 )
@@ -106,13 +106,13 @@ places_index = Places(
 )
 
 offence_index = OffenceTypes(
-    id_prefix="offence",
+    id_prefix="offence_type",
     id_suffix="",
     id_nmbr_len=3
 )
 
 punishment_index = MethodsOfPunishment(
-    id_prefix="punishment",
+    id_prefix="punishment_type",
     id_suffix="",
     id_nmbr_len=3
 )
