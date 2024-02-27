@@ -170,7 +170,7 @@ class Event:
             self.id = f"{Event.random_counter:04}"
             self.is_probably_copy = False
             self.xml_source_id = ""
-        self.date: str = date[0] if date else ""
+        self.date: str = date if date else ""
         self.places: list = self.get_places(place)
         self.description: str = "".join(
             [re.sub(" +", " ", desc) for desc in description])
@@ -670,7 +670,7 @@ def extract_event(
     dates: list = []
     date: list = event_element.xpath(
         "./tei:desc/tei:date", namespaces=nsmap)
-    if len(date) > 1:
+    if len(date) == 2:
         print(f"multiple dates in {xml_id}")
         date1, date2 = event_element.xpath(
             "./tei:desc/tei:date", namespaces=nsmap)
@@ -680,6 +680,22 @@ def extract_event(
         except KeyError:
             date1_when = " ".join(date1.xpath(".//text()", namespaces=nsmap))
             dates.append(re.sub(r"\s+", " ", date1_when).strip())
+            try:
+                date_exec = date1.xpath(
+                    """ancestor::tei:person/tei:event[@type='execution']
+                    /tei:desc/tei:date/@when""",
+                    namespaces=nsmap)[0]
+                dates.append(date_exec)
+            except IndexError:
+                try:
+                    date_exec = date1.xpath(
+                        """ancestor::tei:person/tei:event[@type='verdict']
+                        /tei:desc/tei:date/@when""",
+                        namespaces=nsmap)[0]
+                    dates.append(date_exec)
+                except IndexError:
+                    date_exec = ""
+                    dates.append(date_exec)
         try:
             date2_when = date2.attrib["when"]
             dates.append(date2_when)
@@ -692,7 +708,28 @@ def extract_event(
             dates.append(date_when)
         except KeyError:
             date_when = " ".join(date[0].xpath(".//text()", namespaces=nsmap))
-            dates.append(re.sub(r"\s+", " ", date_when).strip())
+            if "before" in date_when:
+                dates.append(re.sub(r"\s+", " ", date_when).strip())
+            try:
+                date_exec = date[0].xpath(
+                    """ancestor::tei:person/tei:event[@type='execution']
+                    /tei:desc/tei:date/@when""",
+                    namespaces=nsmap)[0]
+                dates.append(date_exec)
+            except IndexError:
+                try:
+                    date_exec = date[0].xpath(
+                        """ancestor::tei:person/tei:event[@type='verdict']
+                        /tei:desc/tei:date/@when""",
+                        namespaces=nsmap)[0]
+                    dates.append(date_exec)
+                except IndexError:
+                    date_exec = ""
+                    dates.append(date_exec)
+            if "after" in date_when:
+                dates.append(re.sub(r"\s+", " ", date_when).strip())
+    else:
+        print("no date or more than two dates in ", xml_id)
     place: list = event_element.xpath(
         "./tei:desc/tei:placeName/text()[1]", namespaces=nsmap)
     description_str: list = event_element.xpath(
