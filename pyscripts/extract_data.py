@@ -667,8 +667,32 @@ def extract_event(
         )
         if xml_id and xml_id[0] != "#":
             xml_id = [f"#{xml_id[0]}"]
+    dates: list = []
     date: list = event_element.xpath(
-        "./tei:desc/tei:date/@when", namespaces=nsmap)
+        "./tei:desc/tei:date", namespaces=nsmap)
+    if len(date) > 1:
+        print(f"multiple dates in {xml_id}")
+        date1, date2 = event_element.xpath(
+            "./tei:desc/tei:date", namespaces=nsmap)
+        try:
+            date1_when = date1.attrib["when"]
+            dates.append(date1_when)
+        except KeyError:
+            date1_when = " ".join(date1.xpath(".//text()", namespaces=nsmap))
+            dates.append(re.sub(r"\s+", " ", date1_when).strip())
+        try:
+            date2_when = date2.attrib["when"]
+            dates.append(date2_when)
+        except KeyError:
+            date2_when = " ".join(date2.xpath(".//text()", namespaces=nsmap))
+            dates.append(re.sub(r"\s+", " ", date2_when).strip())
+    elif len(date) == 1:
+        try:
+            date_when = date[0].attrib["when"]
+            dates.append(date_when)
+        except KeyError:
+            date_when = " ".join(date[0].xpath(".//text()", namespaces=nsmap))
+            dates.append(re.sub(r"\s+", " ", date_when).strip())
     place: list = event_element.xpath(
         "./tei:desc/tei:placeName/text()[1]", namespaces=nsmap)
     description_str: list = event_element.xpath(
@@ -689,7 +713,7 @@ def extract_event(
             event_obj = Offence(
                 _type=event_type,
                 _id=xml_id,
-                date=date,
+                date=dates,
                 place=place,
                 description=description_str,
                 xml_element=event_element,
@@ -718,7 +742,7 @@ def extract_event(
                 event_obj = Punishment(
                     _type=event_type,
                     _id="",  # ids not necessary there
-                    date=date,
+                    date=dates,
                     place=place,
                     description=description_str,
                     xml_element=event_element,
@@ -738,7 +762,7 @@ def extract_event(
                 event_obj = Punishment(
                     _type=event_type,
                     _id="",  # ids not necessary there
-                    date=date,
+                    date=dates,
                     place=place,
                     description=description_str,
                     xml_element=event_element,
@@ -749,7 +773,7 @@ def extract_event(
                 event_obj = TrialResult(
                     _type=event_type,
                     _id="",  # ids not necessary there
-                    date=date,
+                    date=dates,
                     place=place,
                     description=description_str,
                     xml_element=event_element,
