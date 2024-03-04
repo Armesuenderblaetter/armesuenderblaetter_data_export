@@ -852,9 +852,11 @@ def extract_events_and_persons(doc: TeiReader, file_identifier: str):
 
 
 def print_to_json(objects, category):
-    events_json = dict((obj.get_global_id(), obj.to_json()) for obj in objects)
-    with open(f"{file_output}/{category}.json", "w") as f:
-        json.dump(events_json, f, indent=4)
+    object_json = dict((obj.get_global_id(), obj.to_json()) for obj in objects)
+    fp = f"{file_output}/{category}.json"
+    with open(fp, "w") as f:
+        print(f"writing to {fp}")
+        json.dump(object_json, f, indent=4)
 
 
 def print_indices_to_json():
@@ -869,28 +871,69 @@ def prepare_output_folder():
         os.remove(old_file)
     os.makedirs(file_output, exist_ok=True)
 
+class File:
+    def __init__(
+            self,
+            path:str,
+            identifier:str, 
+            events:list,
+            persons: list
+    ):
+        self.path: str = path
+        self.id: str = identifier
+        self.global_id = None
+        self.events: list = events
+        self.persons: list = persons
 
+    def get_global_id(self):
+        if self.global_id is None:
+            try:
+                check_global_id(self.id)
+            except:
+                input(f"Document id '{self.id}' used more then once.")
+                raise ValueError
+            self.global_id = self.id
+        return self.global_id
+
+    def to_json(self):
+        persons = [p.get_global_id() for p in self.persons]
+        events = [e.get_global_id() for e in self.events]
+        return {
+            "id" : self.get_global_id(),
+            "local_path" : self.path,
+            "contains_persons" : persons,
+            "contains_events" : events,
+            
+        }
 if __name__ == "__main__":
     event_objs = []
     person_objs = []
     events_json = {}
+    files = []
     template_doc = TeiReader("template/events.xml")
     listevent = template_doc.any_xpath(".//tei:listEvent[@type='offences']")[0]
     for file_path in glob.glob(cases_dir):
-        file_identifier = file_path.split("/")[-1]
+        #file_identifier = file_path.split("/")[-1]
+        doc_id = re.match(".*?/([^/]+).xml", file_path).group(1)
         print(file_path)
         try:
             tei_doc = TeiReader(file_path)
             entitie_objects = extract_events_and_persons(
                 tei_doc,
-                file_identifier
+                doc_id
             )
             event_objs += entitie_objects[0]
             person_objs += entitie_objects[1]
+            file = File(
+                file_path,
+                doc_id,
+                entitie_objects[0],
+                entitie_objects[1],
+            )
+            files.append(file)
         except lxml.etree.XMLSyntaxError as err:
             error_docs[file_path] = err
             continue
-        doc_id = re.match(".*?/([^/]+).xml", file_path).group(1)
 
     punishment_objects = []
     offences_objects = []
@@ -907,6 +950,7 @@ if __name__ == "__main__":
     print_to_json(offences_objects, "offences")
     print_to_json(punishment_objects, "punishments")
     print_to_json(person_objs, "persons")
+    print_to_json(files, "documents")
     missing_fields = ', '.join(list(set(all_missing_fields)))
     if events_with_missing_field:
         logmessage = (
