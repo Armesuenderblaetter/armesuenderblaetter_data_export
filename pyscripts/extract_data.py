@@ -883,6 +883,7 @@ class XmlDocument:
     ):  
         self.xml_tree: TeiReader = xml_tree
         self.path: str = path
+        print(self.path)
         self.id: str = identifier
         self.global_id = None
         self.events: list = events
@@ -894,7 +895,13 @@ class XmlDocument:
                 "{http://www.tei-c.org/ns/1.0}f"
             ]
         )
-
+        self.title: str = extract_fulltext(
+            self.xml_tree.any_xpath("//tei:title")[0],
+            tag_blacklist=[
+                "{http://www.tei-c.org/ns/1.0}fs",
+                "{http://www.tei-c.org/ns/1.0}f"
+            ]
+        )
 
     def get_global_id(self):
         if self.global_id is None:
@@ -910,12 +917,15 @@ class XmlDocument:
         persons = [p.get_global_id() for p in self.persons]
         events = [e.get_global_id() for e in self.events]
         return {
+            "title" : self.title,
             "id" : self.get_global_id(),
             "local_path" : self.path,
             "contains_persons" : persons,
             "contains_events" : events,
             "fulltext": self.fulltext
         }
+
+
 if __name__ == "__main__":
     event_objs = []
     person_objs = []
