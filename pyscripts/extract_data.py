@@ -6,6 +6,7 @@ import json
 import os
 from lxml import etree
 from acdh_tei_pyutils.tei import TeiReader
+from acdh_tei_pyutils.utils import extract_fulltext
 from copy import deepcopy
 
 
@@ -871,19 +872,29 @@ def prepare_output_folder():
         os.remove(old_file)
     os.makedirs(file_output, exist_ok=True)
 
-class File:
+class XmlDocument:
     def __init__(
             self,
+            xml_tree: TeiReader,
             path:str,
             identifier:str, 
             events:list,
             persons: list
-    ):
+    ):  
+        self.xml_tree: TeiReader = xml_tree
         self.path: str = path
         self.id: str = identifier
         self.global_id = None
         self.events: list = events
         self.persons: list = persons
+        self.fulltext: str = extract_fulltext(
+            self.xml_tree.any_xpath("//tei:text")[0],
+            tag_blacklist=[
+                "{http://www.tei-c.org/ns/1.0}fs",
+                "{http://www.tei-c.org/ns/1.0}f"
+            ]
+        )
+
 
     def get_global_id(self):
         if self.global_id is None:
@@ -903,13 +914,13 @@ class File:
             "local_path" : self.path,
             "contains_persons" : persons,
             "contains_events" : events,
-            
+            "fulltext": self.fulltext
         }
 if __name__ == "__main__":
     event_objs = []
     person_objs = []
     events_json = {}
-    files = []
+    xml_docs = []
     template_doc = TeiReader("template/events.xml")
     listevent = template_doc.any_xpath(".//tei:listEvent[@type='offences']")[0]
     for file_path in glob.glob(cases_dir):
@@ -924,13 +935,14 @@ if __name__ == "__main__":
             )
             event_objs += entitie_objects[0]
             person_objs += entitie_objects[1]
-            file = File(
+            xml_doc = XmlDocument(
+                tei_doc,
                 file_path,
                 doc_id,
                 entitie_objects[0],
                 entitie_objects[1],
             )
-            files.append(file)
+            xml_docs.append(xml_doc)
         except lxml.etree.XMLSyntaxError as err:
             error_docs[file_path] = err
             continue
@@ -950,7 +962,7 @@ if __name__ == "__main__":
     print_to_json(offences_objects, "offences")
     print_to_json(punishment_objects, "punishments")
     print_to_json(person_objs, "persons")
-    print_to_json(files, "documents")
+    print_to_json(xml_docs, "documents")
     missing_fields = ', '.join(list(set(all_missing_fields)))
     if events_with_missing_field:
         logmessage = (
