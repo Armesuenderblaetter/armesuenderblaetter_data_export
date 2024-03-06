@@ -330,8 +330,8 @@ class Punishment(Event):
                 }
             )
         return methods
-    
-    def return_punishment_methods_as_string(self):
+
+    def return_punishments_as_str(self):
         returner = []
         for punishment in self.methods:
             returner.append(punishment["label"])
@@ -392,7 +392,7 @@ class Execution(Event):
             )
         return methods
 
-    def return_execution_methods_as_string(self):
+    def return_executions_as_str(self):
         returner = []
         for execution in self.methods:
             returner.append(execution["label"])
@@ -871,14 +871,19 @@ def print_to_json(objects, category):
         print(f"writing to {fp}")
         json.dump(object_json, f, indent=4)
 
+
 def print_typesense_entries_to_json(documents):
     doc_json = dict(
-        (doc.get_global_id(), doc.return_typesense_entry()) for doc in documents
+        (
+            doc.get_global_id(),
+            doc.return_typesense_entry()
+        ) for doc in documents
     )
     fp = f"{file_output}/typesense_entries.json"
     with open(fp, "w") as f:
         print(f"writing to {fp}")
         json.dump(doc_json, f, indent=4)
+
 
 def print_indices_to_json():
     for index in typed_indices:
@@ -892,15 +897,16 @@ def prepare_output_folder():
         os.remove(old_file)
     os.makedirs(file_output, exist_ok=True)
 
+
 class XmlDocument:
     def __init__(
             self,
             xml_tree: TeiReader,
-            path:str,
-            identifier:str, 
-            events:list,
+            path: str,
+            identifier: str,
+            events: list,
             persons: list
-    ):  
+    ):
         self.xml_tree: TeiReader = xml_tree
         self.path: str = path
         print(self.path)
@@ -908,8 +914,10 @@ class XmlDocument:
         self.global_id = None
         self.events: list = events
         self.executions: list = [e for e in events if isinstance(e, Execution)]
-        self.punishments: list = [e for e in events if isinstance(e, Punishment)]
-        self.trialresults: list = [e for e in events if isinstance(e, TrialResult)]
+        self.punishments: list = [
+            e for e in events if isinstance(e, Punishment)]
+        self.trialresults: list = [
+            e for e in events if isinstance(e, TrialResult)]
         self.persons: list = persons
         self.fulltext: str = self.return_doc_text()
         self.title: str = self.return_title()
@@ -918,20 +926,20 @@ class XmlDocument:
         self.publisher: str = ""
         self.get_bibl_data()
 
-
     def get_bibl_data(self):
         print(self.path)
-        dates = self.xml_tree.any_xpath("//tei:sourceDesc//tei:biblStruct//tei:date/text()")
+        dates = self.xml_tree.any_xpath(
+            "//tei:sourceDesc//tei:biblStruct//tei:date/text()")
         self.print_date = dates[0] if dates else ""
-        self.pubPlace = self.xml_tree.any_xpath("//tei:sourceDesc//tei:biblStruct//tei:pubPlace/text()")[0]
-        self.publisher = self.xml_tree.any_xpath("//tei:sourceDesc//tei:biblStruct//tei:publisher/text()")[0]
-
+        self.pubPlace = self.xml_tree.any_xpath(
+            "//tei:sourceDesc//tei:biblStruct//tei:pubPlace/text()")[0]
+        self.publisher = self.xml_tree.any_xpath(
+            "//tei:sourceDesc//tei:biblStruct//tei:publisher/text()")[0]
 
     def return_title(self):
         return extract_fulltext(
             self.xml_tree.any_xpath("//tei:title")[0],
         )
-
 
     def return_doc_text(self):
         return extract_fulltext(
@@ -946,7 +954,7 @@ class XmlDocument:
         if self.global_id is None:
             try:
                 check_global_id(self.id)
-            except:
+            except DuplicatedIdError:
                 input(f"Document id '{self.id}' used more then once.")
                 raise ValueError
             self.global_id = self.id
@@ -956,33 +964,33 @@ class XmlDocument:
         persons = [p.get_global_id() for p in self.persons]
         events = [e.get_global_id() for e in self.events]
         return {
-            "title" : self.title,
-            "id" : self.get_global_id(),
-            "filename" : self.path.split("/")[-1],
-            "contains_persons" : persons,
-            "contains_events" : events,
+            "title": self.title,
+            "id": self.get_global_id(),
+            "filename": self.path.split("/")[-1],
+            "contains_persons": persons,
+            "contains_events": events,
             "fulltext": self.fulltext,
         }
 
     def return_typesense_entry(self):
         events = [e.get_global_id() for e in self.events]
         return {
-            "title" : self.title,
-            "id" : self.get_global_id(),
-            "filename" : self.path.split("/")[-1],
-            "contains_persons" : [p.to_json() for p in self.persons],
-            "contains_events" : events,
+            "title": self.title,
+            "id": self.get_global_id(),
+            "filename": self.path.split("/")[-1],
+            "contains_persons": [p.to_json() for p in self.persons],
+            "contains_events": events,
             "fulltext": self.fulltext,
             "print_date": self.print_date,
-            "execution_date": self.executions[0].date if self.executions else None,
-            "execution_methods" : [
-                ex.return_execution_methods_as_string() for ex in self.executions
+            "execution_date":
+                self.executions[0].date if self.executions else None,
+            "execution_methods": [
+                ex.return_executions_as_str() for ex in self.executions
             ],
-            "punishment_methods" : [
-                pun.return_punishment_methods_as_string() for pun in self.punishments
+            "punishment_methods": [
+                pun.return_punishments_as_str() for pun in self.punishments
             ]
         }
-        
 
     # link to xml document
     # persons (their attributes, age ...)
@@ -1001,7 +1009,7 @@ if __name__ == "__main__":
     template_doc = TeiReader("template/events.xml")
     listevent = template_doc.any_xpath(".//tei:listEvent[@type='offences']")[0]
     for file_path in glob.glob(cases_dir):
-        #file_identifier = file_path.split("/")[-1]
+        # file_identifier = file_path.split("/")[-1]
         doc_id = re.match(".*?/([^/]+).xml", file_path).group(1)
         print(file_path)
         try:
