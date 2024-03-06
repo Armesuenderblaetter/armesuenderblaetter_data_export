@@ -888,15 +888,17 @@ class XmlDocument:
         self.global_id = None
         self.events: list = events
         self.persons: list = persons
-        self.fulltext: str = extract_fulltext(
-            self.xml_tree.any_xpath("//tei:text")[0],
-            tag_blacklist=[
-                "{http://www.tei-c.org/ns/1.0}fs",
-                "{http://www.tei-c.org/ns/1.0}f"
-            ]
-        )
-        self.title: str = extract_fulltext(
+        self.fulltext: str = self.return_doc_text()
+        self.title: str = self.return_title()
+    
+    def return_title(self):
+        return extract_fulltext(
             self.xml_tree.any_xpath("//tei:title")[0],
+        )
+
+    def return_doc_text(self):
+        return extract_fulltext(
+            self.xml_tree.any_xpath("//tei:text")[0],
             tag_blacklist=[
                 "{http://www.tei-c.org/ns/1.0}fs",
                 "{http://www.tei-c.org/ns/1.0}f"
@@ -919,7 +921,7 @@ class XmlDocument:
         return {
             "title" : self.title,
             "id" : self.get_global_id(),
-            "local_path" : self.path,
+            "filename" : self.path.split("/")[-1],
             "contains_persons" : persons,
             "contains_events" : events,
             "fulltext": self.fulltext
