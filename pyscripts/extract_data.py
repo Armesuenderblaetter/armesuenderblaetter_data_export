@@ -330,6 +330,12 @@ class Punishment(Event):
                 }
             )
         return methods
+    
+    def return_punishment_methods_as_string(self):
+        returner = []
+        for punishment in self.methods:
+            returner.append(punishment["label"])
+        return returner
 
     def to_json(self):
         json_base_dict = super().to_json()
@@ -385,6 +391,12 @@ class Execution(Event):
                 }
             )
         return methods
+
+    def return_execution_methods_as_string(self):
+        returner = []
+        for execution in self.methods:
+            returner.append(execution["label"])
+        return returner
 
     def to_json(self):
         json_base_dict = super().to_json()
@@ -859,6 +871,14 @@ def print_to_json(objects, category):
         print(f"writing to {fp}")
         json.dump(object_json, f, indent=4)
 
+def print_typesense_entries_to_json(documents):
+    doc_json = dict(
+        (doc.get_global_id(), doc.return_typesense_entry()) for doc in documents
+    )
+    fp = f"{file_output}/typesense_entries.json"
+    with open(fp, "w") as f:
+        print(f"writing to {fp}")
+        json.dump(doc_json, f, indent=4)
 
 def print_indices_to_json():
     for index in typed_indices:
@@ -887,14 +907,31 @@ class XmlDocument:
         self.id: str = identifier
         self.global_id = None
         self.events: list = events
+        self.executions: list = [e for e in events if isinstance(e, Execution)]
+        self.punishments: list = [e for e in events if isinstance(e, Punishment)]
+        self.trialresults: list = [e for e in events if isinstance(e, TrialResult)]
         self.persons: list = persons
         self.fulltext: str = self.return_doc_text()
         self.title: str = self.return_title()
-    
+        self.date: str = ""
+        self.pubPlace: str = ""
+        self.publisher: str = ""
+        self.get_bibl_data()
+
+
+    def get_bibl_data(self):
+        print(self.path)
+        dates = self.xml_tree.any_xpath("//tei:sourceDesc//tei:biblStruct//tei:date/text()")
+        self.print_date = dates[0] if dates else ""
+        self.pubPlace = self.xml_tree.any_xpath("//tei:sourceDesc//tei:biblStruct//tei:pubPlace/text()")[0]
+        self.publisher = self.xml_tree.any_xpath("//tei:sourceDesc//tei:biblStruct//tei:publisher/text()")[0]
+
+
     def return_title(self):
         return extract_fulltext(
             self.xml_tree.any_xpath("//tei:title")[0],
         )
+
 
     def return_doc_text(self):
         return extract_fulltext(
@@ -924,8 +961,36 @@ class XmlDocument:
             "filename" : self.path.split("/")[-1],
             "contains_persons" : persons,
             "contains_events" : events,
-            "fulltext": self.fulltext
+            "fulltext": self.fulltext,
         }
+
+    def return_typesense_entry(self):
+        events = [e.get_global_id() for e in self.events]
+        return {
+            "title" : self.title,
+            "id" : self.get_global_id(),
+            "filename" : self.path.split("/")[-1],
+            "contains_persons" : [p.to_json() for p in self.persons],
+            "contains_events" : events,
+            "fulltext": self.fulltext,
+            "print_date": self.print_date,
+            "execution_date": self.executions[0].date if self.executions else None,
+            "execution_methods" : [
+                ex.return_execution_methods_as_string() for ex in self.executions
+            ],
+            "punishment_methods" : [
+                pun.return_punishment_methods_as_string() for pun in self.punishments
+            ]
+        }
+        
+
+    # link to xml document
+    # persons (their attributes, age ...)
+    # place of execution
+    # date of xml
+    # date of execution
+    # list of execution methods
+    # punishments mentioned (optional)
 
 
 if __name__ == "__main__":
@@ -941,18 +1006,18 @@ if __name__ == "__main__":
         print(file_path)
         try:
             tei_doc = TeiReader(file_path)
-            entitie_objects = extract_events_and_persons(
+            entity_objects = extract_events_and_persons(
                 tei_doc,
                 doc_id
             )
-            event_objs += entitie_objects[0]
-            person_objs += entitie_objects[1]
+            event_objs += entity_objects[0]
+            person_objs += entity_objects[1]
             xml_doc = XmlDocument(
                 tei_doc,
                 file_path,
                 doc_id,
-                entitie_objects[0],
-                entitie_objects[1],
+                entity_objects[0],
+                entity_objects[1],
             )
             xml_docs.append(xml_doc)
         except lxml.etree.XMLSyntaxError as err:
@@ -975,6 +1040,7 @@ if __name__ == "__main__":
     print_to_json(punishment_objects, "punishments")
     print_to_json(person_objs, "persons")
     print_to_json(xml_docs, "documents")
+    print_typesense_entries_to_json(xml_docs)
     missing_fields = ', '.join(list(set(all_missing_fields)))
     if events_with_missing_field:
         logmessage = (
