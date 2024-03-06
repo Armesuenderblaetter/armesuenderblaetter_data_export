@@ -927,10 +927,8 @@ class XmlDocument:
         self.get_bibl_data()
 
     def get_bibl_data(self):
-        print(self.path)
-        dates = self.xml_tree.any_xpath(
+        self.print_dates: list = self.xml_tree.any_xpath(
             "//tei:sourceDesc//tei:biblStruct//tei:date/text()")
-        self.print_date = dates[0] if dates else ""
         self.pubPlace = self.xml_tree.any_xpath(
             "//tei:sourceDesc//tei:biblStruct//tei:pubPlace/text()")[0]
         self.publisher = self.xml_tree.any_xpath(
@@ -972,18 +970,47 @@ class XmlDocument:
             "fulltext": self.fulltext,
         }
 
+    def get_sorting_date(self):
+        nmbr_dates = []
+        dates = [e.date[0] for e in self.punishments if e.date]
+        dates += [e.date[0] for e in self.executions if e.date]
+        dates += self.print_dates
+        if dates == ['1765', '1766', '1772-04-02', 'k. A.']:
+            input(self.id)
+        for date in dates:
+            if re.search(r"\d", date):
+                try:
+                    numeric_date_str = re.sub(r'[-\ .]*', '', date).strip()
+                    if (
+                        re.search("[A-Za-z]+", numeric_date_str)
+                        and numeric_date_str[-4:].isnumeric()
+                    ):
+                        numeric_date_str = numeric_date_str[-4:]
+                    nmbr_dates.append(
+                        int(
+                            f"{numeric_date_str:<08}"
+                        )
+                    )
+                except ValueError:
+                    pass
+        if nmbr_dates:
+            return sorted(nmbr_dates)[-1]
+        else:
+            return 0
+
     def return_typesense_entry(self):
-        events = [e.get_global_id() for e in self.events]
+        events_ids = [e.get_global_id() for e in self.events]
         return {
+            "sorting_date": self.get_sorting_date(),
             "title": self.title,
             "id": self.get_global_id(),
             "filename": self.path.split("/")[-1],
             "contains_persons": [p.to_json() for p in self.persons],
-            "contains_events": events,
+            "contains_events": events_ids,
             "fulltext": self.fulltext,
-            "print_date": self.print_date,
+            "print_date": self.print_dates[0] if self.print_dates else "",
             "execution_date":
-                self.executions[0].date if self.executions else None,
+                self.executions[0].date if self.executions else "",
             "execution_methods": [
                 ex.return_executions_as_str() for ex in self.executions
             ],
