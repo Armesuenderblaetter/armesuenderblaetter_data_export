@@ -1077,6 +1077,7 @@ if __name__ == "__main__":
     print_to_json(xml_docs, "documents")
     print_typesense_entries_to_json(xml_docs)
     missing_fields = ', '.join(list(set(all_missing_fields)))
+
     if events_with_missing_field:
         logmessage = (
             f"{events_with_missing_field} of {len(event_objs)} events are "
