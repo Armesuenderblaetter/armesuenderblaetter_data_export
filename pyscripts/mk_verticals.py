@@ -5,14 +5,15 @@ import glob
 from acdh_tei_pyutils.tei import TeiReader
 from acdh_tei_pyutils.utils import extract_fulltext
 
+
 def process_xml_files(input_filepath, output_filepath):
     # create dir for output files
     output_dir = os.path.join(output_filepath, "verticals")
     os.makedirs(output_dir, exist_ok=True)
-    
+
     # Use glob to get all XML files
     xml_files = glob.glob(os.path.join(input_filepath, "*.xml"))
-    
+
     # Iterate through each XML file
     for xml_file_path in xml_files:
         doc = TeiReader(xml_file_path)
@@ -21,7 +22,7 @@ def process_xml_files(input_filepath, output_filepath):
         # process "tei:w" tags
         for teiw_tag in teiw_tags:
             verticals = []
-            # extractable attribute: 
+            # extractable attribute:
             # lemma, ana, pos, id, join, part
             text = extract_fulltext(teiw_tag)
             lemma = teiw_tag.get('lemma', "")
@@ -53,6 +54,7 @@ def process_xml_files(input_filepath, output_filepath):
             )
             with open(output_file, "a", encoding="utf-8") as f:
                 f.write('\t'.join(verticals) + '\n')
+
 
 if __name__ == "__main__":
     input_filepath = "./todesurteile_master/303_annot_tei/"
