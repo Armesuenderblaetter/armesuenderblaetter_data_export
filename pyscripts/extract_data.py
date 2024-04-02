@@ -974,6 +974,7 @@ class XmlDocument:
         nmbr_dates = []
         dates = [e.date[0] for e in self.punishments if e.date]
         dates += [e.date[0] for e in self.executions if e.date]
+        dates += [e.date[0] for e in self.trialresults if e.date]
         dates += self.print_dates
         if dates == ['1765', '1766', '1772-04-02', 'k. A.']:
             input(self.id)
@@ -996,6 +997,7 @@ class XmlDocument:
         if nmbr_dates:
             return sorted(nmbr_dates)[-1]
         else:
+            input(self.global_id)
             return 0
 
     def return_typesense_entry(self):
