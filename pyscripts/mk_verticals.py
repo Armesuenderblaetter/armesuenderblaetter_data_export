@@ -7,6 +7,7 @@ from acdh_tei_pyutils.utils import extract_fulltext
 
 full_xml_ns = ""
 
+
 def mk_vertical_from_w(teiw_tag, full_xml_ns):
     # extractable attribute:
     # lemma, ana, pos, id, join, part
@@ -33,6 +34,7 @@ def mk_vertical_from_w(teiw_tag, full_xml_ns):
     )
     return vertical
 
+
 def get_verticals_from_xml_files(input_filepath):
     # Use glob to get all XML files
     xml_files = glob.glob(
@@ -48,7 +50,7 @@ def get_verticals_from_xml_files(input_filepath):
         # process "tei:w" tags
         doc_verticals = []
         for teiw_tag in teiw_tags:
-            full_xml_ns="{"+doc.ns_xml["xml"]+"}"
+            full_xml_ns = "{"+doc.ns_xml["xml"]+"}"
             doc_verticals.append(
                 mk_vertical_from_w(
                     teiw_tag,
@@ -62,6 +64,7 @@ def get_verticals_from_xml_files(input_filepath):
             )
         )
     return verticals
+
 
 def write_verticals_to_file(verticals, output_dir):
     # Write the verticals list to a TSV file
@@ -77,12 +80,14 @@ def write_verticals_to_file(verticals, output_dir):
             print(f"writing to {output_file}")
             f.write(verticals_string)
 
+
 def prepare_output_dir(output_filepath):
     # create dir for output files
     output_dir = os.path.join(output_filepath, "verticals")
     print(f"output to {output_dir}")
     os.makedirs(output_dir, exist_ok=True)
     return output_dir
+
 
 if __name__ == "__main__":
     input_filepath = "./todesurteile_master/303_annot_tei/"
