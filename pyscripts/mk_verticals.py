@@ -105,7 +105,7 @@ def write_verticals_to_file(verticals, output_dir):
             f.write(verticals_string)
 
 
-def prepare_output_dir(output_filepath="./out/verticals"):
+def prepare_output_dir(output_filepath="./out/"):
     # create dir for output files
     output_dir = os.path.join(output_filepath, "verticals")
     print(f"output to {output_dir}")
