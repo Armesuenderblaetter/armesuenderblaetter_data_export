@@ -34,6 +34,30 @@ def mk_vertical_from_w(teiw_tag, full_xml_ns):
     )
     return vertical
 
+def export_verticals_from_doc(
+        doc: TeiReader,
+        title:str,
+        doc_id:str,
+        date: int
+    ):
+    doc_verticals = []
+    open_doc_vertical = f'<doc id="{doc_id}" attrs="word lemma ana pos id join part" title="{title}" date="{date}">'
+    close_doc_vertical = '</doc>'
+    p_vertical_open = '<p>'
+    p_vertical_closed = '</p>'
+    doc_verticals.append(open_doc_vertical)
+    for p in doc.any_xpath("//tei:p"):
+        doc_verticals.append(p_vertical_open)
+        for w in p.xpath(".//tei:w", namespaces=doc.nsmap):
+            vertical = mk_vertical_from_w(
+                w,
+                full_xml_ns=full_xml_ns
+            )
+            doc_verticals.append(vertical)
+        doc_verticals.append(p_vertical_closed)
+    doc_verticals.append(close_doc_vertical)
+    return "\n".join(doc_verticals)
+    
 
 def get_verticals_from_xml_files(input_filepath):
     # Use glob to get all XML files
@@ -81,7 +105,7 @@ def write_verticals_to_file(verticals, output_dir):
             f.write(verticals_string)
 
 
-def prepare_output_dir(output_filepath):
+def prepare_output_dir(output_filepath="./out/verticals"):
     # create dir for output files
     output_dir = os.path.join(output_filepath, "verticals")
     print(f"output to {output_dir}")
@@ -91,8 +115,7 @@ def prepare_output_dir(output_filepath):
 
 if __name__ == "__main__":
     input_filepath = "./todesurteile_master/303_annot_tei/"
-    output_filepath = "./verticalstest"
-    output_dir = prepare_output_dir(output_filepath)
+    output_dir = prepare_output_dir()
     verticals = get_verticals_from_xml_files(
         input_filepath
     )

@@ -8,6 +8,7 @@ from lxml import etree
 from acdh_tei_pyutils.tei import TeiReader
 from acdh_tei_pyutils.utils import extract_fulltext
 from copy import deepcopy
+import mk_verticals
 
 
 cases_dir = "./todesurteile_master/303_annot_tei/*.xml"
@@ -926,6 +927,20 @@ class XmlDocument:
         self.publisher: str = ""
         self.get_bibl_data()
 
+
+    def export_verticals(self, output_dir:str):
+        verticals = mk_verticals.export_verticals_from_doc(
+            doc=self.xml_tree,
+            title=self.title,
+            doc_id=self.get_global_id(),
+            date=self.get_sorting_date(),
+        )
+        file_ext = ".tsv"
+        output_dir = output_dir + "/" if not output_dir.endswith("/") else output_dir
+        outfile_path = f"{output_dir}{self.id}{file_ext}"
+        with open(outfile_path, "w") as of:
+            of.write(verticals)
+
     def get_bibl_data(self):
         self.print_dates: list = self.xml_tree.any_xpath(
             "//tei:sourceDesc//tei:biblStruct//tei:date/text()")
@@ -970,7 +985,7 @@ class XmlDocument:
             "fulltext": self.fulltext,
         }
 
-    def get_sorting_date(self):
+    def get_sorting_date(self) -> int:
         nmbr_dates = []
         dates = [e.date[0] for e in self.punishments if e.date]
         dates += [e.date[0] for e in self.executions if e.date]
@@ -1029,12 +1044,19 @@ class XmlDocument:
     # list of execution methods
     # punishments mentioned (optional)
 
+    
+def export_verticals(xml_docs, verticals_output_folder):
+    for doc in xml_docs:
+        doc: XmlDocument
+        doc.export_verticals(verticals_output_folder)
+
 
 if __name__ == "__main__":
     event_objs = []
     person_objs = []
     events_json = {}
     xml_docs = []
+    verticals_output_folder = mk_verticals.prepare_output_dir()
     template_doc = TeiReader("template/events.xml")
     listevent = template_doc.any_xpath(".//tei:listEvent[@type='offences']")[0]
     for file_path in glob.glob(cases_dir):
@@ -1077,6 +1099,7 @@ if __name__ == "__main__":
     print_to_json(punishment_objects, "punishments")
     print_to_json(person_objs, "persons")
     print_to_json(xml_docs, "documents")
+    export_verticals(xml_docs, verticals_output_folder)
     print_typesense_entries_to_json(xml_docs)
     missing_fields = ', '.join(list(set(all_missing_fields)))
     if events_with_missing_field:
