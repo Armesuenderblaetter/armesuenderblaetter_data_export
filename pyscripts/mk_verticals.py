@@ -36,11 +36,11 @@ def mk_vertical_from_w(teiw_tag, full_xml_ns):
 
 
 def export_verticals_from_doc(
-        doc: TeiReader,
-        title:str,
-        doc_id:str,
-        date: int
-    ):
+    doc: TeiReader,
+    title: str,
+    doc_id: str,
+    date: int
+):
     doc_verticals = []
     open_doc_vertical = f'<doc id="{doc_id}" title="{title}" date="{date}">'
     close_doc_vertical = '</doc>'
@@ -57,18 +57,18 @@ def export_verticals_from_doc(
 
 
 def export_verticals_from_doc_bak(
-        doc: TeiReader,
-        title:str,
-        doc_id:str,
-        date: int
-    ):
+    doc: TeiReader,
+    title: str,
+    doc_id: str,
+    date: int
+):
     doc_verticals = []
     open_doc_vertical = f'<doc id="{doc_id}" attrs="word lemma ana pos id join part" title="{title}" date="{date}">'
     close_doc_vertical = '</doc>'
     p_vertical_open = '<p>'
     p_vertical_closed = '</p>'
     lg_vertical_open = "<lg>"
-    lg_vertical_close = "</lg>"   
+    lg_vertical_close = "</lg>"
     l_vertical_open = "<l>"
     l_vertical_close = "</l>"
     doc_verticals.append(open_doc_vertical)
@@ -107,7 +107,7 @@ def export_verticals_from_doc_bak(
             doc_verticals.append(vertical)
     doc_verticals.append(close_doc_vertical)
     return "\n".join(doc_verticals)
-    
+
 
 def get_verticals_from_xml_files(input_filepath):
     # Use glob to get all XML files
