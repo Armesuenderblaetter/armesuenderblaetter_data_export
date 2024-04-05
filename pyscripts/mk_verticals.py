@@ -45,16 +45,44 @@ def export_verticals_from_doc(
     close_doc_vertical = '</doc>'
     p_vertical_open = '<p>'
     p_vertical_closed = '</p>'
+    lg_vertical_open = "<lg>"
+    lg_vertical_close = "</lg>"   
+    l_vertical_open = "<l>"
+    l_vertical_close = "</l>"
     doc_verticals.append(open_doc_vertical)
-    for p in doc.any_xpath("//tei:p"):
-        doc_verticals.append(p_vertical_open)
-        for w in p.xpath(".//tei:w", namespaces=doc.nsmap):
+    structure_elements = doc.any_xpath("//tei:p|//tei:lg")
+    if len(structure_elements) != 0:
+        for sel in structure_elements:
+            sel_name = sel.xpath("local-name()")
+            if sel_name == "p":
+                doc_verticals.append(p_vertical_open)
+                for w in sel.xpath(".//tei:w", namespaces=doc.nsmap):
+                    vertical = mk_vertical_from_w(
+                        w,
+                        full_xml_ns=full_xml_ns
+                    )
+                    doc_verticals.append(vertical)
+                doc_verticals.append(p_vertical_closed)
+            elif sel_name == "lg":
+                doc_verticals.append(lg_vertical_open)
+                for l in sel.xpath("./tei:l", namespaces=doc.nsmap):
+                    doc_verticals.append(l_vertical_open)
+                    for w in l.xpath(".//tei:w", namespaces=doc.nsmap):
+                        vertical = mk_vertical_from_w(
+                            w,
+                            full_xml_ns=full_xml_ns
+                        )
+                        doc_verticals.append(vertical)
+                    doc_verticals.append(l_vertical_close)
+                doc_verticals.append(lg_vertical_close)
+    else:
+        input(doc_id)
+        for w in doc.any_xpath(".//tei:w"):
             vertical = mk_vertical_from_w(
                 w,
                 full_xml_ns=full_xml_ns
             )
             doc_verticals.append(vertical)
-        doc_verticals.append(p_vertical_closed)
     doc_verticals.append(close_doc_vertical)
     return "\n".join(doc_verticals)
     
