@@ -927,8 +927,7 @@ class XmlDocument:
         self.publisher: str = ""
         self.get_bibl_data()
 
-
-    def export_verticals(self, output_dir:str):
+    def export_verticals(self, output_dir: str):
         verticals = mk_verticals.export_verticals_from_doc(
             doc=self.xml_tree,
             title=self.title,
@@ -936,7 +935,8 @@ class XmlDocument:
             date=self.get_sorting_date(),
         )
         file_ext = ".tsv"
-        output_dir = output_dir + "/" if not output_dir.endswith("/") else output_dir
+        output_dir = output_dir + \
+            "/" if not output_dir.endswith("/") else output_dir
         outfile_path = f"{output_dir}{self.id}{file_ext}"
         with open(outfile_path, "w") as of:
             of.write(verticals)
@@ -1044,7 +1044,7 @@ class XmlDocument:
     # list of execution methods
     # punishments mentioned (optional)
 
-    
+
 def export_verticals(xml_docs, verticals_output_folder):
     for doc in xml_docs:
         doc: XmlDocument
