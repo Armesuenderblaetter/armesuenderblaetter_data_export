@@ -5,7 +5,7 @@ import glob
 from acdh_tei_pyutils.tei import TeiReader
 from acdh_tei_pyutils.utils import extract_fulltext
 
-full_xml_ns = ""
+full_xml_ns = "{http://www.w3.org/1999/xhtml}"
 
 
 def mk_vertical_from_w(teiw_tag, full_xml_ns):
@@ -16,7 +16,7 @@ def mk_vertical_from_w(teiw_tag, full_xml_ns):
     ana = teiw_tag.get('ana', "no")
     pos = teiw_tag.get('pos', "no")
     element_id = teiw_tag.get(
-        f"{full_xml_ns}id",
+        '{http://www.w3.org/XML/1998/namespace}id',
         ""
     )
     join = teiw_tag.get('join', "no")
