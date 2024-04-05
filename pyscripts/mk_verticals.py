@@ -12,15 +12,15 @@ def mk_vertical_from_w(teiw_tag, full_xml_ns):
     # extractable attribute:
     # lemma, ana, pos, id, join, part
     text = extract_fulltext(teiw_tag)
-    lemma = teiw_tag.get('lemma', "")
-    ana = teiw_tag.get('ana', "")
-    pos = teiw_tag.get('pos', "")
+    lemma = teiw_tag.get('lemma', "no")
+    ana = teiw_tag.get('ana', "no")
+    pos = teiw_tag.get('pos', "no")
     element_id = teiw_tag.get(
         f"{full_xml_ns}id",
         ""
     )
-    join = teiw_tag.get('join', "")
-    part = teiw_tag.get('part', "")
+    join = teiw_tag.get('join', "no")
+    part = teiw_tag.get('part', "no")
     vertical = '\t'.join(
         [
             text,
@@ -34,7 +34,29 @@ def mk_vertical_from_w(teiw_tag, full_xml_ns):
     )
     return vertical
 
+
 def export_verticals_from_doc(
+        doc: TeiReader,
+        title:str,
+        doc_id:str,
+        date: int
+    ):
+    doc_verticals = []
+    open_doc_vertical = f'<doc id="{doc_id}" title="{title}" date="{date}">'
+    close_doc_vertical = '</doc>'
+    doc_verticals.append(open_doc_vertical)
+    ws = doc.any_xpath("//tei:w")
+    for w in ws:
+        vertical = mk_vertical_from_w(
+            w,
+            full_xml_ns=full_xml_ns
+        )
+        doc_verticals.append(vertical)
+    doc_verticals.append(close_doc_vertical)
+    return "\n".join(doc_verticals)
+
+
+def export_verticals_from_doc_bak(
         doc: TeiReader,
         title:str,
         doc_id:str,
