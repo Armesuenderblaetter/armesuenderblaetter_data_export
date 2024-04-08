@@ -87,9 +87,9 @@ def export_verticals_from_doc_bak(
                 doc_verticals.append(p_vertical_closed)
             elif sel_name == "lg":
                 doc_verticals.append(lg_vertical_open)
-                for l in sel.xpath("./tei:l", namespaces=doc.nsmap):
+                for l_element in sel.xpath("./tei:l", namespaces=doc.nsmap):
                     doc_verticals.append(l_vertical_open)
-                    for w in l.xpath(".//tei:w", namespaces=doc.nsmap):
+                    for w in l_element.xpath(".//tei:w", namespaces=doc.nsmap):
                         vertical = mk_vertical_from_w(
                             w,
                             full_xml_ns=full_xml_ns
