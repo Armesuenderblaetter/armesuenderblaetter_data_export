@@ -63,8 +63,8 @@ def export_verticals_from_doc_bak(
     date: int
 ):
     doc_verticals = []
-    open_doc_vertical = f'<doc id="{doc_id}" attrs="word lemma \\
-        ana pos id join part" title="{title}" date="{date}">'
+    open_doc_vertical = f"""<doc id="{doc_id}" attrs="word lemma \\\
+        ana pos id join part" title="{title}" date="{date}">"""
     close_doc_vertical = '</doc>'
     p_vertical_open = '<p>'
     p_vertical_closed = '</p>'
