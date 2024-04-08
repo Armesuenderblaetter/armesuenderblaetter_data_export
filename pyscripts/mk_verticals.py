@@ -6,12 +6,36 @@ from acdh_tei_pyutils.tei import TeiReader
 from acdh_tei_pyutils.utils import extract_fulltext
 
 full_xml_ns = "{http://www.w3.org/1999/xhtml}"
+full_tei_ns = "{http://www.tei-c.org/ns/1.0}"
 
 
 def mk_vertical_from_w(teiw_tag, full_xml_ns):
     # extractable attribute:
     # lemma, ana, pos, id, join, part
-    text = extract_fulltext(teiw_tag)
+    lem_tag = teiw_tag.xpath(
+        f"./tei:app/tei:lem",
+        namespaces = {
+            "tei" : "http://www.tei-c.org/ns/1.0"
+        }
+    )
+    corr_tag = teiw_tag.xpath(
+        "./parent::tei:sic/following-sibling::tei:corr",
+        namespaces = {
+            "tei" : "http://www.tei-c.org/ns/1.0"
+        }
+    )
+    if lem_tag:
+        text = extract_fulltext(
+            root_node=lem_tag[0]
+        )
+    elif corr_tag:
+        text = extract_fulltext(
+            root_node=corr_tag[0]
+        )
+    else:
+        text = extract_fulltext(
+            root_node=teiw_tag
+        )
     lemma = teiw_tag.get('lemma', "no")
     ana = teiw_tag.get('ana', "no")
     pos = teiw_tag.get('pos', "no")
