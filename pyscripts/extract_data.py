@@ -1047,7 +1047,6 @@ class XmlDocument:
 
 def export_verticals(xml_docs, verticals_output_folder):
     for doc in xml_docs:
-        doc: XmlDocument
         doc.export_verticals(verticals_output_folder)
 
 
