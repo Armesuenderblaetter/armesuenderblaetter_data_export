@@ -14,14 +14,14 @@ def mk_vertical_from_w(teiw_tag, full_xml_ns):
     # lemma, ana, pos, id, join, part
     lem_tag = teiw_tag.xpath(
         f"./tei:app/tei:lem",
-        namespaces = {
-            "tei" : "http://www.tei-c.org/ns/1.0"
+        namespaces={
+            "tei": "http://www.tei-c.org/ns/1.0"
         }
     )
     corr_tag = teiw_tag.xpath(
         "./parent::tei:sic/following-sibling::tei:corr",
-        namespaces = {
-            "tei" : "http://www.tei-c.org/ns/1.0"
+        namespaces={
+            "tei": "http://www.tei-c.org/ns/1.0"
         }
     )
     if lem_tag:
@@ -60,27 +60,6 @@ def mk_vertical_from_w(teiw_tag, full_xml_ns):
 
 
 def export_verticals_from_doc(
-    doc: TeiReader,
-    title: str,
-    doc_id: str,
-    date: int
-):
-    doc_verticals = []
-    open_doc_vertical = f'<doc id="{doc_id}" title="{title}" date="{date}">'
-    close_doc_vertical = '</doc>\n'
-    doc_verticals.append(open_doc_vertical)
-    ws = doc.any_xpath("//tei:w")
-    for w in ws:
-        vertical = mk_vertical_from_w(
-            w,
-            full_xml_ns=full_xml_ns
-        )
-        doc_verticals.append(vertical)
-    doc_verticals.append(close_doc_vertical)
-    return "\n".join(doc_verticals)
-
-
-def export_verticals_from_doc_bak(
     doc: TeiReader,
     title: str,
     doc_id: str,
