@@ -63,7 +63,8 @@ def export_verticals_from_doc_bak(
     date: int
 ):
     doc_verticals = []
-    open_doc_vertical = f'<doc id="{doc_id}" attrs="word lemma ana pos id join part" title="{title}" date="{date}">'
+    open_doc_vertical = f'<doc id="{doc_id}" attrs="word lemma \\
+        ana pos id join part" title="{title}" date="{date}">'
     close_doc_vertical = '</doc>'
     p_vertical_open = '<p>'
     p_vertical_closed = '</p>'
@@ -163,10 +164,10 @@ def prepare_output_dir(output_filepath="./out/"):
     return output_dir
 
 
-if __name__ == "__main__":
-    input_filepath = "./todesurteile_master/303_annot_tei/"
-    output_dir = prepare_output_dir()
-    verticals = get_verticals_from_xml_files(
-        input_filepath
-    )
-    write_verticals_to_file(verticals, output_dir)
+# if __name__ == "__main__":
+#     input_filepath = "./todesurteile_master/303_annot_tei/"
+#     output_dir = prepare_output_dir()
+#     verticals = get_verticals_from_xml_files(
+#         input_filepath
+#     )
+#     write_verticals_to_file(verticals, output_dir)
