@@ -43,7 +43,7 @@ def export_verticals_from_doc(
 ):
     doc_verticals = []
     open_doc_vertical = f'<doc id="{doc_id}" title="{title}" date="{date}">'
-    close_doc_vertical = '</doc>'
+    close_doc_vertical = '</doc>\n'
     doc_verticals.append(open_doc_vertical)
     ws = doc.any_xpath("//tei:w")
     for w in ws:
@@ -65,7 +65,7 @@ def export_verticals_from_doc_bak(
     doc_verticals = []
     open_doc_vertical = f"""<doc id="{doc_id}" attrs="word lemma \\\
         ana pos id join part" title="{title}" date="{date}">"""
-    close_doc_vertical = '</doc>'
+    close_doc_vertical = '</doc>\n'
     p_vertical_open = '<p>'
     p_vertical_closed = '</p>'
     lg_vertical_open = "<lg>"
