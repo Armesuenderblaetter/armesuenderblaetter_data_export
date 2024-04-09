@@ -5,12 +5,12 @@ xml_path = "./todesurteile_master/303_annot_tei/*.xml"
 
 
 def create_ids_for_element(doc: TeiReader, element_name: str):
-    doc_id = xml_doc.any_xpath('//tei:TEI/@xml:id')[0]
+    doc_id = xml_doc.any_xpath('//tei:TEI/@xml:id')[0].removesuffix(".xml")
     xml_namespace = f'{{{xml_doc.ns_xml.get("xml")}}}'
     i = 0
     for element in doc.any_xpath(f"//tei:body//tei:{element_name}"):
         i += 1
-        element_id = doc_id + "_" + element_name + "{:04}".format(i)
+        element_id = "{}_{}_{:04}".format(doc_id, element_name, i)
         element.set(xml_namespace + "id", element_id)
 
 
