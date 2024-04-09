@@ -85,6 +85,9 @@ def process_lg(lg_element, doc_verticals, nsmap):
     return doc_verticals
 
 
+attrs = "word lemma ana pos id join part"
+
+
 def export_verticals_from_doc(
     doc: TeiReader,
     title: str,
@@ -92,8 +95,8 @@ def export_verticals_from_doc(
     date: int
 ):
     doc_verticals = []
-    open_doc_vertical = f"""<doc id="{doc_id}" attrs="word lemma \\\
-        ana pos id join part" title="{title}" date="{date}">"""
+    attribs = f'id="{doc_id}" attrs="{attrs}" title="{title}" date="{date}"'
+    open_doc_vertical = f"<doc {attribs}>"
     close_doc_vertical = '</doc>\n'
     doc_verticals.append(open_doc_vertical)
     structure_elements = doc.any_xpath("//tei:p|//tei:lg[not(parent::tei:lg)]")
