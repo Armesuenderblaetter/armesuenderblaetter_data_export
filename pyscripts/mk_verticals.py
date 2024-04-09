@@ -6,8 +6,8 @@ from acdh_tei_pyutils.tei import TeiReader
 from acdh_tei_pyutils.utils import extract_fulltext
 
 full_xml_ns = "{http://www.w3.org/1999/xhtml}"
-full_tei_ns = "{http://www.tei-c.org/ns/1.0}"
 xml_id_name = '{http://www.w3.org/XML/1998/namespace}id'
+
 
 def get_id(element):
     return element.get(
@@ -20,7 +20,7 @@ def mk_vertical_from_w(teiw_tag):
     # extractable attribute:
     # lemma, ana, pos, id, join, part
     lem_tag = teiw_tag.xpath(
-        f"./tei:app/tei:lem",
+        "./tei:app/tei:lem",
         namespaces={
             "tei": "http://www.tei-c.org/ns/1.0"
         }
@@ -61,6 +61,7 @@ def mk_vertical_from_w(teiw_tag):
         ]
     )
     return vertical
+
 
 def process_lg(lg_element, doc_verticals, nsmap):
     doc_verticals.append(
@@ -137,7 +138,6 @@ def get_verticals_from_xml_files(input_filepath):
         # process "tei:w" tags
         doc_verticals = []
         for teiw_tag in teiw_tags:
-            full_xml_ns = "{"+doc.ns_xml["xml"]+"}"
             doc_verticals.append(
                 mk_vertical_from_w(teiw_tag)
             )
