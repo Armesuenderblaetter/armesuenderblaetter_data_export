@@ -1,5 +1,5 @@
 import glob
-from acdh_tei_pyutils.tei import TeiReader, ET
+from acdh_tei_pyutils.tei import TeiReader
 
 xml_path = "./todesurteile_master/303_annot_tei/*.xml"
 
