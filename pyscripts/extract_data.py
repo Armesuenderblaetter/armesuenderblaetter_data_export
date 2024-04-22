@@ -874,12 +874,12 @@ def print_to_json(objects, category):
 
 
 def print_typesense_entries_to_json(documents):
-    doc_json = dict(
-        (
-            doc.get_global_id(),
-            doc.return_typesense_entry()
-        ) for doc in documents
-    )
+    doc_json = dict()
+    for doc in documents:
+        doc: XmlDocument
+        key = doc.get_global_id()
+        val = doc.return_prescribed_typesense_entry()
+        doc_json[key] = val
     fp = f"{file_output}/typesense_entries.json"
     with open(fp, "w") as f:
         print(f"writing to {fp}")
@@ -1014,6 +1014,19 @@ class XmlDocument:
         else:
             input(self.global_id)
             return 0
+
+    def return_prescribed_typesense_entry(self):
+        # events_ids = [e.get_global_id() for e in self.events]
+        return {
+            "sorting_date": self.get_sorting_date(),
+            "title": self.title,
+            "id": self.get_global_id(),
+            "filename": self.path.split("/")[-1],
+            "fulltext": self.fulltext,
+            "print_date": self.print_dates[0] if self.print_dates else "",
+            "printer": self.publisher,
+            "printing_location": self.pubPlace
+        }
 
     def return_typesense_entry(self):
         events_ids = [e.get_global_id() for e in self.events]
