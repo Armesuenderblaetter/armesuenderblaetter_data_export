@@ -11,6 +11,10 @@ from copy import deepcopy
 import mk_verticals
 
 
+tei_nsmp = {
+    "tei": "http://www.tei-c.org/ns/1.0"
+}
+
 cases_dir = "./todesurteile_master/303_annot_tei/*.xml"
 error_docs = {}
 all_missing_fields = []
@@ -243,7 +247,8 @@ class Event:
         all_missing_fields += missing_vals
         if missing_vals:
             events_with_missing_field += 1
-            print(f"\nmissing: {', '.join(missing_vals)}")
+            print(
+                f"\nmissing: {', '.join(missing_vals)} in obj {self.type}")
             print("\nsource:")
             self.print_source()
 
@@ -420,29 +425,29 @@ class Execution(Event):
         return json_base_dict | json_extra_dict
 
 
-class Birth(Event):
-    type_key = "birth"
+# class Birth(Event):
+#     type_key = "birth"
 
-    def __init__(
-            self,
-            _type: str,
-            _id: list,
-            date: list,
-            place: list,
-            description: list,
-            xml_element: etree._Element,
-            file_identifier: str,
-    ):
-        super().__init__(
-            _type,
-            _id,
-            date,
-            place,
-            description,
-            xml_element,
-            file_identifier,
-            "trial_result"
-        )
+#     def __init__(
+#             self,
+#             _type: str,
+#             _id: list,
+#             date: list,
+#             place: list,
+#             description: list,
+#             xml_element: etree._Element,
+#             file_identifier: str,
+#     ):
+#         super().__init__(
+#             _type,
+#             _id,
+#             date,
+#             place,
+#             description,
+#             xml_element,
+#             file_identifier,
+#             "trial_result"
+#         )
 
 
 class Person:
@@ -482,7 +487,7 @@ class Person:
                                               if birth_element else None)
         self.death_element: etree._Element = (death_element[0]
                                               if death_element else None)
-        self.birth_event: Birth
+        self._birth_place: str = None
         self.sex: str = sex
         self.age: str = age
         self.type: str = _type
@@ -494,9 +499,21 @@ class Person:
         self.related_events = []
         self.element: etree._Element = xml_element
 
-    def create_birth_event(self):
-        if self.birth_element is not None:
-            pass
+    def return_birth_place(self):
+        if self._birth_place is None:
+            if self.birth_element is not None:
+                settlements = self.birth_element.xpath(
+                    "tei:placeName/tei:settlement/text()", namespaces=tei_nsmp)
+                country = self.birth_element.xpath(
+                    "tei:placeName/tei:country/text()", namespaces=tei_nsmp)
+                self._birth_place = ""
+                self._birth_place += (
+                    settlements[0].strip() if settlements else ""
+                )
+                self._birth_place += (
+                    f" ({country[0].strip()})" if country else ""
+                )
+        return self._birth_place
 
     def create_global_id(self, override=False):
         if self.global_id is not None and not override:
@@ -536,16 +553,27 @@ class Person:
         ).decode()
 
     def to_json(self):
+        offences = []
+        executions = []
+        punishments = []
+        for event in self.related_events:
+            if isinstance(event, Offence):
+                offence: Offence = event
+                for o_obj in offence.return_offence_types():
+                    offences.append(o_obj["label"])
+            if isinstance(event, Execution):
+                execution: Execution = event
+                for e_obj in execution.methods:
+                    executions.append(e_obj["label"])
+            if isinstance(offence, Punishment):
+                punishment: Punishment = event
+                for p_obj in punishment.methods:
+                    punishments.append(p_obj["label"])
         return {
             "global_id": self.global_id,
             "forename": self.forename,
             "surname": self.surname,
-            "birth_element": etree.tostring(
-                self.birth_element
-            ).decode() if self.birth_element is not None else "",
-            "death_element": etree.tostring(
-                self.death_element
-            ).decode() if self.death_element is not None else "",
+            "birth_place": self.return_birth_place(),
             "roles": self.roles,
             "sex": self.sex,
             "age": self.age,
@@ -557,6 +585,9 @@ class Person:
             "related_events": [
                 event.get_global_id() for event in self.related_events
             ],
+            "offences": offences,
+            "execution": executions,
+            "punishments": punishments,
             "element": self.get_source_string()
         }
 
@@ -571,7 +602,7 @@ class Offence(Event):
             description: list,
             xml_element: etree._Element,
             file_identifier: str,
-            offence_types: list,
+            raw_offence_types: list,
             tools: list) -> None:
         super().__init__(
             _type,
@@ -586,11 +617,12 @@ class Offence(Event):
         self.proven_by_persecution: bool = None
         self.completed: typing.Optional[bool] = None
         self.aided: typing.Optional[bool] = None
-        self.offence_types: list = []
-        self.get_offence_types(offence_types)
+        self.raw_offence_types: list = raw_offence_types
+        self.offence_types: list = None
         self.tools: list = []
         self.get_typed_tools(tools)
         self.set_offence_status()
+        _ = self.return_offence_types()
 
     def get_typed_tools(self, raw_tools):
         counter = 0
@@ -648,18 +680,21 @@ class Offence(Event):
         }
         return json_base_dict | json_extra_dict
 
-    def get_offence_types(self, offences: list):
-        counter = 0
-        for offence in offences:
-            counter += 1
-            offence_id = offence_index.get_id_for_label(offence.strip())
-            self.offence_types.append(
-                {
-                    "id": offence_id,
-                    "order": counter,
-                    "label": offence
-                }
-            )
+    def return_offence_types(self):
+        if self.offence_types is None:
+            self.offence_types = []
+            counter = 0
+            for offence in self.raw_offence_types:
+                counter += 1
+                offence_id = offence_index.get_id_for_label(offence.strip())
+                self.offence_types.append(
+                    {
+                        "id": offence_id,
+                        "order": counter,
+                        "label": offence
+                    }
+                )
+        return self.offence_types
 
 
 def extract_person(
@@ -691,6 +726,7 @@ def extract_person(
         forename=forename[0] if forename else "",
         surname=surename[0] if surename else "",
         birth_element=birth_element,
+        # these are always empty!
         death_element=death_element,
         sex=sex[0] if sex else "",
         age=age[0] if age else "",
@@ -811,7 +847,7 @@ def extract_event(
                 description=description_str,
                 xml_element=event_element,
                 file_identifier=file_identifier,
-                offence_types=typed_offences,
+                raw_offence_types=typed_offences,
                 tools=typed_tools,
             )
         except DuplicatedIdError as e:
@@ -1155,8 +1191,11 @@ if __name__ == "__main__":
         event.check_4_empty_fields()
         if isinstance(event, Offence):
             offences_objects.append(event)
+            event: Offence
+            _ = event.return_offence_types()
         else:
             punishment_objects.append(event)
+        event.check_4_empty_fields()
         listevent.append(event.get_etree())
 
     prepare_output_folder()
