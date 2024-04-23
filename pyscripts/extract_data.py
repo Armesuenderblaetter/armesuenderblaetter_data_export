@@ -94,6 +94,11 @@ class MethodsOfPunishment(UniqueStringVals):
         super().__init__(id_prefix, id_suffix, id_nmbr_len)
 
 
+class MethodsOfExecution(UniqueStringVals):
+    def __init__(self, id_prefix: str, id_suffix: str, id_nmbr_len=2):
+        super().__init__(id_prefix, id_suffix, id_nmbr_len)
+
+
 tools_index = ToolTypes(
     id_prefix="tool_type",
     id_suffix="",
@@ -118,7 +123,14 @@ punishment_index = MethodsOfPunishment(
     id_nmbr_len=3
 )
 
-typed_indices = [tools_index, places_index, offence_index, punishment_index]
+execution_index = MethodsOfExecution(
+    id_prefix="execution_type",
+    id_suffix="",
+    id_nmbr_len=3
+)
+
+typed_indices = [tools_index, places_index,
+                 offence_index, punishment_index, execution_index]
 
 
 class Event:
@@ -156,7 +168,7 @@ class Event:
             self,
             _type: str,
             _id: list,
-            date: list,
+            date: str,
             place: list,
             description: list,
             xml_element: etree._Element,
@@ -378,12 +390,12 @@ class Execution(Event):
     def get_execution_methods(self):
         methods = []
         counter = 0
-        for punishment in self.punishments_xml:
+        for punishment in self.methods_xml:
             counter += 1
             number = int(punishment.get("n")) if punishment.get(
                 "n") else counter
             label = punishment.text.strip()
-            p_id = punishment_index.get_id_for_label(label)
+            p_id = execution_index.get_id_for_label(label)
             methods.append(
                 {
                     "id": p_id,
@@ -406,6 +418,31 @@ class Execution(Event):
             "methods": self.methods
         }
         return json_base_dict | json_extra_dict
+
+
+class Birth(Event):
+    type_key = "birth"
+
+    def __init__(
+            self,
+            _type: str,
+            _id: list,
+            date: list,
+            place: list,
+            description: list,
+            xml_element: etree._Element,
+            file_identifier: str,
+    ):
+        super().__init__(
+            _type,
+            _id,
+            date,
+            place,
+            description,
+            xml_element,
+            file_identifier,
+            "trial_result"
+        )
 
 
 class Person:
@@ -445,6 +482,7 @@ class Person:
                                               if birth_element else None)
         self.death_element: etree._Element = (death_element[0]
                                               if death_element else None)
+        self.birth_event: Birth
         self.sex: str = sex
         self.age: str = age
         self.type: str = _type
@@ -455,6 +493,10 @@ class Person:
         self.file_identifier = file_identifier
         self.related_events = []
         self.element: etree._Element = xml_element
+
+    def create_birth_event(self):
+        if self.birth_element is not None:
+            pass
 
     def create_global_id(self, override=False):
         if self.global_id is not None and not override:
@@ -810,7 +852,7 @@ def extract_event(
                         ".//tei:desc//tei:desc",
                         namespaces=nsmap
                     )
-                event_obj = Punishment(
+                event_obj = Execution(
                     _type=event_type,
                     _id="",  # ids not necessary there
                     date=dates,
@@ -818,7 +860,7 @@ def extract_event(
                     description=description_str,
                     xml_element=event_element,
                     file_identifier=file_identifier,
-                    punishments_xml=punishments_xml
+                    methods_xml=punishments_xml
                 )
             else:
                 event_obj = TrialResult(
@@ -925,6 +967,8 @@ class XmlDocument:
         self.date: str = ""
         self.pubPlace: str = ""
         self.publisher: str = ""
+        self.sorting_date = None
+        self.label_year = None
         self.get_bibl_data()
 
     def export_verticals(self, output_dir: str):
@@ -932,7 +976,7 @@ class XmlDocument:
             doc=self.xml_tree,
             title=self.title,
             doc_id=self.get_global_id(),
-            date=self.get_sorting_date(),
+            date=self.return_sorting_date(),
         )
         file_ext = ".tsv"
         output_dir = output_dir + \
@@ -959,7 +1003,8 @@ class XmlDocument:
             self.xml_tree.any_xpath("//tei:text")[0],
             tag_blacklist=[
                 "{http://www.tei-c.org/ns/1.0}fs",
-                "{http://www.tei-c.org/ns/1.0}f"
+                "{http://www.tei-c.org/ns/1.0}f",
+
             ]
         )
 
@@ -985,40 +1030,49 @@ class XmlDocument:
             "fulltext": self.fulltext,
         }
 
-    def get_sorting_date(self) -> int:
-        nmbr_dates = []
-        dates = [e.date[0] for e in self.punishments if e.date]
-        dates += [e.date[0] for e in self.executions if e.date]
-        dates += [e.date[0] for e in self.trialresults if e.date]
-        dates += self.print_dates
-        if dates == ['1765', '1766', '1772-04-02', 'k. A.']:
-            input(self.id)
-        for date in dates:
-            if re.search(r"\d", date):
-                try:
-                    numeric_date_str = re.sub(r'[-\ .]*', '', date).strip()
-                    if (
-                        re.search("[A-Za-z]+", numeric_date_str)
-                        and numeric_date_str[-4:].isnumeric()
-                    ):
-                        numeric_date_str = numeric_date_str[-4:]
-                    nmbr_dates.append(
-                        int(
-                            f"{numeric_date_str:<08}"
+    def return_sorting_date(self):
+        if self.sorting_date is None:
+            nmbr_dates = []
+            dates = [e.date[0] for e in self.punishments if e.date]
+            dates += [e.date[0] for e in self.executions if e.date]
+            dates += [e.date[0] for e in self.trialresults if e.date]
+            dates += self.print_dates
+            for date in dates:
+                if re.search(r"\d", date):
+                    try:
+                        numeric_date_str = re.sub(r'[-\ .]*', '', date).strip()
+                        if (
+                            re.search("[A-Za-z]+", numeric_date_str)
+                            and numeric_date_str[-4:].isnumeric()
+                        ):
+                            numeric_date_str = numeric_date_str[-4:]
+                        nmbr_dates.append(
+                            int(
+                                f"{numeric_date_str:<08}"
+                            )
                         )
-                    )
-                except ValueError:
-                    pass
-        if nmbr_dates:
-            return sorted(nmbr_dates)[-1]
-        else:
-            input(self.global_id)
-            return 0
+                    except ValueError:
+                        pass
+            if nmbr_dates:
+                self.sorting_date = sorted(nmbr_dates)[-1]
+            else:
+                self.sorting_date = 0000
+        return self.sorting_date
+
+    def return_label_year(self):
+        if self.label_year is None:
+            sorting_date = self.return_sorting_date()
+            if sorting_date != 0:
+                self.label_year = int(str(sorting_date)[0:4])
+            else:
+                self.label_year = 1700
+        return self.label_year
 
     def return_prescribed_typesense_entry(self):
         # events_ids = [e.get_global_id() for e in self.events]
         return {
-            "sorting_date": self.get_sorting_date(),
+            "sorting_date": self.return_sorting_date(),
+            "label_date": self.return_label_year(),
             "title": self.title,
             "id": self.get_global_id(),
             "filename": self.path.split("/")[-1],
@@ -1031,7 +1085,7 @@ class XmlDocument:
     def return_typesense_entry(self):
         events_ids = [e.get_global_id() for e in self.events]
         return {
-            "sorting_date": self.get_sorting_date(),
+            "sorting_date": self.return_sorting_date(),
             "title": self.title,
             "id": self.get_global_id(),
             "filename": self.path.split("/")[-1],
