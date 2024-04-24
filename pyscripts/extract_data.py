@@ -489,7 +489,9 @@ class Person:
                                               if death_element else None)
         self._birth_place: str = None
         self.sex: str = sex
-        self.age: str = age
+        self.age = age
+        self.decade_age = age
+        self.refine_age()
         self.type: str = _type
         self.marriage_status: str = marriage_status
         self.faith: str = faith
@@ -498,6 +500,24 @@ class Person:
         self.file_identifier = file_identifier
         self.related_events = []
         self.element: etree._Element = xml_element
+        self.typesense_sorter = 0
+        self.fullname = ""
+
+    def refine_age(self):
+        nmbrs = re.search(".*?([0-9]+).*", self.age)
+        if nmbrs:
+            self.age = nmbrs.group(1)
+            if int(self.age) < 10:
+                self.decade_age = "10er"
+            else:
+                self.decade_age = str(
+                    round(
+                        int(self.age)/10
+                    )
+                ) + "0er"
+        else:
+            self.age = "k.A."
+            self.decade_age = "k.A."
 
     def return_birth_place(self):
         if self._birth_place is None:
@@ -513,6 +533,8 @@ class Person:
                 self._birth_place += (
                     f" ({country[0].strip()})" if country else ""
                 )
+        if self._birth_place == "k. A. (k. A.)":
+            self._birth_place = "k. A."
         return self._birth_place
 
     def create_global_id(self, override=False):
@@ -552,6 +574,16 @@ class Person:
             self.element
         ).decode()
 
+    def return_full_name(self):
+        if not self.fullname:
+            if self.forename and self.surname:
+                self.fullname = f"{self.surname}, {self.forename}"
+            elif self.surname:
+                self.fullname = self.surname
+            elif self.forename:
+                self.fullname = self.forename
+        return self.fullname
+
     def to_json(self):
         offences = []
         executions = []
@@ -561,34 +593,42 @@ class Person:
                 offence: Offence = event
                 for o_obj in offence.return_offence_types():
                     offences.append(o_obj["label"])
-            if isinstance(event, Execution):
+            elif isinstance(event, Execution):
                 execution: Execution = event
                 for e_obj in execution.methods:
                     executions.append(e_obj["label"])
-            if isinstance(offence, Punishment):
+            elif isinstance(event, Punishment):
                 punishment: Punishment = event
                 for p_obj in punishment.methods:
                     punishments.append(p_obj["label"])
+            else:
+                # hier gibt es einen Fall mit trial result
+                pass
         return {
+            "sorter": self.typesense_sorter,
             "global_id": self.global_id,
             "forename": self.forename,
             "surname": self.surname,
+            "fullname": self.return_full_name(),
             "birth_place": self.return_birth_place(),
-            "roles": self.roles,
+            # "roles": self.roles,
             "sex": self.sex,
             "age": self.age,
+            "decade_age": self.decade_age,
             "type": self.type,
             "marriage_status": self.marriage_status,
             "faith": self.faith,
-            "occupation": self.occupation,
-            "file_identifier": self.file_identifier,
+            "occupation": ", ".join(self.occupation),
+            # "file_identifier": self.file_identifier,
             "related_events": [
                 event.get_global_id() for event in self.related_events
             ],
-            "offences": offences,
+            "offences": list(
+                set(offences)
+            ),
             "execution": executions,
             "punishments": punishments,
-            "element": self.get_source_string()
+            # "element": self.get_source_string()
         }
 
 
@@ -1153,6 +1193,20 @@ def export_verticals(xml_docs, verticals_output_folder):
         doc.export_verticals(verticals_output_folder)
 
 
+def resort_persons_for_typesense(person_objs: list):
+    person_objs.sort(
+        key=lambda pers_o: (
+            pers_o.surname,
+            pers_o.forename
+        )
+    )
+    c = 0
+    for person_obj in person_objs:
+        c += 1
+        person_obj.typesense_sorter = c
+    return person_objs
+
+
 if __name__ == "__main__":
     event_objs = []
     person_objs = []
@@ -1202,7 +1256,11 @@ if __name__ == "__main__":
     template_doc.tree_to_file(f"{file_output}/events.xml")
     print_to_json(offences_objects, "offences")
     print_to_json(punishment_objects, "punishments")
-    print_to_json(person_objs, "persons")
+    print_to_json(
+        resort_persons_for_typesense(
+            person_objs
+        ),
+        "persons")
     print_to_json(xml_docs, "documents")
     export_verticals(xml_docs, verticals_output_folder)
     print_typesense_entries_to_json(xml_docs)
