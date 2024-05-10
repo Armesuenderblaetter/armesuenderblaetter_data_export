@@ -28,6 +28,10 @@ class DuplicatedIdError(Exception):
     pass
 
 
+def clear_kA(string):
+    return re.sub(r"k\. ?A\.,?", "", string).strip()
+
+
 def check_global_id(new_glob_id):
     if new_glob_id in used_ids:
         print(f"Automatically created Id {new_glob_id} is already in use")
@@ -577,11 +581,15 @@ class Person:
     def return_full_name(self):
         if not self.fullname:
             if self.forename and self.surname:
-                self.fullname = f"{self.surname}, {self.forename}"
+                self.fullname = clear_kA(
+                    f"{self.surname}, {self.forename}"
+                )
             elif self.surname:
-                self.fullname = self.surname
+                self.fullname = clear_kA(self.surname)
             elif self.forename:
-                self.fullname = self.forename
+                self.fullname = clear_kA(self.forename)
+            if not self.fullname:
+                self.fullname = "k.A."
         return self.fullname
 
     def to_json(self):
@@ -619,16 +627,15 @@ class Person:
             "marriage_status": self.marriage_status,
             "faith": self.faith,
             "occupation": ", ".join(self.occupation),
-            # "file_identifier": self.file_identifier,
+            "file_identifier": self.file_identifier,
             "related_events": [
                 event.get_global_id() for event in self.related_events
             ],
             "offences": list(
                 set(offences)
             ),
-            "execution": executions,
-            "punishments": punishments,
-            # "element": self.get_source_string()
+            "execution": executions if executions else ["Keine"],
+            "punishments": punishments if punishments else ["Keine"],
         }
 
 
@@ -989,6 +996,7 @@ def print_to_json(objects, category):
     with open(fp, "w") as f:
         print(f"writing to {fp}")
         json.dump(object_json, f, indent=4)
+    return object_json
 
 
 def print_typesense_entries_to_json(documents):
