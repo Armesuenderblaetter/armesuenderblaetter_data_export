@@ -4,23 +4,43 @@ import re
 import lxml
 import json
 import os
-from lxml import etree
+from pathlib import Path
+import lxml.etree as etree
+import lxml.builder as builder
+# from copy import deepcopy
 from acdh_tei_pyutils.tei import TeiReader
 from acdh_tei_pyutils.utils import extract_fulltext
-from copy import deepcopy
 import mk_verticals
 
 
+xmlns = "http://www.w3.org/XML/1998/namespace"
+
 tei_nsmp = {
-    "tei": "http://www.tei-c.org/ns/1.0"
+    "tei": "http://www.tei-c.org/ns/1.0",
+    "xml": xmlns
 }
+
+# # xml factory
+teiMaker = builder.ElementMaker(
+    namespace="http://www.tei-c.org/ns/1.0",
+    nsmap=tei_nsmp
+)
 
 cases_dir = "./todesurteile_master/303_annot_tei/*.xml"
 error_docs = {}
 all_missing_fields = []
 events_with_missing_field = 0
 used_ids = []
-file_output = "out"
+json_file_output = "out/json"
+xml_file_output = "out/xml"
+Path(f"./{json_file_output}").mkdir(
+    parents=True,
+    exist_ok=True
+)
+Path(f"./{xml_file_output}").mkdir(
+    parents=True,
+    exist_ok=True
+)
 global_events_by_ids = {}
 
 
@@ -203,6 +223,23 @@ class Event:
         self.global_id_prefix = global_id_prefix
         self.create_global_id()
         global_events_by_ids[self.global_id] = self
+        self.ref = None
+        # self.element_cp = deepcopy(self.element)
+
+    def to_xml(self):
+        self.element.set(
+            f"{{{xmlns}}}id",
+            self.global_id
+        )
+        return self.element
+
+    def add_selfref_as_next(self):
+        if self.ref is None:
+            self.ref = teiMaker.ref(
+                type=self.type,
+                target=self.global_id
+            )
+            self.element.addnext(self.ref)
 
     def create_global_id(self, override=False):
         if self.global_id is not None and not override:
@@ -239,9 +276,6 @@ class Event:
         print(
             self.get_source_string()
         )
-
-    def get_etree(self):
-        return deepcopy(self.element)
 
     def check_4_empty_fields(self):
         global all_missing_fields
@@ -474,7 +508,8 @@ class Person:
         faith: str,
         occupation: str,
         file_identifier: str,
-        xml_element: etree._Element
+        xml_element: etree._Element,
+        doc: TeiReader
     ):
         # what about role?
         self.xml_id: str = xml_id
@@ -504,8 +539,12 @@ class Person:
         self.file_identifier = file_identifier
         self.related_events = []
         self.element: etree._Element = xml_element
+        self.all_elements: list = [xml_element]
+        # self.element_cp = deepcopy(self.element)
         self.typesense_sorter = 0
-        self.fullname = ""
+        self.fullname = "",
+        self.doc: TeiReader = doc
+        self.ref = None
 
     def refine_age(self):
         nmbrs = re.search(".*?([0-9]+).*", self.age)
@@ -567,11 +606,24 @@ class Person:
         else:
             return self.global_id
 
+    def to_xml(self):
+        self.element.set(
+            f"{{{xmlns}}}id",
+            self.global_id
+        )
+        return self.element
+
+    def add_selfref_as_next(self):
+        if self.ref is None:
+            self.ref = teiMaker.ref(
+                target=self.global_id
+            )
+            self.element.addnext(
+                self.ref
+            )
+
     def append_related_event(self, event):
         self.related_events.append(event)
-
-    def get_etree(self):
-        return deepcopy(self.element)
 
     def get_source_string(self):
         return etree.tostring(
@@ -746,7 +798,9 @@ class Offence(Event):
 
 def extract_person(
         person_element: etree._Element,
-        file_identifier: str, nsmap: dict
+        file_identifier: str,
+        nsmap: dict,
+        doc: TeiReader
 ) -> Person:
     xml_id = person_element.xpath("@xml:id", namespaces=nsmap)
     roles = person_element.xpath("@role", namespaces=nsmap)
@@ -782,7 +836,8 @@ def extract_person(
         faith=faith,
         occupation=occupation,
         file_identifier=file_identifier,
-        xml_element=person_element
+        xml_element=person_element,
+        doc=doc
     )
     try:
         person_obj.create_global_id()
@@ -968,7 +1023,11 @@ def extract_events_and_persons(doc: TeiReader, file_identifier: str):
     persons = []
     for person_element in doc.any_xpath("//tei:person"):
         person_obj: Person = extract_person(
-            person_element, file_identifier, doc.nsmap)
+            person_element,
+            file_identifier,
+            doc.nsmap,
+            doc
+        )
         persons.append(person_obj)
         for event_element in person_element.xpath(
             ".//tei:event",
@@ -992,7 +1051,7 @@ def extract_events_and_persons(doc: TeiReader, file_identifier: str):
 
 def print_to_json(objects, category):
     object_json = dict((obj.get_global_id(), obj.to_json()) for obj in objects)
-    fp = f"{file_output}/{category}.json"
+    fp = f"{json_file_output}/{category}.json"
     with open(fp, "w") as f:
         print(f"writing to {fp}")
         json.dump(object_json, f, indent=4)
@@ -1006,7 +1065,7 @@ def print_typesense_entries_to_json(documents):
         key = doc.get_global_id()
         val = doc.return_prescribed_typesense_entry()
         doc_json[key] = val
-    fp = f"{file_output}/typesense_entries.json"
+    fp = f"{json_file_output}/typesense_entries.json"
     with open(fp, "w") as f:
         print(f"writing to {fp}")
         json.dump(doc_json, f, indent=4)
@@ -1014,15 +1073,43 @@ def print_typesense_entries_to_json(documents):
 
 def print_indices_to_json():
     for index in typed_indices:
-        with open(f"{file_output}/unique_{index.id_prefix}.json", "w") as f:
+        with open(
+            f"{json_file_output}/unique_{index.id_prefix}.json", "w"
+        ) as f:
             json.dump(index.ids_2_labels, f, indent=4)
 
 
+def write_xml(objs, list_element, path, template):
+    for obj in objs:
+        obj.add_selfref_as_next()
+        obj_xml = obj.to_xml()
+        list_element.append(obj_xml)
+    print(
+        f"writing to {path}"
+    )
+    template.tree_to_file(path)
+
+
+def print_index_to_xml(name: str, objs: list):
+    template = TeiReader(f"./template/{name}.xml")
+    out_fp = f"{xml_file_output}/{name}.xml"
+    xpath = ".//tei:listPerson" if name == "persons" else ".//tei:listEvent"
+    list_element = template.any_xpath(xpath)[0]
+    if name == "persons":
+        objs.sort(key=lambda po: po.fullname)
+    write_xml(
+        objs,
+        list_element,
+        out_fp,
+        template
+    )
+
+
 def prepare_output_folder():
-    old_files = glob.glob(f"./{file_output}/*.json")
+    old_files = glob.glob(f"./{json_file_output}/*.json")
     for old_file in old_files:
         os.remove(old_file)
-    os.makedirs(file_output, exist_ok=True)
+    os.makedirs(json_file_output, exist_ok=True)
 
 
 class XmlDocument:
@@ -1221,8 +1308,9 @@ if __name__ == "__main__":
     events_json = {}
     xml_docs = []
     verticals_output_folder = mk_verticals.prepare_output_dir()
-    template_doc = TeiReader("template/events.xml")
-    listevent = template_doc.any_xpath(".//tei:listEvent[@type='offences']")[0]
+    # template_doc = TeiReader("template/events.xml")
+    # listevent = template_doc.any_xpath(
+    # ".//tei:listEvent[@type='offences']")[0]
     for file_path in glob.glob(cases_dir):
         # file_identifier = file_path.split("/")[-1]
         doc_id = re.match(".*?/([^/]+).xml", file_path).group(1)
@@ -1258,10 +1346,9 @@ if __name__ == "__main__":
         else:
             punishment_objects.append(event)
         event.check_4_empty_fields()
-        listevent.append(event.get_etree())
 
     prepare_output_folder()
-    template_doc.tree_to_file(f"{file_output}/events.xml")
+    # template_doc.tree_to_file(f"{xml_file_output}/events.xml")
     print_to_json(offences_objects, "offences")
     print_to_json(punishment_objects, "punishments")
     print_to_json(
@@ -1285,4 +1372,22 @@ if __name__ == "__main__":
         for doc, err in error_docs.items():
             print(f"{doc}:\t{err}")
 
-    print_indices_to_json()
+    # print_indices_to_json()
+    event_list = list(
+        global_events_by_ids.values()
+    )
+    event_list.sort(
+        key=lambda e: e.type
+    )
+    print_index_to_xml(
+        name="events",
+        objs=event_list
+    )
+
+    print_index_to_xml(
+        name="persons",
+        objs=person_objs
+    )
+    for xml_doc in xml_docs:
+        xml_doc: XmlDocument
+        xml_doc.xml_tree.tree_to_file(xml_doc.path)
