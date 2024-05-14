@@ -7,7 +7,7 @@ import os
 from pathlib import Path
 import lxml.etree as etree
 import lxml.builder as builder
-# from copy import deepcopy
+from copy import deepcopy
 from acdh_tei_pyutils.tei import TeiReader
 from acdh_tei_pyutils.utils import extract_fulltext
 import mk_verticals
@@ -175,7 +175,8 @@ class Event:
         "is_probably_copy",
         "ref",
         "xml_source_id",
-        "places"
+        "places",
+        "element_copies"
     ]
 
     xml_offence_types = [
@@ -217,6 +218,7 @@ class Event:
         self.description: str = "".join(
             [re.sub(" +", " ", desc) for desc in description])
         self.element: etree._Element = xml_element
+        self.element_copies = []
         self.ref: str = xml_element.attrib.get("ref")
         self.file_identifier: str = file_identifier
         self.global_id = None
@@ -240,6 +242,16 @@ class Event:
                 target=self.global_id
             )
             self.element.addnext(self.ref)
+        if self.element_copies:
+            for element in self.element_copies:
+                element.addnext(
+                    deepcopy(
+                        self.ref
+                    )
+                )
+                parent = element.getparent()
+                parent.remove(element)
+            self.element_copies = []
 
     def create_global_id(self, override=False):
         if self.global_id is not None and not override:
@@ -1018,9 +1030,81 @@ def extract_event(
     return event_obj
 
 
+def change_relations(doc: TeiReader):
+    id_has_active_relations = {}
+    id_has_passive_relations = {}
+    id_is_mentioned_in_relation = {}
+    for relation in doc.any_xpath("//tei:relation"):
+        active_el = deepcopy(relation)
+        passive_el = deepcopy(relation)
+        active_id = active_el.attrib.pop("active").removeprefix("#")
+        passive_id = passive_el.attrib.pop("passive").removeprefix("#")
+        if active_id not in id_has_active_relations:
+            id_has_active_relations[active_id] = []
+        id_has_active_relations[active_id].append(active_el)
+        if passive_id not in id_has_passive_relations:
+            id_has_passive_relations[passive_id] = []
+        id_has_passive_relations[passive_id].append(passive_el)
+        if active_id not in id_is_mentioned_in_relation:
+            id_is_mentioned_in_relation[active_id] = []
+        if passive_id not in id_is_mentioned_in_relation:
+            id_is_mentioned_in_relation[passive_id] = []
+        id_is_mentioned_in_relation[passive_id].append(active_el)
+        id_is_mentioned_in_relation[active_id].append(passive_el)
+    for active_id, relation_elements in id_has_passive_relations.items():
+        active_xpath_expression = f"//tei:event[@xml:id='{active_id}']"
+        print(active_xpath_expression)
+        try:
+            if active_id == "execution":
+                active_el = doc.any_xpath(
+                    f"//tei:event[@type='{active_id}']"
+                )[0]
+            else:
+                active_el = doc.any_xpath(
+                    active_xpath_expression
+                )[0]
+            for rel_el in relation_elements:
+                active_el.append(rel_el)
+        except IndexError:
+            pass
+    for passive_id, relation_elements in id_has_active_relations.items():
+        passive_xpath_expression = f"//tei:event[@xml:id='{passive_id}']"
+        print(passive_xpath_expression)
+        try:
+            if passive_id == "execution":
+                passive_el = doc.any_xpath(
+                    f"//tei:event[@type='{passive_id}']"
+                )[0]
+            else:
+                passive_el = doc.any_xpath(
+                    passive_xpath_expression
+                )[0]
+            for rel_el in relation_elements:
+                passive_el.append(rel_el)
+        except IndexError:
+            pass
+    return id_is_mentioned_in_relation
+
+
+def update_id_in_relations(event: Event, id_to_be_replaced, elements: list):
+    for el in elements:
+        el: etree._Element
+        if el.get("active") == id_to_be_replaced:
+            el.set(
+                "active",
+                f"#{event.global_id}"
+            )
+        if el.get("passive") == id_to_be_replaced:
+            el.set(
+                "passive",
+                f"#{event.global_id}"
+            )
+
+
 def extract_events_and_persons(doc: TeiReader, file_identifier: str):
     events = []
     persons = []
+    event_id_mentioned_in_relation = change_relations(doc)
     for person_element in doc.any_xpath("//tei:person"):
         person_obj: Person = extract_person(
             person_element,
@@ -1040,12 +1124,32 @@ def extract_events_and_persons(doc: TeiReader, file_identifier: str):
             )
             if event_obj:
                 if isinstance(event_obj, str):
+                    event_obj = global_events_by_ids[event_obj]
+                    event_obj.element_copies.append(
+                        event_element
+                    )
                     person_obj.append_related_event(
-                        global_events_by_ids[event_obj]
+                        event_obj
                     )
                 else:
                     events.append(event_obj)
                     person_obj.append_related_event(event_obj)
+                if event_obj.id in event_id_mentioned_in_relation:
+                    elements = event_id_mentioned_in_relation[
+                        event_obj.id
+                    ]
+                    update_id_in_relations(
+                        event_obj, "#"+event_obj.id, elements)
+                elif isinstance(event_obj, Event):
+                    if "execution" in event_id_mentioned_in_relation:
+                        elements = event_id_mentioned_in_relation[
+                            "execution"
+                        ]
+                        update_id_in_relations(
+                            event_obj,
+                            "#execution",
+                            elements
+                        )
     return events, persons
 
 
