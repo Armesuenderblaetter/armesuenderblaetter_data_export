@@ -1140,7 +1140,7 @@ def extract_events_and_persons(doc: TeiReader, file_identifier: str):
                     ]
                     update_id_in_relations(
                         event_obj, "#"+event_obj.id, elements)
-                elif isinstance(event_obj, Event):
+                elif isinstance(event_obj, Execution):
                     if "execution" in event_id_mentioned_in_relation:
                         elements = event_id_mentioned_in_relation[
                             "execution"
