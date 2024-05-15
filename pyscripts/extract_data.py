@@ -33,11 +33,17 @@ events_with_missing_field = 0
 used_ids = []
 json_file_output = "out/json"
 xml_file_output = "out/xml"
+xml_index_output = f"{xml_file_output}/index"
+xml_editions_output = f"{xml_file_output}/editions"
 Path(f"./{json_file_output}").mkdir(
     parents=True,
     exist_ok=True
 )
-Path(f"./{xml_file_output}").mkdir(
+Path(f"./{xml_index_output}").mkdir(
+    parents=True,
+    exist_ok=True
+)
+Path(f"./{xml_editions_output}").mkdir(
     parents=True,
     exist_ok=True
 )
@@ -554,7 +560,7 @@ class Person:
         self.all_elements: list = [xml_element]
         # self.element_cp = deepcopy(self.element)
         self.typesense_sorter = 0
-        self.fullname = "",
+        self.fullname = ""
         self.doc: TeiReader = doc
         self.ref = None
 
@@ -642,8 +648,8 @@ class Person:
             self.element
         ).decode()
 
-    def return_full_name(self):
-        if not self.fullname:
+    def return_full_name(self) -> str:
+        if self.fullname == "":
             if self.forename and self.surname:
                 self.fullname = clear_kA(
                     f"{self.surname}, {self.forename}"
@@ -1186,6 +1192,7 @@ def print_indices_to_json():
 
 
 def write_xml(objs, list_element, path, template):
+    print(f"writing {len(objs)} items to xml")
     for obj in objs:
         obj.add_selfref_as_next()
         obj_xml = obj.to_xml()
@@ -1198,7 +1205,7 @@ def write_xml(objs, list_element, path, template):
 
 def print_index_to_xml(name: str, objs: list):
     template = TeiReader(f"./template/{name}.xml")
-    out_fp = f"{xml_file_output}/{name}.xml"
+    out_fp = f"{xml_index_output}/{name}.xml"
     xpath = ".//tei:listPerson" if name == "persons" else ".//tei:listEvent"
     list_element = template.any_xpath(xpath)[0]
     if name == "persons":
@@ -1380,6 +1387,14 @@ class XmlDocument:
             ]
         }
 
+    def write_changes(self):
+        filename = self.path.split("/")[-1]
+        new_path = f"{xml_editions_output}/{filename}"
+        print(f"creating {new_path}")
+        self.xml_tree.tree_to_file(
+            new_path
+        )
+
     # link to xml document
     # persons (their attributes, age ...)
     # place of execution
@@ -1496,4 +1511,4 @@ if __name__ == "__main__":
     )
     for xml_doc in xml_docs:
         xml_doc: XmlDocument
-        xml_doc.xml_tree.tree_to_file(xml_doc.path)
+        xml_doc.write_changes()
