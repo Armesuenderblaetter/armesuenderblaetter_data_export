@@ -1051,6 +1051,8 @@ def change_relations(doc: TeiReader):
             id_is_mentioned_in_relation[passive_id] = []
         id_is_mentioned_in_relation[passive_id].append(active_el)
         id_is_mentioned_in_relation[active_id].append(passive_el)
+        parent = relation.getparent()
+        parent.remove(relation)
     for active_id, relation_elements in id_has_passive_relations.items():
         active_xpath_expression = f"//tei:event[@xml:id='{active_id}']"
         print(active_xpath_expression)
