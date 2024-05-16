@@ -33,7 +33,7 @@ events_with_missing_field = 0
 used_ids = []
 json_file_output = "out/json"
 xml_file_output = "out/xml"
-xml_index_output = f"{xml_file_output}/index"
+xml_index_output = f"{xml_file_output}/indices"
 xml_editions_output = f"{xml_file_output}/editions"
 Path(f"./{json_file_output}").mkdir(
     parents=True,
@@ -629,6 +629,12 @@ class Person:
             f"{{{xmlns}}}id",
             self.global_id
         )
+        self.element.append(
+            teiMaker.note(
+                self.return_full_name(),
+                type="label",
+            )
+        )
         return self.element
 
     def add_selfref_as_next(self):
@@ -1206,9 +1212,9 @@ def write_xml(objs, list_element, path, template):
 def print_index_to_xml(name: str, objs: list):
     template = TeiReader(f"./template/{name}.xml")
     out_fp = f"{xml_index_output}/{name}.xml"
-    xpath = ".//tei:listPerson" if name == "persons" else ".//tei:listEvent"
+    xpath = ".//tei:listPerson" if name == "listperson" else ".//tei:listEvent"
     list_element = template.any_xpath(xpath)[0]
-    if name == "persons":
+    if name == "listperson":
         objs.sort(key=lambda po: po.fullname)
     write_xml(
         objs,
@@ -1404,7 +1410,7 @@ class XmlDocument:
     # punishments mentioned (optional)
 
 
-def export_verticals(xml_docs, verticals_output_folder):
+def export_all_verticals(xml_docs, verticals_output_folder):
     for doc in xml_docs:
         doc.export_verticals(verticals_output_folder)
 
@@ -1478,7 +1484,7 @@ if __name__ == "__main__":
         ),
         "persons")
     print_to_json(xml_docs, "documents")
-    export_verticals(xml_docs, verticals_output_folder)
+    export_all_verticals(xml_docs, verticals_output_folder)
     print_typesense_entries_to_json(xml_docs)
     missing_fields = ', '.join(list(set(all_missing_fields)))
     if events_with_missing_field:
@@ -1506,7 +1512,7 @@ if __name__ == "__main__":
     )
 
     print_index_to_xml(
-        name="persons",
+        name="listperson",
         objs=person_objs
     )
     for xml_doc in xml_docs:
