@@ -179,7 +179,7 @@ class Event:
         "aided",
         "proven_by_persecution",
         "is_probably_copy",
-        "ref",
+        "rs",
         "xml_source_id",
         "places",
         "element_copies"
@@ -231,7 +231,7 @@ class Event:
         self.global_id_prefix = global_id_prefix
         self.create_global_id()
         global_events_by_ids[self.global_id] = self
-        self.ref = None
+        self.rs = None
         # self.element_cp = deepcopy(self.element)
 
     def to_xml(self):
@@ -242,17 +242,18 @@ class Event:
         return self.element
 
     def add_selfref_as_next(self):
-        if self.ref is None:
-            self.ref = teiMaker.ref(
+        if self.rs is None:
+            self.rs = teiMaker.rs(
+                self.type,
                 type=self.type,
-                target=self.global_id
+                ref="#"+self.global_id
             )
-            self.element.addnext(self.ref)
+            self.element.addnext(self.rs)
         if self.element_copies:
             for element in self.element_copies:
                 element.addnext(
                     deepcopy(
-                        self.ref
+                        self.rs
                     )
                 )
                 parent = element.getparent()
@@ -562,7 +563,7 @@ class Person:
         self.typesense_sorter = 0
         self.fullname = ""
         self.doc: TeiReader = doc
-        self.ref = None
+        self.rs = None
 
     def refine_age(self):
         nmbrs = re.search(".*?([0-9]+).*", self.age)
@@ -638,12 +639,13 @@ class Person:
         return self.element
 
     def add_selfref_as_next(self):
-        if self.ref is None:
-            self.ref = teiMaker.ref(
-                target=self.global_id
+        if self.rs is None:
+            self.rs = teiMaker.rs(
+                self.return_full_name(),
+                ref="#"+self.global_id
             )
             self.element.addnext(
-                self.ref
+                self.rs
             )
 
     def append_related_event(self, event):
