@@ -1,7 +1,6 @@
 # creates verticals from xml to import data to NoSketch engine
 
 import os
-import glob
 from acdh_tei_pyutils.tei import TeiReader
 from acdh_tei_pyutils.utils import extract_fulltext
 
@@ -16,16 +15,16 @@ def get_id(element):
     )
 
 
-def mk_vertical_from_w(teiw_tag):
+def mk_vertical_from_element(element):
     # extractable attribute:
     # lemma, ana, pos, id, join, part
-    lem_tag = teiw_tag.xpath(
+    lem_tag = element.xpath(
         "./tei:app/tei:lem",
         namespaces={
             "tei": "http://www.tei-c.org/ns/1.0"
         }
     )
-    corr_tag = teiw_tag.xpath(
+    corr_tag = element.xpath(
         "./parent::tei:sic/following-sibling::tei:corr",
         namespaces={
             "tei": "http://www.tei-c.org/ns/1.0"
@@ -41,14 +40,14 @@ def mk_vertical_from_w(teiw_tag):
         )
     else:
         text = extract_fulltext(
-            root_node=teiw_tag
+            root_node=element
         )
-    lemma = teiw_tag.get('lemma', "no")
-    ana = teiw_tag.get('ana', "no")
-    pos = teiw_tag.get('pos', "no")
-    element_id = get_id(teiw_tag)
-    join = teiw_tag.get('join', "no")
-    part = teiw_tag.get('part', "no")
+    lemma = element.get('lemma', "no")
+    ana = element.get('ana', "no")
+    pos = element.get('pos', "no")
+    element_id = get_id(element)
+    join = element.get('join', "no")
+    part = element.get('part', "no")
     vertical = '\t'.join(
         [
             text,
@@ -63,26 +62,26 @@ def mk_vertical_from_w(teiw_tag):
     return vertical
 
 
-def process_lg(lg_element, doc_verticals, nsmap):
-    doc_verticals.append(
+def process_lg(lg_element, nsmap) -> list:
+    verticals = []
+    verticals.append(
         f"<lg type='{lg_element.get('type', '')}'>"
     )
     for sub_lg in lg_element.xpath("./tei:lg", namespaces=nsmap):
-        process_lg(
+        verticals += process_lg(
             sub_lg,
-            doc_verticals,
             nsmap
         )
     for l_element in lg_element.xpath("./tei:l", namespaces=nsmap):
-        doc_verticals.append(
+        verticals.append(
             f"<l id={get_id(l_element)}>"
         )
         for w in l_element.xpath(".//tei:w", namespaces=nsmap):
-            vertical = mk_vertical_from_w(w)
-            doc_verticals.append(vertical)
-        doc_verticals.append("</l>")
-    doc_verticals.append("</lg>")
-    return doc_verticals
+            vertical = mk_vertical_from_element(w)
+            verticals.append(vertical)
+        verticals.append("</l>")
+    verticals.append("</lg>")
+    return verticals
 
 
 attrs = "word lemma ana pos id join part"
@@ -107,50 +106,30 @@ def export_verticals_from_doc(
                 doc_verticals.append(
                     f"<p id={get_id(sel)}>"
                 )
-                for w in sel.xpath(".//tei:w", namespaces=doc.nsmap):
-                    vertical = mk_vertical_from_w(w)
-                    doc_verticals.append(vertical)
+                for content_el in sel.xpath(
+                    ".//tei:w|.//tei:pc", namespaces=doc.nsmap
+                ):
+                    if content_el.tag == "{http://www.tei-c.org/ns/1.0}pc":
+                        glue = "<g/>"
+                        doc_verticals.append(glue)
+                        vertical = mk_vertical_from_element(content_el)
+                        doc_verticals.append(vertical)
+                    else:
+                        vertical = mk_vertical_from_element(content_el)
+                        doc_verticals.append(vertical)
                 doc_verticals.append('</p>')
             elif sel_name == "lg":
-                doc_verticals = process_lg(
+                doc_verticals += process_lg(
                     lg_element=sel,
-                    doc_verticals=doc_verticals,
                     nsmap=doc.nsmap
                 )
     else:
         input(doc_id)
         for w in doc.any_xpath(".//tei:w"):
-            vertical = mk_vertical_from_w(w)
+            vertical = mk_vertical_from_element(w)
             doc_verticals.append(vertical)
     doc_verticals.append(close_doc_vertical)
     return "\n".join(doc_verticals)
-
-
-def get_verticals_from_xml_files(input_filepath):
-    # Use glob to get all XML files
-    xml_files = glob.glob(
-        os.path.join(input_filepath, "*.xml")
-    )
-    verticals = []
-    # Iterate through each XML file
-    for xml_file_path in xml_files:
-        print(f"processing {xml_file_path}")
-        doc = TeiReader(xml_file_path)
-        # find all "tei:w" tags
-        teiw_tags = doc.any_xpath('.//tei:w')
-        # process "tei:w" tags
-        doc_verticals = []
-        for teiw_tag in teiw_tags:
-            doc_verticals.append(
-                mk_vertical_from_w(teiw_tag)
-            )
-        verticals.append(
-            (
-                xml_file_path,
-                "\n".join(doc_verticals)
-            )
-        )
-    return verticals
 
 
 def write_verticals_to_file(verticals, output_dir):
