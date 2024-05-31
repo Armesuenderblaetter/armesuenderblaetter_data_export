@@ -13,18 +13,21 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - name: produce data
-        run: |
-          pip install -r pyscripts/requirements.txt
-          ./shellscripts/dl_and_prepare_gl_data.sh
-          ./shellscripts/extract_infos.sh
-      - name: push data to private repo
+      # - name: produce data
+      #   run: |
+      #     pip install -r pyscripts/requirements.txt
+      #     ./shellscripts/dl_and_prepare_gl_data.sh
+      #     ./shellscripts/extract_infos.sh
+      - name: clone target repo
         run: |
           git config --global user.email "${GH_USERMAIL}"
           git config --global user.name "${GH_USERNAME}"
           git config --global credential.helper cache
           mkdir cloned_repo
           git clone https://${GITHUB_ACCESS_TOKEN_NAME}:${GITHUB_ACCESS_TOKEN}@github.com/Flugblatter/flugblaetter_data_ouput.git cloned_repo
+          ls -la cloned_repo
+      - name: push data to target repo
+        run: |
           cp -r out/* cloned_repo/
           cd cloned_repo
           git add .
