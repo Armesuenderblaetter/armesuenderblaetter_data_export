@@ -13,3 +13,5 @@ For testing
 8. run `./shellscripts/download_gitlab_data.sh` again
 
 (To test the export function run ./shellscripts/extract_infos.sh. Run this only in a virtual python environment!!)
+
+See generated outputs [here](https://github.com/Flugblatter/flugblaetter_data_ouput).
