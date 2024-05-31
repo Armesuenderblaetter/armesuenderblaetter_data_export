@@ -6,8 +6,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GITLAB_SOURCE_TOKEN: ${{ secrets.GITLAB_DATA_DOWNLOAD_TOKEN }}
-      GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_ACCESS_TOKEN }}
-      GITHUB_ACCESS_TOKEN_NAME: ${{ secrets.GITHUB_ACCESS_TOKEN_NAME }}
+      GITHUB_ACCESS_TOKEN: ${{ secrets.GITHB_ACCESS_TOKEN }}
+      GITHUB_ACCESS_TOKEN_NAME: ${{ secrets.GITHB_ACCESS_TOKEN_NAME }}
       GH_USERNAME: ${{ secrets.GH_USERNAME }}
       GH_USERMAIL: ${{ secrets.GH_USERMAIL }}
 
