@@ -13,11 +13,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      # - name: produce data
-      #   run: |
-      #     pip install -r pyscripts/requirements.txt
-      #     ./shellscripts/dl_and_prepare_gl_data.sh
-      #     ./shellscripts/extract_infos.sh
+      - name: produce data
+        run: |
+          pip install -r pyscripts/requirements.txt
+          ./shellscripts/dl_and_prepare_gl_data.sh
+          ./shellscripts/extract_infos.sh
       - name: clone target repo
         run: |
           git config --global user.email "${GH_USERMAIL}"
