@@ -448,6 +448,8 @@ class Execution(Event):
         self.methods_xml = methods_xml if methods_xml else []
         self.methods: list = self.get_execution_methods()
         self.carried_out = True if self.methods else False
+        if len(place) > 1:
+            input(place)
 
     def get_execution_methods(self):
         methods = []
@@ -674,6 +676,7 @@ class Person:
         offences = []
         executions = []
         punishments = []
+        execution_places = []
         for event in self.related_events:
             if isinstance(event, Offence):
                 offence: Offence = event
@@ -683,10 +686,12 @@ class Person:
                 execution: Execution = event
                 for e_obj in execution.methods:
                     executions.append(e_obj["label"])
+                execution_places += event.places
             elif isinstance(event, Punishment):
                 punishment: Punishment = event
                 for p_obj in punishment.methods:
                     punishments.append(p_obj["label"])
+                # execution_places += event.places
             else:
                 # hier gibt es einen Fall mit trial result
                 pass
@@ -713,6 +718,7 @@ class Person:
                 set(offences)
             ),
             "execution": executions if executions else ["Keine"],
+            "execution_places": execution_places,
             "punishments": punishments if punishments else ["Keine"],
         }
 
