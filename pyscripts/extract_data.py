@@ -309,6 +309,14 @@ class Event:
             print("\nsource:")
             self.print_source()
 
+    def return_places_labes(self):
+        p_labels = []
+        for p in self.places:
+            p_labels.append(
+                p["label"]
+            )
+        return p_labels
+
     def get_places(self, places):
         unique_places = []
         for place in places:
@@ -686,7 +694,7 @@ class Person:
                 execution: Execution = event
                 for e_obj in execution.methods:
                     executions.append(e_obj["label"])
-                execution_places += event.places
+                execution_places += event.return_places_labes()
             elif isinstance(event, Punishment):
                 punishment: Punishment = event
                 for p_obj in punishment.methods:
