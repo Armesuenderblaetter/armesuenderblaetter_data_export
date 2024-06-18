@@ -1276,6 +1276,10 @@ class XmlDocument:
         self.sorting_date = None
         self.label_year = None
         self.get_bibl_data()
+        self.archive_institutions = []
+        # self.archive_settlements = []
+        self.archive_signatures = []
+        self.get_archive_data()
 
     def export_verticals(self, output_dir: str):
         verticals = mk_verticals.export_verticals_from_doc(
@@ -1290,6 +1294,26 @@ class XmlDocument:
         outfile_path = f"{output_dir}{self.id}{file_ext}"
         with open(outfile_path, "w") as of:
             of.write(verticals)
+
+    def get_archive_data(self):
+        for witness in self.xml_tree.any_xpath("//tei:msDesc"):
+            arch_i = witness.xpath(
+                ".//tei:msIdentifier/tei:institution/text()",
+                namespaces=self.xml_tree.nsmap
+            )
+            arch_s = witness.xpath(
+                ".//tei:msIdentifier/tei:settlement/text()",
+                namespaces=self.xml_tree.nsmap
+            )
+            arch_sig = witness.xpath(
+                ".//tei:settlement/tei:idno[@type='signatory']/text()",
+                namespaces=self.xml_tree.nsmap
+            )
+            insti_string = f"{arch_i[0]}, {arch_s[0]}"
+            self.archive_institutions.append(insti_string)
+            self.archive_signatures.append(
+                f"{arch_sig} ({arch_i})"
+            )
 
     def get_bibl_data(self):
         self.print_dates: list = self.xml_tree.any_xpath(
@@ -1327,6 +1351,9 @@ class XmlDocument:
     def to_json(self):
         persons = [p.get_global_id() for p in self.persons]
         events = [e.get_global_id() for e in self.events]
+        archive = self.archive_institution
+        if self.archive_settlement:
+            archive += f", {self.archive_settlement}"
         return {
             "title": self.title,
             "id": self.get_global_id(),
@@ -1334,6 +1361,7 @@ class XmlDocument:
             "contains_persons": persons,
             "contains_events": events,
             "fulltext": self.fulltext,
+            "archives": self.archive_institutions,
         }
 
     def return_sorting_date(self):
@@ -1416,14 +1444,6 @@ class XmlDocument:
         self.xml_tree.tree_to_file(
             new_path
         )
-
-    # link to xml document
-    # persons (their attributes, age ...)
-    # place of execution
-    # date of xml
-    # date of execution
-    # list of execution methods
-    # punishments mentioned (optional)
 
 
 def export_all_verticals(xml_docs, verticals_output_folder):
