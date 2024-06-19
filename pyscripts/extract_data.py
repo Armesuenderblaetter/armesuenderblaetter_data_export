@@ -1277,7 +1277,6 @@ class XmlDocument:
         self.label_year = None
         self.get_bibl_data()
         self.archive_institutions = []
-        # self.archive_settlements = []
         self.archive_signatures = []
         self.get_archive_data()
 
@@ -1309,7 +1308,9 @@ class XmlDocument:
                 ".//tei:settlement/tei:idno[@type='signatory']/text()",
                 namespaces=self.xml_tree.nsmap
             )
-            insti_string = f"{arch_i[0]}, {arch_s[0]}"
+            insti_string = arch_i[0] if arch_i else ""
+            if arch_s:
+                insti_string = f"{insti_string}, {arch_s[0]}"
             self.archive_institutions.append(insti_string)
             self.archive_signatures.append(
                 f"{arch_sig} ({arch_i})"
@@ -1351,9 +1352,6 @@ class XmlDocument:
     def to_json(self):
         persons = [p.get_global_id() for p in self.persons]
         events = [e.get_global_id() for e in self.events]
-        archive = self.archive_institution
-        if self.archive_settlement:
-            archive += f", {self.archive_settlement}"
         return {
             "title": self.title,
             "id": self.get_global_id(),
