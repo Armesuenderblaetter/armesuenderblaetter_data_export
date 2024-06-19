@@ -1411,7 +1411,8 @@ class XmlDocument:
             "fulltext": self.fulltext,
             "print_date": self.print_dates[0] if self.print_dates else "",
             "printer": self.publisher,
-            "printing_location": self.pubPlace
+            "printing_location": self.pubPlace,
+            "archives": self.archive_institutions
         }
 
     def return_typesense_entry(self):
