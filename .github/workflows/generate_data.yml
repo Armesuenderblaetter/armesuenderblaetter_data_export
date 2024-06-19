@@ -1,5 +1,5 @@
 name: generate data
-on: workflow_dispatch
+on: [workflow_dispatch, push]
 jobs:
   produce_and_push_data:
     name: produce and push data
