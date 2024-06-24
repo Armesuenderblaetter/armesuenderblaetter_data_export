@@ -305,9 +305,11 @@ class Event:
         if missing_vals:
             events_with_missing_field += 1
             print(
-                f"\nmissing: {', '.join(missing_vals)} in obj {self.type}")
-            print("\nsource:")
-            self.print_source()
+                f"\nobj {self.get_global_id()} ({self.type})"
+            )
+            print(
+                f"\nmissing: {', '.join(missing_vals)}"
+            )
 
     def return_places_labes(self):
         p_labels = []
