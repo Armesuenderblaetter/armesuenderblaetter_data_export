@@ -1422,6 +1422,7 @@ class XmlDocument:
     def return_prescribed_typesense_entry(self):
         # events_ids = [e.get_global_id() for e in self.events]
         return {
+            "thumbnail": self.return_thumbnail_name(),
             "sorting_date": self.return_sorting_date(),
             "label_date": self.return_label_year(),
             "title": self.title,
