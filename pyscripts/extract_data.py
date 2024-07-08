@@ -1337,12 +1337,20 @@ class XmlDocument:
         )
 
     def return_doc_text(self):
+        text_el = deepcopy(
+            self.xml_tree.any_xpath("//tei:text")[0]
+        )
+        rdgs = text_el.xpath(
+            "//tei:app//tei:rdg",
+            nsmap=tei_nsmp
+        )
+        for r in rdgs:
+            r.getparent().remove(r)
         return extract_fulltext(
-            self.xml_tree.any_xpath("//tei:text")[0],
+            text_el,
             tag_blacklist=[
                 "{http://www.tei-c.org/ns/1.0}fs",
                 "{http://www.tei-c.org/ns/1.0}f",
-                "{http://www.tei-c.org/ns/1.0}lem",
                 "{http://www.tei-c.org/ns/1.0}sic",
                 "{http://www.tei-c.org/ns/1.0}figDesc",
             ]
