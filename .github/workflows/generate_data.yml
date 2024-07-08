@@ -33,10 +33,10 @@ jobs:
           cd cloned_repo
           git add .
           status=`git status`
+          git commit -m "$(date) new data"
           echo $status
           if [[ $status == *"git add"* ]]; then
             echo "changes detected"
-            git commit -m "$(date) new data"
             git push
           else
             echo "nothing to push"
