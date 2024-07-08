@@ -1320,7 +1320,11 @@ class XmlDocument:
 
     def get_bibl_data(self):
         self.print_dates: list = self.xml_tree.any_xpath(
-            "//tei:sourceDesc//tei:biblStruct//tei:date/text()")
+            "//tei:sourceDesc//tei:biblStruct//tei:date/@when")
+        if self.print_dates:
+            self.print_dates = [
+                date.strip(" .") for date in self.print_dates
+            ]
         self.pubPlace = self.xml_tree.any_xpath(
             "//tei:sourceDesc//tei:biblStruct//tei:pubPlace/text()")[0]
         self.publisher = self.xml_tree.any_xpath(
