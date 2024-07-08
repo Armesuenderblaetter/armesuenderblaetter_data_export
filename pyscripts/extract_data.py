@@ -1425,7 +1425,7 @@ class XmlDocument:
             "id": self.get_global_id(),
             "filename": self.path.split("/")[-1],
             "fulltext": self.fulltext,
-            "print_date": self.print_dates[0] if self.print_dates else "",
+            "print_date": self.print_dates[0] if self.print_dates else "k. A.",
             "printer": self.publisher,
             "printing_location": self.pubPlace,
             "archives": self.archive_institutions
