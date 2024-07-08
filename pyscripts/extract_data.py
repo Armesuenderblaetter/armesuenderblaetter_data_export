@@ -1302,17 +1302,18 @@ class XmlDocument:
                 ".//tei:msIdentifier/tei:institution/text()",
                 namespaces=self.xml_tree.nsmap
             )
-            arch_s = witness.xpath(
-                ".//tei:msIdentifier/tei:settlement/text()",
-                namespaces=self.xml_tree.nsmap
-            )
+            # these are mostly wrong, creating bad data
+            # arch_s = witness.xpath(
+            #     ".//tei:msIdentifier/tei:settlement/text()",
+            #     namespaces=self.xml_tree.nsmap
+            # )
             arch_sig = witness.xpath(
                 ".//tei:settlement/tei:idno[@type='signatory']/text()",
                 namespaces=self.xml_tree.nsmap
             )
             insti_string = arch_i[0] if arch_i else ""
-            if arch_s:
-                insti_string = f"{insti_string}, {arch_s[0]}"
+            # if arch_s:
+            #     insti_string = f"{insti_string}, {arch_s[0]}"
             self.archive_institutions.append(insti_string)
             self.archive_signatures.append(
                 f"{arch_sig} ({arch_i})"
