@@ -1342,7 +1342,7 @@ class XmlDocument:
         )
         bs_text = text_el.xpath(
             "//tei:app//tei:rdg|//tei:sic",
-            nsmap=tei_nsmp
+            namespaces=tei_nsmp,
         )
         for bs in bs_text:
             bs.getparent().remove(bs)
