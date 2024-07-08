@@ -35,7 +35,7 @@ jobs:
           git commit -m "$(date) new data"
           status=`git status`
           echo $status
-          if [[ $status == *"git add"* ]]; then
+          if [[ $status == *"branch is ahead of"* ]]; then
             echo "changes detected"
             git push
           else
