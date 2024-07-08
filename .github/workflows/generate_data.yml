@@ -32,8 +32,8 @@ jobs:
           cp -r out/* cloned_repo/
           cd cloned_repo
           git add .
-          status=`git status`
           git commit -m "$(date) new data"
+          status=`git status`
           echo $status
           if [[ $status == *"git add"* ]]; then
             echo "changes detected"
