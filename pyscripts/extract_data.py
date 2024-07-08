@@ -1342,7 +1342,9 @@ class XmlDocument:
             tag_blacklist=[
                 "{http://www.tei-c.org/ns/1.0}fs",
                 "{http://www.tei-c.org/ns/1.0}f",
-
+                "{http://www.tei-c.org/ns/1.0}lem",
+                "{http://www.tei-c.org/ns/1.0}sic",
+                "{http://www.tei-c.org/ns/1.0}figDesc",
             ]
         )
 
