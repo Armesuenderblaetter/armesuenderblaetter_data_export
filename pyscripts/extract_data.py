@@ -1282,6 +1282,9 @@ class XmlDocument:
         self.archive_signatures = []
         self.get_archive_data()
 
+    def return_thumbnail_name(self):
+        return self.xml_tree.any_xpath("//tei:pb/@facs")[0]
+
     def export_verticals(self, output_dir: str):
         verticals = mk_verticals.export_verticals_from_doc(
             doc=self.xml_tree,
@@ -1434,6 +1437,7 @@ class XmlDocument:
     def return_typesense_entry(self):
         events_ids = [e.get_global_id() for e in self.events]
         return {
+            "thumbnail": self.return_thumbnail_name(),
             "sorting_date": self.return_sorting_date(),
             "title": self.title,
             "id": self.get_global_id(),
