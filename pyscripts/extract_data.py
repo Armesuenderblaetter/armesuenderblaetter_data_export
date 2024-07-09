@@ -576,24 +576,17 @@ class Person:
         self.fullname = ""
         self.doc: TeiReader = doc
         self.rs = None
+        self.translate_labels()
 
     def translate_labels(self):
         try:
-            self.occupation = label_dict[self.occupation]
-        except KeyError as e:
-            raise e
-        try:
+            self.type = label_dict[self.type]
             self.sex = label_dict[self.sex]
-        except KeyError as e:
-            raise e
-        try:
             self.marriage_status = label_dict[self.marriage_status]
-        except KeyError as e:
-            raise e
-        try:
             self.faith = label_dict[self.faith]
         except KeyError as e:
-            raise e
+            if e.args[0] not in ["", None, "k. A.", "K. A."]:
+                raise e
 
     def refine_age(self):
         nmbrs = re.search(".*?([0-9]+).*", self.age)
