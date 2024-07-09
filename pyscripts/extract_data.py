@@ -11,7 +11,7 @@ from copy import deepcopy
 from acdh_tei_pyutils.tei import TeiReader
 from acdh_tei_pyutils.utils import extract_fulltext
 import mk_verticals
-
+from label_translator import label_dict
 
 xmlns = "http://www.w3.org/XML/1998/namespace"
 
@@ -576,6 +576,24 @@ class Person:
         self.fullname = ""
         self.doc: TeiReader = doc
         self.rs = None
+
+    def translate_labels(self):
+        try:
+            self.occupation = label_dict[self.occupation]
+        except KeyError as e:
+            raise e
+        try:
+            self.sex = label_dict[self.sex]
+        except KeyError as e:
+            raise e
+        try:
+            self.marriage_status = label_dict[self.marriage_status]
+        except KeyError as e:
+            raise e
+        try:
+            self.faith = label_dict[self.faith]
+        except KeyError as e:
+            raise e
 
     def refine_age(self):
         nmbrs = re.search(".*?([0-9]+).*", self.age)
