@@ -9,5 +9,5 @@ label_dict = {
     "cath": "katholisch",
     "cal": "reformiert",
     "jud": "jüdisch",
-    "civil": "bürgerli"
+    "civil": "bürgerlich"
 }
