@@ -41,6 +41,15 @@ class Witness:
             "./tei:msDesc/tei:msIdentifier/tei:institution/text()",
             namespaces=tei_nsmp
         )[0].strip()
+        self.type_pbs()
+
+    def type_pbs(self):
+        own_pbs = self.element.xpath(
+            f"//tei:pb[@edRef='#{self.id}']",
+            namespaces=tei_nsmp
+        )
+        for opb in own_pbs:
+            opb.attribs["type"] = self.type
 
 
 def extract_witnesses(doc: TeiReader) -> list:
