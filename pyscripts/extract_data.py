@@ -12,7 +12,7 @@ from acdh_tei_pyutils.tei import TeiReader
 from acdh_tei_pyutils.utils import extract_fulltext
 import mk_verticals
 from label_translator import label_dict
-
+from tidy_rdgs import tidy_readings
 xmlns = "http://www.w3.org/XML/1998/namespace"
 
 tei_nsmp = {
@@ -1096,7 +1096,6 @@ def change_relations(doc: TeiReader):
         parent.remove(relation)
     for active_id, relation_elements in id_has_passive_relations.items():
         active_xpath_expression = f"//tei:event[@xml:id='{active_id}']"
-        print(active_xpath_expression)
         try:
             if active_id == "execution":
                 active_el = doc.any_xpath(
@@ -1112,7 +1111,6 @@ def change_relations(doc: TeiReader):
             pass
     for passive_id, relation_elements in id_has_active_relations.items():
         passive_xpath_expression = f"//tei:event[@xml:id='{passive_id}']"
-        print(passive_xpath_expression)
         try:
             if passive_id == "execution":
                 passive_el = doc.any_xpath(
@@ -1271,7 +1269,6 @@ class XmlDocument:
     ):
         self.xml_tree: TeiReader = xml_tree
         self.path: str = path
-        print(self.path)
         self.id: str = identifier
         self.global_id = None
         self.events: list = events
@@ -1471,6 +1468,7 @@ class XmlDocument:
     def write_changes(self):
         filename = self.path.split("/")[-1]
         new_path = f"{xml_editions_output}/{filename}"
+        tidy_readings(self.xml_tree)
         print(f"creating {new_path}")
         self.xml_tree.tree_to_file(
             new_path
@@ -1565,8 +1563,6 @@ if __name__ == "__main__":
         print(f"\n\n{len(error_docs)} faulty docs:")
         for doc, err in error_docs.items():
             print(f"{doc}:\t{err}")
-
-    # print_indices_to_json()
     event_list = list(
         global_events_by_ids.values()
     )
