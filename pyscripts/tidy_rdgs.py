@@ -49,7 +49,7 @@ class Witness:
             namespaces=tei_nsmp
         )
         for opb in own_pbs:
-            opb.attribs["type"] = self.type
+            opb.attrib["type"] = self.type
 
 
 def extract_witnesses(doc: TeiReader) -> list:
