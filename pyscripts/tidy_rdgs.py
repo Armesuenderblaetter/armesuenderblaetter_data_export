@@ -118,6 +118,22 @@ def tidy_readings(doc: TeiReader):
     if witnesses:
         # relink_linked_readings(doc, witnesses)
         link_unlinked_readings(doc, witnesses)
+    if not witnesses:
+        for pb in doc.any_xpath(".//tei:pb"):
+            pb.attrib["type"] = "primary"
+        list_wit = teiMaker.listWit(
+            "\n",
+            teiMaker.witness(
+                type="primary"
+            ),
+            "\n"
+        )
+        wit_content = doc.any_xpath("//tei:sourceDesc/*")
+        if len(wit_content) > 2:
+            raise ValueError
+        wit_content[0].addprevious(list_wit)
+        for x in wit_content:
+            list_wit[0].append(x)
 
 
 testpath = "./todesurteile_master/303_annot_tei/*.xml"
