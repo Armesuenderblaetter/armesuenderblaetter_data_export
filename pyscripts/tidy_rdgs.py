@@ -103,6 +103,18 @@ def link_unlinked_readings(doc: TeiReader, witnesses: list):
                 raise IndexError
 
 
+def create_ids_for_apps(doc):
+    counter = 0
+    for app in doc.any_xpath("//tei:app"):
+        counter += 1
+        app.attrib[f"{{{tei_nsmp['xml']}}}id"] = f"app_{counter}"
+    counter = 0
+    for rdg in doc.any_xpath("//tei:rdg"):
+        counter += 1
+        rdg.attrib[f"{{{tei_nsmp['xml']}}}id"] = f"rdg_{counter}"
+    for lem in doc.any_xpath("//tei:lem"):
+        counter += 1
+        rdg.attrib[f"{{{tei_nsmp['xml']}}}id"] = f"lem_{counter}"
 # def relink_linked_readings(doc: TeiReader, witnesses: list):
 #     primary = witnesses[0]
 #     other_witnesses = witnesses[1:]
@@ -116,8 +128,8 @@ def link_unlinked_readings(doc: TeiReader, witnesses: list):
 def tidy_readings(doc: TeiReader):
     witnesses = extract_witnesses(doc)
     if witnesses:
-        # relink_linked_readings(doc, witnesses)
         link_unlinked_readings(doc, witnesses)
+        create_ids_for_apps(doc)
     if not witnesses:
         for pb in doc.any_xpath(".//tei:pb"):
             pb.attrib["type"] = "primary"
