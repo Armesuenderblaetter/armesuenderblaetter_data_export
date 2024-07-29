@@ -114,7 +114,7 @@ def create_ids_for_apps(doc):
         rdg.attrib[f"{{{tei_nsmp['xml']}}}id"] = f"rdg_{counter}"
     for lem in doc.any_xpath("//tei:lem"):
         counter += 1
-        rdg.attrib[f"{{{tei_nsmp['xml']}}}id"] = f"lem_{counter}"
+        lem.attrib[f"{{{tei_nsmp['xml']}}}id"] = f"lem_{counter}"
 # def relink_linked_readings(doc: TeiReader, witnesses: list):
 #     primary = witnesses[0]
 #     other_witnesses = witnesses[1:]
