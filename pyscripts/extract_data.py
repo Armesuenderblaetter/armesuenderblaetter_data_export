@@ -1563,17 +1563,31 @@ if __name__ == "__main__":
         print(f"\n\n{len(error_docs)} faulty docs:")
         for doc, err in error_docs.items():
             print(f"{doc}:\t{err}")
-    event_list = list(
-        global_events_by_ids.values()
+    all_events = global_events_by_ids.values()
+    offence_list = list(
+        event for event in all_events if event.type == "offence"
     )
-    event_list.sort(
-        key=lambda e: e.type
+    punishment_list = list(
+        event for event in all_events if event.type != "offence"
+    )
+    # event_list = list(
+    #     global_events_by_ids.values()
+    # )
+    # event_list.sort(
+    #     key=lambda e: e.type
+    # )
+    # print_index_to_xml(
+    #     name="events",
+    #     objs=event_list
+    # )
+    print_index_to_xml(
+        name="offences",
+        objs=offence_list
     )
     print_index_to_xml(
-        name="events",
-        objs=event_list
+        name="punishments",
+        objs=punishment_list
     )
-
     print_index_to_xml(
         name="listperson",
         objs=person_objs
