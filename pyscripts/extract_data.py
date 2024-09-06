@@ -542,7 +542,6 @@ class Person:
         xml_element: etree._Element,
         doc: TeiReader
     ):
-        # what about role?
         self.xml_id: str = xml_id
         self.id = xml_id if xml_id else ""
         if not self.id:
