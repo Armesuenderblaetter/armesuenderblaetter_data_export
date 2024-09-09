@@ -237,16 +237,13 @@ def get_attributes_from_structure(element):
 
 
 def process_element(element, verticals: list):
+    ###
+    # recursive function to process elements
+    ###
     element_name = element.xpath(
         "local-name()").removeprefix("{http://www.tei-c.org/ns/1.0}")
+    # elements that get turned into structures
     if element_name in RELEVANT_ELEMENTS:
-        # if element_name == "lg":
-        #         print
-        #         print(
-        #             ET.tostring(element).decode()
-        #         )
-        #         print
-        #         input(element_name)
         attributes = get_attributes_from_structure(element)
         open_structure = extract_structure_tag(
             element_name,
@@ -255,12 +252,10 @@ def process_element(element, verticals: list):
         )
         verticals.append(open_structure)
         for subelement in element:
-            # input(subelement)
             verticals = process_element(
                 verticals=verticals,
                 element=subelement
             )
-        # input(element_name)
         close_structure = extract_structure_tag(
             element_name,
             open=False,
@@ -272,17 +267,20 @@ def process_element(element, verticals: list):
             _ = verticals.pop(-1)
         else:
             verticals.append(close_structure)
-        # if element_name == "lg":
-        #         input(verticals)
+    # elements dont get transformed into structures
+    # but there child-nodes might be relenvant
     elif element_name in CONTAINER_ELEMENTS:
         for subelement in element:
             verticals = process_element(
                 verticals=verticals,
                 element=subelement
             )
+    # elements you need an extra function to deal with
     elif element_name in SPECIAL_ELEMENTS:
         current_function = SPECIAL_ELEMENTS[element_name]
         element = current_function(element)
+    # elements that should (hypothetically only
+    # contain one and only one textnode as child
     elif element_name in TOKEN_TAGS:
         if element_name == "w":
             verticals.append(
@@ -290,8 +288,9 @@ def process_element(element, verticals: list):
             )
         else:
             vertical = get_vertical_for_atomic(element, element_name)
-            # print(vertical)
             verticals.append(vertical)
+    # if an element doesn't fit into one of the above categories
+    # its name gets logged
     else:
         if element_name not in ignored_elements:
             ignored_elements.append(element_name)
