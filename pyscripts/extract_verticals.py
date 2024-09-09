@@ -39,12 +39,12 @@ RELEVANT_ELEMENTS = [
     'placeName',
     'abbr',
     'lg',
+    'l',
     'note',
     'cit',
     'quote',
     'p',
     'imprint',
-    'l',
     'bibl',
     'persName',
     'div',
@@ -56,7 +56,9 @@ RELEVANT_ELEMENTS = [
 ]
 # attribs extracted from structures
 RELEVANT_ELEMENTS_ATTRIBUTES = [
-    "xml:id"
+    "xml:id",
+    "type",
+
 ]
 
 # elements which child elements get processed and
@@ -94,7 +96,9 @@ TOKEN_TAGS = [
 
 TOKEN_TAG_ATTRIBUTES = [
     "@lemma",
-    "@pos"
+    "@pos",
+    "@ana",
+    "@xml:id"
 ]
 
 # ? what do i do with
@@ -155,9 +159,6 @@ def handle_W(w) -> str:
         w.remove(x)
     return get_vertical_for_atomic(w, "w")
 
-# 'app',
-# 'supplied'
-
 
 def create_dirs(output_dir: str) -> None:
     output_dir = os.path.join(output_dir, "verticals")
@@ -171,62 +172,41 @@ def load_xml_files(input_dir: str) -> list:
 
 def extract_structure_tag(
         element_name,
-        attributes: dict = {},
+        attributes=str,
         open=False) -> str:
     if attributes and not open:
         raise ValueError
     if open:
-        return f"<{element_name}>"
+        return f"<{element_name}{attributes}>"
     else:
         return f"</{element_name}>"
 
 
 def write_to_tsv(output_file: str, verticals: str) -> None:
+    print(output_file)
     with open(output_file, "a", encoding="utf-8") as f:
         f.writelines(verticals)
 
 
 def mk_docstructure_open(doc: TeiReader) -> str:
-    # not_before = doc.any_xpath(
-    # "//tei:msDesc/tei:history/tei:origin/@notBefore-iso")[0].strip()
-    # not_after = doc.any_xpath(
-    # "//tei:msDesc/tei:history/tei:origin/@notAfter-iso")[0].strip()
-    # doc_year = not_before.split("-")[0].strip()
-    # doc_title = doc.any_xpath(
-    # "//tei:titleStmt/tei:title/text()")[0].strip()
-    # doc_id = doc.any_xpath("//tei:TEI/@xml:id")[0].strip()
-    # xml_status = doc.any_xpath("//tei:revisionDesc/@status")[0].strip()
-    # doc_type = doc.any_xpath(
-    # "//tei:physDesc/tei:objectDesc/@form")[0].strip()
-    # doc_text_type = doc.any_xpath("//tei:text/@type")[0].strip()
-    # dataset = doc.any_xpath(
-    # "//tei:idno[@type='bv_data_set']/text()")[0].strip()
-    # if dataset == "Datenset A":
-    #     dataset = "Gesetzestexte & Entwürfe"
-    # elif dataset == "Datenset B":
-    #     dataset = "Sitzungsprotokolle"
-    # else:
-    #     dataset = "sonstige"
-    # return " ".join([
-    #     f'<doc id="{doc_id}"',
-    #     f'document_title="{doc_title}"',
-    #     f'created_not_before="{not_before}"',
-    #     f'created_not_after="{not_after}"',
-    #     f'creation_year="{doc_year}"',
-    #     f'state_of_correction="{xml_status}"',
-    #     f'document_type="{doc_type}"',
-    #     f'text_type="{doc_text_type}"',
-    #     f'dataset="{dataset}"',
-    #     f'attrs="word lemma type">'
-    # ])
-    return "<doc>"
-
-
-def handle_ana_attribute(element) -> str:
-    ana = element.xpath("@ana[normalize-space()!='']")
-    if ana:
-        return ana[0]
-    return ""
+    doc_identifier = doc.file.split("/")[-1].removesuffix(".xml")
+    delinquent_sexes = doc.any_xpath(
+        "//tei:person[@role='delinquent']//tei:sex/@value")
+    delinquent_sex = ""
+    if "m" and "f" in delinquent_sexes:
+        delinquent_sex = "misc"
+    elif "f" in delinquent_sexes:
+        delinquent_sex = "female"
+    else:
+        delinquent_sex = "male"
+    doc_title = doc.any_xpath(
+        "//tei:titleStmt/tei:title/text()")[0].strip()
+    return " ".join([
+        f'<doc id="{doc_identifier}"',
+        f'delinquent_sexes="{delinquent_sex}"',
+        f'title="{doc_title}"',
+        'attrs="word lemma type">'
+    ])
 
 
 def get_vertical_for_atomic(element, element_name: str) -> str:
@@ -236,14 +216,9 @@ def get_vertical_for_atomic(element, element_name: str) -> str:
     elif element_name == "w":
         token_attribs = [text]
         for attrib in TOKEN_TAG_ATTRIBUTES:
-            val = element.xpath(f"{attrib}")
+            val = element.xpath(f"{attrib}", namespaces=NS)
             string_val = val[0] if val else ""
             token_attribs.append(string_val)
-        token_attribs.append(
-            handle_ana_attribute(
-                element
-            )
-        )
         return "\t".join(token_attribs)
     else:
         input(f"unexpected element {element_name}")
@@ -251,17 +226,26 @@ def get_vertical_for_atomic(element, element_name: str) -> str:
 
 
 def get_attributes_from_structure(element):
-    return_dict = {}
+    attributes = ""
     for attrib in RELEVANT_ELEMENTS_ATTRIBUTES:
-        val = element.xpath(f"./@{attrib}", namespaces=NS)
-        return_dict[attrib] = val
+        xpath_expression = f"./@{attrib}"
+        key = attrib if ":" not in attrib else attrib.split(":")[-1]
+        val = element.xpath(xpath_expression, namespaces=NS)
+        if val:
+            attributes += f' {key}="{val[0]}"'
+    return attributes
 
 
 def process_element(element, verticals: list):
     element_name = element.xpath(
         "local-name()").removeprefix("{http://www.tei-c.org/ns/1.0}")
     if element_name in RELEVANT_ELEMENTS:
-        # if element_name == "head":
+        # if element_name == "lg":
+        #         print
+        #         print(
+        #             ET.tostring(element).decode()
+        #         )
+        #         print
         #         input(element_name)
         attributes = get_attributes_from_structure(element)
         open_structure = extract_structure_tag(
@@ -279,10 +263,16 @@ def process_element(element, verticals: list):
         # input(element_name)
         close_structure = extract_structure_tag(
             element_name,
-            open=False
+            open=False,
+            attributes=False
         )
-        verticals.append(close_structure)
-        # if element_name == "head":
+        if verticals[-1] == open_structure:
+            # happens in some cases due to data complexity,
+            # ignores empty structures
+            _ = verticals.pop(-1)
+        else:
+            verticals.append(close_structure)
+        # if element_name == "lg":
         #         input(verticals)
     elif element_name in CONTAINER_ELEMENTS:
         for subelement in element:
@@ -330,6 +320,7 @@ def process_xml_files(input_dir: str, output_dir: str) -> None:
     create_dirs(output_dir)
     xml_files = load_xml_files(input_dir)
     for xml_file in tqdm(xml_files, total=len(xml_files)):
+        print(xml_file)
         doc = TeiReader(xml_file)
         filename = os.path.splitext(os.path.basename(xml_file))[
             0].replace(".xml", "")
