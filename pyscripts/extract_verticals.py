@@ -26,7 +26,7 @@ morph_keys = [
 
 ignored_elements = []
 INPUT_PATH = "./todesurteile_master/303_annot_tei"
-OUTPUT_PATH = "./out/verticals"
+OUTPUT_PATH = "./out"
 
 NS = {
     "tei": "http://www.tei-c.org/ns/1.0",
@@ -333,7 +333,6 @@ def process_xml_files(input_dir: str, output_dir: str) -> None:
         doc = TeiReader(xml_file)
         filename = os.path.splitext(os.path.basename(xml_file))[
             0].replace(".xml", "")
-        print(filename)
         create_verticals(doc, filename)
 
 
