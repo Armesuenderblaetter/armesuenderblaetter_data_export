@@ -183,7 +183,6 @@ def extract_structure_tag(
 
 
 def write_to_tsv(output_file: str, verticals: str) -> None:
-    print(output_file)
     with open(output_file, "a", encoding="utf-8") as f:
         f.writelines(verticals)
 
@@ -319,7 +318,6 @@ def process_xml_files(input_dir: str, output_dir: str) -> None:
     create_dirs(output_dir)
     xml_files = load_xml_files(input_dir)
     for xml_file in tqdm(xml_files, total=len(xml_files)):
-        print(xml_file)
         doc = TeiReader(xml_file)
         filename = os.path.splitext(os.path.basename(xml_file))[
             0].replace(".xml", "")
