@@ -10,7 +10,7 @@ import lxml.builder as builder
 from copy import deepcopy
 from acdh_tei_pyutils.tei import TeiReader
 from acdh_tei_pyutils.utils import extract_fulltext
-import mk_verticals
+# import mk_verticals
 from label_translator import label_dict
 from tidy_rdgs import tidy_readings
 xmlns = "http://www.w3.org/XML/1998/namespace"
@@ -1292,19 +1292,19 @@ class XmlDocument:
     def return_thumbnail_name(self):
         return self.xml_tree.any_xpath("//tei:pb/@facs")[0]
 
-    def export_verticals(self, output_dir: str):
-        verticals = mk_verticals.export_verticals_from_doc(
-            doc=self.xml_tree,
-            title=self.title,
-            doc_id=self.get_global_id(),
-            date=self.return_sorting_date(),
-        )
-        file_ext = ".tsv"
-        output_dir = output_dir + \
-            "/" if not output_dir.endswith("/") else output_dir
-        outfile_path = f"{output_dir}{self.id}{file_ext}"
-        with open(outfile_path, "w") as of:
-            of.write(verticals)
+    # def export_verticals(self, output_dir: str):
+    #     verticals = mk_verticals.export_verticals_from_doc(
+    #         doc=self.xml_tree,
+    #         title=self.title,
+    #         doc_id=self.get_global_id(),
+    #         date=self.return_sorting_date(),
+    #     )
+    #     file_ext = ".tsv"
+    #     output_dir = output_dir + \
+    #         "/" if not output_dir.endswith("/") else output_dir
+    #     outfile_path = f"{output_dir}{self.id}{file_ext}"
+    #     with open(outfile_path, "w") as of:
+    #         of.write(verticals)
 
     def get_archive_data(self):
         for witness in self.xml_tree.any_xpath("//tei:msDesc"):
@@ -1474,9 +1474,9 @@ class XmlDocument:
         )
 
 
-def export_all_verticals(xml_docs, verticals_output_folder):
-    for doc in xml_docs:
-        doc.export_verticals(verticals_output_folder)
+# def export_all_verticals(xml_docs, verticals_output_folder):
+#     for doc in xml_docs:
+#         doc.export_verticals(verticals_output_folder)
 
 
 def resort_persons_for_typesense(person_objs: list):
@@ -1498,7 +1498,7 @@ if __name__ == "__main__":
     person_objs = []
     events_json = {}
     xml_docs = []
-    verticals_output_folder = mk_verticals.prepare_output_dir()
+    # verticals_output_folder = mk_verticals.prepare_output_dir()
     # template_doc = TeiReader("template/events.xml")
     # listevent = template_doc.any_xpath(
     # ".//tei:listEvent[@type='offences']")[0]
@@ -1548,7 +1548,7 @@ if __name__ == "__main__":
         ),
         "persons")
     print_to_json(xml_docs, "documents")
-    export_all_verticals(xml_docs, verticals_output_folder)
+    # export_all_verticals(xml_docs, verticals_output_folder)
     print_typesense_entries_to_json(xml_docs)
     missing_fields = ', '.join(list(set(all_missing_fields)))
     if events_with_missing_field:
