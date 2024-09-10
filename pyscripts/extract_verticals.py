@@ -193,7 +193,7 @@ def mk_docstructure_open(doc: TeiReader) -> str:
     delinquent_sexes = doc.any_xpath(
         "//tei:person[@role='delinquent']//tei:sex/@value")
     delinquent_sex = ""
-    if "m" and "f" in delinquent_sexes:
+    if "f" in delinquent_sexes and "m" in delinquent_sexes:
         delinquent_sex = "misc"
     elif "f" in delinquent_sexes:
         delinquent_sex = "female"
