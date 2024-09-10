@@ -19,6 +19,7 @@ jobs:
           ./shellscripts/dl_and_prepare_gl_data.sh
           pip install -r ./pyscripts/requirements.txt
           python ./pyscripts/extract_data.py
+          python ./pyscripts/extract_verticals.py
       - name: clone target repo
         run: |
           git config --global user.email "${GH_USERMAIL}"
