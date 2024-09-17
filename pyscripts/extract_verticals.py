@@ -3,6 +3,7 @@
 import os
 import glob
 import shutil
+import re
 from lxml import etree as ET
 from tqdm import tqdm
 from acdh_tei_pyutils.tei import TeiReader
@@ -47,7 +48,6 @@ RELEVANT_ELEMENTS = [
     'imprint',
     'bibl',
     'persName',
-    'div',
     'date',
     'name',
     'head',
@@ -111,6 +111,16 @@ TOKEN_TAG_ATTRIBUTES = [
 
 #
 # 'choice': only process sic but try to get textnode of corr
+
+
+def clean_string(string: str):
+    cleaned_string = re.sub(
+        r"\s+",
+        " ",
+        string
+    )
+    cleaned_string = cleaned_string.strip()
+    return cleaned_string
 
 
 def handle_parent_choice(choice) -> ET._Element:
@@ -199,7 +209,9 @@ def mk_docstructure_open(doc: TeiReader) -> str:
     else:
         delinquent_sex = "male"
     doc_title = doc.any_xpath(
-        "//tei:titleStmt/tei:title/text()")[0].strip()
+        "//tei:titleStmt/tei:title/text()"
+    )[0].strip()
+    doc_title = clean_string(doc_title)
     return " ".join([
         f'<doc id="{doc_identifier}"',
         f'delinquent_sexes="{delinquent_sex}"',
@@ -216,7 +228,11 @@ def get_vertical_for_atomic(element, element_name: str) -> str:
         token_attribs = [text]
         for attrib in TOKEN_TAG_ATTRIBUTES:
             val = element.xpath(f"{attrib}", namespaces=NS)
-            string_val = val[0] if val else ""
+            string_val = ""
+            if val:
+                string_val = clean_string(
+                    val[0]
+                )
             token_attribs.append(string_val)
         return "\t".join(token_attribs)
     else:
@@ -231,7 +247,10 @@ def get_attributes_from_structure(element):
         key = attrib if ":" not in attrib else attrib.split(":")[-1]
         val = element.xpath(xpath_expression, namespaces=NS)
         if val:
-            attributes += f' {key}="{val[0]}"'
+            string_val = clean_string(
+                val[0]
+            )
+            attributes += f' {key}="{string_val}"'
     return attributes
 
 
