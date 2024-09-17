@@ -114,6 +114,8 @@ TOKEN_TAG_ATTRIBUTES = [
 
 
 def clean_string(string: str):
+    if not string:
+        return ""
     cleaned_string = re.sub(
         r"\s+",
         " ",
@@ -220,19 +222,33 @@ def mk_docstructure_open(doc: TeiReader) -> str:
     ])
 
 
+def get_vocab_info(ref_val: str, element: ET._Element) -> str:
+    fs_id = ref_val.strip("# ")
+    vocab_state = element.xpath(
+        f"//tei:fs[@xml:id='{fs_id}']/tei:f[@name='dictref']/text()",
+        namespaces=NS
+    )
+    if vocab_state:
+        return vocab_state[0].strip()
+    else:
+        return ""
+
+
 def get_vertical_for_atomic(element, element_name: str) -> str:
-    text = element.text.strip()
+    text = clean_string(element.text)
     if element_name == "pc":
         return "<g/>\n" + text
     elif element_name == "w":
         token_attribs = [text]
         for attrib in TOKEN_TAG_ATTRIBUTES:
             val = element.xpath(f"{attrib}", namespaces=NS)
-            string_val = ""
             if val:
-                string_val = clean_string(
-                    val[0]
-                )
+                if attrib == "@ana":
+                    # val = get_vocab_info(val[0], element)
+                    vocab_id = val[0].strip(" #")
+                    string_val = global_document_vocab_state[vocab_id]
+                else:
+                    string_val = clean_string(val[0])
             token_attribs.append(string_val)
         return "\t".join(token_attribs)
     else:
@@ -336,11 +352,33 @@ def create_verticals(doc: TeiReader, output_filename) -> None:
 def process_xml_files(input_dir: str, output_dir: str) -> None:
     create_dirs(output_dir)
     xml_files = load_xml_files(input_dir)
+    global global_document_vocab_state
     for xml_file in tqdm(xml_files, total=len(xml_files)):
         doc = TeiReader(xml_file)
+        set_global_vocab_states(doc)
         filename = os.path.splitext(os.path.basename(xml_file))[
             0].replace(".xml", "")
         create_verticals(doc, filename)
+
+
+global_document_vocab_state = {}
+
+
+def set_global_vocab_states(doc: TeiReader):
+    # this is not pretty, but for performance reasons
+    # its better to do it like that
+    # using xpath for every single tei:w takes too long
+    global global_document_vocab_state
+    global_document_vocab_state = {}
+    for fs in doc.any_xpath("//tei:fs"):
+        fs_id = fs.xpath("@xml:id")[0]
+        vocab_state = fs.xpath("tei:f[@name='dictref']/text()", namespaces=NS)
+        if vocab_state:
+            global_document_vocab_state[fs_id] = vocab_state[0]
+        else:
+            global_document_vocab_state[fs_id] = ""
+
+    # f"//tei:fs[@xml:id='{fs_id}']/tei:f[@name='dictref']/text()",
 
 
 if __name__ == "__main__":
