@@ -249,6 +249,8 @@ def get_vertical_for_atomic(element, element_name: str) -> str:
                     string_val = global_document_vocab_state[vocab_id]
                 else:
                     string_val = clean_string(val[0])
+            else:
+                string_val = ""
             token_attribs.append(string_val)
         return "\t".join(token_attribs)
     else:
