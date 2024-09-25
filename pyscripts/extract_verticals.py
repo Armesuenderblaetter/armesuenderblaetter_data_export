@@ -218,7 +218,7 @@ def mk_docstructure_open(doc: TeiReader) -> str:
         f'<doc id="{doc_identifier}.html"',
         f'delinquent_sexes="{delinquent_sex}"',
         f'title="{doc_title}"',
-        'attrs="word lemma type">'
+        'attrs="word lemma pos vocab id">'
     ])
 
 
