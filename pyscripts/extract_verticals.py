@@ -58,7 +58,6 @@ RELEVANT_ELEMENTS = [
 RELEVANT_ELEMENTS_ATTRIBUTES = [
     "xml:id",
     "type",
-
 ]
 
 # elements which child elements get processed and
@@ -215,7 +214,7 @@ def mk_docstructure_open(doc: TeiReader) -> str:
     )[0].strip()
     doc_title = clean_string(doc_title)
     return " ".join([
-        f'<doc id="{doc_identifier}.html"',
+        f'<doc id="{doc_identifier}"',
         f'delinquent_sexes="{delinquent_sex}"',
         f'title="{doc_title}"',
         'attrs="word lemma pos vocab id">'
