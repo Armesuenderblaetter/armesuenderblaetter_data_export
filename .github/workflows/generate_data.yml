@@ -15,9 +15,9 @@ jobs:
       - uses: actions/checkout@v4
       - name: produce data
         run: |
+          python -m pip config set global.break-system-packages true
           pip install -r pyscripts/requirements.txt
           ./shellscripts/dl_and_prepare_gl_data.sh
-          pip install -r ./pyscripts/requirements.txt
           python ./pyscripts/extract_data.py
           python ./pyscripts/extract_verticals.py
       - name: clone target repo
