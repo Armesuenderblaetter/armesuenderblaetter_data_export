@@ -424,9 +424,11 @@ class Punishment(Event):
 
     def to_json(self):
         json_base_dict = super().to_json()
+        # json_base_dict["date"] = self.date[0] if self.date else ""
+        json_base_dict["place"] = [p["label"] for p in self.places]
         json_extra_dict = {
             "xml": self.get_source_string(),
-            "methods": self.methods
+            "methods": [m["label"] for m in self.methods]
         }
         return json_base_dict | json_extra_dict
 
@@ -487,9 +489,11 @@ class Execution(Event):
 
     def to_json(self):
         json_base_dict = super().to_json()
+        # json_base_dict["date"] = self.date[0] if self.date else ""
+        json_base_dict["place"] = [p["label"] for p in self.places]
         json_extra_dict = {
             "xml": self.get_source_string(),
-            "methods": self.methods
+            "methods": [m["label"] for m in self.methods]
         }
         return json_base_dict | json_extra_dict
 
