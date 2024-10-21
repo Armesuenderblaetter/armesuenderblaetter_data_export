@@ -338,7 +338,8 @@ class Event:
             "type": self.type,
             "date": self.date,
             "place": self.places,
-            "description": self.description
+            "description": self.description,
+            "file": self.file_identifier
         }
 
 
@@ -367,6 +368,7 @@ class TrialResult(Event):
     def to_json(self):
         json_base_dict = super().to_json()
         json_extra_dict = {"xml": self.get_source_string()}
+        json_extra_dict["place"] = [p["label"] for p in self.places]
         return json_base_dict | json_extra_dict
 
 
