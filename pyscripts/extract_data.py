@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import typing
 import glob
 import re
