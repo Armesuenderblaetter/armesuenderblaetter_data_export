@@ -5,11 +5,12 @@ jobs:
     name: produce and push data
     runs-on: ubuntu-latest
     env:
-      GITLAB_SOURCE_TOKEN: ${{ secrets.GITLAB_DATA_DOWNLOAD_TOKEN }}
+      GITLAB_SOURCE_TOKEN: ${{ secrets.GL_READ }}
       GITHUB_ACCESS_TOKEN: ${{ secrets.GITHB_ACCESS_TOKEN }}
       GITHUB_ACCESS_TOKEN_NAME: ${{ secrets.GITHB_ACCESS_TOKEN_NAME }}
       GH_USERNAME: ${{ secrets.GH_USERNAME }}
       GH_USERMAIL: ${{ secrets.GH_USERMAIL }}
+
 
     steps:
       - uses: actions/checkout@v4
