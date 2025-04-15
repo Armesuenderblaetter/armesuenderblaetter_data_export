@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # creates verticals from xml to import data to NoSketch engine
 
 import os

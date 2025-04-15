@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import glob
 import lxml.etree as etree
 import lxml.builder as builder
