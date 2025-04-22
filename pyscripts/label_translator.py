@@ -2,7 +2,7 @@ label_dict = {
     "m": "männlich",
     "f": "weiblich",
     "unwed": "ledig",
-    "married": "verheirated",
+    "married": "verheiratet",
     "widowed": "verwitwet",
     # "cath": "katholische Kirche",
     # "cal": "reformierte Kirche"
