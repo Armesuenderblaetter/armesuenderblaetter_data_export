@@ -247,7 +247,7 @@ class Event:
             self.rs = teiMaker.rs(
                 self.type,
                 type=self.type,
-                ref="#"+self.global_id
+                ref="#" + self.global_id
             )
             self.element.addnext(self.rs)
         if self.element_copies:
@@ -265,7 +265,7 @@ class Event:
         if self.global_id is not None and not override:
             raise ValueError
         new_glob_id = self.global_id_prefix + Event.id_delim + \
-            self.file_identifier + Event.id_delim+self.id
+            self.file_identifier + Event.id_delim + self.id
         try:
             check_global_id(new_glob_id)
         except DuplicatedIdError:
@@ -580,6 +580,7 @@ class Person:
         # self.element_cp = deepcopy(self.element)
         self.typesense_sorter = 0
         self.fullname = ""
+        self.archive_institutions = []
         self.doc: TeiReader = doc
         self.rs = None
         self.translate_labels()
@@ -603,7 +604,7 @@ class Person:
             else:
                 self.decade_age = str(
                     round(
-                        int(self.age)/10
+                        int(self.age) / 10
                     )
                 ) + "0er"
         else:
@@ -632,7 +633,7 @@ class Person:
         if self.global_id is not None and not override:
             raise ValueError("logic error somewhere!", self.global_id)
         new_glob_id = Person.global_id_prefix + Person.delim + \
-            self.file_identifier + Person.delim+self.id
+            self.file_identifier + Person.delim + self.id
         try:
             check_global_id(new_glob_id)
         except DuplicatedIdError:
@@ -671,7 +672,7 @@ class Person:
         if self.rs is None:
             self.rs = teiMaker.rs(
                 self.return_full_name(),
-                ref="#"+self.global_id
+                ref="#" + self.global_id
             )
             self.element.addnext(
                 self.rs
@@ -1161,6 +1162,11 @@ def extract_events_and_persons(doc: TeiReader, file_identifier: str):
             doc.nsmap,
             doc
         )
+        for witness in doc.any_xpath("//tei:msDesc"):
+            arch_i = witness.xpath(
+                ".//tei:msIdentifier/tei:institution/text()",
+                namespaces=tei_nsmp)
+            person_obj.archive_institutions.append(arch_i)
         persons.append(person_obj)
         for event_element in person_element.xpath(
             ".//tei:event",
@@ -1188,7 +1194,7 @@ def extract_events_and_persons(doc: TeiReader, file_identifier: str):
                         event_obj.id
                     ]
                     update_id_in_relations(
-                        event_obj, "#"+event_obj.id, elements)
+                        event_obj, "#" + event_obj.id, elements)
                 elif isinstance(event_obj, Execution):
                     if "execution" in event_id_mentioned_in_relation:
                         elements = event_id_mentioned_in_relation[
