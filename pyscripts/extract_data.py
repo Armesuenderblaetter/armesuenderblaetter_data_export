@@ -1163,7 +1163,7 @@ def extract_events_and_persons(doc: TeiReader, file_identifier: str):
             doc
         )
         person_obj.archive_institutions + doc.any_xpath(
-            ".//tei:msIdentifier/tei:institution/text()")
+            "//tei:msIdentifier/tei:institution/text()")
         persons.append(person_obj)
         for event_element in person_element.xpath(
             ".//tei:event",
