@@ -1162,11 +1162,8 @@ def extract_events_and_persons(doc: TeiReader, file_identifier: str):
             doc.nsmap,
             doc
         )
-        for witness in doc.any_xpath("//tei:msDesc"):
-            arch_i = witness.xpath(
-                ".//tei:msIdentifier/tei:institution/text()",
-                namespaces=tei_nsmp)
-            person_obj.archive_institutions.append(arch_i)
+        person_obj.archive_institutions + doc.any_xpath(
+            ".//tei:msIdentifier/tei:institution/text()")
         persons.append(person_obj)
         for event_element in person_element.xpath(
             ".//tei:event",
