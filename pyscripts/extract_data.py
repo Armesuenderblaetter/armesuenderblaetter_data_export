@@ -747,6 +747,8 @@ class Person:
             "execution": executions if executions else ["Keine"],
             "execution_places": execution_places,
             "punishments": punishments if punishments else ["Keine"],
+            "id": self.get_global_id(),
+            "archives": self.archive_institutions,
         }
 
 
