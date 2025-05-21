@@ -690,7 +690,7 @@ class Person:
         if self.fullname == "":
             if self.forename and self.surname:
                 self.fullname = clear_kA(
-                    f"{self.surname}, {self.forename}"
+                    f"{self.forename} {self.surname}".strip()
                 )
             elif self.surname:
                 self.fullname = clear_kA(self.surname)
