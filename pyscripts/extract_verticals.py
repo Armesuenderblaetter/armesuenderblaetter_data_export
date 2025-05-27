@@ -158,10 +158,8 @@ def handle_W(w) -> str:
         w.text = extract_fulltext(
             w.xpath(".//tei:lem", namespaces=NS)[0]
         )
-    elif (w.xpath(
-            ".//tei:app/tei:rdg", namespaces=NS
-        ) and not (w.text and w.text.strip())
-    ):
+    elif (w.xpath(".//tei:app/tei:rdg", namespaces=NS) and
+          not (w.text and w.text.strip())):
         w.text = extract_fulltext(
             w.xpath(".//tei:rdg", namespaces=NS)[0]
         )
@@ -354,7 +352,8 @@ def create_verticals(doc: TeiReader, output_filename) -> None:
 def process_xml_files(input_dir: str, output_dir: str) -> None:
     create_dirs(output_dir)
     xml_files = load_xml_files(input_dir)
-    global global_document_vocab_state
+    # Unused
+    # global global_document_vocab_state
     for xml_file in tqdm(xml_files, total=len(xml_files)):
         doc = TeiReader(xml_file)
         set_global_vocab_states(doc)
