@@ -583,7 +583,7 @@ class Person:
         self.fullname = ""
         self.archive_institutions = []
         self.doc: TeiReader = doc
-        self.thumbnail: thumbnail
+        self.thumbnail = thumbnail
         self.rs = None
         self.translate_labels()
 
