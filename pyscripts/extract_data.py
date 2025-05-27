@@ -1162,7 +1162,7 @@ def extract_events_and_persons(doc: TeiReader, file_identifier: str):
             doc.nsmap,
             doc
         )
-        person_obj.archive_institutions + doc.any_xpath(
+        person_obj.archive_institutions = doc.any_xpath(
             "//tei:msIdentifier/tei:institution/text()")
         persons.append(person_obj)
         for event_element in person_element.xpath(
@@ -1473,7 +1473,8 @@ class XmlDocument:
             ],
             "punishment_methods": [
                 pun.return_punishments_as_str() for pun in self.punishments
-            ]
+            ],
+            "archives": self.archive_institutions
         }
 
     def write_changes(self):
