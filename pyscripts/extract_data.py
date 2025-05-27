@@ -544,6 +544,7 @@ class Person:
         _type: str,
         marriage_status: str,
         faith: str,
+        thumbnail: str,
         occupation: str,
         file_identifier: str,
         xml_element: etree._Element,
@@ -582,6 +583,7 @@ class Person:
         self.fullname = ""
         self.archive_institutions = []
         self.doc: TeiReader = doc
+        self.thumbnail: thumbnail
         self.rs = None
         self.translate_labels()
 
@@ -884,6 +886,7 @@ def extract_person(
     faith = person_element.xpath("./tei:faith/text()", namespaces=nsmap)[0]
     occupation = person_element.xpath(
         "./tei:occupation/text()", namespaces=nsmap)
+    thumbnail = doc.xml_tree.any_xpath("//tei:pb/@facs")[0]
     person_obj = Person(
         xml_id=xml_id[0] if xml_id else "",
         roles=roles,
@@ -898,6 +901,7 @@ def extract_person(
         marriage_status=marriage_state,
         faith=faith,
         occupation=occupation,
+        thumbnail=thumbnail,
         file_identifier=file_identifier,
         xml_element=person_element,
         doc=doc
