@@ -745,6 +745,7 @@ class Person:
             "offences": list(
                 set(offences)
             ),
+            "thumbnail": self.return_thumbnail_name(),
             "execution": executions if executions else ["Keine"],
             "execution_places": execution_places,
             "punishments": punishments if punishments else ["Keine"],
