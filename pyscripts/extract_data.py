@@ -886,7 +886,7 @@ def extract_person(
     faith = person_element.xpath("./tei:faith/text()", namespaces=nsmap)[0]
     occupation = person_element.xpath(
         "./tei:occupation/text()", namespaces=nsmap)
-    thumbnail = doc.xml_tree.any_xpath("//tei:pb/@facs")[0]
+    thumbnail = doc.any_xpath("//tei:pb/@facs")[0]
     person_obj = Person(
         xml_id=xml_id[0] if xml_id else "",
         roles=roles,
