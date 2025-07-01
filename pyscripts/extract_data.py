@@ -41,6 +41,33 @@ punishments_dict = {
     "wheel from beyond": "Rad von hinten",
 }
 
+punishments_dict_ts = {
+    "bodies on wheel": "Rad",
+    "body on wheel": "Rad",
+    "burned": "Verbrennung",
+    "hand chopped": "Handabhauung",
+    "head on pale": "Pfahl",
+    "heads on pale": "Pfahl",
+    "pale": "Pfahl",
+    "pale (head)": "Pfahl",
+    "right hand chopped": "Handabhauung",
+    "quartered": "Vierteilung",
+    "shot": "Erschießung",
+    "stack": "Gesteck",
+    "stake": "Gesteck",
+    "strand": "Strang",
+    "sword": "Schwert",
+    "wheel": "Rad",
+    "wheel (body)": "Rad",
+    "wheel from above": "Rad",
+    "wheel from above (begnadigt)": "Rad",
+    "wheel from beneath": "Rad",
+    "wheel from beyond": "Rad",
+    "Zwicken mit glühenden Zangen in die rechte Brust": "Zangen",
+    "unter dem Galgen begraben": "Begrabung",
+    "Theile herumgetragen und seitlich an Galgen aufgenagelt":
+    "Teile herumgetragen und an Galgen aufgenagelt"
+}
 
 tei_nsmp = {
     "tei": "http://www.tei-c.org/ns/1.0",
@@ -437,8 +464,6 @@ class Punishment(Event):
             number = int(punishment.get("n")) if punishment.get(
                 "n") else counter
             label = punishment.text.strip()
-            if label in punishments_dict:
-                label = punishments_dict[label]
             p_id = punishment_index.get_id_for_label(label)
             methods.append(
                 {
@@ -504,9 +529,9 @@ class Execution(Event):
             number = int(punishment.get("n")) if punishment.get(
                 "n") else counter
             label = punishment.text.strip()
-            if label in punishments_dict:
-                label = punishments_dict[label]
             p_id = execution_index.get_id_for_label(label)
+            if label in punishments_dict:
+                label = punishments_dict_ts[label]
             methods.append(
                 {
                     "id": p_id,
@@ -1058,18 +1083,17 @@ def extract_event(
             else:
                 raise e
     elif event_type in Event.xml_trial_result_types:
+        punishments_xml = event_element.xpath(".//tei:desc/tei:list/tei:item",
+                                              namespaces=nsmap)
+        if not punishments_xml:
+            punishments_xml = event_element.xpath(".//tei:desc//tei:desc",
+                                                  namespaces=nsmap)
+        for element in punishments_xml:
+            if element.text in punishments_dict:
+                element.text = punishments_dict[element.text]
         try:
             print(Punishment.type_key)
-            if event_type == Punishment.type_key:
-                punishments_xml = event_element.xpath(
-                    ".//tei:desc/tei:list/tei:item",
-                    namespaces=nsmap
-                )
-                if not (punishments_xml):
-                    punishments_xml = event_element.xpath(
-                        ".//tei:desc//tei:desc",
-                        namespaces=nsmap
-                    )
+            if event_type in (Punishment.type_key, Execution.type_key):
                 event_obj = Punishment(
                     _type=event_type,
                     _id="",  # ids not necessary there
@@ -1079,26 +1103,6 @@ def extract_event(
                     xml_element=event_element,
                     file_identifier=file_identifier,
                     punishments_xml=punishments_xml
-                )
-            elif event_type == Execution.type_key:
-                punishments_xml = event_element.xpath(
-                    ".//tei:desc/tei:list/tei:item",
-                    namespaces=nsmap
-                )
-                if not (punishments_xml):
-                    punishments_xml = event_element.xpath(
-                        ".//tei:desc//tei:desc",
-                        namespaces=nsmap
-                    )
-                event_obj = Execution(
-                    _type=event_type,
-                    _id="",  # ids not necessary there
-                    date=dates,
-                    place=place,
-                    description=description_str,
-                    xml_element=event_element,
-                    file_identifier=file_identifier,
-                    methods_xml=punishments_xml
                 )
             else:
                 event_obj = TrialResult(
