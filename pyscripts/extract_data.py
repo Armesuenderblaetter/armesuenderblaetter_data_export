@@ -311,8 +311,8 @@ class Event:
                         self.rs
                     )
                 )
-                # parent = element.getparent()
-                # parent.remove(element)
+                parent = element.getparent()
+                parent.remove(element)
             self.element_copies = []
 
     def create_global_id(self, override=False):
@@ -530,7 +530,7 @@ class Execution(Event):
                 "n") else counter
             label = punishment.text.strip()
             p_id = execution_index.get_id_for_label(label)
-            if label in punishments_dict:
+            if label in punishments_dict_ts:
                 label = punishments_dict_ts[label]
             methods.append(
                 {
@@ -1143,8 +1143,8 @@ def change_relations(doc: TeiReader):
             id_is_mentioned_in_relation[passive_id] = []
         id_is_mentioned_in_relation[passive_id].append(active_el)
         id_is_mentioned_in_relation[active_id].append(passive_el)
-        # parent = relation.getparent()
-        # parent.remove(relation)
+        parent = relation.getparent()
+        parent.remove(relation)
     for active_id, relation_elements in id_has_passive_relations.items():
         active_xpath_expression = f"//tei:event[@xml:id='{active_id}']"
         try:
