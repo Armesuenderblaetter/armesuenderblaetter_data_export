@@ -16,6 +16,32 @@ from label_translator import label_dict
 from tidy_rdgs import tidy_readings
 xmlns = "http://www.w3.org/XML/1998/namespace"
 
+
+punishments_dict = {
+    "bodies on wheel": "Rad (Körper)",
+    "body on wheel": "Rad (Körper)",
+    "burned": "Verbrennung",
+    "hand chopped": "Handabhauung",
+    "head on pale": "Pfahl (Kopf)",
+    "heads on pale": "Pfahl (Kopf)",
+    "pale": "Pfahl",
+    "pale (head)": "Pfahl (Kopf)",
+    "right hand chopped": "Handabhauung (rechte Hand)",
+    "quartered": "Vierteilung",
+    "shot": "Erschießung",
+    "stack": "Gesteck (Kopf)",
+    "stake": "Gesteck (Kopf)",
+    "strand": "Strang",
+    "sword": "Schwert",
+    "wheel": "Rad",
+    "wheel (body)": "Rad (Körper)",
+    "wheel from above": "Rad von oben",
+    "wheel from above (begnadigt)": "Rad von oben (begnadigt)",
+    "wheel from beneath": "Rad von unten",
+    "wheel from beyond": "Rad von hinten",
+}
+
+
 tei_nsmp = {
     "tei": "http://www.tei-c.org/ns/1.0",
     "xml": xmlns
@@ -245,6 +271,7 @@ class Event:
     def add_selfref_as_next(self):
         if self.rs is None:
             self.rs = teiMaker.rs(
+
                 self.type,
                 type=self.type,
                 ref="#" + self.global_id
@@ -257,8 +284,8 @@ class Event:
                         self.rs
                     )
                 )
-                parent = element.getparent()
-                parent.remove(element)
+                # parent = element.getparent()
+                # parent.remove(element)
             self.element_copies = []
 
     def create_global_id(self, override=False):
@@ -374,8 +401,6 @@ class TrialResult(Event):
 
 
 class Punishment(Event):
-    type_key = "punishment"
-
     def __init__(
             self,
             _type: str,
@@ -409,6 +434,8 @@ class Punishment(Event):
             number = int(punishment.get("n")) if punishment.get(
                 "n") else counter
             label = punishment.text.strip()
+            if label in punishments_dict:
+                label = punishments_dict[label]
             p_id = punishment_index.get_id_for_label(label)
             methods.append(
                 {
@@ -474,6 +501,8 @@ class Execution(Event):
             number = int(punishment.get("n")) if punishment.get(
                 "n") else counter
             label = punishment.text.strip()
+            if label in punishments_dict:
+                label = punishments_dict[label]
             p_id = execution_index.get_id_for_label(label)
             methods.append(
                 {
@@ -1106,8 +1135,8 @@ def change_relations(doc: TeiReader):
             id_is_mentioned_in_relation[passive_id] = []
         id_is_mentioned_in_relation[passive_id].append(active_el)
         id_is_mentioned_in_relation[active_id].append(passive_el)
-        parent = relation.getparent()
-        parent.remove(relation)
+        # parent = relation.getparent()
+        # parent.remove(relation)
     for active_id, relation_elements in id_has_passive_relations.items():
         active_xpath_expression = f"//tei:event[@xml:id='{active_id}']"
         try:
