@@ -401,6 +401,9 @@ class TrialResult(Event):
 
 
 class Punishment(Event):
+
+    type_key = "punishment"
+
     def __init__(
             self,
             _type: str,
@@ -1056,6 +1059,7 @@ def extract_event(
                 raise e
     elif event_type in Event.xml_trial_result_types:
         try:
+            print(Punishment.type_key)
             if event_type == Punishment.type_key:
                 punishments_xml = event_element.xpath(
                     ".//tei:desc/tei:list/tei:item",
