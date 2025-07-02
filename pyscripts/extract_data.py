@@ -431,7 +431,11 @@ class Punishment(Event):
             p_id = punishment_index.get_id_for_label(label)
             if label in punishments_dict:
                 label = punishments_dict[label]
-            methods.append({"id": p_id, "order": number, "label": label})
+            methods.append({"id": p_id,
+                            "order": number,
+                            "label": label,
+                            "label_short": label_short,
+                            "label_ts": label_ts})
         return methods
 
     def return_punishments_as_str(self):
@@ -495,7 +499,11 @@ class Execution(Event):
             p_id = execution_index.get_id_for_label(label)
             if label in punishments_dict:
                 label = punishments_dict[label]
-            methods.append({"id": p_id, "order": number, "label": label})
+            methods.append({"id": p_id,
+                            "order": number,
+                            "label": label,
+                            "label_short": label_short,
+                            "label_ts": label_ts})
         return methods
 
     def return_executions_as_str(self):
