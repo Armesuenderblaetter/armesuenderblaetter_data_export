@@ -36,6 +36,7 @@ punishments_dict = {
     "strand": "Strang",
     "sword": "Schwert",
     "wheel": "Rad",
+    "30 Jahre Gefängnis zweiten Grades": "Gefängnis zweiten Grades",
     "wheel (body)": "Rad (Körper)",
     "wheel from above": "Rad von oben",
     "wheel from above (begnadigt)": "Rad von oben (begnadigt)",
@@ -78,7 +79,17 @@ punishments_dict_ts = {
     "Belegung mit schweren Eisen": "Schwere Eisen",
     "Abstrafung mit 50 Stockstreichen an jedem Jahrestage seines Vergehens": "Stockstreichen",
     "Eingeweide aus Körper gerissen": "Ausweidung",
-    "Leib darunter eingescharrt": "Verscharrung "
+    "Leib darunter eingescharrt": "Verscharrung ",
+    "Gefängnis zweiten Grades": "Gefängnis"
+}
+
+printers_dict = {
+    "zu finden im grossen Jakoberhof Nro. 837.": "Jakoberhof 837",
+    "Andreas Heyinger / Acad. Buchdr.": "Andreas Heyinger"
+}
+
+places_dict = {
+    "Wien in Österreich": "Wien"
 }
 
 tei_nsmp = {"tei": "http://www.tei-c.org/ns/1.0", "xml": xmlns}
@@ -344,6 +355,8 @@ class Event:
         unique_places = []
         for place in places:
             label = place.strip()
+            if label in places_dict:
+                label = places_dict[label]
             p_id = places_index.get_id_for_label(label)
             unique_places.append({"id": p_id, "label": label})
         return unique_places
