@@ -426,7 +426,7 @@ class Punishment(Event):
             label = label_short = label_ts = punishment.text.strip()
             if label in punishments_dict:
                 label_short = label_ts = punishments_dict[label]
-            if label_short in label_ts:
+            if label_short in punishments_dict_ts:
                 label_ts = punishments_dict_ts[label_short]
             p_id = punishment_index.get_id_for_label(label)
             if label in punishments_dict:
@@ -494,7 +494,7 @@ class Execution(Event):
             label = label_short = label_ts = punishment.text.strip()
             if label in punishments_dict:
                 label_short = label_ts = punishments_dict[label]
-            if label_short in label_ts:
+            if label_short in punishments_dict_ts:
                 label_ts = punishments_dict_ts[label_short]
             p_id = execution_index.get_id_for_label(label)
             if label in punishments_dict:
