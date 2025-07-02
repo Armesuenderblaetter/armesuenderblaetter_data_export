@@ -1590,6 +1590,8 @@ if __name__ == "__main__":
             event: Offence
             _ = event.return_offence_types()
         else:
+            if event in punishments_dict_ts:
+                event = punishments_dict_ts[event]
             punishment_objects.append(event)
         event.check_4_empty_fields()
 
