@@ -11,9 +11,11 @@ import lxml.builder as builder
 from copy import deepcopy
 from acdh_tei_pyutils.tei import TeiReader
 from acdh_tei_pyutils.utils import extract_fulltext
+
 # import mk_verticals
 from label_translator import label_dict
 from tidy_rdgs import tidy_readings
+
 xmlns = "http://www.w3.org/XML/1998/namespace"
 
 
@@ -39,6 +41,22 @@ punishments_dict = {
     "wheel from above (begnadigt)": "Rad von oben (begnadigt)",
     "wheel from beneath": "Rad von unten",
     "wheel from beyond": "Rad von hinten",
+    "Zwicken mit glühenden Zangen in die rechte Brust": "glühende Zangen (rechte Brust)",
+    "dreimaliger Zwick mit glühenden Zangen an verschiedenen Orten": "glühende Zangen (x3)",
+    "Brandmarkung durch den Freymann": "Brandmarkung",
+    "zweimaliger Zwick mit glühenden Zangen": "glühende Zangen (x2)",
+    "Zwick mit glühenden Zangen in die linke Brust": "glühende Zangen (linke Brust)",
+    "Theile herumgetragen und seitlich an Galgen aufgenagelt": "Teile herumgetragen und an Galgen aufgenagelt ",
+    "StrangUrteil vollzogen; dannenhero dessen Bildnuß"
+    "an die gewöhnliche Richtstatt vor "
+    "das Schotten=Thor auf dasig so genannten Rabenstein ausgeführet /"
+    " und an einem daselbst "
+    "zu diesem Ende aufgerichteten Schnell=Galgen aufgehangen / und alda drey Tag"
+    " lang hangend gelassen werden solle.": "Erhängen",
+    "Teile an den Tatorten ausgestellt": "Ausstellung der Teile am Tatort",
+    "Delinquent an dem Ort der begangenen Morde zeigen": "Ausstellung am Tatort",
+    "Schleifen auf Kuhhaut zur Richtstatt": "Schleifen auf Kuhhaut",
+    "Riemen auf der rechten Seiten aus dem Rücken schneiden": "Riemen aus dem Rücken schneiden",
 }
 
 punishments_dict_ts = {
@@ -64,21 +82,32 @@ punishments_dict_ts = {
     "wheel from beneath": "Rad",
     "wheel from beyond": "Rad",
     "Zwicken mit glühenden Zangen in die rechte Brust": "Zangen",
-    "unter dem Galgen begraben": "Begrabung",
-    "Theile herumgetragen und seitlich an Galgen aufgenagelt":
-    "Teile herumgetragen und an Galgen aufgenagelt"
+    "unter dem Galgen begraben": "Verscharrung ",
+    "Theile herumgetragen und seitlich an Galgen aufgenagelt": "Teile herumgetragen und an Galgen aufgenagelt",
+    "Zwicken mit glühenden Zangen in die rechte Brust": "Zangen",
+    "dreimaliger Zwick mit glühenden Zangen an verschiedenen Orten": "Zangen",
+    "Zwick mit glühenden Zangen in die linke Brust": "Zangen",
+    "zweimaliger Zwick mit glühenden Zangen": "Zangen",
+    "Brandmarkung durch den Freymann": "Brandmarkung",
+    "StrangUrteil vollzogen; dannenhero dessen Bildnuß an die gewöhnliche Richtstatt vor "
+    "das Schotten=Thor auf dasig so genannten Rabenstein ausgeführet / und an einem daselbst "
+    "zu diesem Ende aufgerichteten Schnell=Galgen aufgehangen / und alda drey Tag"
+    " lang hangend gelassen werden solle.": "Erhängen",
+    "Teile an den Tatorten ausgestellt": "Ausstellung am Tatort",
+    "Delinquent an dem Ort der begangenen Morde zeigen": "Ausstellung am Tatort",
+    "Schleifen auf Kuhhaut zur Richtstatt": "Schleifen auf Kuhhaut",
+    "Riemen auf der rechten Seiten aus dem Rücken schneiden": "Riemenschneiden",
+    "Brandmarkung der Wangen": "Brandmarkung",
+    "Belegung mit schweren Eisen": "Schwere Eisen",
+    "Abstrafung mit 50 Stockstreichen an jedem Jahrestage seines Vergehens": "Stockstreichen",
+    "Eingeweide aus Körper gerissen": "Ausweidung",
+    "Leib darunter eingescharrt": "Verscharrung ",
 }
 
-tei_nsmp = {
-    "tei": "http://www.tei-c.org/ns/1.0",
-    "xml": xmlns
-}
+tei_nsmp = {"tei": "http://www.tei-c.org/ns/1.0", "xml": xmlns}
 
 # # xml factory
-teiMaker = builder.ElementMaker(
-    namespace="http://www.tei-c.org/ns/1.0",
-    nsmap=tei_nsmp
-)
+teiMaker = builder.ElementMaker(namespace="http://www.tei-c.org/ns/1.0", nsmap=tei_nsmp)
 
 cases_dir = "./todesurteile_master/303_annot_tei/*.xml"
 error_docs = {}
@@ -89,18 +118,9 @@ json_file_output = "out/json"
 xml_file_output = "out/xml"
 xml_index_output = f"{xml_file_output}/indices"
 xml_editions_output = f"{xml_file_output}/editions"
-Path(f"./{json_file_output}").mkdir(
-    parents=True,
-    exist_ok=True
-)
-Path(f"./{xml_index_output}").mkdir(
-    parents=True,
-    exist_ok=True
-)
-Path(f"./{xml_editions_output}").mkdir(
-    parents=True,
-    exist_ok=True
-)
+Path(f"./{json_file_output}").mkdir(parents=True, exist_ok=True)
+Path(f"./{xml_index_output}").mkdir(parents=True, exist_ok=True)
+Path(f"./{xml_editions_output}").mkdir(parents=True, exist_ok=True)
 global_events_by_ids = {}
 
 
@@ -123,16 +143,11 @@ class UniqueStringVals:
     spacer = "_"
 
     def __init__(
-        self,
-        id_prefix: str,
-        id_suffix: str,
-        id_nmbr_len=2,
-        default_labels=[]
+        self, id_prefix: str, id_suffix: str, id_nmbr_len=2, default_labels=[]
     ):
         self.id_nmbr_len = id_nmbr_len
         self.counter = 0
-        self.id_suffix = (UniqueStringVals.spacer
-                          + id_suffix if id_suffix else "")
+        self.id_suffix = UniqueStringVals.spacer + id_suffix if id_suffix else ""
         self.id_prefix = id_prefix
         self.labels_2_ids = {}
         self.ids_2_labels = {}
@@ -142,11 +157,12 @@ class UniqueStringVals:
 
     def create_id(self):
         self.counter += 1
-        return (self.id_prefix
-                + UniqueStringVals.spacer
-                + str(self.counter).zfill(self.id_nmbr_len)
-                + self.id_suffix
-                )
+        return (
+            self.id_prefix
+            + UniqueStringVals.spacer
+            + str(self.counter).zfill(self.id_nmbr_len)
+            + self.id_suffix
+        )
 
     def create_entry(self, label):
         new_id = self.create_id()
@@ -187,38 +203,27 @@ class MethodsOfExecution(UniqueStringVals):
         super().__init__(id_prefix, id_suffix, id_nmbr_len)
 
 
-tools_index = ToolTypes(
-    id_prefix="tool_type",
-    id_suffix="",
-    id_nmbr_len=3
-)
+tools_index = ToolTypes(id_prefix="tool_type", id_suffix="", id_nmbr_len=3)
 
-places_index = Places(
-    id_prefix="place",
-    id_suffix="",
-    id_nmbr_len=4
-)
+places_index = Places(id_prefix="place", id_suffix="", id_nmbr_len=4)
 
-offence_index = OffenceTypes(
-    id_prefix="offence_type",
-    id_suffix="",
-    id_nmbr_len=3
-)
+offence_index = OffenceTypes(id_prefix="offence_type", id_suffix="", id_nmbr_len=3)
 
 punishment_index = MethodsOfPunishment(
-    id_prefix="punishment_type",
-    id_suffix="",
-    id_nmbr_len=3
+    id_prefix="punishment_type", id_suffix="", id_nmbr_len=3
 )
 
 execution_index = MethodsOfExecution(
-    id_prefix="execution_type",
-    id_suffix="",
-    id_nmbr_len=3
+    id_prefix="execution_type", id_suffix="", id_nmbr_len=3
 )
 
-typed_indices = [tools_index, places_index,
-                 offence_index, punishment_index, execution_index]
+typed_indices = [
+    tools_index,
+    places_index,
+    offence_index,
+    punishment_index,
+    execution_index,
+]
 
 
 class Event:
@@ -236,33 +241,30 @@ class Event:
         "rs",
         "xml_source_id",
         "places",
-        "element_copies"
+        "element_copies",
     ]
 
     xml_offence_types = [
-        'offenceAttempted',
-        'offence',
-        'offenceSuspected',
-        'offenceAided',
+        "offenceAttempted",
+        "offence",
+        "offenceSuspected",
+        "offenceAided",
     ]
-    xml_trial_result_types = [
-        'punishment',
-        'execution',
-        'verdict'
-    ]
+    xml_trial_result_types = ["punishment", "execution", "verdict"]
     id_delim = "_"
     random_counter = 0
 
     def __init__(
-            self,
-            _type: str,
-            _id: list,
-            date: str,
-            place: list,
-            description: list,
-            xml_element: etree._Element,
-            file_identifier: str,
-            global_id_prefix: str = "") -> None:
+        self,
+        _type: str,
+        _id: list,
+        date: str,
+        place: list,
+        description: list,
+        xml_element: etree._Element,
+        file_identifier: str,
+        global_id_prefix: str = "",
+    ) -> None:
         self.type: str = _type if _type else ""
         if _id:
             self.id = _id[0].strip(" #")
@@ -276,7 +278,8 @@ class Event:
         self.date: str = date if date else ""
         self.places: list = self.get_places(place)
         self.description: str = "".join(
-            [re.sub(" +", " ", desc) for desc in description])
+            [re.sub(" +", " ", desc) for desc in description]
+        )
         self.element: etree._Element = xml_element
         self.element_copies = []
         self.ref: str = xml_element.attrib.get("ref")
@@ -289,28 +292,16 @@ class Event:
         # self.element_cp = deepcopy(self.element)
 
     def to_xml(self):
-        self.element.set(
-            f"{{{xmlns}}}id",
-            self.global_id
-        )
+        self.element.set(f"{{{xmlns}}}id", self.global_id)
         return self.element
 
     def add_selfref_as_next(self):
         if self.rs is None:
-            self.rs = teiMaker.rs(
-
-                self.type,
-                type=self.type,
-                ref="#" + self.global_id
-            )
+            self.rs = teiMaker.rs(self.type, type=self.type, ref="#" + self.global_id)
             self.element.addnext(self.rs)
         if self.element_copies:
             for element in self.element_copies:
-                element.addnext(
-                    deepcopy(
-                        self.rs
-                    )
-                )
+                element.addnext(deepcopy(self.rs))
                 parent = element.getparent()
                 parent.remove(element)
             self.element_copies = []
@@ -318,8 +309,13 @@ class Event:
     def create_global_id(self, override=False):
         if self.global_id is not None and not override:
             raise ValueError
-        new_glob_id = self.global_id_prefix + Event.id_delim + \
-            self.file_identifier + Event.id_delim + self.id
+        new_glob_id = (
+            self.global_id_prefix
+            + Event.id_delim
+            + self.file_identifier
+            + Event.id_delim
+            + self.id
+        )
         try:
             check_global_id(new_glob_id)
         except DuplicatedIdError:
@@ -328,10 +324,10 @@ class Event:
                 or global_events_by_ids[new_glob_id].is_probably_copy
             ):
                 raise DuplicatedIdError(
-                    "caused by referecence, unproblematic", new_glob_id)
+                    "caused by referecence, unproblematic", new_glob_id
+                )
             else:
-                raise DuplicatedIdError(
-                    f"problem with {new_glob_id}", new_glob_id)
+                raise DuplicatedIdError(f"problem with {new_glob_id}", new_glob_id)
         self.global_id = new_glob_id
         return self.global_id
 
@@ -342,36 +338,29 @@ class Event:
             return self.global_id
 
     def get_source_string(self):
-        return etree.tostring(
-            self.element
-        ).decode()
+        return etree.tostring(self.element).decode()
 
     def print_source(self):
-        print(
-            self.get_source_string()
-        )
+        print(self.get_source_string())
 
     def check_4_empty_fields(self):
         global all_missing_fields
         global events_with_missing_field
-        missing_vals = [field for field, val in vars(self).items() if (
-            field not in Event.regulary_missing_fields and not bool(val))]
+        missing_vals = [
+            field
+            for field, val in vars(self).items()
+            if (field not in Event.regulary_missing_fields and not bool(val))
+        ]
         all_missing_fields += missing_vals
         if missing_vals:
             events_with_missing_field += 1
-            print(
-                f"\nobj {self.get_global_id()} ({self.type})"
-            )
-            print(
-                f"\nmissing: {', '.join(missing_vals)}"
-            )
+            print(f"\nobj {self.get_global_id()} ({self.type})")
+            print(f"\nmissing: {', '.join(missing_vals)}")
 
     def return_places_labes(self):
         p_labels = []
         for p in self.places:
-            p_labels.append(
-                p["label"]
-            )
+            p_labels.append(p["label"])
         return p_labels
 
     def get_places(self, places):
@@ -379,12 +368,7 @@ class Event:
         for place in places:
             label = place.strip()
             p_id = places_index.get_id_for_label(label)
-            unique_places.append(
-                {
-                    "id": p_id,
-                    "label": label
-                }
-            )
+            unique_places.append({"id": p_id, "label": label})
         return unique_places
 
     def to_json(self):
@@ -394,20 +378,20 @@ class Event:
             "date": self.date,
             "place": self.places,
             "description": self.description,
-            "file": self.file_identifier
+            "file": self.file_identifier,
         }
 
 
 class TrialResult(Event):
     def __init__(
-            self,
-            _type: str,
-            _id: list,
-            date: list,
-            place: list,
-            description: list,
-            xml_element: etree._Element,
-            file_identifier: str
+        self,
+        _type: str,
+        _id: list,
+        date: list,
+        place: list,
+        description: list,
+        xml_element: etree._Element,
+        file_identifier: str,
     ):
         super().__init__(
             _type,
@@ -417,7 +401,7 @@ class TrialResult(Event):
             description,
             xml_element,
             file_identifier,
-            "trial_result"
+            "trial_result",
         )
 
     def to_json(self):
@@ -432,15 +416,15 @@ class Punishment(Event):
     type_key = "punishment"
 
     def __init__(
-            self,
-            _type: str,
-            _id: list,
-            date: list,
-            place: list,
-            description: list,
-            xml_element: etree._Element,
-            file_identifier: str,
-            punishments_xml: list
+        self,
+        _type: str,
+        _id: list,
+        date: list,
+        place: list,
+        description: list,
+        xml_element: etree._Element,
+        file_identifier: str,
+        punishments_xml: list,
     ):
         super().__init__(
             _type,
@@ -450,7 +434,7 @@ class Punishment(Event):
             description,
             xml_element,
             file_identifier,
-            "trial_result"
+            "trial_result",
         )
         self.punishments_xml = punishments_xml if punishments_xml else []
         self.methods: list = self.get_punishment_methods()
@@ -461,17 +445,10 @@ class Punishment(Event):
         counter = 0
         for punishment in self.punishments_xml:
             counter += 1
-            number = int(punishment.get("n")) if punishment.get(
-                "n") else counter
+            number = int(punishment.get("n")) if punishment.get("n") else counter
             label = punishment.text.strip()
             p_id = punishment_index.get_id_for_label(label)
-            methods.append(
-                {
-                    "id": p_id,
-                    "order": number,
-                    "label": label
-                }
-            )
+            methods.append({"id": p_id, "order": number, "label": label})
         return methods
 
     def return_punishments_as_str(self):
@@ -486,7 +463,7 @@ class Punishment(Event):
         json_base_dict["place"] = [p["label"] for p in self.places]
         json_extra_dict = {
             "xml": self.get_source_string(),
-            "methods": [m["label"] for m in self.methods]
+            "methods": [m["label"] for m in self.methods],
         }
         return json_base_dict | json_extra_dict
 
@@ -495,15 +472,15 @@ class Execution(Event):
     type_key = "execution"
 
     def __init__(
-            self,
-            _type: str,
-            _id: list,
-            date: list,
-            place: list,
-            description: list,
-            xml_element: etree._Element,
-            file_identifier: str,
-            methods_xml: list
+        self,
+        _type: str,
+        _id: list,
+        date: list,
+        place: list,
+        description: list,
+        xml_element: etree._Element,
+        file_identifier: str,
+        methods_xml: list,
     ):
         super().__init__(
             _type,
@@ -513,7 +490,7 @@ class Execution(Event):
             description,
             xml_element,
             file_identifier,
-            "trial_result"
+            "trial_result",
         )
         self.methods_xml = methods_xml if methods_xml else []
         self.methods: list = self.get_execution_methods()
@@ -526,19 +503,12 @@ class Execution(Event):
         counter = 0
         for punishment in self.methods_xml:
             counter += 1
-            number = int(punishment.get("n")) if punishment.get(
-                "n") else counter
+            number = int(punishment.get("n")) if punishment.get("n") else counter
             label = punishment.text.strip()
             p_id = execution_index.get_id_for_label(label)
             if label in punishments_dict_ts:
                 label = punishments_dict_ts[label]
-            methods.append(
-                {
-                    "id": p_id,
-                    "order": number,
-                    "label": label
-                }
-            )
+            methods.append({"id": p_id, "order": number, "label": label})
         return methods
 
     def return_executions_as_str(self):
@@ -553,7 +523,7 @@ class Execution(Event):
         json_base_dict["place"] = [p["label"] for p in self.places]
         json_extra_dict = {
             "xml": self.get_source_string(),
-            "methods": [m["label"] for m in self.methods]
+            "methods": [m["label"] for m in self.methods],
         }
         return json_base_dict | json_extra_dict
 
@@ -605,22 +575,18 @@ class Person:
         occupation: str,
         file_identifier: str,
         xml_element: etree._Element,
-        doc: TeiReader
+        doc: TeiReader,
     ):
         self.xml_id: str = xml_id
         self.id = xml_id if xml_id else ""
         if not self.id:
             Person.random_counter += 1
             self.id = f"{Person.random_counter:04}"
-        self.roles: dict = dict(
-            [(file_identifier, role) for role in roles]
-        )
+        self.roles: dict = dict([(file_identifier, role) for role in roles])
         self.forename: str = forename
         self.surname: str = surname
-        self.birth_element: etree._Element = (birth_element[0]
-                                              if birth_element else None)
-        self.death_element: etree._Element = (death_element[0]
-                                              if death_element else None)
+        self.birth_element: etree._Element = birth_element[0] if birth_element else None
+        self.death_element: etree._Element = death_element[0] if death_element else None
         self._birth_place: str = None
         self.sex: str = sex
         self.age = age
@@ -661,11 +627,7 @@ class Person:
             if int(self.age) < 10:
                 self.decade_age = "10er"
             else:
-                self.decade_age = str(
-                    round(
-                        int(self.age) / 10
-                    )
-                ) + "0er"
+                self.decade_age = str(round(int(self.age) / 10)) + "0er"
         else:
             self.age = "k.A."
             self.decade_age = "k.A."
@@ -674,16 +636,14 @@ class Person:
         if self._birth_place is None:
             if self.birth_element is not None:
                 settlements = self.birth_element.xpath(
-                    "tei:placeName/tei:settlement/text()", namespaces=tei_nsmp)
+                    "tei:placeName/tei:settlement/text()", namespaces=tei_nsmp
+                )
                 country = self.birth_element.xpath(
-                    "tei:placeName/tei:country/text()", namespaces=tei_nsmp)
+                    "tei:placeName/tei:country/text()", namespaces=tei_nsmp
+                )
                 self._birth_place = ""
-                self._birth_place += (
-                    settlements[0].strip() if settlements else ""
-                )
-                self._birth_place += (
-                    f" ({country[0].strip()})" if country else ""
-                )
+                self._birth_place += settlements[0].strip() if settlements else ""
+                self._birth_place += f" ({country[0].strip()})" if country else ""
         if self._birth_place == "k. A. (k. A.)":
             self._birth_place = "k. A."
         return self._birth_place
@@ -691,8 +651,13 @@ class Person:
     def create_global_id(self, override=False):
         if self.global_id is not None and not override:
             raise ValueError("logic error somewhere!", self.global_id)
-        new_glob_id = Person.global_id_prefix + Person.delim + \
-            self.file_identifier + Person.delim + self.id
+        new_glob_id = (
+            Person.global_id_prefix
+            + Person.delim
+            + self.file_identifier
+            + Person.delim
+            + self.id
+        )
         try:
             check_global_id(new_glob_id)
         except DuplicatedIdError:
@@ -701,10 +666,10 @@ class Person:
                 or global_events_by_ids[new_glob_id].is_probably_copy
             ):
                 raise DuplicatedIdError(
-                    "caused by referecence, unproblematic", new_glob_id)
+                    "caused by referecence, unproblematic", new_glob_id
+                )
             else:
-                raise DuplicatedIdError(
-                    f"problem with {new_glob_id}", new_glob_id)
+                raise DuplicatedIdError(f"problem with {new_glob_id}", new_glob_id)
         self.global_id = new_glob_id
         return self.global_id
 
@@ -715,10 +680,7 @@ class Person:
             return self.global_id
 
     def to_xml(self):
-        self.element.set(
-            f"{{{xmlns}}}id",
-            self.global_id
-        )
+        self.element.set(f"{{{xmlns}}}id", self.global_id)
         self.element.append(
             teiMaker.note(
                 self.return_full_name(),
@@ -729,28 +691,19 @@ class Person:
 
     def add_selfref_as_next(self):
         if self.rs is None:
-            self.rs = teiMaker.rs(
-                self.return_full_name(),
-                ref="#" + self.global_id
-            )
-            self.element.addnext(
-                self.rs
-            )
+            self.rs = teiMaker.rs(self.return_full_name(), ref="#" + self.global_id)
+            self.element.addnext(self.rs)
 
     def append_related_event(self, event):
         self.related_events.append(event)
 
     def get_source_string(self):
-        return etree.tostring(
-            self.element
-        ).decode()
+        return etree.tostring(self.element).decode()
 
     def return_full_name(self) -> str:
         if self.fullname == "":
             if self.forename and self.surname:
-                self.fullname = clear_kA(
-                    f"{self.forename} {self.surname}".strip()
-                )
+                self.fullname = clear_kA(f"{self.forename} {self.surname}".strip())
             elif self.surname:
                 self.fullname = clear_kA(self.surname)
             elif self.forename:
@@ -798,12 +751,8 @@ class Person:
             "faith": self.faith,
             "occupation": ", ".join(self.occupation),
             "file_identifier": self.file_identifier,
-            "related_events": [
-                event.get_global_id() for event in self.related_events
-            ],
-            "offences": list(
-                set(offences)
-            ),
+            "related_events": [event.get_global_id() for event in self.related_events],
+            "offences": list(set(offences)),
             "thumbnail": self.thumbnail,
             "execution": executions if executions else ["Keine"],
             "execution_places": execution_places,
@@ -815,16 +764,17 @@ class Person:
 
 class Offence(Event):
     def __init__(
-            self,
-            _type: str,
-            _id: list,
-            date: list,
-            place: list,
-            description: list,
-            xml_element: etree._Element,
-            file_identifier: str,
-            raw_offence_types: list,
-            tools: list) -> None:
+        self,
+        _type: str,
+        _id: list,
+        date: list,
+        place: list,
+        description: list,
+        xml_element: etree._Element,
+        file_identifier: str,
+        raw_offence_types: list,
+        tools: list,
+    ) -> None:
         super().__init__(
             _type,
             _id,
@@ -833,7 +783,7 @@ class Offence(Event):
             description,
             xml_element,
             file_identifier,
-            "offence"
+            "offence",
         )
         self.proven_by_persecution: bool = None
         self.completed: typing.Optional[bool] = None
@@ -861,13 +811,7 @@ class Offence(Event):
         for label in processed_tools:
             counter += 1
             tool_id = tools_index.get_id_for_label(label)
-            self.tools.append(
-                {
-                    "id": tool_id,
-                    "order": counter,
-                    "label": label
-                }
-            )
+            self.tools.append({"id": tool_id, "order": counter, "label": label})
 
     def set_offence_status(self):
         if self.type == "offenceSuspected":
@@ -897,7 +841,7 @@ class Offence(Event):
             "completed": self.completed,
             "aided": self.aided,
             "offence_types": self.offence_types,
-            "tools": self.tools
+            "tools": self.tools,
         }
         return json_base_dict | json_extra_dict
 
@@ -909,28 +853,21 @@ class Offence(Event):
                 counter += 1
                 offence_id = offence_index.get_id_for_label(offence.strip())
                 self.offence_types.append(
-                    {
-                        "id": offence_id,
-                        "order": counter,
-                        "label": offence
-                    }
+                    {"id": offence_id, "order": counter, "label": offence}
                 )
         return self.offence_types
 
 
 def extract_person(
-        person_element: etree._Element,
-        file_identifier: str,
-        nsmap: dict,
-        doc: TeiReader
+    person_element: etree._Element, file_identifier: str, nsmap: dict, doc: TeiReader
 ) -> Person:
     xml_id = person_element.xpath("@xml:id", namespaces=nsmap)
     roles = person_element.xpath("@role", namespaces=nsmap)
     forename = person_element.xpath(
-        "./tei:persName/tei:forename/text()", namespaces=nsmap)
+        "./tei:persName/tei:forename/text()", namespaces=nsmap
+    )
     surename = person_element.xpath(
-        "./tei:persName/tei:surname//text()[normalize-space(.)!='']",
-        namespaces=nsmap
+        "./tei:persName/tei:surname//text()[normalize-space(.)!='']", namespaces=nsmap
     )
     birth_element = person_element.xpath("./tei:birth", namespaces=nsmap)
     death_element = person_element.xpath("./tei:death", namespaces=nsmap)
@@ -939,10 +876,10 @@ def extract_person(
     age = person_element.xpath("./tei:age/text()", namespaces=nsmap)
     _type = person_element.xpath("./tei:state/@type", namespaces=nsmap)
     marriage_state = person_element.xpath(
-        "./tei:state/tei:desc//text()", namespaces=nsmap)[0]
+        "./tei:state/tei:desc//text()", namespaces=nsmap
+    )[0]
     faith = person_element.xpath("./tei:faith/text()", namespaces=nsmap)[0]
-    occupation = person_element.xpath(
-        "./tei:occupation/text()", namespaces=nsmap)
+    occupation = person_element.xpath("./tei:occupation/text()", namespaces=nsmap)
     thumbnail = doc.any_xpath("//tei:pb/@facs")[0]
     person_obj = Person(
         xml_id=xml_id[0] if xml_id else "",
@@ -961,7 +898,7 @@ def extract_person(
         thumbnail=thumbnail,
         file_identifier=file_identifier,
         xml_element=person_element,
-        doc=doc
+        doc=doc,
     )
     try:
         person_obj.create_global_id()
@@ -970,28 +907,18 @@ def extract_person(
     return person_obj
 
 
-def extract_event(
-    event_element: etree._Element,
-    file_identifier: str,
-    nsmap: dict
-):
-    event_type: str = event_element.xpath(
-        "./@type", namespaces=nsmap)[0]
-    xml_id: list = event_element.xpath(
-        "./@xml:id", namespaces=nsmap)
+def extract_event(event_element: etree._Element, file_identifier: str, nsmap: dict):
+    event_type: str = event_element.xpath("./@type", namespaces=nsmap)[0]
+    xml_id: list = event_element.xpath("./@xml:id", namespaces=nsmap)
     if not xml_id:
-        xml_id: list = event_element.xpath(
-            "./@ref", namespaces=nsmap
-        )
+        xml_id: list = event_element.xpath("./@ref", namespaces=nsmap)
         if xml_id and xml_id[0] != "#":
             xml_id = [f"#{xml_id[0]}"]
     dates: list = []
-    date: list = event_element.xpath(
-        "./tei:desc/tei:date", namespaces=nsmap)
+    date: list = event_element.xpath("./tei:desc/tei:date", namespaces=nsmap)
     if len(date) == 2:
         print(f"multiple dates in {xml_id}")
-        date1, date2 = event_element.xpath(
-            "./tei:desc/tei:date", namespaces=nsmap)
+        date1, date2 = event_element.xpath("./tei:desc/tei:date", namespaces=nsmap)
         try:
             date1_when = date1.attrib["when"]
             dates.append(date1_when)
@@ -1002,14 +929,16 @@ def extract_event(
                 date_exec = date1.xpath(
                     """ancestor::tei:person/tei:event[@type='execution']
                     /tei:desc/tei:date/@when""",
-                    namespaces=nsmap)[0]
+                    namespaces=nsmap,
+                )[0]
                 dates.append(date_exec)
             except IndexError:
                 try:
                     date_exec = date1.xpath(
                         """ancestor::tei:person/tei:event[@type='verdict']
                         /tei:desc/tei:date/@when""",
-                        namespaces=nsmap)[0]
+                        namespaces=nsmap,
+                    )[0]
                     dates.append(date_exec)
                 except IndexError:
                     date_exec = ""
@@ -1032,14 +961,16 @@ def extract_event(
                 date_exec = date[0].xpath(
                     """ancestor::tei:person/tei:event[@type='execution']
                     /tei:desc/tei:date/@when""",
-                    namespaces=nsmap)[0]
+                    namespaces=nsmap,
+                )[0]
                 dates.append(date_exec)
             except IndexError:
                 try:
                     date_exec = date[0].xpath(
                         """ancestor::tei:person/tei:event[@type='verdict']
                         /tei:desc/tei:date/@when""",
-                        namespaces=nsmap)[0]
+                        namespaces=nsmap,
+                    )[0]
                     dates.append(date_exec)
                 except IndexError:
                     date_exec = ""
@@ -1049,21 +980,23 @@ def extract_event(
     else:
         print("no date or more than two dates in ", xml_id)
     place: list = event_element.xpath(
-        "./tei:desc/tei:placeName/text()[1]", namespaces=nsmap)
+        "./tei:desc/tei:placeName/text()[1]", namespaces=nsmap
+    )
     description_str: list = event_element.xpath(
-        "./tei:desc/tei:desc//text()", namespaces=nsmap)
+        "./tei:desc/tei:desc//text()", namespaces=nsmap
+    )
     event_obj = None
     if event_type in Event.xml_offence_types:
         try:
             typed_offences: list = event_element.xpath(
-                '''./tei:desc/tei:trait[@type='typeOfOffence']/
-                tei:desc/tei:list/tei:item/text()''',
-                namespaces=nsmap
+                """./tei:desc/tei:trait[@type='typeOfOffence']/
+                tei:desc/tei:list/tei:item/text()""",
+                namespaces=nsmap,
             )
             typed_tools: list = event_element.xpath(
-                '''./tei:desc/tei:trait[@type='toolOfCrime']
-                /tei:desc//text()''',
-                namespaces=nsmap
+                """./tei:desc/tei:trait[@type='toolOfCrime']
+                /tei:desc//text()""",
+                namespaces=nsmap,
             )
             event_obj = Offence(
                 _type=event_type,
@@ -1083,11 +1016,13 @@ def extract_event(
             else:
                 raise e
     elif event_type in Event.xml_trial_result_types:
-        punishments_xml = event_element.xpath(".//tei:desc/tei:list/tei:item",
-                                              namespaces=nsmap)
+        punishments_xml = event_element.xpath(
+            ".//tei:desc/tei:list/tei:item", namespaces=nsmap
+        )
         if not punishments_xml:
-            punishments_xml = event_element.xpath(".//tei:desc//tei:desc",
-                                                  namespaces=nsmap)
+            punishments_xml = event_element.xpath(
+                ".//tei:desc//tei:desc", namespaces=nsmap
+            )
         for element in punishments_xml:
             if element.text in punishments_dict:
                 element.text = punishments_dict[element.text]
@@ -1102,7 +1037,7 @@ def extract_event(
                     description=description_str,
                     xml_element=event_element,
                     file_identifier=file_identifier,
-                    punishments_xml=punishments_xml
+                    punishments_xml=punishments_xml,
                 )
             else:
                 event_obj = TrialResult(
@@ -1112,7 +1047,7 @@ def extract_event(
                     place=place,
                     description=description_str,
                     xml_element=event_element,
-                    file_identifier=file_identifier
+                    file_identifier=file_identifier,
                 )
         except DuplicatedIdError as e:
             if "unproblematic" in e.args[0]:
@@ -1149,13 +1084,9 @@ def change_relations(doc: TeiReader):
         active_xpath_expression = f"//tei:event[@xml:id='{active_id}']"
         try:
             if active_id == "execution":
-                active_el = doc.any_xpath(
-                    f"//tei:event[@type='{active_id}']"
-                )[0]
+                active_el = doc.any_xpath(f"//tei:event[@type='{active_id}']")[0]
             else:
-                active_el = doc.any_xpath(
-                    active_xpath_expression
-                )[0]
+                active_el = doc.any_xpath(active_xpath_expression)[0]
             for rel_el in relation_elements:
                 active_el.append(rel_el)
         except IndexError:
@@ -1164,13 +1095,9 @@ def change_relations(doc: TeiReader):
         passive_xpath_expression = f"//tei:event[@xml:id='{passive_id}']"
         try:
             if passive_id == "execution":
-                passive_el = doc.any_xpath(
-                    f"//tei:event[@type='{passive_id}']"
-                )[0]
+                passive_el = doc.any_xpath(f"//tei:event[@type='{passive_id}']")[0]
             else:
-                passive_el = doc.any_xpath(
-                    passive_xpath_expression
-                )[0]
+                passive_el = doc.any_xpath(passive_xpath_expression)[0]
             for rel_el in relation_elements:
                 passive_el.append(rel_el)
         except IndexError:
@@ -1182,15 +1109,9 @@ def update_id_in_relations(event: Event, id_to_be_replaced, elements: list):
     for el in elements:
         el: etree._Element
         if el.get("active") == id_to_be_replaced:
-            el.set(
-                "active",
-                f"#{event.global_id}"
-            )
+            el.set("active", f"#{event.global_id}")
         if el.get("passive") == id_to_be_replaced:
-            el.set(
-                "passive",
-                f"#{event.global_id}"
-            )
+            el.set("passive", f"#{event.global_id}")
 
 
 def extract_events_and_persons(doc: TeiReader, file_identifier: str):
@@ -1199,51 +1120,29 @@ def extract_events_and_persons(doc: TeiReader, file_identifier: str):
     event_id_mentioned_in_relation = change_relations(doc)
     for person_element in doc.any_xpath("//tei:person"):
         person_obj: Person = extract_person(
-            person_element,
-            file_identifier,
-            doc.nsmap,
-            doc
+            person_element, file_identifier, doc.nsmap, doc
         )
         person_obj.archive_institutions = doc.any_xpath(
-            "//tei:msIdentifier/tei:institution/text()")
+            "//tei:msIdentifier/tei:institution/text()"
+        )
         persons.append(person_obj)
-        for event_element in person_element.xpath(
-            ".//tei:event",
-            namespaces=doc.nsmap
-        ):
-            event_obj = extract_event(
-                event_element,
-                file_identifier,
-                doc.nsmap
-            )
+        for event_element in person_element.xpath(".//tei:event", namespaces=doc.nsmap):
+            event_obj = extract_event(event_element, file_identifier, doc.nsmap)
             if event_obj:
                 if isinstance(event_obj, str):
                     event_obj = global_events_by_ids[event_obj]
-                    event_obj.element_copies.append(
-                        event_element
-                    )
-                    person_obj.append_related_event(
-                        event_obj
-                    )
+                    event_obj.element_copies.append(event_element)
+                    person_obj.append_related_event(event_obj)
                 else:
                     events.append(event_obj)
                     person_obj.append_related_event(event_obj)
                 if event_obj.id in event_id_mentioned_in_relation:
-                    elements = event_id_mentioned_in_relation[
-                        event_obj.id
-                    ]
-                    update_id_in_relations(
-                        event_obj, "#" + event_obj.id, elements)
+                    elements = event_id_mentioned_in_relation[event_obj.id]
+                    update_id_in_relations(event_obj, "#" + event_obj.id, elements)
                 elif isinstance(event_obj, Execution):
                     if "execution" in event_id_mentioned_in_relation:
-                        elements = event_id_mentioned_in_relation[
-                            "execution"
-                        ]
-                        update_id_in_relations(
-                            event_obj,
-                            "#execution",
-                            elements
-                        )
+                        elements = event_id_mentioned_in_relation["execution"]
+                        update_id_in_relations(event_obj, "#execution", elements)
     return events, persons
 
 
@@ -1271,9 +1170,7 @@ def print_typesense_entries_to_json(documents):
 
 def print_indices_to_json():
     for index in typed_indices:
-        with open(
-            f"{json_file_output}/unique_{index.id_prefix}.json", "w"
-        ) as f:
+        with open(f"{json_file_output}/unique_{index.id_prefix}.json", "w") as f:
             json.dump(index.ids_2_labels, f, indent=4)
 
 
@@ -1283,9 +1180,7 @@ def write_xml(objs, list_element, path, template):
         obj.add_selfref_as_next()
         obj_xml = obj.to_xml()
         list_element.append(obj_xml)
-    print(
-        f"writing to {path}"
-    )
+    print(f"writing to {path}")
     template.tree_to_file(path)
 
 
@@ -1296,12 +1191,7 @@ def print_index_to_xml(name: str, objs: list):
     list_element = template.any_xpath(xpath)[0]
     if name == "listperson":
         objs.sort(key=lambda po: po.fullname)
-    write_xml(
-        objs,
-        list_element,
-        out_fp,
-        template
-    )
+    write_xml(objs, list_element, out_fp, template)
 
 
 def prepare_output_folder():
@@ -1313,12 +1203,12 @@ def prepare_output_folder():
 
 class XmlDocument:
     def __init__(
-            self,
-            xml_tree: TeiReader,
-            path: str,
-            identifier: str,
-            events: list,
-            persons: list
+        self,
+        xml_tree: TeiReader,
+        path: str,
+        identifier: str,
+        events: list,
+        persons: list,
     ):
         self.xml_tree: TeiReader = xml_tree
         self.path: str = path
@@ -1326,10 +1216,8 @@ class XmlDocument:
         self.global_id = None
         self.events: list = events
         self.executions: list = [e for e in events if isinstance(e, Execution)]
-        self.punishments: list = [
-            e for e in events if isinstance(e, Punishment)]
-        self.trialresults: list = [
-            e for e in events if isinstance(e, TrialResult)]
+        self.punishments: list = [e for e in events if isinstance(e, Punishment)]
+        self.trialresults: list = [e for e in events if isinstance(e, TrialResult)]
         self.persons: list = persons
         self.fulltext: str = self.return_doc_text()
         self.title: str = self.return_title()
@@ -1364,7 +1252,7 @@ class XmlDocument:
         for witness in self.xml_tree.any_xpath("//tei:msDesc"):
             arch_i = witness.xpath(
                 ".//tei:msIdentifier/tei:institution/text()",
-                namespaces=self.xml_tree.nsmap
+                namespaces=self.xml_tree.nsmap,
             )
             # these are mostly wrong, creating bad data
             # arch_s = witness.xpath(
@@ -1373,27 +1261,26 @@ class XmlDocument:
             # )
             arch_sig = witness.xpath(
                 ".//tei:settlement/tei:idno[@type='signatory']/text()",
-                namespaces=self.xml_tree.nsmap
+                namespaces=self.xml_tree.nsmap,
             )
             insti_string = arch_i[0] if arch_i else ""
             # if arch_s:
             #     insti_string = f"{insti_string}, {arch_s[0]}"
             self.archive_institutions.append(insti_string)
-            self.archive_signatures.append(
-                f"{arch_sig} ({arch_i})"
-            )
+            self.archive_signatures.append(f"{arch_sig} ({arch_i})")
 
     def get_bibl_data(self):
         self.print_dates: list = self.xml_tree.any_xpath(
-            "//tei:sourceDesc//tei:biblStruct//tei:date/@when")
+            "//tei:sourceDesc//tei:biblStruct//tei:date/@when"
+        )
         if self.print_dates:
-            self.print_dates = [
-                date.strip(" .") for date in self.print_dates
-            ]
+            self.print_dates = [date.strip(" .") for date in self.print_dates]
         self.pubPlace = self.xml_tree.any_xpath(
-            "//tei:sourceDesc//tei:biblStruct//tei:pubPlace/text()")[0]
+            "//tei:sourceDesc//tei:biblStruct//tei:pubPlace/text()"
+        )[0]
         self.publisher = self.xml_tree.any_xpath(
-            "//tei:sourceDesc//tei:biblStruct//tei:publisher/text()")[0]
+            "//tei:sourceDesc//tei:biblStruct//tei:publisher/text()"
+        )[0]
 
     def return_title(self):
         return extract_fulltext(
@@ -1401,9 +1288,7 @@ class XmlDocument:
         )
 
     def return_doc_text(self):
-        text_el = deepcopy(
-            self.xml_tree.any_xpath("//tei:text")[0]
-        )
+        text_el = deepcopy(self.xml_tree.any_xpath("//tei:text")[0])
         bs_text = text_el.xpath(
             "//tei:app//tei:rdg|//tei:sic",
             namespaces=tei_nsmp,
@@ -1416,7 +1301,7 @@ class XmlDocument:
                 "{http://www.tei-c.org/ns/1.0}fs",
                 "{http://www.tei-c.org/ns/1.0}f",
                 "{http://www.tei-c.org/ns/1.0}figDesc",
-            ]
+            ],
         )
 
     def get_global_id(self):
@@ -1452,17 +1337,13 @@ class XmlDocument:
             for date in dates:
                 if re.search(r"\d", date):
                     try:
-                        numeric_date_str = re.sub(r'[-\ .]*', '', date).strip()
+                        numeric_date_str = re.sub(r"[-\ .]*", "", date).strip()
                         if (
                             re.search("[A-Za-z]+", numeric_date_str)
                             and numeric_date_str[-4:].isnumeric()
                         ):
                             numeric_date_str = numeric_date_str[-4:]
-                        nmbr_dates.append(
-                            int(
-                                f"{numeric_date_str:<08}"
-                            )
-                        )
+                        nmbr_dates.append(int(f"{numeric_date_str:<08}"))
                     except ValueError:
                         pass
             if nmbr_dates:
@@ -1493,7 +1374,7 @@ class XmlDocument:
             "print_date": self.print_dates[0] if self.print_dates else "k. A.",
             "printer": self.publisher,
             "printing_location": self.pubPlace,
-            "archives": self.archive_institutions
+            "archives": self.archive_institutions,
         }
 
     def return_typesense_entry(self):
@@ -1508,15 +1389,14 @@ class XmlDocument:
             "contains_events": events_ids,
             "fulltext": self.fulltext,
             "print_date": self.print_dates[0] if self.print_dates else "",
-            "execution_date":
-                self.executions[0].date if self.executions else "",
+            "execution_date": self.executions[0].date if self.executions else "",
             "execution_methods": [
                 ex.return_executions_as_str() for ex in self.executions
             ],
             "punishment_methods": [
                 pun.return_punishments_as_str() for pun in self.punishments
             ],
-            "archives": self.archive_institutions
+            "archives": self.archive_institutions,
         }
 
     def write_changes(self):
@@ -1524,9 +1404,7 @@ class XmlDocument:
         new_path = f"{xml_editions_output}/{filename}"
         tidy_readings(self.xml_tree)
         print(f"creating {new_path}")
-        self.xml_tree.tree_to_file(
-            new_path
-        )
+        self.xml_tree.tree_to_file(new_path)
 
 
 # def export_all_verticals(xml_docs, verticals_output_folder):
@@ -1535,12 +1413,7 @@ class XmlDocument:
 
 
 def resort_persons_for_typesense(person_objs: list):
-    person_objs.sort(
-        key=lambda pers_o: (
-            pers_o.surname,
-            pers_o.forename
-        )
-    )
+    person_objs.sort(key=lambda pers_o: (pers_o.surname, pers_o.forename))
     c = 0
     for person_obj in person_objs:
         c += 1
@@ -1563,10 +1436,7 @@ if __name__ == "__main__":
         print(file_path)
         try:
             tei_doc = TeiReader(file_path)
-            entity_objects = extract_events_and_persons(
-                tei_doc,
-                doc_id
-            )
+            entity_objects = extract_events_and_persons(tei_doc, doc_id)
             event_objs += entity_objects[0]
             person_objs += entity_objects[1]
             xml_doc = XmlDocument(
@@ -1599,15 +1469,11 @@ if __name__ == "__main__":
     # template_doc.tree_to_file(f"{xml_file_output}/events.xml")
     print_to_json(offences_objects, "offences")
     print_to_json(punishment_objects, "punishments")
-    print_to_json(
-        resort_persons_for_typesense(
-            person_objs
-        ),
-        "persons")
+    print_to_json(resort_persons_for_typesense(person_objs), "persons")
     print_to_json(xml_docs, "documents")
     # export_all_verticals(xml_docs, verticals_output_folder)
     print_typesense_entries_to_json(xml_docs)
-    missing_fields = ', '.join(list(set(all_missing_fields)))
+    missing_fields = ", ".join(list(set(all_missing_fields)))
     if events_with_missing_field:
         logmessage = (
             f"{events_with_missing_field} of {len(event_objs)} events are "
@@ -1620,12 +1486,8 @@ if __name__ == "__main__":
         for doc, err in error_docs.items():
             print(f"{doc}:\t{err}")
     all_events = global_events_by_ids.values()
-    offence_list = list(
-        event for event in all_events if event.type == "offence"
-    )
-    punishment_list = list(
-        event for event in all_events if event.type != "offence"
-    )
+    offence_list = list(event for event in all_events if event.type == "offence")
+    punishment_list = list(event for event in all_events if event.type != "offence")
     # event_list = list(
     #     global_events_by_ids.values()
     # )
@@ -1636,18 +1498,9 @@ if __name__ == "__main__":
     #     name="events",
     #     objs=event_list
     # )
-    print_index_to_xml(
-        name="offences",
-        objs=offence_list
-    )
-    print_index_to_xml(
-        name="punishments",
-        objs=punishment_list
-    )
-    print_index_to_xml(
-        name="listperson",
-        objs=person_objs
-    )
+    print_index_to_xml(name="offences", objs=offence_list)
+    print_index_to_xml(name="punishments", objs=punishment_list)
+    print_index_to_xml(name="listperson", objs=person_objs)
     for xml_doc in xml_docs:
         xml_doc: XmlDocument
         xml_doc.write_changes()
