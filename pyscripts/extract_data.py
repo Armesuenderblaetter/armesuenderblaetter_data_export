@@ -46,7 +46,7 @@ punishments_dict = {
     "Brandmarkung durch den Freymann": "Brandmarkung",
     "zweimaliger Zwick mit glühenden Zangen": "glühende Zangen (x2)",
     "Zwick mit glühenden Zangen in die linke Brust": "glühende Zangen (linke Brust)",
-    "Theile herumgetragen und seitlich an Galgen aufgenagelt": "Teile herumgetragen und an Galgen aufgenagelt ",
+    "Theile herumgetragen und seitlich an Galgen aufgenagelt": "Teile herumgetragen und an Galgen aufgenagelt",
     "StrangUrteil vollzogen; dannenhero dessen Bildnuß"
     "an die gewöhnliche Richtstatt vor "
     "das Schotten=Thor auf dasig so genannten Rabenstein ausgeführet /"
@@ -56,52 +56,29 @@ punishments_dict = {
     "Teile an den Tatorten ausgestellt": "Ausstellung der Teile am Tatort",
     "Delinquent an dem Ort der begangenen Morde zeigen": "Ausstellung am Tatort",
     "Schleifen auf Kuhhaut zur Richtstatt": "Schleifen auf Kuhhaut",
-    "Riemen auf der rechten Seiten aus dem Rücken schneiden": "Riemen aus dem Rücken schneiden",
+    "Riemen auf der rechten Seiten aus dem Rücken schneiden": "Riemen aus dem Rücken schneiden"
 }
 
 punishments_dict_ts = {
-    "bodies on wheel": "Rad",
-    "body on wheel": "Rad",
-    "burned": "Verbrennung",
-    "hand chopped": "Handabhauung",
-    "head on pale": "Pfahl",
-    "heads on pale": "Pfahl",
-    "pale": "Pfahl",
-    "pale (head)": "Pfahl",
-    "right hand chopped": "Handabhauung",
-    "quartered": "Vierteilung",
-    "shot": "Erschießung",
-    "stack": "Gesteck",
-    "stake": "Gesteck",
-    "strand": "Strang",
-    "sword": "Schwert",
-    "wheel": "Rad",
-    "wheel (body)": "Rad",
-    "wheel from above": "Rad",
-    "wheel from above (begnadigt)": "Rad",
-    "wheel from beneath": "Rad",
-    "wheel from beyond": "Rad",
-    "Zwicken mit glühenden Zangen in die rechte Brust": "Zangen",
-    "unter dem Galgen begraben": "Verscharrung ",
-    "Theile herumgetragen und seitlich an Galgen aufgenagelt": "Teile herumgetragen und an Galgen aufgenagelt",
-    "Zwicken mit glühenden Zangen in die rechte Brust": "Zangen",
-    "dreimaliger Zwick mit glühenden Zangen an verschiedenen Orten": "Zangen",
-    "Zwick mit glühenden Zangen in die linke Brust": "Zangen",
-    "zweimaliger Zwick mit glühenden Zangen": "Zangen",
-    "Brandmarkung durch den Freymann": "Brandmarkung",
-    "StrangUrteil vollzogen; dannenhero dessen Bildnuß an die gewöhnliche Richtstatt vor "
-    "das Schotten=Thor auf dasig so genannten Rabenstein ausgeführet / und an einem daselbst "
-    "zu diesem Ende aufgerichteten Schnell=Galgen aufgehangen / und alda drey Tag"
-    " lang hangend gelassen werden solle.": "Erhängen",
-    "Teile an den Tatorten ausgestellt": "Ausstellung am Tatort",
-    "Delinquent an dem Ort der begangenen Morde zeigen": "Ausstellung am Tatort",
-    "Schleifen auf Kuhhaut zur Richtstatt": "Schleifen auf Kuhhaut",
-    "Riemen auf der rechten Seiten aus dem Rücken schneiden": "Riemenschneiden",
+    "Rad (Körper)": "Rad",
+    "Pfahl (Kopf)": "Pfahl",
+    "Handabhauung (rechte Hand)": "Handabhauung",
+    "Gesteck (Kopf)": "Gesteck",
+    "Rad von oben": "Rad",
+    "Rad von oben (begnadigt)": "Rad",
+    "glühende Zangen (rechte Brust)": "Zangen",
+    "glühende Zangen (x3)": "Zangen",
+    "glühende Zangen (x2)": "Zangen",
+    "glühende Zangen (linke Brust)": "Zangen",
+    "Ausstellung der Teile am Tatort": "Ausstellung am Tatort",
     "Brandmarkung der Wangen": "Brandmarkung",
+    "Schleifen auf Kuhhaut zur Richtstatt": "Schleifen auf Kuhhaut",
+    "unter dem Galgen begraben": "Verscharrung ",
+    "Riemen aus dem Rücken schneiden": "Riemenschneiden",
     "Belegung mit schweren Eisen": "Schwere Eisen",
     "Abstrafung mit 50 Stockstreichen an jedem Jahrestage seines Vergehens": "Stockstreichen",
     "Eingeweide aus Körper gerissen": "Ausweidung",
-    "Leib darunter eingescharrt": "Verscharrung ",
+    "Leib darunter eingescharrt": "Verscharrung "
 }
 
 tei_nsmp = {"tei": "http://www.tei-c.org/ns/1.0", "xml": xmlns}
@@ -447,7 +424,13 @@ class Punishment(Event):
             counter += 1
             number = int(punishment.get("n")) if punishment.get("n") else counter
             label = punishment.text.strip()
+            if label in punishments_dict:
+                label_short = label_ts = punishments_dict[label]
+            if label_short in label_ts:
+                label_ts = punishments_dict_ts[label_short]
             p_id = punishment_index.get_id_for_label(label)
+            if label in punishments_dict:
+                label = punishments_dict[label]
             methods.append({"id": p_id, "order": number, "label": label})
         return methods
 
@@ -463,7 +446,7 @@ class Punishment(Event):
         json_base_dict["place"] = [p["label"] for p in self.places]
         json_extra_dict = {
             "xml": self.get_source_string(),
-            "methods": [m["label"] for m in self.methods],
+            "methods": [m["label_ts"] for m in self.methods],
         }
         return json_base_dict | json_extra_dict
 
@@ -504,10 +487,14 @@ class Execution(Event):
         for punishment in self.methods_xml:
             counter += 1
             number = int(punishment.get("n")) if punishment.get("n") else counter
-            label = punishment.text.strip()
+            label = label_short = label_ts = punishment.text.strip()
+            if label in punishments_dict:
+                label_short = label_ts = punishments_dict[label]
+            if label_short in label_ts:
+                label_ts = punishments_dict_ts[label_short]
             p_id = execution_index.get_id_for_label(label)
-            if label in punishments_dict_ts:
-                label = punishments_dict_ts[label]
+            if label in punishments_dict:
+                label = punishments_dict[label]
             methods.append({"id": p_id, "order": number, "label": label})
         return methods
 
@@ -523,7 +510,7 @@ class Execution(Event):
         json_base_dict["place"] = [p["label"] for p in self.places]
         json_extra_dict = {
             "xml": self.get_source_string(),
-            "methods": [m["label"] for m in self.methods],
+            "methods": [m["label_ts"] for m in self.methods],
         }
         return json_base_dict | json_extra_dict
 
