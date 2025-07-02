@@ -423,7 +423,7 @@ class Punishment(Event):
         for punishment in self.punishments_xml:
             counter += 1
             number = int(punishment.get("n")) if punishment.get("n") else counter
-            label = punishment.text.strip()
+            label = label_short = label_ts = punishment.text.strip()
             if label in punishments_dict:
                 label_short = label_ts = punishments_dict[label]
             if label_short in label_ts:
