@@ -346,7 +346,7 @@ class Event:
             print(f"\nobj {self.get_global_id()} ({self.type})")
             print(f"\nmissing: {', '.join(missing_vals)}")
 
-    def return_places_labes(self):
+    def return_places_labels(self):
         p_labels = []
         for p in self.places:
             p_labels.append(p["label"])
@@ -356,8 +356,6 @@ class Event:
         unique_places = []
         for place in places:
             label = place.strip()
-            if label in places_dict:
-                label = places_dict[label]
             p_id = places_index.get_id_for_label(label)
             unique_places.append({"id": p_id, "label": label})
         return unique_places
@@ -735,7 +733,7 @@ class Person:
                 execution: Execution = event
                 for e_obj in execution.methods:
                     executions.append(e_obj["label"])
-                execution_places += event.return_places_labes()
+                execution_places += event.return_places_labels()
             elif isinstance(event, Punishment):
                 punishment: Punishment = event
                 for p_obj in punishment.methods:
@@ -1287,13 +1285,13 @@ class XmlDocument:
         self.pubPlace = self.xml_tree.any_xpath(
             "//tei:sourceDesc//tei:biblStruct//tei:pubPlace/text()"
         )[0]
-        pub_raw = self.publisher = self.xml_tree.any_xpath(
+        if self.pubPlace in places_dict:
+            self.pubPlace = places_dict[self.pubPlace]
+        self.publisher = self.xml_tree.any_xpath(
             "//tei:sourceDesc//tei:biblStruct//tei:publisher/text()"
         )[0]
-        if pub_raw in publishers_dict:
-            self.publisher = publishers_dict[pub_raw]
-        else:
-            self.publisher = pub_raw
+        if self.publisher in publishers_dict:
+            self.publisher = publishers_dict[self.publisher]
 
     def return_title(self):
         return extract_fulltext(
