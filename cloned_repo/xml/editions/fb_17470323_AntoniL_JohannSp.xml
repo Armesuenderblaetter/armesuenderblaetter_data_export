@@ -1,0 +1,1518 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:base="." xml:id="fb_17470323_AntoniL_JohannSp.xml" prev="./fb_17470321_JohannW.xml" next="./fb_17480626_JohannAdamF.xml">
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title>Todesurteil Antoni L., Johann Sp.</title>
+            <respStmt>
+               <resp>edited by</resp>
+               <persName>Claudia Resch</persName>
+            </respStmt>
+            <respStmt>
+               <resp>transcription by</resp>
+               <persName>Andrea Steiner</persName>
+            </respStmt>
+            <respStmt>
+               <resp>correction by</resp>
+               <persName>Eva Wohlfarter</persName>
+            </respStmt>
+            <respStmt>
+               <resp>additional markup by</resp>
+               <persName xml:id="maigner">Magdalena Aigner</persName>
+               <persName>Eva Wohlfarter</persName>
+            </respStmt>
+            <respStmt>
+               <resp>Data modelling</resp>
+               <persName xml:id="ds">Daniel Schopper</persName>
+            </respStmt>
+         </titleStmt>
+         <publicationStmt xml:id="publicationStmt_kzs_bmm_ft">
+            <publisher>Austrian Centre for Digital Humanities</publisher>
+            <idno type="internal"/>
+         </publicationStmt>
+         <sourceDesc default="false">
+            <listWit>
+               <witness xml:id="oenb" type="secondary">
+                  <biblStruct default="false" status="draft">
+                     <monogr>
+                        <imprint source="#imp39">
+                           <pubPlace>Wien</pubPlace>
+                           <date>k. A.</date>
+                           <publisher>Maria Eva Schilgin</publisher>
+                        </imprint>
+                     </monogr>
+                  </biblStruct>
+                  <msDesc>
+                     <msIdentifier>
+                        <settlement>Wien</settlement>
+                        <institution>Österreichische Nationalbibliothek</institution>
+                        <idno type="signatory">303.950-B.Alt-Adl. 1</idno>
+                     </msIdentifier>
+                  </msDesc>
+               </witness>
+               <witness xml:id="wb1" type="primary">
+                  <biblStruct default="false" status="draft">
+                     <monogr>
+                        <imprint source="#imp39">
+                           <pubPlace>Wien</pubPlace>
+                           <date>k. A.</date>
+                           <publisher>Maria Eva Schilgin</publisher>
+                        </imprint>
+                     </monogr>
+                  </biblStruct>
+                  <msDesc>
+                     <msIdentifier>
+                        <settlement>Wien</settlement>
+                        <institution>Wienbibliothek im Rathaus</institution>
+                        <idno type="signatory">C-39975/1747,6</idno>
+                     </msIdentifier>
+                  </msDesc>
+               </witness>
+               <witness xml:id="wb2" type="secondary">
+                  <biblStruct default="false" status="draft">
+                     <monogr>
+                        <imprint source="#imp39">
+                           <pubPlace>Wien</pubPlace>
+                           <date>k. A.</date>
+                           <publisher>Maria Eva Schilgin</publisher>
+                        </imprint>
+                     </monogr>
+                  </biblStruct>
+                  <msDesc>
+                     <msIdentifier>
+                        <settlement>Wien</settlement>
+                        <institution>Wienbibliothek im Rathaus</institution>
+                        <idno type="signatory">C-39975/1747,7</idno>
+                     </msIdentifier>
+                  </msDesc>
+               </witness>
+            </listWit>
+         </sourceDesc>
+      </fileDesc>
+      <profileDesc>
+         <particDesc default="false">
+            <rs ref="#pers_fb_17470323_AntoniL_JohannSp_d1">Antoni L.</rs><rs ref="#pers_fb_17470323_AntoniL_JohannSp_0017">Johann Sp.</rs></particDesc>
+      </profileDesc>
+      <encodingDesc>
+         <styleDefDecl scheme="css" default="false"/>
+         <tagsDecl>
+            <rendition xml:id="c" scheme="css">display:block; text-align:center</rendition>
+            <rendition xml:id="aq" scheme="css">text-align: sans-serif;</rendition>
+            <rendition xml:id="b" scheme="css">font-weight: bold;</rendition>
+            <rendition xml:id="et" scheme="css">display: block; margin-left: 2em; text-indent:
+               0;</rendition>
+            <rendition xml:id="i" scheme="css">font-style: italic;</rendition>
+            <rendition xml:id="g" scheme="css">letter-spacing: 0.125em;</rendition>
+            <rendition xml:id="in" scheme="css">font-size:150%;</rendition>
+            <rendition xml:id="sup" scheme="css">vertical-align: super; font-size:
+               0.7em;</rendition>
+            <rendition xml:id="il" scheme="css">display: inline-block;</rendition>
+            <rendition xml:id="star" scheme="css">display: block; content: "*";</rendition>
+            <rendition xml:id="hr" scheme="css">display: block; border-bottom: 1px;</rendition>
+         </tagsDecl>
+      </encodingDesc>
+      <revisionDesc status="draft">
+         <change status="candidate" who="#ds" when="2019-09-20">added pbs and facs;
+            re-organizingheadings and line groups; first check</change>
+      </revisionDesc>
+   </teiHeader>
+   <text>
+      <pb edRef="#wb1" facs="17470323_AntoniL-JohannSp_a_wb1.jp2" type="primary"/>
+      <pb edRef="#wb2" facs="17470323_AntoniL-JohannSp_a_wb2.jp2" type="secondary"/>
+      <pb edRef="#oenb" facs="17470323_AntoniL-JohannSp_a_oenb.jp2" type="secondary"/>
+      <front>
+         <titlePage>
+            <titlePart rendition="#c" type="main">
+               <w xml:id="tu_39_xTok_000001" pos="ADJA" lemma="wohlverdient" ana="#fs_tu_39_xTok_000001">Wohl=verdientes</w>
+               <lb/>
+               <w xml:id="tu_39_xTok_000002" pos="NN" lemma="Todesurteil" ana="#fs_tu_39_xTok_000002"><hi rendition="#in">T</hi>odtes=<hi rendition="#in">U</hi>rtheil</w>
+               <pc xml:id="tu_39_xTok_000007" pos="$(" ana="#fs_tu_39_xTok_000007">/</pc>
+               <lb/>
+               <w xml:id="tu_39_xTok_000008" pos="ART" lemma="ein" ana="#fs_tu_39_xTok_000008">Einer</w>
+               <lb/>
+               <w xml:id="tu_39_xTok_000009" pos="ADJA" lemma="ledig" ana="#fs_tu_39_xTok_000009">Ledig=</w>
+               <w xml:id="tu_39_xTok_000011" pos="KON" lemma="und" ana="#fs_tu_39_xTok_000011">und</w>
+               <w xml:id="tu_39_xTok_000013" pos="ART" lemma="ein" ana="#fs_tu_39_xTok_000013">einer</w>
+               <w xml:id="tu_39_xTok_000015" pos="ADJA" lemma="verheiratet" ana="#fs_tu_39_xTok_000015">verheyrathen</w>
+               <w xml:id="tu_39_xTok_000017" pos="NN" lemma="Mannsperson" ana="#fs_tu_39_xTok_000017">Man̅s=Persohn</w>
+               <lb/>
+               <w xml:id="tu_39_xTok_000018" pos="ADV" lemma="namens" ana="#fs_tu_39_xTok_000018">Nahmens</w>
+               <lb/>
+               <persName xml:id="antonil39">
+                  <w xml:id="tu_39_xTok_000019" pos="NE" lemma="Anton" ana="#fs_tu_39_xTok_000019"><hi rendition="#in">A</hi>ntoni</w>
+                  <w xml:id="tu_39_xTok_000022" pos="NE" lemma="L." ana="#fs_tu_39_xTok_000022"><hi rendition="#in">L</hi>.</w>
+               </persName>
+               <lb/>
+               <w xml:id="tu_39_xTok_000024" pos="KON" lemma="und" ana="#fs_tu_39_xTok_000024">Und</w>
+               <lb/>
+               <persName xml:id="johannsp39">
+                  <w xml:id="tu_39_xTok_000025" pos="NE" lemma="Johann" ana="#fs_tu_39_xTok_000025"><hi rendition="#in">J</hi>ohann</w>
+                  <w xml:id="tu_39_xTok_000028" pos="NE" lemma="Sp." ana="#fs_tu_39_xTok_000028"><hi rendition="#in">S</hi>p.</w>
+               </persName>
+            </titlePart>
+            <titlePart rendition="#c" type="main">
+               <w xml:id="tu_39_xTok_000031" pos="PIS" lemma="beide" ana="#fs_tu_39_xTok_000031">Beede</w>
+               <w xml:id="tu_39_xTok_000033" pos="ADJA" lemma="katholisch" ana="#fs_tu_39_xTok_000033">Catholischer</w>
+               <w xml:id="tu_39_xTok_000035" pos="NN" join="right" lemma="Religion" ana="#fs_tu_39_xTok_000035">Religion</w>
+               <pc xml:id="tu_39_xTok_000036" pos="$." ana="#fs_tu_39_xTok_000036">;</pc>
+               <w xml:id="tu_39_xTok_000038" pos="PRELS" lemma="welch" ana="#fs_tu_39_xTok_000038">welche</w>
+               <w xml:id="tu_39_xTok_000040" pos="ADV" lemma="heute" ana="#fs_tu_39_xTok_000040">heute</w>
+               <lb/>
+               <w xml:id="tu_39_xTok_000042" pos="NN" lemma="Donnerstag" ana="#fs_tu_39_xTok_000042">Donnerstags</w>
+               <w xml:id="tu_39_xTok_000044" pos="ART" lemma="d" ana="#fs_tu_39_xTok_000044">den</w>
+               <date xml:id="date39">
+                  <hi rendition="#aq">
+                     <w xml:id="tu_39_xTok_000046" pos="ADJA" lemma="23" ana="#fs_tu_39_xTok_000046">23.</w>
+                     <w xml:id="tu_39_xTok_000048" pos="NN" lemma="März" ana="#fs_tu_39_xTok_000048">Martii</w>
+                     <w xml:id="tu_39_xTok_000050" pos="CARD" lemma="1747" ana="#fs_tu_39_xTok_000050">1747.</w>
+                  </hi>
+               </date>
+               <w xml:id="tu_39_xTok_000052" pos="PIS" lemma="ander" ana="#fs_tu_39_xTok_000052">anderen</w>
+               <w xml:id="tu_39_xTok_000054" lemma="ihresgleichen" pos="PIS">ihres glei<lb break="no" rend="d"/>chen</w>
+               <w xml:id="tu_39_xTok_000059" pos="APPRART" lemma="zum" ana="#fs_tu_39_xTok_000059">zum</w>
+               <hi rendition="#aq">
+                  <w xml:id="tu_39_xTok_000061" pos="NN" lemma="Exempel" ana="#fs_tu_39_xTok_000061">Exempel</w>
+               </hi>
+               <w xml:id="tu_39_xTok_000063" pos="KON" lemma="und" ana="#fs_tu_39_xTok_000063">und</w>
+               <w xml:id="tu_39_xTok_000065" pos="NN" lemma="Beispiel" ana="#fs_tu_39_xTok_000065">Beyspiel</w>
+               <w xml:id="tu_39_xTok_000067" pos="APPR" lemma="auf" ana="#fs_tu_39_xTok_000067">auf</w>
+               <w xml:id="tu_39_xTok_000069" pos="ART" lemma="d" ana="#fs_tu_39_xTok_000069">dem</w>
+               <w xml:id="tu_39_xTok_000071" pos="NE::top" lemma="Wienerberg" ana="#fs_tu_39_xTok_000071">Wienner<lb break="no" rend="d"/>Berg</w>
+               <w xml:id="tu_39_xTok_000074" pos="APPR" lemma="mit" ana="#fs_tu_39_xTok_000074">mit</w>
+               <w xml:id="tu_39_xTok_000076" pos="ART" lemma="d" ana="#fs_tu_39_xTok_000076">dem</w>
+               <w xml:id="tu_39_xTok_000078" pos="NN" lemma="Strang" ana="#fs_tu_39_xTok_000078">Strang</w>
+               <w xml:id="tu_39_xTok_000080" pos="APPRART" lemma="vom" ana="#fs_tu_39_xTok_000080">vom</w>
+               <w xml:id="tu_39_xTok_000082" pos="NN" lemma="Leben" ana="#fs_tu_39_xTok_000082">Leben</w>
+               <w xml:id="tu_39_xTok_000084" pos="APPRART" lemma="zum" ana="#fs_tu_39_xTok_000084">zum</w>
+               <w xml:id="tu_39_xTok_000086" pos="NN" lemma="Tod" ana="#fs_tu_39_xTok_000086">Todt</w>
+               <lb/>
+               <w xml:id="tu_39_xTok_000087" pos="VVPP" lemma="hinrichten" ana="#fs_tu_39_xTok_000087">hingerichtet</w>
+               <w xml:id="tu_39_xTok_000089" pos="VAINF" join="right" lemma="werden" ana="#fs_tu_39_xTok_000089">werden</w>
+               <pc xml:id="tu_39_xTok_000090" pos="$." ana="#fs_tu_39_xTok_000090">.</pc>
+            </titlePart>
+            <app xml:id="app_1">
+               <lem wit="#wb1" xml:id="lem_9">
+                  <figure type="vignette" ana="#iconclass:11R71 #iconclass:25G #iconclass:31A211 #iconclass:41A6711 #iconclass:41B31%28%2B2%29 #iconclass:47I119 #iconclass:49M412">
+                     <figDesc>Totenschädel im Halbprofil nach rechts gewandt, rechts davon eine
+                        verlöschende Kerze und eine Vase mit Schnittblumen; auf der Erde liegend,
+                        beiderseits von Gräsern umgeben, einfach gerahmt</figDesc>
+                  </figure>
+               </lem>
+               <rdg wit="#wb2" xml:id="rdg_1">
+                  <figure type="vignette" ana="#iconclass:11R71 #iconclass:23U22 #iconclass:25G4%28THISTLE%29 #iconclass:31A211%28%2B1%29 #iconclass:41B31%28%2B1%29 #iconclass:43A433 #iconclass:49M412">
+                     <figDesc>Totenschädel in Frontalansicht mit Lorbeer gekränzt, links eine
+                        brennende Kerzen und eine Sanduhr, rechts eine Distel und eine weitere
+                        brennende Kerze, auf horizontal schraffierten Grund, gerahmt</figDesc>
+                  </figure>
+               </rdg>
+               <rdg wit="#oenb" xml:id="rdg_2">
+                  <figure type="vignette" ana="#iconclass:11R71 #iconclass:25G #iconclass:31A211 #iconclass:41A6711 #iconclass:41B31%28%2B2%29 #iconclass:47I119 #iconclass:49M412">
+                     <figDesc>Totenschädel im Halbprofil nach rechts gewandt, rechts davon eine
+                        verlöschende Kerze und eine Vase mit Schnittblumen; auf der Erde liegend,
+                        beiderseits von Gräsern umgeben, einfach gerahmt</figDesc>
+                  </figure>
+               </rdg>
+            </app>
+            <note resp="#maigner" anchored="true">wb2 andere Vignette</note>
+            <titlePart rendition="#c" type="main">
+               <w xml:id="tu_39_xTok_000091" pos="ART" lemma="d" ana="#fs_tu_39_xTok_000091">Der</w>
+               <w xml:id="tu_39_xTok_000093" pos="NN" lemma="Inhalt" ana="#fs_tu_39_xTok_000093">Jnnhalt</w>
+               <w xml:id="tu_39_xTok_000095" pos="PPOSAT" lemma="ihr" ana="#fs_tu_39_xTok_000095">ihres</w>
+               <w xml:id="tu_39_xTok_000097" pos="NN" lemma="Verbrechen" ana="#fs_tu_39_xTok_000097">Verbrechens</w>
+               <w xml:id="tu_39_xTok_000099" pos="VVFIN" lemma="zeigen" ana="#fs_tu_39_xTok_000099">zeiget</w>
+               <w xml:id="tu_39_xTok_000101" pos="ART" lemma="d" ana="#fs_tu_39_xTok_000101">das</w>
+               <w xml:id="tu_39_xTok_000103" pos="PIS" join="right" lemma="mehrere" ana="#fs_tu_39_xTok_000103">mehrere</w>
+               <pc xml:id="tu_39_xTok_000104" pos="$." ana="#fs_tu_39_xTok_000104">.</pc>
+            </titlePart>
+            <milestone unit="section" rendition="#hr"/>
+            <docImprint rendition="#c">
+               <pubPlace>
+                  <w xml:id="tu_39_xTok_000105" pos="NE::top" lemma="Wien" ana="#fs_tu_39_xTok_000105">Wienn</w>
+               </pubPlace>
+               <pc xml:id="tu_39_xTok_000107" pos="$(" ana="#fs_tu_39_xTok_000107">/</pc>
+               <w xml:id="tu_39_xTok_000109" pos="VVPP" lemma="drucken" ana="#fs_tu_39_xTok_000109">gedruckt</w>
+               <w xml:id="tu_39_xTok_000111" pos="APPR" lemma="bei" ana="#fs_tu_39_xTok_000111">bey</w>
+               <name>
+                  <w xml:id="tu_39_xTok_000113" pos="NE" lemma="Maria" ana="#fs_tu_39_xTok_000113">Maria</w>
+                  <w xml:id="tu_39_xTok_000115" pos="NE" lemma="Eva" ana="#fs_tu_39_xTok_000115">Eva</w>
+                  <w xml:id="tu_39_xTok_000117" pos="NE" lemma="Schilgin" ana="#fs_tu_39_xTok_000117">Schilgin</w>
+               </name>
+               <pc xml:id="tu_39_xTok_000119" pos="$(" ana="#fs_tu_39_xTok_000119">/</pc>
+               <w xml:id="tu_39_xTok_000121" pos="NN" join="right" lemma="Witwe" ana="#fs_tu_39_xTok_000121">Wittib</w>
+               <pc xml:id="tu_39_xTok_000122" pos="$." ana="#fs_tu_39_xTok_000122">.</pc>
+            </docImprint>
+         </titlePage>
+      </front>
+      <body>
+         <pb edRef="#wb1" facs="17470323_AntoniL-JohannSp_b_wb1.jp2" type="primary"/>
+         <pb edRef="#wb2" facs="17470323_AntoniL-JohannSp_b_wb2.jp2" type="secondary"/>
+         <pb edRef="#oenb" facs="17470323_AntoniL-JohannSp_b_oenb.jp2" type="secondary"/>
+         <figure type="ornament" ana="#iconclass:48A987 #iconclass:48A9833 #iconclass:48AA9833">
+            <figDesc>Kopfleiste aus stilisierten floralen Ornamenten, mittig ein Fragezeichen,
+               horizontal gespiegelt</figDesc>
+         </figure>
+         <head rendition="#c">
+            <w xml:id="tu_39_xTok_000123" pos="NN" lemma="Inhalt" ana="#fs_tu_39_xTok_000123"><hi rendition="#in">J</hi>nnhalt</w>
+            <w xml:id="tu_39_xTok_000126" pos="ART" lemma="d" ana="#fs_tu_39_xTok_000126">des</w>
+            <w xml:id="tu_39_xTok_000128" pos="NN" lemma="Verbrechen" ana="#fs_tu_39_xTok_000128"><hi rendition="#in">V</hi>erbrechens</w>
+            <w xml:id="tu_39_xTok_000131" pos="PDAT" lemma="diese" ana="#fs_tu_39_xTok_000131">diser</w>
+            <lb/>
+            <w xml:id="tu_39_xTok_000132" pos="NN" join="right" lemma="Delinquent" ana="#fs_tu_39_xTok_000132"><hi rendition="#aq">Delinquent</hi>en</w>
+            <pc xml:id="tu_39_xTok_000134" pos="$." ana="#fs_tu_39_xTok_000134">.</pc>
+         </head>
+         <p xml:id="fb_17470323_AntoniL_JohannSp_p_0001">
+            <w xml:id="tu_39_xTok_000135" pos="ADV" lemma="heute" ana="#fs_tu_39_xTok_000135"><hi rendition="#in">H</hi>Eunt</w>
+            <hi rendition="#aq">
+               <w xml:id="tu_39_xTok_000138" pos="ADV" lemma="dato" ana="#fs_tu_39_xTok_000138">Dato</w>
+            </hi>
+            <w xml:id="tu_39_xTok_000140" pos="ART" lemma="d" ana="#fs_tu_39_xTok_000140">den</w>
+            <hi rendition="#aq">
+               <w xml:id="tu_39_xTok_000142" pos="ADJA" lemma="23" ana="#fs_tu_39_xTok_000142">23.</w>
+            </hi>
+            <w xml:id="tu_39_xTok_000144" pos="NN" lemma="März" ana="#fs_tu_39_xTok_000144">Martii</w>
+            <w xml:id="tu_39_xTok_000146" pos="VAFIN" lemma="werden" ana="#fs_tu_39_xTok_000146">werden</w>
+            <lb/>
+            <w xml:id="tu_39_xTok_000148" pos="CARD" lemma="zwei" ana="#fs_tu_39_xTok_000148">zwey</w>
+            <w xml:id="tu_39_xTok_000150" pos="NN" lemma="Mannsperson" ana="#fs_tu_39_xTok_000150">Manns=Persohnen</w>
+            <w xml:id="tu_39_xTok_000152" pos="ADV" lemma="namens" ana="#fs_tu_39_xTok_000152">Nahmens</w>
+            <lb/>
+            <w xml:id="tu_39_xTok_000154" pos="NE" lemma="Anton" ana="#fs_tu_39_xTok_000154">Antoni</w>
+            <w xml:id="tu_39_xTok_000156" pos="NE" lemma="L." ana="#fs_tu_39_xTok_000156">L.</w>
+            <seg type="age" xml:id="age39">
+               <w xml:id="tu_39_xTok_000159" pos="APPR" lemma="bei" ana="#fs_tu_39_xTok_000159">bey</w>
+               <hi rendition="#aq">
+                  <w xml:id="tu_39_xTok_000161" pos="CARD" lemma="53" ana="#fs_tu_39_xTok_000161">53.</w>
+               </hi>
+            </seg>
+            <w xml:id="tu_39_xTok_000163" pos="NN" lemma="Jahr" ana="#fs_tu_39_xTok_000163">Jahr</w>
+            <w xml:id="tu_39_xTok_000165" pos="ADJD" lemma="alt" ana="#fs_tu_39_xTok_000165">alt</w>
+            <w xml:id="tu_39_xTok_000167" pos="APPR" lemma="von" ana="#fs_tu_39_xTok_000167">von</w>
+            <placeName xml:id="pn39">
+               <w xml:id="tu_39_xTok_000169" pos="NE::top" lemma="Tubom" ana="#fs_tu_39_xTok_000169">Tu<lb break="no" rend="d"/>bom</w>
+               <w xml:id="tu_39_xTok_000172" pos="APPR" lemma="aus" ana="#fs_tu_39_xTok_000172">aus</w>
+               <w xml:id="tu_39_xTok_000174" pos="NE::top" lemma="Mähren" ana="#fs_tu_39_xTok_000174">Mähren</w>
+            </placeName>
+            <w xml:id="tu_39_xTok_000176" pos="ADJD" lemma="gebürtig" ana="#fs_tu_39_xTok_000176">gebürtig</w>
+            <w xml:id="tu_39_xTok_000178" pos="ADJA" lemma="ledig" ana="#fs_tu_39_xTok_000178">ledigen</w>
+            <w xml:id="tu_39_xTok_000180" pos="NN" lemma="Stand" ana="#fs_tu_39_xTok_000180">Stands</w>
+            <pc xml:id="tu_39_xTok_000182" pos="$(" ana="#fs_tu_39_xTok_000182">/</pc>
+            <lb/>
+            <w xml:id="tu_39_xTok_000185" pos="KON" lemma="und" ana="#fs_tu_39_xTok_000185">und</w>
+            <w xml:id="tu_39_xTok_000187" pos="NE" lemma="Johann" ana="#fs_tu_39_xTok_000187">Johann</w>
+            <w xml:id="tu_39_xTok_000189" pos="NE" lemma="Sp." ana="#fs_tu_39_xTok_000189">Sp.</w>
+            <seg type="age" xml:id="age39b">
+               <w xml:id="tu_39_xTok_000192" pos="APPR" lemma="bei" ana="#fs_tu_39_xTok_000192">bey</w>
+               <hi rendition="#aq">
+                  <w xml:id="tu_39_xTok_000194" pos="CARD" lemma="35" ana="#fs_tu_39_xTok_000194">35.</w>
+               </hi>
+            </seg>
+            <w xml:id="tu_39_xTok_000196" pos="NN" lemma="Jahr" ana="#fs_tu_39_xTok_000196">Jahr</w>
+            <w xml:id="tu_39_xTok_000198" pos="ADJD" lemma="alt" ana="#fs_tu_39_xTok_000198">alt</w>
+            <pc xml:id="tu_39_xTok_000200" pos="$(" ana="#fs_tu_39_xTok_000200">/</pc>
+            <w xml:id="tu_39_xTok_000202" pos="APPR" lemma="von" ana="#fs_tu_39_xTok_000202">von</w>
+            <lb/>
+            <placeName xml:id="pn39b">
+               <w xml:id="tu_39_xTok_000204" pos="NE::top" lemma="Villingen" ana="#fs_tu_39_xTok_000204">Villingen</w>
+               <w xml:id="tu_39_xTok_000206" pos="APPR" lemma="aus" ana="#fs_tu_39_xTok_000206">aus</w>
+               <w xml:id="tu_39_xTok_000208" pos="ART" lemma="d" ana="#fs_tu_39_xTok_000208">dem</w>
+               <w xml:id="tu_39_xTok_000210" pos="NE::top" lemma="Schwarzwald" ana="#fs_tu_39_xTok_000210">Schwartz=Wald</w>
+            </placeName>
+            <w xml:id="tu_39_xTok_000212" pos="ADJD" lemma="gebürtig" ana="#fs_tu_39_xTok_000212">ge<lb edRef="#wb1" break="no" rend="d"/><lb edRef="#oenb" break="no" rend="d"/>bürtig</w>
+            <pc xml:id="tu_39_xTok_000216" pos="$(" ana="#fs_tu_39_xTok_000216">/</pc>
+            <w xml:id="tu_39_xTok_000218" pos="ADJA" lemma="verheiratet" ana="#fs_tu_39_xTok_000218">verheyrathen</w>
+            <w xml:id="tu_39_xTok_000220" pos="NN" lemma="Stand" ana="#fs_tu_39_xTok_000220">Stands</w>
+            <pc xml:id="tu_39_xTok_000222" pos="$(" ana="#fs_tu_39_xTok_000222">/</pc>
+            <w xml:id="tu_39_xTok_000224" pos="PIS" lemma="beide" ana="#fs_tu_39_xTok_000224">beede</w>
+            <w xml:id="tu_39_xTok_000226" pos="ADJA" lemma="katholisch" ana="#fs_tu_39_xTok_000226">Ca<lb edRef="#wb1" break="no" rend="d"/><lb edRef="#oenb" break="no" rend="d"/>tholischer</w>
+            <w xml:id="tu_39_xTok_000230" pos="NN" lemma="Religion" ana="#fs_tu_39_xTok_000230">Religion</w>
+            <pc xml:id="tu_39_xTok_000232" pos="$(" join="right" ana="#fs_tu_39_xTok_000232">(</pc>
+            <w xml:id="tu_39_xTok_000233" pos="APPR" lemma="um" ana="#fs_tu_39_xTok_000233">umb</w>
+            <w xml:id="tu_39_xTok_000235" pos="APZR" lemma="willen" ana="#fs_tu_39_xTok_000235">Willen</w>
+            <w xml:id="tu_39_xTok_000237" pos="PDS" lemma="selbe" ana="#fs_tu_39_xTok_000237">selbe</w>
+            <w xml:id="tu_39_xTok_000239" pos="APPR" lemma="mit" ana="#fs_tu_39_xTok_000239">mit</w>
+            <lb edRef="#wb1"/>
+            <lb edRef="#oenb"/>
+            <w xml:id="tu_39_xTok_000241" pos="NN" lemma="Beihilfe" ana="#fs_tu_39_xTok_000241">Bey<lb edRef="#wb2" break="no" rend="d"/>hülf</w>
+            <w xml:id="tu_39_xTok_000244" pos="ART" lemma="d" ana="#fs_tu_39_xTok_000244">des</w>
+            <w xml:id="tu_39_xTok_000246" pos="ADV" lemma="voran" ana="#fs_tu_39_xTok_000246">voran=</w>
+            <w xml:id="tu_39_xTok_000248" pos="ADV" lemma="gestern" ana="#fs_tu_39_xTok_000248">gestert</w>
+            <w xml:id="tu_39_xTok_000250" pos="ADJA" lemma="hinrichten" ana="#fs_tu_39_xTok_000250">hingerichteten</w>
+            <lb edRef="#wb1"/>
+            <lb edRef="#oenb"/>
+            <app xml:id="app_2">
+               <lem wit="#wb1" xml:id="lem_10">
+                  <fw type="catch">Johann</fw>
+               </lem>
+               <rdg wit="#oenb" xml:id="rdg_3">
+                  <fw type="catch">Johann</fw>
+               </rdg>
+            </app>
+            <pb edRef="#wb1" facs="17470323_AntoniL-JohannSp_c_wb1.jp2" type="primary"/>
+            <pb edRef="#oenb" facs="17470323_AntoniL-JohannSp_c_oenb.jp2" type="secondary"/>
+            <lb edRef="#wb2"/>
+            <w xml:id="tu_39_xTok_000251" pos="NE" lemma="Johann" ana="#fs_tu_39_xTok_000251">Johann</w>
+            <w xml:id="tu_39_xTok_000253" pos="NE" lemma="W." ana="#fs_tu_39_xTok_000253">W.</w>
+            <w xml:id="tu_39_xTok_000256" pos="APPR" lemma="zwischen" ana="#fs_tu_39_xTok_000256">zwischen</w>
+            <w xml:id="tu_39_xTok_000258" pos="ART" lemma="d" ana="#fs_tu_39_xTok_000258">den</w>
+            <w xml:id="tu_39_xTok_000260" pos="ADJA" lemma="fünf" ana="#fs_tu_39_xTok_000260">fünften</w>
+            <w xml:id="tu_39_xTok_000262" pos="KON" lemma="und" ana="#fs_tu_39_xTok_000262">und</w>
+            <w xml:id="tu_39_xTok_000264" pos="ADJA" lemma="sechs" ana="#fs_tu_39_xTok_000264">sech<lb edRef="#wb1" break="no" rend="d"/><lb edRef="#oenb" break="no" rend="d"/>sten</w>
+            <w xml:id="tu_39_xTok_000267" pos="NN" lemma="November" ana="#fs_tu_39_xTok_000267">No<lb edRef="#wb2" break="no" rend="d"/>
+               <app xml:id="app_3">
+                  <rdg wit="#wb2" xml:id="rdg_4">
+                     <fw type="catch">vem</fw>
+                  </rdg>
+               </app>
+               <pb edRef="#wb2" facs="17470323_AntoniL-JohannSp_c_wb2.jp2" type="secondary"/> vember</w>
+            <w xml:id="tu_39_xTok_000270" pos="ADJA" lemma="vorige" ana="#fs_tu_39_xTok_000270">vorigen</w>
+            <w xml:id="tu_39_xTok_000272" pos="NN" lemma="Jahr" ana="#fs_tu_39_xTok_000272">Jahrs</w>
+            <w xml:id="tu_39_xTok_000274" pos="APPR" lemma="in" ana="#fs_tu_39_xTok_000274">in</w>
+            <w xml:id="tu_39_xTok_000276" pos="ART" lemma="d" ana="#fs_tu_39_xTok_000276">der</w>
+            <w xml:id="tu_39_xTok_000278" pos="NN" lemma="Nacht" ana="#fs_tu_39_xTok_000278">Nacht</w>
+            <lb edRef="#wb1"/>
+            <lb edRef="#oenb"/>
+            <w xml:id="tu_39_xTok_000280" pos="APPR" lemma="auf" ana="#fs_tu_39_xTok_000280">auf</w>
+            <w xml:id="tu_39_xTok_000282" pos="ART" lemma="d" ana="#fs_tu_39_xTok_000282">der</w>
+            <lb edRef="#wb2"/>
+            <w xml:id="tu_39_xTok_000284" pos="NE::top" lemma="Wieden" ana="#fs_tu_39_xTok_000284">Widen</w>
+            <w xml:id="tu_39_xTok_000286" pos="ADV" lemma="allhier" ana="#fs_tu_39_xTok_000286">allhier</w>
+            <w xml:id="tu_39_xTok_000288" pos="APPR" lemma="mittels" ana="#fs_tu_39_xTok_000288">mittls</w>
+            <w xml:id="tu_39_xTok_000290" pos="ADJA" lemma="gewalttätig" ana="#fs_tu_39_xTok_000290">gewaltthätiger</w>
+            <lb edRef="#wb1"/>
+            <lb edRef="#oenb"/>
+            <w xml:id="tu_39_xTok_000292" pos="NN" lemma="Durchgrabung" ana="#fs_tu_39_xTok_000292">Durch<lb edRef="#wb2" break="no" rend="d"/>grabung</w>
+            <w xml:id="tu_39_xTok_000295" pos="ART" lemma="d" ana="#fs_tu_39_xTok_000295">der</w>
+            <w xml:id="tu_39_xTok_000297" pos="NN" lemma="Gassenmauer" ana="#fs_tu_39_xTok_000297">Gassen=Mauer</w>
+            <w xml:id="tu_39_xTok_000299" pos="APPR" lemma="aus" ana="#fs_tu_39_xTok_000299">aus</w>
+            <w xml:id="tu_39_xTok_000301" pos="ART" lemma="ein" ana="#fs_tu_39_xTok_000301">ei<lb break="no" rend="d" edRef="#wb1"/><lb break="no" rend="d" edRef="#oenb"/>nem</w>
+            <w xml:id="tu_39_xTok_000304" pos="ADJA" lemma="sicher" ana="#fs_tu_39_xTok_000304">siche<lb edRef="#wb2" break="no" rend="d"/>ren</w>
+            <w xml:id="tu_39_xTok_000307" pos="NN" lemma="Krämerladen" ana="#fs_tu_39_xTok_000307">Cramer=Laden</w>
+            <w xml:id="tu_39_xTok_000309" pos="KON" lemma="und" ana="#fs_tu_39_xTok_000309">und</w>
+            <w xml:id="tu_39_xTok_000311" pos="ART" lemma="ein" ana="#fs_tu_39_xTok_000311">einer</w>
+            <w xml:id="tu_39_xTok_000313" pos="ADV" lemma="daselbst" ana="#fs_tu_39_xTok_000313">da<lb break="no" rend="d" edRef="#wb1"/><lb break="no" rend="d" edRef="#oenb"/>selbst</w>
+            <w xml:id="tu_39_xTok_000316" pos="APPR" lemma="mit" ana="#fs_tu_39_xTok_000316">mit</w>
+            <lb edRef="#wb2"/>
+            <w xml:id="tu_39_xTok_000318" pos="ART" lemma="ein" ana="#fs_tu_39_xTok_000318">einem</w>
+            <w xml:id="tu_39_xTok_000320" pos="NN" lemma="Brecheisen" ana="#fs_tu_39_xTok_000320">Brecheysen</w>
+            <w xml:id="tu_39_xTok_000322" pos="ADJA" lemma="bezwingen" ana="#fs_tu_39_xTok_000322">bezwungener</w>
+            <lb edRef="#wb1"/>
+            <lb edRef="#oenb"/>
+            <w xml:id="tu_39_xTok_000324" pos="NN" lemma="Kiste" ana="#fs_tu_39_xTok_000324">Küsten</w>
+            <w xml:id="tu_39_xTok_000326" pos="APPR" lemma="an" ana="#fs_tu_39_xTok_000326">an</w>
+            <lb edRef="#wb2"/>
+            <w xml:id="tu_39_xTok_000328" pos="ADJA" lemma="verschieden" ana="#fs_tu_39_xTok_000328">verschiedenen</w>
+            <w xml:id="tu_39_xTok_000330" pos="ADJA" lemma="wollen" ana="#fs_tu_39_xTok_000330">Woll=</w>
+            <w xml:id="tu_39_xTok_000332" pos="KON" lemma="und" ana="#fs_tu_39_xTok_000332">und</w>
+            <w xml:id="tu_39_xTok_000334" pos="ADJA" lemma="seiden" ana="#fs_tu_39_xTok_000334">Seide<lb break="no" rend="d" edRef="#wb1"/><lb break="no" rend="d" edRef="#oenb"/>nen</w>
+            <w xml:id="tu_39_xTok_000337" pos="NN" lemma="Kaufmannswaare" ana="#fs_tu_39_xTok_000337">Kauf<lb edRef="#wb2" break="no" rend="d"/>manns=Waaren</w>
+            <w xml:id="tu_39_xTok_000340" pos="ART" lemma="d" ana="#fs_tu_39_xTok_000340">dem</w>
+            <w xml:id="tu_39_xTok_000342" pos="ADJA" lemma="eigen" ana="#fs_tu_39_xTok_000342">eygenen</w>
+            <w xml:id="tu_39_xTok_000344" pos="NN" lemma="Kosten" ana="#fs_tu_39_xTok_000344">Ko<lb break="no" rend="d" edRef="#wb1"/><lb break="no" rend="d" edRef="#oenb"/>sten</w>
+            <w xml:id="tu_39_xTok_000347" pos="APPO" lemma="nach" ana="#fs_tu_39_xTok_000347">nach</w>
+            <lb edRef="#wb2"/>
+            <w xml:id="tu_39_xTok_000349" pos="ADJD" lemma="eidlich" ana="#fs_tu_39_xTok_000349">Eydlich</w>
+            <w xml:id="tu_39_xTok_000351" lemma="ausgesagtermaßen" pos="ADV">ausgesagter Massen</w>
+            <pc xml:id="tu_39_xTok_000355" pos="$(" ana="#fs_tu_39_xTok_000355">/</pc>
+            <w xml:id="tu_39_xTok_000357" pos="APPR" lemma="um" ana="#fs_tu_39_xTok_000357">umb</w>
+            <lb edRef="#wb1"/>
+            <lb edRef="#oenb"/>
+            <hi rendition="#aq">
+               <w xml:id="tu_39_xTok_000359" pos="CARD" lemma="1816" ana="#fs_tu_39_xTok_000359">1816.</w>
+            </hi>
+            <w xml:id="tu_39_xTok_000361" pos="NN" lemma="Flore" ana="#fs_tu_39_xTok_000361">fl.</w>
+            <lb edRef="#wb2"/>
+            <hi rendition="#aq">
+               <w xml:id="tu_39_xTok_000364" pos="CARD" lemma="49" ana="#fs_tu_39_xTok_000364">49.</w>
+            </hi>
+            <w xml:id="tu_39_xTok_000366" pos="NN" lemma="Kreuzer" ana="#fs_tu_39_xTok_000366">kr.</w>
+            <w xml:id="tu_39_xTok_000369" pos="ADJD" lemma="wert" ana="#fs_tu_39_xTok_000369">Werths</w>
+            <w xml:id="tu_39_xTok_000371" pos="TRUNC" lemma="abrauben" ana="#fs_tu_39_xTok_000371">ab=</w>
+            <w xml:id="tu_39_xTok_000373" pos="KON" lemma="und" ana="#fs_tu_39_xTok_000373">und</w>
+            <w xml:id="tu_39_xTok_000375" pos="VVINF" lemma="hinwegrauben" ana="#fs_tu_39_xTok_000375">hinwegrau<lb break="no" rend="d" edRef="#wb1"/><lb break="no" rend="d" edRef="#oenb"/>ben</w>
+            <w xml:id="tu_39_xTok_000378" pos="VVPP" lemma="helfen" ana="#fs_tu_39_xTok_000378">ge<lb edRef="#wb2" break="no" rend="d"/>holffen</w>
+            <pc xml:id="tu_39_xTok_000381" pos="$(" ana="#fs_tu_39_xTok_000381">/</pc>
+            <w xml:id="tu_39_xTok_000383" pos="ADV" lemma="einfolglich" ana="#fs_tu_39_xTok_000383">einfolglichen</w>
+            <w xml:id="tu_39_xTok_000385" pos="PIAT" lemma="solch" ana="#fs_tu_39_xTok_000385">solchem</w>
+            <w xml:id="tu_39_xTok_000387" pos="NN" lemma="Krämer" ana="#fs_tu_39_xTok_000387">Cra<lb break="no" rend="d" edRef="#wb1"/><lb break="no" rend="d" edRef="#oenb"/>mer</w>
+            <pc xml:id="tu_39_xTok_000390" pos="$(" ana="#fs_tu_39_xTok_000390">/</pc>
+            <w xml:id="tu_39_xTok_000392" pos="ADJD" lemma="ungehindert" ana="#fs_tu_39_xTok_000392">un<lb edRef="#wb2" break="no" rend="d"/>gehindert</w>
+            <w xml:id="tu_39_xTok_000395" pos="PDS" lemma="derselbe" ana="#fs_tu_39_xTok_000395">demselben</w>
+            <w xml:id="tu_39_xTok_000397" pos="APPR" lemma="von" ana="#fs_tu_39_xTok_000397">von</w>
+            <w xml:id="tu_39_xTok_000399" pos="ADJA" lemma="sothan" ana="#fs_tu_39_xTok_000399">sothanen</w>
+            <lb edRef="#wb1"/>
+            <lb edRef="#oenb"/>
+            <w xml:id="tu_39_xTok_000401" pos="APPR" lemma="bei" ana="#fs_tu_39_xTok_000401">bey</w>
+            <w xml:id="tu_39_xTok_000403" pos="ART" lemma="d" ana="#fs_tu_39_xTok_000403">de<lb edRef="#wb2" break="no" rend="d"/>nen</w>
+            <w xml:id="tu_39_xTok_000406" pos="CARD" lemma="drei" ana="#fs_tu_39_xTok_000406">dreyen</w>
+            <w xml:id="tu_39_xTok_000408" pos="NN" lemma="Täter" ana="#fs_tu_39_xTok_000408">Thätern</w>
+            <w xml:id="tu_39_xTok_000410" pos="ADV" lemma="nach" ana="#fs_tu_39_xTok_000410">nach</w>
+            <w xml:id="tu_39_xTok_000412" pos="KON" lemma="und" ana="#fs_tu_39_xTok_000412">und</w>
+            <w xml:id="tu_39_xTok_000414" pos="ADV" lemma="nach" ana="#fs_tu_39_xTok_000414">nach</w>
+            <lb edRef="#wb1"/>
+            <lb edRef="#oenb"/>
+            <w xml:id="tu_39_xTok_000415" pos="ADJA" lemma="verschieden" ana="#fs_tu_39_xTok_000415">ver<lb edRef="#wb2" break="no" rend="d"/>schiedener</w>
+            <w xml:id="tu_39_xTok_000418" pos="NN" lemma="Ort" ana="#fs_tu_39_xTok_000418">Orthen</w>
+            <w xml:id="tu_39_xTok_000420" pos="ADV" lemma="meistenteils" ana="#fs_tu_39_xTok_000420">meistentheils</w>
+            <w xml:id="tu_39_xTok_000422" pos="VVPP" lemma="erfinden" ana="#fs_tu_39_xTok_000422">erfun<lb break="no" rend="d" edRef="#wb1"/><lb break="no" rend="d" edRef="#oenb"/>den</w>
+            <pc xml:id="tu_39_xTok_000425" pos="$(" ana="#fs_tu_39_xTok_000425">/</pc>
+            <w xml:id="tu_39_xTok_000427" pos="ADV" lemma="teils" ana="#fs_tu_39_xTok_000427">Theils</w>
+            <w xml:id="tu_39_xTok_000429" pos="ADV" lemma="auch" ana="#fs_tu_39_xTok_000429">auch</w>
+            <w xml:id="tu_39_xTok_000431" pos="ADJD" lemma="gerichtlich" ana="#fs_tu_39_xTok_000431">gerichtlich</w>
+            <w xml:id="tu_39_xTok_000433" pos="ADJA" lemma="vindizieren" ana="#fs_tu_39_xTok_000433"><hi rendition="#aq">vindicir</hi>ten</w>
+            <lb edRef="#wb1"/>
+            <lb edRef="#oenb"/>
+            <w xml:id="tu_39_xTok_000436" pos="NN" lemma="Ware" ana="#fs_tu_39_xTok_000436">Waaren</w>
+            <hi rendition="#aq">
+               <w xml:id="tu_39_xTok_000438" pos="FM" lemma="in" ana="#fs_tu_39_xTok_000438">in</w>
+               <w xml:id="tu_39_xTok_000440" pos="FM" lemma="natura" ana="#fs_tu_39_xTok_000440">natura</w>
+            </hi>
+            <w xml:id="tu_39_xTok_000442" pos="APPR" lemma="um" ana="#fs_tu_39_xTok_000442">umb</w>
+            <hi rendition="#aq">
+               <w xml:id="tu_39_xTok_000444" pos="CARD" lemma="1466" ana="#fs_tu_39_xTok_000444">1466.</w>
+            </hi>
+            <w xml:id="tu_39_xTok_000446" pos="NN" lemma="Flore" ana="#fs_tu_39_xTok_000446">fl.</w>
+            <hi rendition="#aq">
+               <w xml:id="tu_39_xTok_000449" pos="CARD" lemma="25½" ana="#fs_tu_39_xTok_000449">25½.</w>
+            </hi>
+            <w xml:id="tu_39_xTok_000452" pos="NN" lemma="Kreuzer" ana="#fs_tu_39_xTok_000452">kr.</w>
+            <lb edRef="#wb1"/>
+            <lb edRef="#oenb"/>
+            <w xml:id="tu_39_xTok_000455" pos="ADJD" lemma="wert" ana="#fs_tu_39_xTok_000455">Werths</w>
+            <w xml:id="tu_39_xTok_000457" pos="VVPP" lemma="restituieren" ana="#fs_tu_39_xTok_000457"><hi rendition="#aq">restitui</hi>ret</w>
+            <w xml:id="tu_39_xTok_000460" pos="VAPP" lemma="werden" ana="#fs_tu_39_xTok_000460">worden</w>
+            <pc xml:id="tu_39_xTok_000462" pos="$(" ana="#fs_tu_39_xTok_000462">/</pc>
+            <w xml:id="tu_39_xTok_000464" pos="ADV" lemma="dannoch" ana="#fs_tu_39_xTok_000464">dannoch</w>
+            <w xml:id="tu_39_xTok_000466" pos="ART" lemma="ein" ana="#fs_tu_39_xTok_000466">einen</w>
+            <lb edRef="#wb2"/>
+            <app xml:id="app_4">
+               <lem wit="#wb1" xml:id="lem_11">
+                  <fw type="catch">Schaden</fw>
+               </lem>
+               <rdg wit="#oenb" xml:id="rdg_5">
+                  <fw type="catch">Schaden</fw>
+               </rdg>
+            </app>
+            <pb edRef="#oenb" facs="17470323_AntoniL-JohannSp_d_oenb.jp2" type="secondary"/>
+            <pb edRef="#wb1" facs="17470323_AntoniL-JohannSp_d_wb1.jp2" type="primary"/>
+            <w xml:id="tu_39_xTok_000468" pos="NN" lemma="Schaden" ana="#fs_tu_39_xTok_000468">Schaden</w>
+            <hi rendition="#aq">
+               <w xml:id="tu_39_xTok_000470" pos="APPR" lemma="per" ana="#fs_tu_39_xTok_000470">per</w>
+               <w xml:id="tu_39_xTok_000472" pos="CARD" lemma="350" ana="#fs_tu_39_xTok_000472">350.</w>
+            </hi>
+            <w xml:id="tu_39_xTok_000474" pos="NN" lemma="Flore" ana="#fs_tu_39_xTok_000474">fl.</w>
+            <hi rendition="#aq">
+               <w xml:id="tu_39_xTok_000477" pos="CARD" lemma="23½" ana="#fs_tu_39_xTok_000477">23½.</w>
+            </hi>
+            <w xml:id="tu_39_xTok_000480" pos="NN" lemma="Kreuzer" ana="#fs_tu_39_xTok_000480">kr.</w>
+            <w xml:id="tu_39_xTok_000483" pos="VVPP" join="right" lemma="zufügen" ana="#fs_tu_39_xTok_000483">zugefüget</w>
+            <pc xml:id="tu_39_xTok_000484" pos="$(" ana="#fs_tu_39_xTok_000484">)</pc>
+            <w xml:id="tu_39_xTok_000486" pos="APPR" lemma="auf" ana="#fs_tu_39_xTok_000486">auf</w>
+            <lb edRef="#wb1"/>
+            <lb edRef="#oenb"/>
+            <app xml:id="app_5">
+               <rdg wit="#wb2" xml:id="rdg_6">
+                  <fw type="catch">dem</fw>
+               </rdg>
+            </app>
+            <pb edRef="#wb2" facs="17470323_AntoniL-JohannSp_d_wb2.jp2" type="secondary"/>
+            <w xml:id="tu_39_xTok_000487" pos="ART" lemma="d" ana="#fs_tu_39_xTok_000487">dem</w>
+            <w xml:id="tu_39_xTok_000489" pos="NE::top" lemma="Wienerberg" ana="#fs_tu_39_xTok_000489">Wiennerberg</w>
+            <w xml:id="tu_39_xTok_000491" pos="APPR" lemma="mit" ana="#fs_tu_39_xTok_000491">mit</w>
+            <w xml:id="tu_39_xTok_000493" pos="ART" lemma="d" ana="#fs_tu_39_xTok_000493">dem</w>
+            <w xml:id="tu_39_xTok_000495" pos="NN" lemma="Strang" ana="#fs_tu_39_xTok_000495">Strang</w>
+            <w xml:id="tu_39_xTok_000497" pos="APPR" lemma="von" ana="#fs_tu_39_xTok_000497">von</w>
+            <lb/>
+            <w xml:id="tu_39_xTok_000499" pos="ART" lemma="d" ana="#fs_tu_39_xTok_000499">dem</w>
+            <w xml:id="tu_39_xTok_000501" pos="NN" lemma="Leben" ana="#fs_tu_39_xTok_000501">Leben</w>
+            <w xml:id="tu_39_xTok_000503" pos="APPRART" lemma="zum" ana="#fs_tu_39_xTok_000503">zum</w>
+            <w xml:id="tu_39_xTok_000505" pos="NN" lemma="Tod" ana="#fs_tu_39_xTok_000505">Todt</w>
+            <w xml:id="tu_39_xTok_000507" pos="VVPP" lemma="hinrichten" ana="#fs_tu_39_xTok_000507">hingerichtet</w>
+            <lb/>
+            <w xml:id="tu_39_xTok_000508" pos="VAINF" join="right" lemma="werden" ana="#fs_tu_39_xTok_000508">werden</w>
+            <pc xml:id="tu_39_xTok_000509" pos="$." ana="#fs_tu_39_xTok_000509">.</pc>
+         </p>
+         <closer rendition="#c">
+            <hi rendition="#g">
+               <w xml:id="tu_39_xTok_000510" pos="NN" lemma="Ende" ana="#fs_tu_39_xTok_000510"><hi rendition="#in">E</hi><hi rendition="#in">N</hi><hi rendition="#in">D</hi><hi rendition="#in">E</hi></w>
+            </hi>
+            <pc xml:id="tu_39_xTok_000511" pos="$." ana="#fs_tu_39_xTok_000511">.</pc>
+         </closer>
+         <app xml:id="app_6">
+            <lem wit="#wb1" xml:id="lem_12">
+               <figure type="vignette" ana="#iconclass:11R71 #iconclass:25F42 #iconclass:25F51%28TOAD%29 #iconclass:31A211%28%2B1%29 #iconclass:31A2151 #iconclass:31F12 #iconclass:49M412">
+                  <figDesc>Totenschädel in Frontalansicht mit daraufsitzender Kröte, auf gekreuzten
+                     Oberschenkelknochen; Schlange, die sich durch beide Augenhöhlen um den Schädel
+                     windet, auf der Erde liegend, schraffierter Untergrund</figDesc>
+               </figure>
+            </lem>
+            <rdg wit="#wb2" xml:id="rdg_7">
+               <figure type="vignette" ana="#iconclass:11R71 #iconclass:25F42 #iconclass:31A211 #iconclass:31A2151 #iconclass:31F12 #iconclass:49M412">
+                  <figDesc>Totenschädel im Viertelprofil nach rechts gewandt, auf gekreuzten
+                     Oberschenkelknochen (nicht vollständig sichtbar); Schlange, die sich durch die
+                     rechte Augenhöhle um den Schädel windet</figDesc>
+               </figure>
+            </rdg>
+            <rdg wit="#oenb" xml:id="rdg_8">
+               <figure type="vignette" ana="#iconclass:11R71 #iconclass:25F42 #iconclass:25F51%28TOAD%29 #iconclass:31A211%28%2B1%29 #iconclass:31A2151 #iconclass:31F12 #iconclass:49M412">
+                  <figDesc>Totenschädel in Frontalansicht mit daraufsitzender Kröte, auf gekreuzten
+                     Oberschenkelknochen; Schlange, die sich durch beide Augenhöhlen um den Schädel
+                     windet, auf der Erde liegend, schraffierter Untergrund</figDesc>
+               </figure>
+            </rdg>
+         </app>
+      </body>
+      <fs xml:id="fs_tu_39_xTok_000001">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000002">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000007">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000008">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000009">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000011">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000013">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000015">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000017">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000018">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000019">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000022">
+         <f name="state">OK</f>
+         <f name="dictref">oov</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000024">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000025">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000028">
+         <f name="state">OK</f>
+         <f name="dictref">oov</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000031">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000033">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000035">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000036">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000038">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000040">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000042">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000044">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000046">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000048">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000050">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000052">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000054">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000056">
+         <f name="complexlemma">ihresgleichen</f>
+         <f name="complextype">PIS</f>
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000059">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000061">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000063">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000065">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000067">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000069">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000071">
+         <f name="state">OK</f>
+         <f name="dictref">oov</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000074">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000076">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000078">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000080">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000082">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000084">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000086">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000087">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000089">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000090">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000091">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000093">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000095">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000097">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000099">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000101">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000103">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000104">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000105">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000107">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000109">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000111">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000113">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000115">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000117">
+         <f name="state">OK</f>
+         <f name="dictref">oov</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000119">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000121">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000122">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000123">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000126">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000128">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000131">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000132">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000134">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000135">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000138">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000140">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000142">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000144">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000146">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000148">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000150">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000152">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000154">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000156">
+         <f name="state">OK</f>
+         <f name="dictref">oov</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000159">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000161">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000163">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000165">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000167">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000169">
+         <f name="state">OK</f>
+         <f name="dictref">oov</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000172">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000174">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000176">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000178">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000180">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000182">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000185">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000187">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000189">
+         <f name="state">OK</f>
+         <f name="dictref">oov</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000192">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000194">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000196">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000198">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000200">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000202">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000204">
+         <f name="state">OK</f>
+         <f name="dictref">oov</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000206">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000208">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000210">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000212">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000216">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000218">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000220">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000222">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000224">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000226">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000230">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000232">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000233">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000235">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000237">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000239">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000241">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000244">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000246">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000248">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000250">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000251">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000253">
+         <f name="state">OK</f>
+         <f name="dictref">oov</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000256">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000258">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000260">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000262">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000264">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000267">
+         <f name="remark">Kustode</f>
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000270">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000272">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000274">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000276">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000278">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000280">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000282">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000284">
+         <f name="state">OK</f>
+         <f name="dictref">oov</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000286">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000288">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000290">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000292">
+         <f name="state">OK</f>
+         <f name="dictref">DWB</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000295">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000297">
+         <f name="state">OK</f>
+         <f name="dictref">oov</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000299">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000301">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000304">
+         <f name="state">OK</f>
+         <f name="dictref">DWB</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000307">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000309">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000311">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000313">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000316">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000318">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000320">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000322">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000324">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000326">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000328">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000330">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000332">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000334">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000337">
+         <f name="state">OK</f>
+         <f name="dictref">DWB</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000340">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000342">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000344">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000347">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000349">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000351">
+         <f name="state">OK</f>
+         <f name="dictref">oov</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000353">
+         <f name="complexlemma">ausgesagtermaßen</f>
+         <f name="complextype">ADV</f>
+         <f name="state">OK</f>
+         <f name="dictref">oov</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000355">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000357">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000359">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000361">
+         <f name="state">OK</f>
+         <f name="dictref">DWB</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000364">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000366">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000369">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000371">
+         <f name="state">OK</f>
+         <f name="dictref">DWB</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000373">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000375">
+         <f name="state">OK</f>
+         <f name="dictref">DRW</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000378">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000381">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000383">
+         <f name="state">OK</f>
+         <f name="dictref">DWB</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000385">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000387">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000390">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000392">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000395">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000397">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000399">
+         <f name="state">OK</f>
+         <f name="dictref">DWB</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000401">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000403">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000406">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000408">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000410">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000412">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000414">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000415">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000418">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000420">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000422">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000425">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000427">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000429">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000431">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000433">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000436">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000438">
+         <f name="state">OK</f>
+         <f name="dictref">G-LDHW</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000440">
+         <f name="state">OK</f>
+         <f name="dictref">G-LDHW</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000442">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000444">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000446">
+         <f name="state">OK</f>
+         <f name="dictref">DWB</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000449">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000452">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000455">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000457">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000460">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000462">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000464">
+         <f name="state">OK</f>
+         <f name="dictref">DWB</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000466">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000468">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000470">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000472">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000474">
+         <f name="state">OK</f>
+         <f name="dictref">DWB</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000477">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000480">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000483">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000484">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000486">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000487">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000489">
+         <f name="state">OK</f>
+         <f name="dictref">oov</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000491">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000493">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000495">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000497">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000499">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000501">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000503">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000505">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000507">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000508">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000509">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000510">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_39_xTok_000511">
+         <f name="state">OK</f>
+      </fs>
+   </text>
+</TEI>

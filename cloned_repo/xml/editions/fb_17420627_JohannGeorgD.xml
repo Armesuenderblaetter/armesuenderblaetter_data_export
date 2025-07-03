@@ -1,0 +1,2529 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:base="." xml:id="fb_17420627_JohannGeorgD.xml" prev="./fb_17420605_CarlJosephHillebra.xml" next="./fb_17420912_JosephA_LeopoldK_J.xml">
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title>Todesurteil Johann Georg D.</title>
+            <respStmt>
+               <resp>edited by</resp>
+               <persName>Claudia Resch</persName>
+            </respStmt>
+            <respStmt>
+               <resp>transcription by</resp>
+               <persName>Magdalena Aigner</persName>
+            </respStmt>
+            <respStmt>
+               <resp>correction by</resp>
+               <persName>Eva Wohlfarter</persName>
+            </respStmt>
+            <respStmt>
+               <resp>additional markup by</resp>
+               <persName>Magdalena Aigner</persName>
+               <persName>Eva Wohlfarter</persName>
+            </respStmt>
+            <respStmt>
+               <resp>Data modelling</resp>
+               <persName xml:id="ds">Daniel Schopper</persName>
+            </respStmt>
+         </titleStmt>
+         <publicationStmt xml:id="publicationStmt_kzs_bmm_ft">
+            <publisher>Austrian Centre for Digital Humanities</publisher>
+            <idno type="internal"/>
+         </publicationStmt>
+         <sourceDesc default="false">
+            <listWit>
+<witness type="primary"><biblStruct default="false" status="draft">
+               <monogr>
+                  <imprint source="#imp20">
+                     <pubPlace>Wien</pubPlace>
+                     <date>k. A.</date>
+                     <publisher>Johann Baptist Schilgen</publisher>
+                  </imprint>
+               </monogr>
+            </biblStruct>
+            <msDesc>
+               <msIdentifier>
+                  <settlement/>
+                  <institution>Wienbibliothek im Rathaus</institution>
+                  <idno type="signatory">C-39975/1742,2</idno>
+               </msIdentifier>
+            </msDesc>
+         </witness>
+</listWit></sourceDesc>
+      </fileDesc>
+      <profileDesc>
+         <particDesc default="false">
+            <rs ref="#pers_fb_17420627_JohannGeorgD_d1">Johann Georg D.</rs></particDesc>
+      </profileDesc>
+      <encodingDesc>
+         <styleDefDecl scheme="css" default="false"/>
+         <tagsDecl>
+            <rendition xml:id="c" scheme="css">display:block; text-align:center</rendition>
+            <rendition xml:id="aq" scheme="css">text-align: sans-serif;</rendition>
+            <rendition xml:id="b" scheme="css">font-weight: bold;</rendition>
+            <rendition xml:id="et" scheme="css">display: block; margin-left: 2em; text-indent:
+               0;</rendition>
+            <rendition xml:id="i" scheme="css">font-style: italic;</rendition>
+            <rendition xml:id="g" scheme="css">letter-spacing: 0.125em;</rendition>
+            <rendition xml:id="in" scheme="css">font-size:150%;</rendition>
+            <rendition xml:id="sup" scheme="css">vertical-align: super; font-size:
+               0.7em;</rendition>
+            <rendition xml:id="il" scheme="css">display: inline-block;</rendition>
+            <rendition xml:id="star" scheme="css">display: block; content: "*";</rendition>
+            <rendition xml:id="hr" scheme="css">display: block; border-bottom: 1px;</rendition>
+         </tagsDecl>
+      </encodingDesc>
+      <revisionDesc status="draft">
+         <change status="candidate" who="#ds" when="2019-09-20">added pbs and facs;
+            re-organizingheadings and line groups; first check</change>
+      </revisionDesc>
+   </teiHeader>
+   <text>
+      <pb facs="17420627_JohannGeorgD_a_wb.jp2" type="primary"/>
+      <front>
+         <titlePage>
+            <titlePart rendition="#c" type="main">
+               <w xml:id="tu_20_xTok_000001" pos="ADJA" lemma="wohlverdient" ana="#fs_tu_20_xTok_000001"><hi rendition="#in">W</hi>ohlverdientes</w>
+               <w xml:id="tu_20_xTok_000004" pos="NN" lemma="Recht" ana="#fs_tu_20_xTok_000004"><hi rendition="#in">R</hi>echt</w>
+               <lb/>
+               <w xml:id="tu_20_xTok_000006" pos="KON" lemma="und" ana="#fs_tu_20_xTok_000006">Und</w>
+               <lb/>
+               <w xml:id="tu_20_xTok_000007" pos="NN" lemma="Endurteil" ana="#fs_tu_20_xTok_000007"><hi rendition="#in"><hi rendition="#g">E</hi></hi><hi rendition="#g">nd=</hi><hi rendition="#in"><hi rendition="#g">U</hi></hi><hi rendition="#g">rtheil</hi></w>
+               <pc xml:id="tu_20_xTok_000012" pos="$(" ana="#fs_tu_20_xTok_000012">/</pc>
+               <lb/>
+               <w xml:id="tu_20_xTok_000013" pos="ART" lemma="ein" ana="#fs_tu_20_xTok_000013">Einer</w>
+               <w xml:id="tu_20_xTok_000015" pos="ADJA" lemma="verheiratet" ana="#fs_tu_20_xTok_000015">Verheyrathen</w>
+               <w xml:id="tu_20_xTok_000017" pos="NN" lemma="Mannsperson" ana="#fs_tu_20_xTok_000017">Manns=Persohn</w>
+               <pc xml:id="tu_20_xTok_000019" pos="$(" ana="#fs_tu_20_xTok_000019">/</pc>
+               <lb/>
+               <w xml:id="tu_20_xTok_000021" pos="ADV" lemma="namens" ana="#fs_tu_20_xTok_000021"><hi rendition="#in">N</hi>ahmens</w>
+               <lb/>
+               <persName xml:id="johanngeorgd20">
+                  <w xml:id="tu_20_xTok_000023" pos="NE" lemma="Johann" ana="#fs_tu_20_xTok_000023"><hi rendition="#in"><hi rendition="#g">J</hi></hi><hi rendition="#g">ohann</hi></w>
+                  <w xml:id="tu_20_xTok_000026" pos="NE" lemma="Georg" ana="#fs_tu_20_xTok_000026"><hi rendition="#in"><hi rendition="#g">G</hi></hi><hi rendition="#g">eorg</hi></w>
+                  <w xml:id="tu_20_xTok_000029" pos="NE" lemma="D." ana="#fs_tu_20_xTok_000029"><hi rendition="#in">D</hi>.</w>
+               </persName>
+               <lb/>
+               <w xml:id="tu_20_xTok_000031" pos="ADJA" lemma="katholisch" ana="#fs_tu_20_xTok_000031">Catholischer</w>
+               <w xml:id="tu_20_xTok_000033" pos="NN" lemma="Religion" ana="#fs_tu_20_xTok_000033">Religion</w>
+               <pc xml:id="tu_20_xTok_000035" pos="$(" ana="#fs_tu_20_xTok_000035">/</pc>
+               <seg type="age" xml:id="age20">
+                  <w xml:id="tu_20_xTok_000037" pos="APPR" lemma="bei" ana="#fs_tu_20_xTok_000037">bey</w>
+                  <hi rendition="#aq">
+                     <w xml:id="tu_20_xTok_000039" pos="CARD" lemma="28" ana="#fs_tu_20_xTok_000039">28.</w>
+                  </hi>
+               </seg>
+               <w xml:id="tu_20_xTok_000041" pos="NN" lemma="Jahr" ana="#fs_tu_20_xTok_000041">Jahr</w>
+               <w xml:id="tu_20_xTok_000043" pos="ADJD" lemma="alt" ana="#fs_tu_20_xTok_000043">alt</w>
+               <pc xml:id="tu_20_xTok_000045" pos="$(" ana="#fs_tu_20_xTok_000045">/</pc>
+               <w xml:id="tu_20_xTok_000047" pos="APPR" lemma="von" ana="#fs_tu_20_xTok_000047">von</w>
+               <placeName xml:id="pn20">
+                  <w xml:id="tu_20_xTok_000049" pos="NE::top" lemma="Kumberg" ana="#fs_tu_20_xTok_000049">Kumberg</w>
+                  <lb/>
+                  <w xml:id="tu_20_xTok_000050" pos="APPR" lemma="in" ana="#fs_tu_20_xTok_000050">in</w>
+                  <w xml:id="tu_20_xTok_000052" pos="NE::top" lemma="Steiermark" ana="#fs_tu_20_xTok_000052">Steyermarck</w>
+               </placeName>
+               <w xml:id="tu_20_xTok_000054" pos="ADJD" join="right" lemma="gebürtig" ana="#fs_tu_20_xTok_000054">gebührtig</w>
+               <pc xml:id="tu_20_xTok_000055" pos="$." ana="#fs_tu_20_xTok_000055">;</pc>
+            </titlePart>
+            <titlePart rendition="#c" type="main">
+               <w xml:id="tu_20_xTok_000056" lemma="umweil" pos="KOUS">Um weilen</w>
+               <w xml:id="tu_20_xTok_000060" pos="PDS" lemma="derselbe" ana="#fs_tu_20_xTok_000060">derselbe</w>
+               <w xml:id="tu_20_xTok_000062" pos="ART" lemma="ein" ana="#fs_tu_20_xTok_000062">einer</w>
+               <w xml:id="tu_20_xTok_000064" pos="ADJA" lemma="sicher" ana="#fs_tu_20_xTok_000064">sicheren</w>
+               <w xml:id="tu_20_xTok_000066" pos="NN" lemma="Herrschaft" ana="#fs_tu_20_xTok_000066">Herrschaft</w>
+               <lb/>
+               <w xml:id="tu_20_xTok_000067" pos="APPR" lemma="zu" ana="#fs_tu_20_xTok_000067">zu</w>
+               <w xml:id="tu_20_xTok_000069" pos="NE::top" lemma="Pressburg" ana="#fs_tu_20_xTok_000069">Preßburg</w>
+               <pc xml:id="tu_20_xTok_000071" pos="$(" ana="#fs_tu_20_xTok_000071">/</pc>
+               <w xml:id="tu_20_xTok_000073" pos="ART" lemma="d" ana="#fs_tu_20_xTok_000073">den</w>
+               <hi rendition="#aq">
+                  <w xml:id="tu_20_xTok_000075" pos="ADJA" lemma="20" ana="#fs_tu_20_xTok_000075">20.</w>
+               </hi>
+               <w xml:id="tu_20_xTok_000077" pos="NN" lemma="Oktober" ana="#fs_tu_20_xTok_000077">October</w>
+               <w xml:id="tu_20_xTok_000079" pos="ADJA" lemma="vorige" ana="#fs_tu_20_xTok_000079">vorigen</w>
+               <w xml:id="tu_20_xTok_000081" pos="NN" lemma="Jahr" ana="#fs_tu_20_xTok_000081">Jahrs</w>
+               <pc xml:id="tu_20_xTok_000083" pos="$(" join="right" ana="#fs_tu_20_xTok_000083">(</pc>
+               <w xml:id="tu_20_xTok_000084" pos="KOUS" lemma="wie" ana="#fs_tu_20_xTok_000084">wie</w>
+               <lb/>
+               <w xml:id="tu_20_xTok_000085" pos="ADJA" lemma="beiliegend" ana="#fs_tu_20_xTok_000085">beyligender</w>
+               <w xml:id="tu_20_xTok_000087" pos="NN" lemma="Inhalt" ana="#fs_tu_20_xTok_000087">Jnnhalt</w>
+               <w xml:id="tu_20_xTok_000089" pos="ART" lemma="d" ana="#fs_tu_20_xTok_000089">des</w>
+               <w xml:id="tu_20_xTok_000091" pos="PIS" lemma="mehrere" ana="#fs_tu_20_xTok_000091">mehrern</w>
+               <w xml:id="tu_20_xTok_000093" pos="VVFIN" lemma="zeigen" ana="#fs_tu_20_xTok_000093">zeiget</w>
+               <pc xml:id="tu_20_xTok_000095" pos="$(" ana="#fs_tu_20_xTok_000095">/</pc>
+               <pc xml:id="tu_20_xTok_000097" pos="$(" ana="#fs_tu_20_xTok_000097">)</pc>
+               <w xml:id="tu_20_xTok_000099" pos="ART" lemma="ein" ana="#fs_tu_20_xTok_000099">einen</w>
+               <lb/>
+               <w xml:id="tu_20_xTok_000100" pos="ADJA" lemma="namhaft" ana="#fs_tu_20_xTok_000100">nahmhaff<unclear>t</unclear>en</w>
+               <w xml:id="tu_20_xTok_000104" pos="NN" lemma="Diebstahl" ana="#fs_tu_20_xTok_000104">Diebstahl</w>
+               <w xml:id="tu_20_xTok_000106" pos="VVPP" join="right" lemma="begehen" ana="#fs_tu_20_xTok_000106">begangen</w>
+               <pc xml:id="tu_20_xTok_000107" pos="$." ana="#fs_tu_20_xTok_000107">.</pc>
+            </titlePart>
+            <titlePart rendition="#c" type="main">
+               <w xml:id="tu_20_xTok_000108" pos="ADV" lemma="als" ana="#fs_tu_20_xTok_000108">Als</w>
+               <w xml:id="tu_20_xTok_000110" pos="VAFIN" lemma="werden" ana="#fs_tu_20_xTok_000110">wird</w>
+               <w xml:id="tu_20_xTok_000112" pos="PDS" lemma="derselbe" ana="#fs_tu_20_xTok_000112">derselbe</w>
+               <w xml:id="tu_20_xTok_000114" pos="ADV" lemma="heute" ana="#fs_tu_20_xTok_000114">heute</w>
+               <w xml:id="tu_20_xTok_000116" pos="NN" join="right" lemma="Mittwoch" ana="#fs_tu_20_xTok_000116">Mittwoch</w>
+               <pc xml:id="tu_20_xTok_000117" pos="$," ana="#fs_tu_20_xTok_000117">,</pc>
+               <w xml:id="tu_20_xTok_000119" pos="ART" lemma="d" ana="#fs_tu_20_xTok_000119">den</w>
+               <date xml:id="date20">
+                  <hi rendition="#aq">
+                     <w xml:id="tu_20_xTok_000121" pos="ADJA" lemma="27" ana="#fs_tu_20_xTok_000121">27<supplied>.</supplied></w>
+                  </hi>
+                  <w xml:id="tu_20_xTok_000124" pos="NN" lemma="Juni" ana="#fs_tu_20_xTok_000124">Junij</w>
+                  <hi rendition="#aq">
+                     <w xml:id="tu_20_xTok_000126" pos="CARD" lemma="1742" ana="#fs_tu_20_xTok_000126">1742.</w>
+                  </hi>
+               </date>
+               <lb/>
+               <w xml:id="tu_20_xTok_000127" pos="PIS" lemma="ander" ana="#fs_tu_20_xTok_000127">anderen</w>
+               <w xml:id="tu_20_xTok_000129" pos="APPRART" lemma="zum" ana="#fs_tu_20_xTok_000129">zum</w>
+               <w xml:id="tu_20_xTok_000131" pos="NN" lemma="Beispiel" ana="#fs_tu_20_xTok_000131">Beyspill</w>
+               <w xml:id="tu_20_xTok_000133" pos="KON" lemma="und" ana="#fs_tu_20_xTok_000133">und</w>
+               <w xml:id="tu_20_xTok_000135" pos="NN" lemma="Exempel" ana="#fs_tu_20_xTok_000135">Exempel</w>
+               <pc xml:id="tu_20_xTok_000137" pos="$(" ana="#fs_tu_20_xTok_000137">/</pc>
+               <w xml:id="tu_20_xTok_000139" pos="PPER" lemma="er" ana="#fs_tu_20_xTok_000139">ihme</w>
+               <w xml:id="tu_20_xTok_000141" pos="ADV" lemma="aber" ana="#fs_tu_20_xTok_000141">aber</w>
+               <w xml:id="tu_20_xTok_000143" pos="APPRART" lemma="zur" ana="#fs_tu_20_xTok_000143">zur</w>
+               <w xml:id="tu_20_xTok_000145" pos="ADJA" lemma="rechtlich" ana="#fs_tu_20_xTok_000145">rechtlichen</w>
+               <lb/>
+               <w xml:id="tu_20_xTok_000146" pos="NN" lemma="Strafe" ana="#fs_tu_20_xTok_000146">Straffe</w>
+               <w xml:id="tu_20_xTok_000148" pos="APPR" lemma="auf" ana="#fs_tu_20_xTok_000148">auf</w>
+               <w xml:id="tu_20_xTok_000150" pos="ART" lemma="d" ana="#fs_tu_20_xTok_000150">dem</w>
+               <w xml:id="tu_20_xTok_000152" pos="ADJA" lemma="sogenannt" ana="#fs_tu_20_xTok_000152">sogenannten</w>
+               <w xml:id="tu_20_xTok_000154" pos="NE::top" lemma="Wienerberg" ana="#fs_tu_20_xTok_000154">Wienner=Berg</w>
+               <w xml:id="tu_20_xTok_000156" pos="APPR" lemma="mit" ana="#fs_tu_20_xTok_000156">mit</w>
+               <w xml:id="tu_20_xTok_000158" pos="ART" lemma="d" ana="#fs_tu_20_xTok_000158">dem</w>
+               <w xml:id="tu_20_xTok_000160" pos="NN" lemma="Strang" ana="#fs_tu_20_xTok_000160">Strang</w>
+               <lb/>
+               <w xml:id="tu_20_xTok_000161" pos="APPRART" lemma="vom" ana="#fs_tu_20_xTok_000161">vom</w>
+               <w xml:id="tu_20_xTok_000163" pos="NN" lemma="Leben" ana="#fs_tu_20_xTok_000163">Leben</w>
+               <w xml:id="tu_20_xTok_000165" pos="APPRART" lemma="zum" ana="#fs_tu_20_xTok_000165">zum</w>
+               <w xml:id="tu_20_xTok_000167" pos="NN" lemma="Tod" ana="#fs_tu_20_xTok_000167">Todt</w>
+               <w xml:id="tu_20_xTok_000169" pos="VVPP" join="right" lemma="hinrichten" ana="#fs_tu_20_xTok_000169">hingerichtet</w>
+               <pc xml:id="tu_20_xTok_000170" pos="$." ana="#fs_tu_20_xTok_000170">.</pc>
+            </titlePart>
+            <figure type="vignette" ana="#iconclass:11R71 #iconclass:25F42 #iconclass:31A211 #iconclass:31A2151 #iconclass:31F12 #iconclass:49M412">
+               <figDesc>Totenschädel im Viertelprofil nach rechts gewandt, auf gekreuzten
+                  Oberschenkelknochen (nicht vollständig sichtbar); Schlange, die sich durch die
+                  rechte Augenhöhle um den Schädel windet</figDesc>
+            </figure>
+            <milestone unit="section" rendition="#hr"/>
+            <docImprint rendition="#c">
+               <pubPlace>
+                  <w xml:id="tu_20_xTok_000171" pos="NE::top" lemma="Wien" ana="#fs_tu_20_xTok_000171">Wienn</w>
+               </pubPlace>
+               <pc xml:id="tu_20_xTok_000173" pos="$(" ana="#fs_tu_20_xTok_000173">/</pc>
+               <w xml:id="tu_20_xTok_000175" pos="VVPP" lemma="drucken" ana="#fs_tu_20_xTok_000175">gedruckt</w>
+               <w xml:id="tu_20_xTok_000177" pos="APPR" lemma="bei" ana="#fs_tu_20_xTok_000177">bey</w>
+               <name>
+                  <w xml:id="tu_20_xTok_000179" pos="NE" lemma="Johann" ana="#fs_tu_20_xTok_000179">Johann</w>
+                  <w xml:id="tu_20_xTok_000181" pos="NE" lemma="Baptist" ana="#fs_tu_20_xTok_000181">Baptist</w>
+                  <w xml:id="tu_20_xTok_000183" pos="NE" lemma="Schilgen" ana="#fs_tu_20_xTok_000183">Schilgen</w>
+               </name>
+               <pc xml:id="tu_20_xTok_000184" pos="$." ana="#fs_tu_20_xTok_000184">.</pc>
+            </docImprint>
+         </titlePage>
+      </front>
+      <body>
+         <pb facs="17420627_JohannGeorgD_b_wb.jp2" type="primary"/>
+         <figure type="ornament" ana="#iconclass:48A987 #iconclass:48A9833 #iconclass:48AA9833">
+            <figDesc>Kopfleiste aus stilisierten floralen Ornamenten, horizontal
+               gespiegelt</figDesc>
+         </figure>
+         <head rendition="#c">
+            <w xml:id="tu_20_xTok_000185" pos="NN" lemma="Inhalt" ana="#fs_tu_20_xTok_000185">
+               <hi rendition="#in">J</hi>nnhalt</w>
+            <w xml:id="tu_20_xTok_000188" pos="ART" lemma="d" ana="#fs_tu_20_xTok_000188">des</w>
+            <w xml:id="tu_20_xTok_000190" pos="NN" lemma="Verbrechen" ana="#fs_tu_20_xTok_000190">
+               <hi rendition="#in">V</hi>erbrechen</w>
+            <w xml:id="tu_20_xTok_000193" pos="PDAT" lemma="diese" ana="#fs_tu_20_xTok_000193">dises</w>
+            <lb/>
+            <w xml:id="tu_20_xTok_000194" pos="NN" join="right" lemma="Delinquent" ana="#fs_tu_20_xTok_000194">
+               <hi rendition="#aq">Delinquent</hi>en</w>
+            <pc xml:id="tu_20_xTok_000196" pos="$." ana="#fs_tu_20_xTok_000196">.</pc>
+         </head>
+         <p xml:id="fb_17420627_JohannGeorgD_p_0001">
+            <w xml:id="tu_20_xTok_000197" pos="PDAT" lemma="diese" ana="#fs_tu_20_xTok_000197"><hi rendition="#in">D</hi>Jser</w>
+            <w xml:id="tu_20_xTok_000200" pos="ADV" lemma="heute" ana="#fs_tu_20_xTok_000200">heute</w>
+            <w xml:id="tu_20_xTok_000202" pos="ADJA" lemma="aburteilen" ana="#fs_tu_20_xTok_000202">abgeurtheilte</w>
+            <hi rendition="#aq">
+               <w xml:id="tu_20_xTok_000204" pos="NN" lemma="Delinquent" ana="#fs_tu_20_xTok_000204">Delinquent</w>
+            </hi>
+            <pc xml:id="tu_20_xTok_000205" pos="$," ana="#fs_tu_20_xTok_000205">,</pc>
+            <w xml:id="tu_20_xTok_000207" pos="VAFIN" lemma="haben" ana="#fs_tu_20_xTok_000207">hat</w>
+            <w xml:id="tu_20_xTok_000209" pos="APPR" lemma="mit" ana="#fs_tu_20_xTok_000209">mit</w>
+            <lb/>
+            <w xml:id="tu_20_xTok_000211" pos="CARD" lemma="zwei" ana="#fs_tu_20_xTok_000211">zweyen</w>
+            <w xml:id="tu_20_xTok_000213" pos="ADJA" lemma="andere" ana="#fs_tu_20_xTok_000213">anderen</w>
+            <w xml:id="tu_20_xTok_000215" pos="ADJA" lemma="berüchtigt" ana="#fs_tu_20_xTok_000215">berüchtigen</w>
+            <w xml:id="tu_20_xTok_000217" pos="NN" join="right" lemma="Diebskamerad" ana="#fs_tu_20_xTok_000217">Diebs=Cammeraden</w>
+            <pc xml:id="tu_20_xTok_000218" pos="$," ana="#fs_tu_20_xTok_000218">,</pc>
+            <lb/>
+            <w xml:id="tu_20_xTok_000220" pos="ART" lemma="d" ana="#fs_tu_20_xTok_000220">den</w>
+            <hi rendition="#aq">
+               <w xml:id="tu_20_xTok_000222" pos="ADJA" lemma="20" ana="#fs_tu_20_xTok_000222">20.</w>
+            </hi>
+            <w xml:id="tu_20_xTok_000224" pos="NN" lemma="Oktober" ana="#fs_tu_20_xTok_000224">October</w>
+            <w xml:id="tu_20_xTok_000226" pos="ADJA" lemma="vorige" ana="#fs_tu_20_xTok_000226">vorigen</w>
+            <w xml:id="tu_20_xTok_000228" pos="NN" lemma="Jahr" ana="#fs_tu_20_xTok_000228">Jahrs</w>
+            <hi rendition="#aq">
+               <w xml:id="tu_20_xTok_000230" pos="CARD" lemma="1741" ana="#fs_tu_20_xTok_000230">1741.</w>
+            </hi>
+            <w xml:id="tu_20_xTok_000232" pos="APPR" lemma="zu" ana="#fs_tu_20_xTok_000232">zu</w>
+            <w xml:id="tu_20_xTok_000234" pos="NN" lemma="Mitternacht" ana="#fs_tu_20_xTok_000234">Mitternacht</w>
+            <lb/>
+            <w xml:id="tu_20_xTok_000236" pos="APPR" lemma="um" ana="#fs_tu_20_xTok_000236">um</w>
+            <hi rendition="#aq">
+               <w xml:id="tu_20_xTok_000238" pos="CARD" lemma="1" ana="#fs_tu_20_xTok_000238">1.</w>
+            </hi>
+            <w xml:id="tu_20_xTok_000240" pos="NN" lemma="Uhr" ana="#fs_tu_20_xTok_000240">Uhr</w>
+            <w xml:id="tu_20_xTok_000242" pos="APPR" lemma="in" ana="#fs_tu_20_xTok_000242">in</w>
+            <w xml:id="tu_20_xTok_000244" pos="ART" lemma="ein" ana="#fs_tu_20_xTok_000244">einen</w>
+            <w xml:id="tu_20_xTok_000246" pos="ADJA" lemma="sicher" ana="#fs_tu_20_xTok_000246">sichern</w>
+            <w xml:id="tu_20_xTok_000248" pos="NN" lemma="Herrschaftshaus" ana="#fs_tu_20_xTok_000248">Herrschafft=Hauß</w>
+            <w xml:id="tu_20_xTok_000250" pos="APPR" lemma="zu" ana="#fs_tu_20_xTok_000250">zu</w>
+            <w xml:id="tu_20_xTok_000252" pos="NE::top" lemma="Pressburg" ana="#fs_tu_20_xTok_000252">Preß<lb break="no" rend="d"/>burg</w>
+            <pc xml:id="tu_20_xTok_000255" pos="$(" ana="#fs_tu_20_xTok_000255">/</pc>
+            <w xml:id="tu_20_xTok_000257" pos="APPR" lemma="mittels" ana="#fs_tu_20_xTok_000257">mittels</w>
+            <w xml:id="tu_20_xTok_000259" pos="ADJA" lemma="gewalttätig" ana="#fs_tu_20_xTok_000259">gewaltthätiger</w>
+            <w xml:id="tu_20_xTok_000261" pos="NN" lemma="Erbrechung" ana="#fs_tu_20_xTok_000261">Erbrechung</w>
+            <w xml:id="tu_20_xTok_000263" pos="ART" lemma="ein" ana="#fs_tu_20_xTok_000263">ein</w>
+            <w xml:id="tu_20_xTok_000265" pos="ADV" lemma="so" ana="#fs_tu_20_xTok_000265">so</w>
+            <w xml:id="tu_20_xTok_000267" pos="ADJA" lemma="andere" ana="#fs_tu_20_xTok_000267">anderen</w>
+            <lb/>
+            <w xml:id="tu_20_xTok_000269" pos="NN" lemma="Tür" ana="#fs_tu_20_xTok_000269">Thüren</w>
+            <pc xml:id="tu_20_xTok_000271" pos="$(" ana="#fs_tu_20_xTok_000271">/</pc>
+            <w xml:id="tu_20_xTok_000273" pos="ADV" lemma="dann" ana="#fs_tu_20_xTok_000273">dann</w>
+            <w xml:id="tu_20_xTok_000275" pos="ADJA" lemma="gleichmäßig" ana="#fs_tu_20_xTok_000275">gleichmäßiger</w>
+            <w xml:id="tu_20_xTok_000277" pos="NN" lemma="Erbrechung" ana="#fs_tu_20_xTok_000277">Erbrechung</w>
+            <w xml:id="tu_20_xTok_000279" pos="APPR" lemma="durch" ana="#fs_tu_20_xTok_000279">durch</w>
+            <w xml:id="tu_20_xTok_000281" pos="ART" lemma="d" ana="#fs_tu_20_xTok_000281">den</w>
+            <lb/>
+            <w xml:id="tu_20_xTok_000283" pos="NN" lemma="Ofen" ana="#fs_tu_20_xTok_000283">Ofen</w>
+            <pc xml:id="tu_20_xTok_000285" pos="$(" ana="#fs_tu_20_xTok_000285">/</pc>
+            <w xml:id="tu_20_xTok_000287" pos="KON" lemma="und" ana="#fs_tu_20_xTok_000287">und</w>
+            <w xml:id="tu_20_xTok_000289" pos="ADV" lemma="folgends" ana="#fs_tu_20_xTok_000289">folgends</w>
+            <w xml:id="tu_20_xTok_000291" pos="ADV" lemma="ebenfalls" ana="#fs_tu_20_xTok_000291">ebenfalls</w>
+            <w xml:id="tu_20_xTok_000293" pos="APPR" lemma="mit" ana="#fs_tu_20_xTok_000293">mit</w>
+            <w xml:id="tu_20_xTok_000295" pos="NN" lemma="Gewalt" ana="#fs_tu_20_xTok_000295">Gewalt</w>
+            <w xml:id="tu_20_xTok_000297" pos="ADJA" lemma="diebisch" ana="#fs_tu_20_xTok_000297">diebisch<lb break="yes" rend="d"/></w>
+            <w xml:id="tu_20_xTok_000297b" pos="ADJA" lemma="eröffnen" ana="#fs_tu_20_xTok_000297b">eröffneter</w>
+            <w xml:id="tu_20_xTok_000300" pos="NN" lemma="Truhe" ana="#fs_tu_20_xTok_000300">Truchen</w>
+            <w xml:id="tu_20_xTok_000302" pos="APPR" lemma="an" ana="#fs_tu_20_xTok_000302">an</w>
+            <w xml:id="tu_20_xTok_000304" pos="TRUNC" lemma="Goldgeld" ana="#fs_tu_20_xTok_000304">Gold=</w>
+            <w xml:id="tu_20_xTok_000306" pos="KON" lemma="und" ana="#fs_tu_20_xTok_000306">und</w>
+            <w xml:id="tu_20_xTok_000308" pos="NN" lemma="Silbergeld" ana="#fs_tu_20_xTok_000308">Silber=Geld</w>
+            <pc xml:id="tu_20_xTok_000310" pos="$(" ana="#fs_tu_20_xTok_000310">/</pc>
+            <w xml:id="tu_20_xTok_000312" pos="KOKOM" lemma="wie" ana="#fs_tu_20_xTok_000312">wie</w>
+            <lb/>
+            <w xml:id="tu_20_xTok_000314" pos="ADV" lemma="auch" ana="#fs_tu_20_xTok_000314">auch</w>
+            <w xml:id="tu_20_xTok_000316" pos="ADJA" lemma="golden" ana="#fs_tu_20_xTok_000316">goldenen</w>
+            <w xml:id="tu_20_xTok_000318" pos="NN" lemma="Kostbarkeit" ana="#fs_tu_20_xTok_000318">Kostbarkeiten</w>
+            <pc xml:id="tu_20_xTok_000320" pos="$(" ana="#fs_tu_20_xTok_000320">/</pc>
+            <w xml:id="tu_20_xTok_000322" pos="APPR" lemma="unter" ana="#fs_tu_20_xTok_000322">unter</w>
+            <w xml:id="tu_20_xTok_000324" pos="PRELS" lemma="welch" ana="#fs_tu_20_xTok_000324">welchen</w>
+            <w xml:id="tu_20_xTok_000326" pos="PRF" lemma="sich" ana="#fs_tu_20_xTok_000326">sich</w>
+            <w xml:id="tu_20_xTok_000328" pos="ART" lemma="ein" ana="#fs_tu_20_xTok_000328">eine</w>
+            <w xml:id="tu_20_xTok_000330" pos="APPR" lemma="mit" ana="#fs_tu_20_xTok_000330">mit</w>
+            <lb/>
+            <hi rendition="#aq">
+               <w xml:id="tu_20_xTok_000331" pos="CARD" lemma="57½" ana="#fs_tu_20_xTok_000331">57½</w>
+            </hi>
+            <w xml:id="tu_20_xTok_000333" pos="NN" lemma="Dukat" ana="#fs_tu_20_xTok_000333">Ducaten</w>
+            <w xml:id="tu_20_xTok_000335" pos="ADJA" lemma="schwer" ana="#fs_tu_20_xTok_000335">schwäre</w>
+            <pc xml:id="tu_20_xTok_000337" pos="$(" ana="#fs_tu_20_xTok_000337">/</pc>
+            <w xml:id="tu_20_xTok_000339" pos="APPR" lemma="mit" ana="#fs_tu_20_xTok_000339">mit</w>
+            <hi rendition="#aq">
+               <w xml:id="tu_20_xTok_000341" pos="CARD" lemma="90" ana="#fs_tu_20_xTok_000341">90.</w>
+            </hi>
+            <w xml:id="tu_20_xTok_000343" pos="ADJA" lemma="klein" ana="#fs_tu_20_xTok_000343">kleinen</w>
+            <pc xml:id="tu_20_xTok_000345" pos="$(" ana="#fs_tu_20_xTok_000345">/</pc>
+            <w xml:id="tu_20_xTok_000347" pos="KON" lemma="und" ana="#fs_tu_20_xTok_000347">und</w>
+            <w xml:id="tu_20_xTok_000349" pos="ART" lemma="ein" ana="#fs_tu_20_xTok_000349">einen</w>
+            <w xml:id="tu_20_xTok_000351" pos="ADJA" lemma="groß" ana="#fs_tu_20_xTok_000351">grös<lb break="no" rend="d"/>seren</w>
+            <w xml:id="tu_20_xTok_000354" pos="NN" lemma="Brillant" ana="#fs_tu_20_xTok_000354">Brillianten</w>
+            <w xml:id="tu_20_xTok_000356" pos="ADJA" lemma="besetzen" ana="#fs_tu_20_xTok_000356">besetzt</w>
+            <w xml:id="tu_20_xTok_000358" pos="ADJA" lemma="golden" ana="#fs_tu_20_xTok_000358">goldene</w>
+            <w xml:id="tu_20_xTok_000360" pos="NN" lemma="Tabakdose" ana="#fs_tu_20_xTok_000360">Toback=Dosen</w>
+            <w xml:id="tu_20_xTok_000362" pos="PRF" lemma="sich" ana="#fs_tu_20_xTok_000362">sich</w>
+            <w xml:id="tu_20_xTok_000364" pos="VVPP" lemma="befinden" ana="#fs_tu_20_xTok_000364">be<lb break="no" rend="d"/>funden</w>
+            <pc xml:id="tu_20_xTok_000367" pos="$(" ana="#fs_tu_20_xTok_000367">/</pc>
+            <w xml:id="tu_20_xTok_000369" pos="ADV" lemma="dann" ana="#fs_tu_20_xTok_000369">dann</w>
+            <w xml:id="tu_20_xTok_000371" pos="APPR" lemma="an" ana="#fs_tu_20_xTok_000371">an</w>
+            <w xml:id="tu_20_xTok_000373" pos="NN" lemma="Silber" ana="#fs_tu_20_xTok_000373">Silber</w>
+            <pc xml:id="tu_20_xTok_000375" pos="$(" ana="#fs_tu_20_xTok_000375">/</pc>
+            <w xml:id="tu_20_xTok_000377" pos="NN" lemma="Kleid" ana="#fs_tu_20_xTok_000377">Kleideren</w>
+            <pc xml:id="tu_20_xTok_000379" pos="$(" ana="#fs_tu_20_xTok_000379">/</pc>
+            <w xml:id="tu_20_xTok_000381" pos="NN" lemma="Spitze" ana="#fs_tu_20_xTok_000381">Spitzen</w>
+            <w xml:id="tu_20_xTok_000383" pos="ADJD" lemma="reich" ana="#fs_tu_20_xTok_000383">reich</w>
+            <lb/>
+            <w xml:id="tu_20_xTok_000385" pos="KON" lemma="und" ana="#fs_tu_20_xTok_000385">und</w>
+            <w xml:id="tu_20_xTok_000387" pos="ADJA" lemma="glatt" ana="#fs_tu_20_xTok_000387">glatten</w>
+            <w xml:id="tu_20_xTok_000389" pos="NN" lemma="Zeug" ana="#fs_tu_20_xTok_000389">Zeüchen</w>
+            <pc xml:id="tu_20_xTok_000391" pos="$(" ana="#fs_tu_20_xTok_000391">/</pc>
+            <w xml:id="tu_20_xTok_000393" pos="KON" lemma="und" ana="#fs_tu_20_xTok_000393">und</w>
+            <w xml:id="tu_20_xTok_000395" pos="ADJA" lemma="andere" ana="#fs_tu_20_xTok_000395">andern</w>
+            <w xml:id="tu_20_xTok_000397" pos="NN" lemma="Effekten" ana="#fs_tu_20_xTok_000397"><hi rendition="#aq">Effect</hi>en</w>
+            <w xml:id="tu_20_xTok_000400" pos="ART" lemma="ein" ana="#fs_tu_20_xTok_000400">einen</w>
+            <w xml:id="tu_20_xTok_000402" pos="APPR" lemma="auf" ana="#fs_tu_20_xTok_000402">auf</w>
+            <lb/>
+            <hi rendition="#aq">
+               <w xml:id="tu_20_xTok_000403" pos="CARD" lemma="4233" ana="#fs_tu_20_xTok_000403">4233.</w>
+            </hi>
+            <w xml:id="tu_20_xTok_000405" pos="NN" lemma="Gulden" ana="#fs_tu_20_xTok_000405">Gulden</w>
+            <hi rendition="#aq">
+               <w xml:id="tu_20_xTok_000407" pos="CARD" lemma="40" ana="#fs_tu_20_xTok_000407">40.</w>
+            </hi>
+            <w xml:id="tu_20_xTok_000409" pos="NN" lemma="Kreuzer" ana="#fs_tu_20_xTok_000409">Kreutzer</w>
+            <w xml:id="tu_20_xTok_000411" pos="ADJD" lemma="eidlich" ana="#fs_tu_20_xTok_000411">eydlich</w>
+            <w xml:id="tu_20_xTok_000413" pos="ADJA" lemma="behören" ana="#fs_tu_20_xTok_000413">behörteten</w>
+            <w xml:id="tu_20_xTok_000415" pos="NN" lemma="Diebstahl" ana="#fs_tu_20_xTok_000415">Diebstahl</w>
+            <lb/>
+            <w xml:id="tu_20_xTok_000417" pos="VVINF" lemma="begehen" ana="#fs_tu_20_xTok_000417">begehen</w>
+            <w xml:id="tu_20_xTok_000419" pos="VVPP" lemma="helfen" ana="#fs_tu_20_xTok_000419">geholffen</w>
+            <pc xml:id="tu_20_xTok_000421" pos="$(" ana="#fs_tu_20_xTok_000421">/</pc>
+            <w xml:id="tu_20_xTok_000423" pos="ADV" lemma="auch" ana="#fs_tu_20_xTok_000423">auch</w>
+            <w xml:id="tu_20_xTok_000425" pos="PAV" lemma="hiervon" ana="#fs_tu_20_xTok_000425">hiervon</w>
+            <w xml:id="tu_20_xTok_000427" pos="ART" lemma="ein" ana="#fs_tu_20_xTok_000427">einen</w>
+            <w xml:id="tu_20_xTok_000429" pos="ADJA" lemma="namhaft" ana="#fs_tu_20_xTok_000429">nahmhafften</w>
+            <lb/>
+            <w xml:id="tu_20_xTok_000430" pos="NN" lemma="Diebsanteil" ana="#fs_tu_20_xTok_000430">Diebs=Antheil</w>
+            <w xml:id="tu_20_xTok_000432" pos="APPR" lemma="gegen" ana="#fs_tu_20_xTok_000432">gegen</w>
+            <hi rendition="#aq">
+               <w xml:id="tu_20_xTok_000434" pos="CARD" lemma="700" ana="#fs_tu_20_xTok_000434">700.</w>
+            </hi>
+            <w xml:id="tu_20_xTok_000436" pos="NN" lemma="Gulden" ana="#fs_tu_20_xTok_000436">Gulden</w>
+            <w xml:id="tu_20_xTok_000438" pos="NN" lemma="Geld" ana="#fs_tu_20_xTok_000438">Geld</w>
+            <pc xml:id="tu_20_xTok_000440" pos="$(" ana="#fs_tu_20_xTok_000440">/</pc>
+            <w xml:id="tu_20_xTok_000442" pos="KON" lemma="und" ana="#fs_tu_20_xTok_000442">und</w>
+            <w xml:id="tu_20_xTok_000444" pos="NN" lemma="Geldeswert" ana="#fs_tu_20_xTok_000444">Gelds<lb break="no" rend="d"/>werth</w>
+            <w xml:id="tu_20_xTok_000447" pos="VVPP" lemma="überkommen" ana="#fs_tu_20_xTok_000447">überkommen</w>
+            <pc xml:id="tu_20_xTok_000449" pos="$(" ana="#fs_tu_20_xTok_000449">/</pc>
+            <w xml:id="tu_20_xTok_000451" pos="ADV" lemma="also" ana="#fs_tu_20_xTok_000451">also</w>
+            <w xml:id="tu_20_xTok_000453" pos="KOUS" lemma="dass" ana="#fs_tu_20_xTok_000453">daß</w>
+            <w xml:id="tu_20_xTok_000455" pos="ART" lemma="d" ana="#fs_tu_20_xTok_000455">die</w>
+            <w xml:id="tu_20_xTok_000457" pos="ADV" lemma="diesfalls" ana="#fs_tu_20_xTok_000457">dießfahls</w>
+            <w xml:id="tu_20_xTok_000459" pos="ADJA" lemma="verlustig" ana="#fs_tu_20_xTok_000459">verlustigte</w>
+            <lb/>
+            <w xml:id="tu_20_xTok_000460" pos="NN" lemma="Standesperson" ana="#fs_tu_20_xTok_000460">Stands=Persohn</w>
+            <w xml:id="tu_20_xTok_000462" pos="APPR" lemma="über" ana="#fs_tu_20_xTok_000462">über</w>
+            <w xml:id="tu_20_xTok_000464" pos="PDS" lemma="d" ana="#fs_tu_20_xTok_000464">das</w>
+            <pc xml:id="tu_20_xTok_000466" pos="$(" ana="#fs_tu_20_xTok_000466">/</pc>
+            <w xml:id="tu_20_xTok_000468" pos="PRELS" lemma="was" ana="#fs_tu_20_xTok_000468">was</w>
+            <w xml:id="tu_20_xTok_000470" pos="PDS" lemma="dieselbe" ana="#fs_tu_20_xTok_000470">derselben</w>
+            <w xml:id="tu_20_xTok_000472" pos="ADV" lemma="teils" ana="#fs_tu_20_xTok_000472">theils</w>
+            <w xml:id="tu_20_xTok_000474" pos="APPR" lemma="zu" ana="#fs_tu_20_xTok_000474">zu</w>
+            <w xml:id="tu_20_xTok_000476" pos="NE::top" lemma="Pressburg" ana="#fs_tu_20_xTok_000476">Preß<lb break="no" rend="d"/>burg</w>
+            <w xml:id="tu_20_xTok_000479" pos="ADV" lemma="teils" ana="#fs_tu_20_xTok_000479">theils</w>
+            <w xml:id="tu_20_xTok_000481" pos="APPR" lemma="in" ana="#fs_tu_20_xTok_000481">in</w>
+            <w xml:id="tu_20_xTok_000483" pos="NE::top" join="right" lemma="Graz" ana="#fs_tu_20_xTok_000483">Grätz</w>
+            <pc xml:id="tu_20_xTok_000484" pos="$," ana="#fs_tu_20_xTok_000484">,</pc>
+            <w xml:id="tu_20_xTok_000486" pos="KON" lemma="und" ana="#fs_tu_20_xTok_000486">und</w>
+            <w xml:id="tu_20_xTok_000488" pos="ADV" lemma="allhier" ana="#fs_tu_20_xTok_000488">allhier</w>
+            <w xml:id="tu_20_xTok_000490" pos="APPR" lemma="von" ana="#fs_tu_20_xTok_000490">von</w>
+            <w xml:id="tu_20_xTok_000492" pos="NN" lemma="Gericht" ana="#fs_tu_20_xTok_000492">Gericht</w>
+            <w xml:id="tu_20_xTok_000494" pos="APZR" lemma="aus" ana="#fs_tu_20_xTok_000494">aus</w>
+            <hi rendition="#aq">
+               <w xml:id="tu_20_xTok_000496" pos="FM" lemma="in" ana="#fs_tu_20_xTok_000496">in</w>
+               <w xml:id="tu_20_xTok_000498" pos="FM" lemma="natura" ana="#fs_tu_20_xTok_000498">natura</w>
+            </hi>
+            <w xml:id="tu_20_xTok_000498c" pos="PTKVZ" lemma="zurück" ana="#fs_tu_20_xTok_000498c">zuruck</w>
+            <w xml:id="tu_20_xTok_000501" pos="VVPP" lemma="zurückstellen" ana="#fs_tu_20_xTok_000501">gestellet</w>
+            <w xml:id="tu_20_xTok_000503" pos="VAPP" join="right" lemma="werden" ana="#fs_tu_20_xTok_000503">worden</w>
+            <pc xml:id="tu_20_xTok_000504" pos="$," ana="#fs_tu_20_xTok_000504">,</pc>
+            <w xml:id="tu_20_xTok_000506" pos="ADV" lemma="annoch" ana="#fs_tu_20_xTok_000506">annoch</w>
+            <w xml:id="tu_20_xTok_000508" pos="ART" lemma="ein" ana="#fs_tu_20_xTok_000508">einen</w>
+            <w xml:id="tu_20_xTok_000510" pos="NN" lemma="Schaden" ana="#fs_tu_20_xTok_000510">Schaden</w>
+            <lb/>
+            <hi rendition="#aq">
+               <w xml:id="tu_20_xTok_000511" pos="APPR" lemma="per" ana="#fs_tu_20_xTok_000511">per</w>
+               <w xml:id="tu_20_xTok_000513" pos="CARD" lemma="722" ana="#fs_tu_20_xTok_000513">722.</w>
+            </hi>
+            <w xml:id="tu_20_xTok_000515" pos="NN" lemma="Gulden" ana="#fs_tu_20_xTok_000515">Gulden</w>
+            <hi rendition="#aq">
+               <w xml:id="tu_20_xTok_000517" pos="CARD" lemma="33" ana="#fs_tu_20_xTok_000517">33.</w>
+            </hi>
+            <w xml:id="tu_20_xTok_000519" pos="NN" lemma="Kreuzer" ana="#fs_tu_20_xTok_000519">Kreutzer</w>
+            <w xml:id="tu_20_xTok_000521" pos="VVINF" lemma="erleiden" ana="#fs_tu_20_xTok_000521">erleyden</w>
+            <w xml:id="tu_20_xTok_000523" pos="VMINF" join="right" lemma="müssen" ana="#fs_tu_20_xTok_000523">müssen</w>
+            <pc xml:id="tu_20_xTok_000524" pos="$." ana="#fs_tu_20_xTok_000524">.</pc>
+         </p>
+         <pb facs="17420627_JohannGeorgD_c_wb.jp2" type="primary"/>
+         <figure type="ornament" ana="#iconclass:48A987 #iconclass:48A9833 #iconclass:48AA9833">
+            <figDesc>Kopfleiste aus stilisierten floralen Ornamenten</figDesc>
+         </figure>
+         <lg type="poem" org="uniform" sample="complete">
+            <head rendition="#c">
+               <w xml:id="tu_20_xTok_000525" pos="NN" join="right" lemma="Urlaublied" ana="#fs_tu_20_xTok_000525">
+                  <hi rendition="#in">U</hi>rlaub=<hi rendition="#in">L</hi>ied</w>
+               <pc xml:id="tu_20_xTok_000529" pos="$." ana="#fs_tu_20_xTok_000529">.</pc>
+            </head>
+            <lb/>
+            <lg type="stanza" org="uniform" sample="complete">
+               <head rendition="#c">
+                  <hi rendition="#aq">
+                     <w xml:id="tu_20_xTok_000530" pos="ADV" lemma="1" ana="#fs_tu_20_xTok_000530">1.</w>
+                  </hi>
+               </head>
+               <lb/>
+               <l xml:id="fb_17420627_JohannGeorgD_l_0001">
+                  <w xml:id="tu_20_xTok_000531" pos="ADV" lemma="so" ana="#fs_tu_20_xTok_000531">
+                     <hi rendition="#in">S</hi>O</w>
+                  <w xml:id="tu_20_xTok_000534" pos="VVFINPPER" join="right" lemma="gehen_es" ana="#fs_tu_20_xTok_000534">geht's</w>
+                  <pc xml:id="tu_20_xTok_000535" pos="$." ana="#fs_tu_20_xTok_000535">!</pc>
+                  <w xml:id="tu_20_xTok_000537" pos="KOUS" lemma="wenn" ana="#fs_tu_20_xTok_000537">wann</w>
+                  <w xml:id="tu_20_xTok_000539" pos="PIS" lemma="man" ana="#fs_tu_20_xTok_000539">man</w>
+                  <w xml:id="tu_20_xTok_000541" pos="VVFIN" join="right" lemma="verachten" ana="#fs_tu_20_xTok_000541">verachtet</w>
+                  <pc xml:id="tu_20_xTok_000542" pos="$," ana="#fs_tu_20_xTok_000542">,</pc>
+               </l>
+               <l xml:id="fb_17420627_JohannGeorgD_l_0002">
+                  <w xml:id="tu_20_xTok_000543" pos="ADJA" lemma="heilsam" ana="#fs_tu_20_xTok_000543">heylsamen</w>
+                  <w xml:id="tu_20_xTok_000545" pos="NN" join="right" lemma="Lebenslauf" ana="#fs_tu_20_xTok_000545">Lebens<lb break="no" rend="d"/>Lauf</w>
+                  <pc xml:id="tu_20_xTok_000547" pos="$," ana="#fs_tu_20_xTok_000547">,</pc>
+               </l>
+               <l xml:id="fb_17420627_JohannGeorgD_l_0003">
+                  <w xml:id="tu_20_xTok_000548" pos="NN" lemma="Gott" ana="#fs_tu_20_xTok_000548">GOttes</w>
+                  <w xml:id="tu_20_xTok_000550" pos="NN" lemma="Gebot" ana="#fs_tu_20_xTok_000550">Gebott</w>
+                  <w xml:id="tu_20_xTok_000552" pos="VVFIN" join="right" lemma="verlachen" ana="#fs_tu_20_xTok_000552">verlachet</w>
+                  <pc xml:id="tu_20_xTok_000553" pos="$," ana="#fs_tu_20_xTok_000553">,</pc>
+               </l>
+               <l xml:id="fb_17420627_JohannGeorgD_l_0004">
+                  <w xml:id="tu_20_xTok_000554" pos="KOUS" lemma="alsdann" ana="#fs_tu_20_xTok_000554">alsdann</w>
+                  <w xml:id="tu_20_xTok_000556" pos="VVFIN" lemma="folgen" ana="#fs_tu_20_xTok_000556">fol<lb break="no" rend="d"/>get</w>
+                  <w xml:id="tu_20_xTok_000559" pos="PAV" join="right" lemma="darauf" ana="#fs_tu_20_xTok_000559">darauf</w>
+                  <pc xml:id="tu_20_xTok_000560" pos="$." ana="#fs_tu_20_xTok_000560">.</pc>
+               </l>
+            </lg>
+            <lg type="stanza" rendition="#et" org="uniform" sample="complete">
+               <head rendition="#c">
+                  <hi rendition="#aq">
+                     <w xml:id="tu_20_xTok_000561" pos="ADV" lemma="2" ana="#fs_tu_20_xTok_000561">2.</w>
+                  </hi>
+               </head>
+               <lb/>
+               <l rendition="#et" xml:id="fb_17420627_JohannGeorgD_l_0005">
+                  <w xml:id="tu_20_xTok_000562" pos="KOUS" lemma="dass" ana="#fs_tu_20_xTok_000562">Daß</w>
+                  <w xml:id="tu_20_xTok_000564" pos="PIS" lemma="man" ana="#fs_tu_20_xTok_000564">man</w>
+                  <w xml:id="tu_20_xTok_000566" pos="VVFIN" lemma="fallen" ana="#fs_tu_20_xTok_000566">fallt</w>
+                  <w xml:id="tu_20_xTok_000568" pos="APPR" lemma="in" ana="#fs_tu_20_xTok_000568">in</w>
+                  <w xml:id="tu_20_xTok_000570" pos="ART" lemma="d" ana="#fs_tu_20_xTok_000570">die</w>
+                  <w xml:id="tu_20_xTok_000572" pos="NN" join="right" lemma="Sünde" ana="#fs_tu_20_xTok_000572">Sünd</w>
+                  <pc xml:id="tu_20_xTok_000573" pos="$," ana="#fs_tu_20_xTok_000573">,</pc>
+               </l>
+               <l xml:id="fb_17420627_JohannGeorgD_l_0006">
+                  <w xml:id="tu_20_xTok_000574" pos="KOUS" lemma="gleichwie" ana="#fs_tu_20_xTok_000574">gleichwie</w>
+                  <w xml:id="tu_20_xTok_000576" pos="PPERPPER" lemma="ich_es" ana="#fs_tu_20_xTok_000576">ichs</w>
+                  <w xml:id="tu_20_xTok_000578" pos="VAFIN" lemma="haben" ana="#fs_tu_20_xTok_000578">hab</w>
+                  <lb/>
+                  <w xml:id="tu_20_xTok_000579" pos="VVPP" join="right" lemma="tun" ana="#fs_tu_20_xTok_000579">gethan</w>
+                  <pc xml:id="tu_20_xTok_000580" pos="$," ana="#fs_tu_20_xTok_000580">,</pc>
+               </l>
+               <l xml:id="fb_17420627_JohannGeorgD_l_0007">
+                  <w xml:id="tu_20_xTok_000581" pos="APPRART" lemma="zum" ana="#fs_tu_20_xTok_000581">zum</w>
+                  <w xml:id="tu_20_xTok_000583" pos="VVINF-NN" lemma="stehlen" ana="#fs_tu_20_xTok_000583">Stehlen</w>
+                  <w xml:id="tu_20_xTok_000585" pos="VAFIN" lemma="sein" ana="#fs_tu_20_xTok_000585">war</w>
+                  <w xml:id="tu_20_xTok_000587" pos="VVPP" join="right" lemma="sinnen" ana="#fs_tu_20_xTok_000587">gesinnt</w>
+                  <pc xml:id="tu_20_xTok_000588" pos="$," ana="#fs_tu_20_xTok_000588">,</pc>
+               </l>
+               <l xml:id="fb_17420627_JohannGeorgD_l_0008">
+                  <w xml:id="tu_20_xTok_000589" pos="ADV" lemma="nun" ana="#fs_tu_20_xTok_000589">nun</w>
+                  <w xml:id="tu_20_xTok_000591" pos="NN" lemma="Todesstrafe" ana="#fs_tu_20_xTok_000591">Todtes=Straf</w>
+                  <lb/>
+                  <w xml:id="tu_20_xTok_000592" pos="VMFIN" lemma="müssen" ana="#fs_tu_20_xTok_000592">muß</w>
+                  <w xml:id="tu_20_xTok_000594" pos="VVINF" lemma="anhören" ana="#fs_tu_20_xTok_000594">hören</w>
+                  <w xml:id="tu_20_xTok_000596" pos="PTKVZ" join="right" lemma="an" ana="#fs_tu_20_xTok_000596">an</w>
+                  <pc xml:id="tu_20_xTok_000597" pos="$." ana="#fs_tu_20_xTok_000597">.</pc>
+               </l>
+            </lg>
+            <lg type="stanza" rendition="#et" org="uniform" sample="complete">
+               <head rendition="#c">
+                  <hi rendition="#aq">
+                     <w xml:id="tu_20_xTok_000598" pos="ADV" lemma="3" ana="#fs_tu_20_xTok_000598">3.</w>
+                  </hi>
+               </head>
+               <lb/>
+               <l rendition="#et" xml:id="fb_17420627_JohannGeorgD_l_0009">
+                  <w xml:id="tu_20_xTok_000599" pos="VVFINPPER" join="right" lemma="bekennen_es" ana="#fs_tu_20_xTok_000599">Bekenns</w>
+                  <pc xml:id="tu_20_xTok_000600" pos="$," ana="#fs_tu_20_xTok_000600">,</pc>
+                  <w xml:id="tu_20_xTok_000602" pos="VAFIN" lemma="haben" ana="#fs_tu_20_xTok_000602">hab</w>
+                  <w xml:id="tu_20_xTok_000604" pos="ADJD" lemma="groß" ana="#fs_tu_20_xTok_000604">groß</w>
+                  <w xml:id="tu_20_xTok_000606" pos="VVPP" join="right" lemma="irren" ana="#fs_tu_20_xTok_000606">geirret</w>
+                  <pc xml:id="tu_20_xTok_000607" pos="$," ana="#fs_tu_20_xTok_000607">,</pc>
+               </l>
+               <l xml:id="fb_17420627_JohannGeorgD_l_0010">
+                  <w xml:id="tu_20_xTok_000608" pos="ADV" lemma="heute" ana="#fs_tu_20_xTok_000608">heut</w>
+                  <w xml:id="tu_20_xTok_000610" pos="VVINF" lemma="sterben" ana="#fs_tu_20_xTok_000610">sterben</w>
+                  <w xml:id="tu_20_xTok_000612" pos="VMFIN" lemma="müssen" ana="#fs_tu_20_xTok_000612">muß</w>
+                  <lb/>
+                  <w xml:id="tu_20_xTok_000613" pos="APPR" lemma="mit" ana="#fs_tu_20_xTok_000613">mit</w>
+                  <w xml:id="tu_20_xTok_000615" pos="NN" join="right" lemma="Schande" ana="#fs_tu_20_xTok_000615">Schand</w>
+                  <pc xml:id="tu_20_xTok_000616" pos="$," ana="#fs_tu_20_xTok_000616">,</pc>
+               </l>
+               <l xml:id="fb_17420627_JohannGeorgD_l_0011">
+                  <w xml:id="tu_20_xTok_000617" pos="APPRART" lemma="zur" ana="#fs_tu_20_xTok_000617">zur</w>
+                  <w xml:id="tu_20_xTok_000619" pos="NN" lemma="Richtstatt" ana="#fs_tu_20_xTok_000619">Richtstatt</w>
+                  <w xml:id="tu_20_xTok_000621" pos="VAFIN" lemma="werden" ana="#fs_tu_20_xTok_000621">werd</w>
+                  <w xml:id="tu_20_xTok_000623" pos="VVPP" join="right" lemma="führen" ana="#fs_tu_20_xTok_000623">geführet</w>
+                  <pc xml:id="tu_20_xTok_000624" pos="$," ana="#fs_tu_20_xTok_000624">,</pc>
+               </l>
+               <l xml:id="fb_17420627_JohannGeorgD_l_0012">
+                  <w xml:id="tu_20_xTok_000625" pos="APPR" lemma="mit" ana="#fs_tu_20_xTok_000625">mit</w>
+                  <lb/>
+                  <w xml:id="tu_20_xTok_000626" pos="NN" lemma="Strang" ana="#fs_tu_20_xTok_000626">Strang</w>
+                  <w xml:id="tu_20_xTok_000628" pos="APPR" lemma="durch" ana="#fs_tu_20_xTok_000628">durch</w>
+                  <w xml:id="tu_20_xTok_000630" pos="NN" lemma="Freimann" ana="#fs_tu_20_xTok_000630">Freymanns</w>
+                  <w xml:id="tu_20_xTok_000632" pos="NN" join="right" lemma="Hand" ana="#fs_tu_20_xTok_000632">Hand</w>
+                  <pc xml:id="tu_20_xTok_000633" pos="$." ana="#fs_tu_20_xTok_000633">.</pc>
+               </l>
+            </lg>
+            <lg type="stanza" rendition="#et" org="uniform" sample="complete">
+               <head rendition="#c">
+                  <hi rendition="#aq">
+                     <w xml:id="tu_20_xTok_000634" pos="ADV" lemma="4" ana="#fs_tu_20_xTok_000634">4.</w>
+                  </hi>
+               </head>
+               <lb/>
+               <l rendition="#et" xml:id="fb_17420627_JohannGeorgD_l_0013">
+                  <w xml:id="tu_20_xTok_000635" pos="PPOSAT" lemma="mein" ana="#fs_tu_20_xTok_000635">Mein</w>
+                  <w xml:id="tu_20_xTok_000637" pos="NN" lemma="Urteil" ana="#fs_tu_20_xTok_000637">Urtheil</w>
+                  <w xml:id="tu_20_xTok_000639" pos="VMFIN" lemma="wollen" ana="#fs_tu_20_xTok_000639">will</w>
+                  <w xml:id="tu_20_xTok_000641" pos="ADV" lemma="gern" ana="#fs_tu_20_xTok_000641">gern</w>
+                  <w xml:id="tu_20_xTok_000643" pos="VVINF" join="right" lemma="leiden" ana="#fs_tu_20_xTok_000643">leyden</w>
+                  <pc xml:id="tu_20_xTok_000644" pos="$," ana="#fs_tu_20_xTok_000644">,</pc>
+               </l>
+               <l xml:id="fb_17420627_JohannGeorgD_l_0014">
+                  <w xml:id="tu_20_xTok_000645" pos="ART" lemma="d" ana="#fs_tu_20_xTok_000645">das</w>
+                  <w xml:id="tu_20_xTok_000647" pos="NN" lemma="Laster" ana="#fs_tu_20_xTok_000647">Laster</w>
+                  <w xml:id="tu_20_xTok_000649" pos="VAFINPPER" lemma="haben_es" ana="#fs_tu_20_xTok_000649">hats</w>
+                  <lb/>
+                  <w xml:id="tu_20_xTok_000650" pos="VVPP" join="right" lemma="verschulden" ana="#fs_tu_20_xTok_000650">verschuld</w>
+                  <pc xml:id="tu_20_xTok_000651" pos="$," ana="#fs_tu_20_xTok_000651">,</pc>
+               </l>
+               <l xml:id="fb_17420627_JohannGeorgD_l_0015">
+                  <w xml:id="tu_20_xTok_000652" pos="KOUSPPER" lemma="wann_es" ana="#fs_tu_20_xTok_000652">wanns</w>
+                  <w xml:id="tu_20_xTok_000654" pos="VVFIN" lemma="kommen" ana="#fs_tu_20_xTok_000654">kommt</w>
+                  <w xml:id="tu_20_xTok_000656" pos="APPRART" lemma="zum" ana="#fs_tu_20_xTok_000656">zum</w>
+                  <w xml:id="tu_20_xTok_000658" pos="ADJA" lemma="letzte" ana="#fs_tu_20_xTok_000658">letzt</w>
+                  <w xml:id="tu_20_xTok_000660" pos="VVINF-NN" join="right" lemma="hinscheiden" ana="#fs_tu_20_xTok_000660">Hinscheyden</w>
+                  <pc xml:id="tu_20_xTok_000661" pos="$," ana="#fs_tu_20_xTok_000661">,</pc>
+               </l>
+               <l xml:id="fb_17420627_JohannGeorgD_l_0016">
+                  <w xml:id="tu_20_xTok_000662" pos="NE" lemma="Jesus" ana="#fs_tu_20_xTok_000662">JEsus</w>
+                  <lb/>
+                  <w xml:id="tu_20_xTok_000663" pos="VVIMP" lemma="geben" ana="#fs_tu_20_xTok_000663">gib</w>
+                  <w xml:id="tu_20_xTok_000665" pos="NN" lemma="Gnade" ana="#fs_tu_20_xTok_000665">Gnad</w>
+                  <w xml:id="tu_20_xTok_000667" pos="KON" lemma="und" ana="#fs_tu_20_xTok_000667">und</w>
+                  <w xml:id="tu_20_xTok_000669" pos="NN" join="right" lemma="Huld" ana="#fs_tu_20_xTok_000669">Huld</w>
+                  <pc xml:id="tu_20_xTok_000670" pos="$." ana="#fs_tu_20_xTok_000670">.</pc>
+               </l>
+            </lg>
+            <lg type="stanza" rendition="#et" org="uniform" sample="complete">
+               <head rendition="#c">
+                  <hi rendition="#aq">
+                     <w xml:id="tu_20_xTok_000671" pos="ADV" lemma="5" ana="#fs_tu_20_xTok_000671">5.</w>
+                  </hi>
+               </head>
+               <lb/>
+               <l rendition="#et" xml:id="fb_17420627_JohannGeorgD_l_0017">
+                  <w xml:id="tu_20_xTok_000672" pos="NE" lemma="Maria" ana="#fs_tu_20_xTok_000672">Maria</w>
+                  <w xml:id="tu_20_xTok_000674" pos="NN" join="right" lemma="Gnadenthron" ana="#fs_tu_20_xTok_000674">Gnadens=Thron</w>
+                  <pc xml:id="tu_20_xTok_000675" pos="$," ana="#fs_tu_20_xTok_000675">,</pc>
+               </l>
+               <l xml:id="fb_17420627_JohannGeorgD_l_0018">
+                  <w xml:id="tu_20_xTok_000676" pos="VVIMP" lemma="machen" ana="#fs_tu_20_xTok_000676">mach</w>
+                  <w xml:id="tu_20_xTok_000678" pos="KOUS" lemma="dass" ana="#fs_tu_20_xTok_000678">daß</w>
+                  <w xml:id="tu_20_xTok_000680" pos="PPER" lemma="ich" ana="#fs_tu_20_xTok_000680">ich</w>
+                  <w xml:id="tu_20_xTok_000682" pos="ADJD" lemma="selig" ana="#fs_tu_20_xTok_000682">seelig</w>
+                  <lb/>
+                  <w xml:id="tu_20_xTok_000683" pos="VVFIN" join="right" lemma="sterben" ana="#fs_tu_20_xTok_000683">sterbe</w>
+                  <pc xml:id="tu_20_xTok_000684" pos="$," ana="#fs_tu_20_xTok_000684">,</pc>
+               </l>
+               <l xml:id="fb_17420627_JohannGeorgD_l_0019">
+                  <w xml:id="tu_20_xTok_000685" pos="VVIMP" lemma="bitten" ana="#fs_tu_20_xTok_000685">bitt</w>
+                  <w xml:id="tu_20_xTok_000687" pos="APPR" lemma="für" ana="#fs_tu_20_xTok_000687">für</w>
+                  <w xml:id="tu_20_xTok_000689" pos="PPER" lemma="ich" ana="#fs_tu_20_xTok_000689">mich</w>
+                  <w xml:id="tu_20_xTok_000691" pos="PPOSAT" lemma="dein" ana="#fs_tu_20_xTok_000691">deinen</w>
+                  <w xml:id="tu_20_xTok_000693" pos="NN" join="right" lemma="Sohn" ana="#fs_tu_20_xTok_000693">Sohn</w>
+                  <pc xml:id="tu_20_xTok_000694" pos="$," ana="#fs_tu_20_xTok_000694">,</pc>
+               </l>
+               <l xml:id="fb_17420627_JohannGeorgD_l_0020">
+                  <w xml:id="tu_20_xTok_000695" pos="ART" lemma="d" ana="#fs_tu_20_xTok_000695">daß</w>
+                  <w xml:id="tu_20_xTok_000697" pos="ADJA" lemma="ewig" ana="#fs_tu_20_xTok_000697">ewig</w>
+                  <w xml:id="tu_20_xTok_000699" pos="NN" lemma="Heil" ana="#fs_tu_20_xTok_000699">Heyl</w>
+                  <lb/>
+                  <w xml:id="tu_20_xTok_000700" pos="VVFIN" join="right" lemma="erwerben" ana="#fs_tu_20_xTok_000700">erwerbe</w>
+                  <pc xml:id="tu_20_xTok_000701" pos="$." ana="#fs_tu_20_xTok_000701">.</pc>
+               </l>
+            </lg>
+            <fw type="catch">Jhr</fw>
+            <pb facs="17420627_JohannGeorgD_d_wb.jp2" type="primary"/>
+            <lg type="stanza" rendition="#et" org="uniform" sample="complete">
+               <head rendition="#c">
+                  <hi rendition="#aq">
+                     <w xml:id="tu_20_xTok_000702" pos="ADV" lemma="6" ana="#fs_tu_20_xTok_000702">6.</w>
+                  </hi>
+               </head>
+               <lb/>
+               <l rendition="#et" xml:id="fb_17420627_JohannGeorgD_l_0021">
+                  <w xml:id="tu_20_xTok_000703" pos="PPER" lemma="ihr" ana="#fs_tu_20_xTok_000703">Jhr</w>
+                  <w xml:id="tu_20_xTok_000705" pos="PIS" lemma="all" ana="#fs_tu_20_xTok_000705">alle</w>
+                  <w xml:id="tu_20_xTok_000707" pos="PRELS" lemma="d" ana="#fs_tu_20_xTok_000707">die</w>
+                  <w xml:id="tu_20_xTok_000709" pos="PPER" lemma="ich" ana="#fs_tu_20_xTok_000709">mich</w>
+                  <w xml:id="tu_20_xTok_000711" pos="VVFIN" join="right" lemma="sehen" ana="#fs_tu_20_xTok_000711">sehet</w>
+                  <pc xml:id="tu_20_xTok_000712" pos="$," ana="#fs_tu_20_xTok_000712">,</pc>
+               </l>
+               <l xml:id="fb_17420627_JohannGeorgD_l_0022">
+                  <w xml:id="tu_20_xTok_000713" pos="APPR" lemma="an" ana="#fs_tu_20_xTok_000713">an</w>
+                  <w xml:id="tu_20_xTok_000715" pos="PPER" lemma="ich" ana="#fs_tu_20_xTok_000715">mir</w>
+                  <w xml:id="tu_20_xTok_000717" pos="VVIMP" lemma="nehmen" ana="#fs_tu_20_xTok_000717">nehmt</w>
+                  <w xml:id="tu_20_xTok_000719" pos="ART" lemma="ein" ana="#fs_tu_20_xTok_000719">ein</w>
+                  <w xml:id="tu_20_xTok_000721" pos="NN" join="right" lemma="Beispiel" ana="#fs_tu_20_xTok_000721">Bey<lb break="no" rend="d"/>spiel</w>
+                  <pc xml:id="tu_20_xTok_000723" pos="$," ana="#fs_tu_20_xTok_000723">,</pc>
+               </l>
+               <l xml:id="fb_17420627_JohannGeorgD_l_0023">
+                  <w xml:id="tu_20_xTok_000724" pos="PTKNEG" lemma="nicht" ana="#fs_tu_20_xTok_000724">nicht</w>
+                  <w xml:id="tu_20_xTok_000726" pos="ADV" lemma="also" ana="#fs_tu_20_xTok_000726">also</w>
+                  <w xml:id="tu_20_xTok_000728" pos="PTKVZ" lemma="vorbei" ana="#fs_tu_20_xTok_000728">vorbey</w>
+                  <w xml:id="tu_20_xTok_000730" pos="VVIMP" join="right" lemma="vorbeigehen" ana="#fs_tu_20_xTok_000730">gehet</w>
+                  <pc xml:id="tu_20_xTok_000731" pos="$," ana="#fs_tu_20_xTok_000731">,</pc>
+               </l>
+               <l xml:id="fb_17420627_JohannGeorgD_l_0024">
+                  <w xml:id="tu_20_xTok_000732" pos="VVIMP" lemma="erfüllen" ana="#fs_tu_20_xTok_000732">erfüllet</w>
+                  <w xml:id="tu_20_xTok_000734" pos="VVINF" lemma="meinen" ana="#fs_tu_20_xTok_000734">meinen</w>
+                  <w xml:id="tu_20_xTok_000736" pos="NN" join="right" lemma="Wille" ana="#fs_tu_20_xTok_000736">Will</w>
+                  <pc xml:id="tu_20_xTok_000737" pos="$." ana="#fs_tu_20_xTok_000737">.</pc>
+               </l>
+            </lg>
+            <lg type="stanza" rendition="#et" org="uniform" sample="complete">
+               <head rendition="#c">
+                  <hi rendition="#aq">
+                     <w xml:id="tu_20_xTok_000738" pos="ADV" lemma="7" ana="#fs_tu_20_xTok_000738">7.</w>
+                  </hi>
+               </head>
+               <lb/>
+               <l rendition="#et" xml:id="fb_17420627_JohannGeorgD_l_0025">
+                  <w xml:id="tu_20_xTok_000740" pos="ART" lemma="ein" ana="#fs_tu_20_xTok_000740">Ein</w>
+                  <w xml:id="tu_20_xTok_000742" lemma="Vaterunser" pos="NN">Vatter Unser</w>
+                  <w xml:id="tu_20_xTok_000746" pos="VVIMP" join="right" lemma="schenken" ana="#fs_tu_20_xTok_000746">schenckt</w>
+                  <pc xml:id="tu_20_xTok_000747" pos="$," ana="#fs_tu_20_xTok_000747">,</pc>
+               </l>
+               <l xml:id="fb_17420627_JohannGeorgD_l_0026">
+                  <w xml:id="tu_20_xTok_000748" pos="APPR" lemma="mit" ana="#fs_tu_20_xTok_000748">mit</w>
+                  <w xml:id="tu_20_xTok_000750" pos="ADJA" lemma="liebevoll" ana="#fs_tu_20_xTok_000750">Liebs=voller</w>
+                  <w xml:id="tu_20_xTok_000752" pos="NN" join="right" lemma="Andacht" ana="#fs_tu_20_xTok_000752">An<lb break="no" rend="d"/>dacht</w>
+                  <pc xml:id="tu_20_xTok_000754" pos="$," ana="#fs_tu_20_xTok_000754">,</pc>
+               </l>
+               <l xml:id="fb_17420627_JohannGeorgD_l_0027">
+                  <w xml:id="tu_20_xTok_000755" pos="ART" lemma="d" ana="#fs_tu_20_xTok_000755">der</w>
+                  <w xml:id="tu_20_xTok_000757" pos="ADJA" lemma="arm" ana="#fs_tu_20_xTok_000757">armen</w>
+                  <w xml:id="tu_20_xTok_000759" pos="NN" lemma="Seele" ana="#fs_tu_20_xTok_000759">Seel</w>
+                  <w xml:id="tu_20_xTok_000761" pos="VAIMP" lemma="sein" ana="#fs_tu_20_xTok_000761">seyd</w>
+                  <w xml:id="tu_20_xTok_000763" pos="ADJD" join="right" lemma="eingedenk" ana="#fs_tu_20_xTok_000763">ingedenck</w>
+                  <pc xml:id="tu_20_xTok_000764" pos="$," ana="#fs_tu_20_xTok_000764">,</pc>
+               </l>
+               <l xml:id="fb_17420627_JohannGeorgD_l_0028">
+                  <w xml:id="tu_20_xTok_000765" pos="APPRART" lemma="zum" ana="#fs_tu_20_xTok_000765">zum</w>
+                  <w xml:id="tu_20_xTok_000767" pos="NN" lemma="Beschluss" ana="#fs_tu_20_xTok_000767">Bschluß</w>
+                  <lb/>
+                  <w xml:id="tu_20_xTok_000768" pos="ADV" lemma="noch" ana="#fs_tu_20_xTok_000768">noch</w>
+                  <w xml:id="tu_20_xTok_000770" pos="ADV" lemma="wohl" ana="#fs_tu_20_xTok_000770">wohl</w>
+                  <w xml:id="tu_20_xTok_000772" pos="VVPP" join="right" lemma="betrachten" ana="#fs_tu_20_xTok_000772">betracht</w>
+                  <pc xml:id="tu_20_xTok_000773" pos="$." ana="#fs_tu_20_xTok_000773">.</pc>
+               </l>
+            </lg>
+            <lg type="stanza" rendition="#et" org="uniform" sample="complete">
+               <head rendition="#c">
+                  <hi rendition="#aq">
+                     <w xml:id="tu_20_xTok_000774" pos="ADV" lemma="8" ana="#fs_tu_20_xTok_000774">8.</w>
+                  </hi>
+               </head>
+               <lb/>
+               <l rendition="#et" xml:id="fb_17420627_JohannGeorgD_l_0029">
+                  <w xml:id="tu_20_xTok_000776" pos="KOUS" lemma="wie" ana="#fs_tu_20_xTok_000776">Wie</w>
+                  <w xml:id="tu_20_xTok_000778" pos="PIS" lemma="man" ana="#fs_tu_20_xTok_000778">man</w>
+                  <w xml:id="tu_20_xTok_000780" pos="ART" lemma="d" ana="#fs_tu_20_xTok_000780">das</w>
+                  <w xml:id="tu_20_xTok_000782" pos="NN" lemma="Leben" ana="#fs_tu_20_xTok_000782">Leben</w>
+                  <w xml:id="tu_20_xTok_000784" pos="VVFIN" join="right" lemma="führen" ana="#fs_tu_20_xTok_000784">führt</w>
+                  <pc xml:id="tu_20_xTok_000785" pos="$," ana="#fs_tu_20_xTok_000785">,</pc>
+               </l>
+               <l xml:id="fb_17420627_JohannGeorgD_l_0030">
+                  <w xml:id="tu_20_xTok_000786" pos="ADV" lemma="auch" ana="#fs_tu_20_xTok_000786">auch</w>
+                  <w xml:id="tu_20_xTok_000788" pos="ADV" lemma="so" ana="#fs_tu_20_xTok_000788">so</w>
+                  <w xml:id="tu_20_xTok_000790" pos="VVFIN" lemma="erfolgen" ana="#fs_tu_20_xTok_000790">erfolgt</w>
+                  <w xml:id="tu_20_xTok_000792" pos="ART" lemma="d" ana="#fs_tu_20_xTok_000792">der</w>
+                  <lb/>
+                  <w xml:id="tu_20_xTok_000793" pos="NN" join="right" lemma="Tod" ana="#fs_tu_20_xTok_000793">Todt</w>
+                  <pc xml:id="tu_20_xTok_000794" pos="$," ana="#fs_tu_20_xTok_000794">,</pc>
+               </l>
+               <l xml:id="fb_17420627_JohannGeorgD_l_0031">
+                  <w xml:id="tu_20_xTok_000795" pos="KOUS" lemma="weil" ana="#fs_tu_20_xTok_000795">weil</w>
+                  <w xml:id="tu_20_xTok_000797" pos="ADV" lemma="ja" ana="#fs_tu_20_xTok_000797">ja</w>
+                  <w xml:id="tu_20_xTok_000799" pos="ART" lemma="d" ana="#fs_tu_20_xTok_000799">das</w>
+                  <w xml:id="tu_20_xTok_000801" pos="NN" lemma="Recht" ana="#fs_tu_20_xTok_000801">Recht</w>
+                  <w xml:id="tu_20_xTok_000803" pos="VVFIN" join="right" lemma="gebühren" ana="#fs_tu_20_xTok_000803">gebührt</w>
+                  <pc xml:id="tu_20_xTok_000804" pos="$," ana="#fs_tu_20_xTok_000804">,</pc>
+               </l>
+               <l xml:id="fb_17420627_JohannGeorgD_l_0032">
+                  <w xml:id="tu_20_xTok_000805" pos="PTKZU" lemma="zu" ana="#fs_tu_20_xTok_000805">zu</w>
+                  <w xml:id="tu_20_xTok_000807" pos="VVINF" lemma="sterben" ana="#fs_tu_20_xTok_000807">sterben</w>
+                  <w xml:id="tu_20_xTok_000809" pos="APPR" lemma="in" ana="#fs_tu_20_xTok_000809">in</w>
+                  <w xml:id="tu_20_xTok_000811" pos="NN" lemma="Schande" ana="#fs_tu_20_xTok_000811">Schand</w>
+                  <lb/>
+                  <w xml:id="tu_20_xTok_000812" pos="KON" lemma="und" ana="#fs_tu_20_xTok_000812">und</w>
+                  <w xml:id="tu_20_xTok_000814" pos="NN" join="right" lemma="Spott" ana="#fs_tu_20_xTok_000814">Spott</w>
+                  <pc xml:id="tu_20_xTok_000815" pos="$." ana="#fs_tu_20_xTok_000815">.</pc>
+               </l>
+            </lg>
+         </lg>
+         <closer>
+            <hi rendition="#g">
+               <w xml:id="tu_20_xTok_000816" pos="NN" lemma="Ende" ana="#fs_tu_20_xTok_000816">ENDE</w>
+            </hi>
+            <pc xml:id="tu_20_xTok_000817" pos="$." ana="#fs_tu_20_xTok_000817">.</pc>
+         </closer>
+         <figure type="vignette" ana="#iconclass:86 #iconclass:11R71 #iconclass:23U22 #iconclass:31A211 #iconclass:41B31%28%2B2%29 #iconclass:47I111 #iconclass:48A9851 #iconclass:49M412 #iconclass:49MM32">
+            <figDesc>Totenschädel im Viertelprofil nach links gewandt mit daraufliegendem
+               Korn-Ähren/Garben, auf gekreuzten Oberschenkelknochen, links davon ein Stundenglas
+               und ein aufgeschlagenes Buch, rechts davon eine verlöschende Kerze, Schriftzug "SIC
+               VANESCIMUS", N ist spiegelverkehrt, auf horizontal schraffiertem Grund</figDesc>
+         </figure>
+      </body>
+      <fs xml:id="fs_tu_20_xTok_000001">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000004">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000006">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000007">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000012">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000013">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000015">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000017">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000019">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000021">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000023">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000026">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000029">
+         <f name="state">OK</f>
+         <f name="dictref">oov</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000031">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000033">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000035">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000037">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000039">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000041">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000043">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000045">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000047">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000049">
+         <f name="state">OK</f>
+         <f name="dictref">oov</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000050">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000052">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000054">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000055">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000056">
+         <f name="state">OK</f>
+         <f name="dictref">DWB</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000058">
+         <f name="complexlemma">umweil</f>
+         <f name="complextype">KOUS</f>
+         <f name="state">OK</f>
+         <f name="dictref">DWB</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000060">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000062">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000064">
+         <f name="state">OK</f>
+         <f name="dictref">DWB</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000066">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000067">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000069">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000071">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000073">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000075">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000077">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000079">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000081">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000083">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000084">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000085">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000087">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000089">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000091">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000093">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000095">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000097">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000099">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000100">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000104">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000106">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000107">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000108">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000110">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000112">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000114">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000116">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000117">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000119">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000121">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000124">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000126">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000127">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000129">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000131">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000133">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000135">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000137">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000139">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000141">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000143">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000145">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000146">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000148">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000150">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000152">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000154">
+         <f name="state">OK</f>
+         <f name="dictref">oov</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000156">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000158">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000160">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000161">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000163">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000165">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000167">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000169">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000170">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000171">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000173">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000175">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000177">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000179">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000181">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000183">
+         <f name="state">OK</f>
+         <f name="dictref">oov</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000184">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000185">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000188">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000190">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000193">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000194">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000196">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000197">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000200">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000202">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000204">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000205">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000207">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000209">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000211">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000213">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000215">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000217">
+         <f name="state">OK</f>
+         <f name="dictref">oov</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000218">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000220">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000222">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000224">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000226">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000228">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000230">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000232">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000234">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000236">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000238">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000240">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000242">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000244">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000246">
+         <f name="state">OK</f>
+         <f name="dictref">DWB</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000248">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000250">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000252">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000255">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000257">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000259">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000261">
+         <f name="state">OK</f>
+         <f name="dictref">DWB</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000263">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000265">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000267">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000269">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000271">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000273">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000275">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000277">
+         <f name="state">OK</f>
+         <f name="dictref">DWB</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000279">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000281">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000283">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000285">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000287">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000289">
+         <f name="state">OK</f>
+         <f name="dictref">DWB</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000291">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000293">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000295">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000297">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000297b">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000300">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000302">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000304">
+         <f name="state">OK</f>
+         <f name="dictref">DWB</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000306">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000308">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000310">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000312">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000314">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000316">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000318">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000320">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000322">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000324">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000326">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000328">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000330">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000331">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000333">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000335">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000337">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000339">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000341">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000343">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000345">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000347">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000349">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000351">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000354">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000356">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000358">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000360">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000362">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000364">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000367">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000369">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000371">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000373">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000375">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000377">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000379">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000381">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000383">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000385">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000387">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000389">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000391">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000393">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000395">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000397">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000400">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000402">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000403">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000405">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000407">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000409">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000411">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000413">
+         <f name="state">OK</f>
+         <f name="dictref">DWB</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000415">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000417">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000419">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000421">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000423">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000425">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000427">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000429">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000430">
+         <f name="state">OK</f>
+         <f name="dictref">oov</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000432">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000434">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000436">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000438">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000440">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000442">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000444">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000447">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000449">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000451">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000453">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000455">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000457">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000459">
+         <f name="state">OK</f>
+         <f name="dictref">DWB</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000460">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000462">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000464">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000466">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000468">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000470">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000472">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000474">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000476">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000479">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000481">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000483">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000484">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000486">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000488">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000490">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000492">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000494">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000496">
+         <f name="state">OK</f>
+         <f name="dictref">G-LDHW</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000498">
+         <f name="state">OK</f>
+         <f name="dictref">G-LDHW</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000498c">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000501">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000503">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000504">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000506">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000508">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000510">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000511">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000513">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000515">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000517">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000519">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000521">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000523">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000524">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000525">
+         <f name="state">OK</f>
+         <f name="dictref">DWB</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000529">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000530">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000531">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000534">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000535">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000537">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000539">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000541">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000542">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000543">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000545">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000547">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000548">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000550">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000552">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000553">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000554">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000556">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000559">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000560">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000561">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000562">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000564">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000566">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000568">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000570">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000572">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000573">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000574">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000576">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000578">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000579">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000580">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000581">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000583">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000585">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000587">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000588">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000589">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000591">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000592">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000594">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000596">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000597">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000598">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000599">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000600">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000602">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000604">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000606">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000607">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000608">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000610">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000612">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000613">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000615">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000616">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000617">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000619">
+         <f name="state">OK</f>
+         <f name="dictref">DWB</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000621">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000623">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000624">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000625">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000626">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000628">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000630">
+         <f name="state">OK</f>
+         <f name="dictref">DRW</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000632">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000633">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000634">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000635">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000637">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000639">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000641">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000643">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000644">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000645">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000647">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000649">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000650">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000651">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000652">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000654">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000656">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000658">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000660">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000661">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000662">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000663">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000665">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000667">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000669">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000670">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000671">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000672">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000674">
+         <f name="state">OK</f>
+         <f name="dictref">DWB</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000675">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000676">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000678">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000680">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000682">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000683">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000684">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000685">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000687">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000689">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000691">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000693">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000694">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000695">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000697">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000699">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000700">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000701">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000702">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000703">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000705">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000707">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000709">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000711">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000712">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000713">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000715">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000717">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000719">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000721">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000723">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000724">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000726">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000728">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000730">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000731">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000732">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000734">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000736">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000737">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000738">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000740">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000742">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000744">
+         <f name="complexlemma">Vaterunser</f>
+         <f name="complextype">NN</f>
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000746">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000747">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000748">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000750">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000752">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000754">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000755">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000757">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000759">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000761">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000763">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000764">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000765">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000767">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000768">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000770">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000772">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000773">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000774">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000776">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000778">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000780">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000782">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000784">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000785">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000786">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000788">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000790">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000792">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000793">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000794">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000795">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000797">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000799">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000801">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000803">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000804">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000805">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000807">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000809">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000811">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000812">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000814">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000815">
+         <f name="state">OK</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000816">
+         <f name="state">OK</f>
+         <f name="dictref">Duden</f>
+      </fs>
+      <fs xml:id="fs_tu_20_xTok_000817">
+         <f name="state">OK</f>
+      </fs>
+   </text>
+</TEI>

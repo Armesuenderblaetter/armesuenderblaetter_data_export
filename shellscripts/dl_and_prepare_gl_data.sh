@@ -10,8 +10,8 @@ fi
 gitlab_project_id='262'
 gitlab_api_base_url='https://gitlab.oeaw.ac.at/api/v4/projects/'
 gitlab_api_request='/repository/archive?'
-output_archive="./flugblätter.tar.gz"
-custom_output_dir="./todesurteile_master/"
+output_archive="./asb.tar.gz"
+custom_output_dir="./asb_master/"
 
 # download and unzip
 # rm old data / create target dir

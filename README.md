@@ -12,4 +12,4 @@ For testing
 7. add gitlab token to the created .env file
 8. run `./shellscripts/download_gitlab_data.sh` again
 
-See generated outputs [here](https://github.com/Flugblatter/flugblaetter_data_ouput).
+See generated outputs [here](https://github.com/Flugblatter/armesuenderblaetter_data_ouput).
