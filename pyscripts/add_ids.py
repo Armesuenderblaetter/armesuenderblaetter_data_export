@@ -2,7 +2,7 @@
 import glob
 from acdh_tei_pyutils.tei import TeiReader
 
-xml_path = "./todesurteile_master/303_annot_tei/*.xml"
+xml_path = "./asb_master/303_annot_tei/*.xml"
 
 
 def create_ids_for_element(doc: TeiReader, element_name: str):

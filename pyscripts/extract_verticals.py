@@ -27,7 +27,7 @@ morph_keys = [
 ]
 
 ignored_elements = []
-INPUT_PATH = "./todesurteile_master/303_annot_tei"
+INPUT_PATH = "./asb_master/303_annot_tei"
 OUTPUT_PATH = "./out"
 
 NS = {

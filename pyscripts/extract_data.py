@@ -97,7 +97,7 @@ tei_nsmp = {"tei": "http://www.tei-c.org/ns/1.0", "xml": xmlns}
 # # xml factory
 teiMaker = builder.ElementMaker(namespace="http://www.tei-c.org/ns/1.0", nsmap=tei_nsmp)
 
-cases_dir = "./todesurteile_master/303_annot_tei/*.xml"
+cases_dir = "./asb_master/303_annot_tei/*.xml"
 error_docs = {}
 all_missing_fields = []
 events_with_missing_field = 0
