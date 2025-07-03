@@ -1,6 +1,6 @@
-[![Linting](https://github.com/Flugblatter/data/workflows/Lint/badge.svg)](https://github.com/Flugblatter/data/workflows/Lint/badge.svg)
+[![Linting](https://github.com/Armesuenderblaetter/data/workflows/Lint/badge.svg)](https://github.com/Armesuenderbblaetter/data/workflows/Lint/badge.svg)
 
-This repo provides a local copy of the flugblatt-data-repo from gh.
+This repo provides a local copy of the armesuenderblaetter-data-repo from gh.
 For testing
 1. clone this repo
 2. create a virtual environment for python; eg. 
@@ -12,4 +12,4 @@ For testing
 7. add gitlab token to the created .env file
 8. run `./shellscripts/download_gitlab_data.sh` again
 
-See generated outputs [here](https://github.com/Flugblatter/armesuenderblaetter_data_ouput).
+See generated outputs [here](https://github.com/Armesuenderblaetter/armesuenderblaetter_data_ouput).
