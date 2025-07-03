@@ -83,10 +83,11 @@ punishments_dict_ts = {
     "Gefängnis zweiten Grades": "Gefängnis"
 }
 
-printers_dict = {
-    "zu finden im grossen Jakoberhof Nro. 837.": "Jakoberhof 837",
-    "Andreas Heyinger / Acad. Buchdr.": "Andreas Heyinger"
-}
+publishers_dict = {
+    "zu finden im grossen Jakoberhof Nro. 837.": "k. A.",
+    "Andreas Heyinger / Acad. Buchdr.": "Andreas Heyinger",
+    "J. M. Weimar": "k. A.",
+    "gedruckt mit Jahnischen Schriften": "k. A."}
 
 places_dict = {
     "Wien in Österreich": "Wien"
@@ -97,7 +98,7 @@ tei_nsmp = {"tei": "http://www.tei-c.org/ns/1.0", "xml": xmlns}
 # # xml factory
 teiMaker = builder.ElementMaker(namespace="http://www.tei-c.org/ns/1.0", nsmap=tei_nsmp)
 
-cases_dir = "./asb_master/303_annot_tei/*.xml"
+cases_dir = "./todesurteile_master/303_annot_tei/*.xml"
 error_docs = {}
 all_missing_fields = []
 events_with_missing_field = 0
@@ -1286,9 +1287,13 @@ class XmlDocument:
         self.pubPlace = self.xml_tree.any_xpath(
             "//tei:sourceDesc//tei:biblStruct//tei:pubPlace/text()"
         )[0]
-        self.publisher = self.xml_tree.any_xpath(
+        pub_raw = self.publisher = self.xml_tree.any_xpath(
             "//tei:sourceDesc//tei:biblStruct//tei:publisher/text()"
         )[0]
+        if pub_raw in publishers_dict:
+            self.publisher = publishers_dict[pub_raw]
+        else:
+            self.publisher = pub_raw
 
     def return_title(self):
         return extract_fulltext(
