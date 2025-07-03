@@ -15,7 +15,7 @@ custom_output_dir="./asb_master/"
 
 # download and unzip
 # rm old data / create target dir
-if [ -d $custom_output_dir ]; then rm -r $custom_output_dir; fi
+if [ -d $custom_output_dir ]; then rm -fr $custom_output_dir; fi
 mkdir -p $custom_output_dir
 # to get an overview of what you could do with API/Token, use:
 # curl "${gitlab_api_base_url}?private_token=${gitlab_token}"
@@ -32,7 +32,7 @@ then
     # move files from the archives parent folder to predictable custom folder
     mv $top_level_folder_name/* $custom_output_dir
     # remove parent folder from api dump
-    rm -r $top_level_folder_name
+    rm -fr $top_level_folder_name
 fi
 # remove the archive file, if existing
 if [ -f $output_archive ]; then rm $output_archive; fi

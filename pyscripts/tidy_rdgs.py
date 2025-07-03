@@ -149,7 +149,7 @@ def tidy_readings(doc: TeiReader):
             list_wit[0].append(x)
 
 
-testpath = "./todesurteile_master/303_annot_tei/*.xml"
+testpath = "./armesuenderblaetter_master/303_annot_tei/*.xml"
 if __name__ == "__main__":
     xml_path = testpath
     for path in glob.glob(xml_path):

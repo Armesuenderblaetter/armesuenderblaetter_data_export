@@ -76,7 +76,7 @@ if __name__ == "__main__":
     # path = u'../../testData'
     # set rename to 'true' if renaming should be done
     rename = 'true'
-    path = "./todesurteile_master/303_annot_tei/"
+    path = "./asb_master/303_annot_tei/"
     print("######################################################")
     print("Working with directory: "+path+"\n")
     # scan full directory and create list with files and list with
