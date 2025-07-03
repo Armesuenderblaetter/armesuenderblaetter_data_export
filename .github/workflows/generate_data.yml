@@ -29,7 +29,7 @@ jobs:
           git config --global user.name "${GH_USERNAME}"
           git config --global credential.helper cache
           mkdir cloned_repo
-          git clone https://${GITHUB_ACCESS_TOKEN_NAME}:${GITHUB_ACCESS_TOKEN}@github.com/Armesuenderblaetter/armesuenderlaetter_data_ouput.git cloned_repo
+          git clone https://${GITHUB_ACCESS_TOKEN_NAME}:${GITHUB_ACCESS_TOKEN}@github.com/Armesuenderblaetter/armesuenderblaetter_data_ouput.git cloned_repo
           ls -la cloned_repo
       - name: push data to target repo
         run: |
