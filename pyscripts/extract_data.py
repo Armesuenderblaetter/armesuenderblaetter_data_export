@@ -645,7 +645,7 @@ class Person:
         if nmbrs:
             self.age = nmbrs.group(1)
         else:
-            self.age = "k.A."
+            self.age = "k. A."
         if int(self.decade_age) < 1:
             self.decade_age = "k. A."
         else:
@@ -728,7 +728,7 @@ class Person:
             elif self.forename:
                 self.fullname = clear_kA(self.forename)
             if not self.fullname:
-                self.fullname = "k.A."
+                self.fullname = "k. A."
         return self.fullname
 
     def to_json(self):
