@@ -1047,28 +1047,21 @@ def extract_event(event_element: etree._Element, file_identifier: str, nsmap: di
             if element.text in punishments_dict:
                 element.text = punishments_dict[element.text]
         try:
-            print(Punishment.type_key)
-            if event_type in (Punishment.type_key, Execution.type_key):
-                event_obj = Punishment(
-                    _type=event_type,
-                    _id="",  # ids not necessary there
-                    date=dates,
-                    place=place,
-                    description=description_str,
-                    xml_element=event_element,
-                    file_identifier=file_identifier,
-                    punishments_xml=punishments_xml,
-                )
+            common_args = {
+                "_type": event_type,
+                "_id": "",  # ids not necessary there
+                "date": dates,
+                "place": place,
+                "description": description_str,
+                "xml_element": event_element,
+                "file_identifier": file_identifier,
+                }
+            if event_type in (Punishment.type_key):
+                event_obj = Punishment(**common_args, punishments_xml=punishments_xml)
+            elif event_type == Execution.type_key:
+                event_obj = Execution(**common_args, methods_xml=punishments_xml)
             else:
-                event_obj = TrialResult(
-                    _type=event_type,
-                    _id="",  # ids not necessary there
-                    date=dates,
-                    place=place,
-                    description=description_str,
-                    xml_element=event_element,
-                    file_identifier=file_identifier,
-                )
+                event_obj = TrialResult(**common_args)
         except DuplicatedIdError as e:
             if "unproblematic" in e.args[0]:
                 return e.args[1]
@@ -1476,6 +1469,7 @@ if __name__ == "__main__":
             continue
 
     punishment_objects = []
+    execution_objects = []
     offences_objects = []
     for event in event_objs:
         event.check_4_empty_fields()
@@ -1486,13 +1480,17 @@ if __name__ == "__main__":
         else:
             if event in punishments_dict_ts:
                 event = punishments_dict_ts[event]
-            punishment_objects.append(event)
+            if isinstance(event, Punishment):
+                punishment_objects.append(event)
+            else:
+                execution_objects.append(event)
         event.check_4_empty_fields()
 
     prepare_output_folder()
     # template_doc.tree_to_file(f"{xml_file_output}/events.xml")
     print_to_json(offences_objects, "offences")
     print_to_json(punishment_objects, "punishments")
+    print_to_json(execution_objects, "executions")
     print_to_json(resort_persons_for_typesense(person_objs), "persons")
     print_to_json(xml_docs, "documents")
     # export_all_verticals(xml_docs, verticals_output_folder)
@@ -1511,7 +1509,8 @@ if __name__ == "__main__":
             print(f"{doc}:\t{err}")
     all_events = global_events_by_ids.values()
     offence_list = list(event for event in all_events if event.type == "offence")
-    punishment_list = list(event for event in all_events if event.type != "offence")
+    punishment_list = list(event for event in all_events if event.type == "punishment")
+    executions_list = list(event for event in all_events if event.type == "execution")
     # event_list = list(
     #     global_events_by_ids.values()
     # )
@@ -1524,6 +1523,7 @@ if __name__ == "__main__":
     # )
     print_index_to_xml(name="offences", objs=offence_list)
     print_index_to_xml(name="punishments", objs=punishment_list)
+    print_index_to_xml(name="executions", objs=executions_list)
     print_index_to_xml(name="listperson", objs=person_objs)
     for xml_doc in xml_docs:
         xml_doc: XmlDocument
