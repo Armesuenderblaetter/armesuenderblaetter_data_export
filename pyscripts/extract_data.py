@@ -636,6 +636,10 @@ class Person:
             self.age = f"~{self.decade_age}0"
         else:
             self.age = "k.A."
+        if self.decade_age < 1:
+            self.decade_age = "k. A."
+        else:
+            self.decade_age = f"{self.decade_age}0–{self.decade_age}9"
 
     def return_birth_place(self):
         if self._birth_place is None:
