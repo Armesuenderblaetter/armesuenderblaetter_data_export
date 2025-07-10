@@ -621,8 +621,20 @@ class Person:
     def translate_labels(self):
         try:
             self.type = label_dict[self.type]
+        except KeyError as e:
+            if e.args[0] not in ["", None, "k. A.", "K. A."]:
+                raise e
+        try:
             self.sex = label_dict[self.sex]
+        except KeyError as e:
+            if e.args[0] not in ["", None, "k. A.", "K. A."]:
+                raise e
+        try:
             self.marriage_status = label_dict[self.marriage_status]
+        except KeyError as e:
+            if e.args[0] not in ["", None, "k. A.", "K. A."]:
+                raise e
+        try:
             self.faith = label_dict[self.faith]
         except KeyError as e:
             if e.args[0] not in ["", None, "k. A.", "K. A."]:
