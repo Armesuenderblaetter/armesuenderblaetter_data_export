@@ -1516,8 +1516,8 @@ if __name__ == "__main__":
             print(f"{doc}:\t{err}")
     all_events = global_events_by_ids.values()
     offence_list = list(event for event in all_events if event.type == "offence")
-    punishment_list = list(event for event in all_events if event.type == "punishment")
-    executions_list = list(event for event in all_events if event.type == "execution")
+    punishment_list = list(event for event in all_events if event.type != "offence")
+    # executions_list = list(event for event in all_events if event.type == "execution")
     # event_list = list(
     #     global_events_by_ids.values()
     # )
