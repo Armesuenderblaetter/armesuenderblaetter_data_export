@@ -741,19 +741,19 @@ class Person:
                 offence: Offence = event
                 for o_obj in offence.return_offence_types():
                     offences.append(o_obj["label"])
-            elif isinstance(event, Execution):
+            if isinstance(event, Execution):
                 execution: Execution = event
                 for e_obj in execution.methods:
                     executions.append(e_obj["label"])
                 execution_places += event.return_places_labels()
-            elif isinstance(event, Punishment):
+            if isinstance(event, Punishment):
                 punishment: Punishment = event
                 for p_obj in punishment.methods:
                     punishments.append(p_obj["label"])
                 execution_places += event.return_places_labels()
-            else:
+            # else:
                 # hier gibt es einen Fall mit trial result
-                pass
+            #    pass
         return {
             "sorter": self.typesense_sorter,
             "global_id": self.global_id,
