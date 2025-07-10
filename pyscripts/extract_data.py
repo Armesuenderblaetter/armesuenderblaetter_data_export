@@ -896,8 +896,8 @@ def extract_person(
         birth_element=birth_element,
         # these are always empty!
         death_element=death_element,
-        sex=sex[0] if sex.strip() else "",
-        age=age[0] if age.strip() else "",
+        sex=sex[0].strip() if sex else "",
+        age=age[0].strip() if age else "",
         age_decade=age_decade.strip() if age_decade else "0",
         _type=_type[0] if _type else "",
         marriage_status=marriage_state.strip(),
