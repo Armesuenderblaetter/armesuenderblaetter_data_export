@@ -575,6 +575,7 @@ class Person:
         death_element: etree._Element,
         sex: str,
         age: str,
+        decade_age: str,
         _type: str,
         marriage_status: str,
         faith: str,
@@ -597,7 +598,7 @@ class Person:
         self._birth_place: str = None
         self.sex: str = sex
         self.age = age
-        self.decade_age = age
+        self.decade_age = decade_age
         self.refine_age()
         self.type: str = _type
         self.marriage_status: str = marriage_status
@@ -631,13 +632,10 @@ class Person:
         nmbrs = re.search(".*?([0-9]+).*", self.age)
         if nmbrs:
             self.age = nmbrs.group(1)
-            if int(self.age) < 10:
-                self.decade_age = "10er"
-            else:
-                self.decade_age = str(round(int(self.age) / 10)) + "0er"
+        elif re.search(".*?([0-9]+).*", self.decade_age):
+            self.age = f"~{self.decade_age}0"
         else:
             self.age = "k.A."
-            self.decade_age = "k.A."
 
     def return_birth_place(self):
         if self._birth_place is None:
@@ -879,7 +877,7 @@ def extract_person(
     birth_element = person_element.xpath("./tei:birth", namespaces=nsmap)
     death_element = person_element.xpath("./tei:death", namespaces=nsmap)
     sex = person_element.xpath("./tei:sex/@value", namespaces=nsmap)
-    age_decade = person_element.xpath("./tei:age/@value", namespaces=nsmap)
+    decade_age = person_element.xpath("./tei:age/@value", namespaces=nsmap)
     age = person_element.xpath("./tei:age/text()", namespaces=nsmap)
     _type = person_element.xpath("./tei:state/@type", namespaces=nsmap)
     marriage_state = person_element.xpath(
@@ -898,7 +896,7 @@ def extract_person(
         death_element=death_element,
         sex=sex[0].strip() if sex else "",
         age=age[0].strip() if age else "",
-        age_decade=age_decade[0].strip() if age_decade else "0",
+        decade_age=decade_age[0].strip() if decade_age else "0",
         _type=_type[0] if _type else "",
         marriage_status=marriage_state.strip(),
         faith=faith.strip(),
