@@ -741,19 +741,19 @@ class Person:
                 offence: Offence = event
                 for o_obj in offence.return_offence_types():
                     offences.append(o_obj["label"])
-            if isinstance(event, Execution):
+            elif isinstance(event, Execution):
                 execution: Execution = event
                 for e_obj in execution.methods:
                     executions.append(e_obj["label"])
                 execution_places += event.return_places_labels()
-            if isinstance(event, Punishment):
+            elif isinstance(event, Punishment):
                 punishment: Punishment = event
                 for p_obj in punishment.methods:
                     punishments.append(p_obj["label"])
                 execution_places += event.return_places_labels()
-            # else:
+            else:
                 # hier gibt es einen Fall mit trial result
-            #    pass
+                pass
         return {
             "sorter": self.typesense_sorter,
             "global_id": self.global_id,
@@ -1047,21 +1047,28 @@ def extract_event(event_element: etree._Element, file_identifier: str, nsmap: di
             if element.text in punishments_dict:
                 element.text = punishments_dict[element.text]
         try:
-            common_args = {
-                "_type": event_type,
-                "_id": "",  # ids not necessary there
-                "date": dates,
-                "place": place,
-                "description": description_str,
-                "xml_element": event_element,
-                "file_identifier": file_identifier,
-                }
-            if event_type in (Punishment.type_key):
-                event_obj = Punishment(**common_args, punishments_xml=punishments_xml)
-            elif event_type == Execution.type_key:
-                event_obj = Execution(**common_args, methods_xml=punishments_xml)
+            print(Punishment.type_key)
+            if event_type in (Punishment.type_key, Execution.type_key):
+                event_obj = Punishment(
+                    _type=event_type,
+                    _id="",  # ids not necessary there
+                    date=dates,
+                    place=place,
+                    description=description_str,
+                    xml_element=event_element,
+                    file_identifier=file_identifier,
+                    punishments_xml=punishments_xml,
+                )
             else:
-                event_obj = TrialResult(**common_args)
+                event_obj = TrialResult(
+                    _type=event_type,
+                    _id="",  # ids not necessary there
+                    date=dates,
+                    place=place,
+                    description=description_str,
+                    xml_element=event_element,
+                    file_identifier=file_identifier,
+                )
         except DuplicatedIdError as e:
             if "unproblematic" in e.args[0]:
                 return e.args[1]
@@ -1523,6 +1530,7 @@ if __name__ == "__main__":
     # )
     print_index_to_xml(name="offences", objs=offence_list)
     print_index_to_xml(name="punishments", objs=punishment_list)
+    print_index_to_xml(name="executions", objs=executions_list)
     print_index_to_xml(name="listperson", objs=person_objs)
     for xml_doc in xml_docs:
         xml_doc: XmlDocument
