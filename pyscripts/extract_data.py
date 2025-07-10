@@ -636,7 +636,7 @@ class Person:
             self.age = f"~{self.decade_age}0"
         else:
             self.age = "k.A."
-        if self.decade_age < 1:
+        if int(self.decade_age) < 1:
             self.decade_age = "k. A."
         else:
             self.decade_age = f"{self.decade_age}0–{self.decade_age}9"
