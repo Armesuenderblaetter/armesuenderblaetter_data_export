@@ -873,13 +873,13 @@ def extract_person(
     forename = person_element.xpath(
         "./tei:persName/tei:forename/text()", namespaces=nsmap
     )
-    surename = person_element.xpath(
+    surname = person_element.xpath(
         "./tei:persName/tei:surname//text()[normalize-space(.)!='']", namespaces=nsmap
     )
     birth_element = person_element.xpath("./tei:birth", namespaces=nsmap)
     death_element = person_element.xpath("./tei:death", namespaces=nsmap)
     sex = person_element.xpath("./tei:sex/@value", namespaces=nsmap)
-    # age = person_element.xpath("./tei:age/@value", namespaces=nsmap)
+    age_decade = person_element.xpath("./tei:age/@value", namespaces=nsmap)
     age = person_element.xpath("./tei:age/text()", namespaces=nsmap)
     _type = person_element.xpath("./tei:state/@type", namespaces=nsmap)
     marriage_state = person_element.xpath(
@@ -891,17 +891,18 @@ def extract_person(
     person_obj = Person(
         xml_id=xml_id[0] if xml_id else "",
         roles=roles,
-        forename=forename[0] if forename else "",
-        surname=surename[0] if surename else "",
+        forename=forename[0].strip() if forename else "",
+        surname=surname[0].strip() if surname else "",
         birth_element=birth_element,
         # these are always empty!
         death_element=death_element,
-        sex=sex[0] if sex else "",
-        age=age[0] if age else "",
+        sex=sex[0] if sex.strip() else "",
+        age=age[0] if age.strip() else "",
+        age_decade=age_decade.strip() if age_decade else "0",
         _type=_type[0] if _type else "",
-        marriage_status=marriage_state,
-        faith=faith,
-        occupation=occupation,
+        marriage_status=marriage_state.strip(),
+        faith=faith.strip(),
+        occupation=occupation.strip(),
         thumbnail=thumbnail,
         file_identifier=file_identifier,
         xml_element=person_element,
