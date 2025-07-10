@@ -1530,7 +1530,6 @@ if __name__ == "__main__":
     # )
     print_index_to_xml(name="offences", objs=offence_list)
     print_index_to_xml(name="punishments", objs=punishment_list)
-    print_index_to_xml(name="executions", objs=executions_list)
     print_index_to_xml(name="listperson", objs=person_objs)
     for xml_doc in xml_docs:
         xml_doc: XmlDocument
