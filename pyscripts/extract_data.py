@@ -1047,28 +1047,21 @@ def extract_event(event_element: etree._Element, file_identifier: str, nsmap: di
             if element.text in punishments_dict:
                 element.text = punishments_dict[element.text]
         try:
-            print(Punishment.type_key)
-            if event_type in (Punishment.type_key, Execution.type_key):
-                event_obj = Punishment(
-                    _type=event_type,
-                    _id="",  # ids not necessary there
-                    date=dates,
-                    place=place,
-                    description=description_str,
-                    xml_element=event_element,
-                    file_identifier=file_identifier,
-                    punishments_xml=punishments_xml,
-                )
+            common_args = {
+                "_type": event_type,
+                "_id": "",  # ids not necessary there
+                "date": dates,
+                "place": place,
+                "description": description_str,
+                "xml_element": event_element,
+                "file_identifier": file_identifier,
+            }
+            if event_type in (Punishment.type_key):
+                event_obj = Punishment(**common_args, punishments_xml=punishments_xml)
+            elif event_type == Execution.type_key:
+                event_obj = Execution(**common_args, methods_xml=punishments_xml)
             else:
-                event_obj = TrialResult(
-                    _type=event_type,
-                    _id="",  # ids not necessary there
-                    date=dates,
-                    place=place,
-                    description=description_str,
-                    xml_element=event_element,
-                    file_identifier=file_identifier,
-                )
+                event_obj = TrialResult(**common_args)
         except DuplicatedIdError as e:
             if "unproblematic" in e.args[0]:
                 return e.args[1]
