@@ -750,7 +750,7 @@ class Person:
                 punishment: Punishment = event
                 for p_obj in punishment.methods:
                     punishments.append(p_obj["label"])
-                execution_places += event.return_places_labels()
+                # execution_places += event.return_places_labels()
             else:
                 # hier gibt es einen Fall mit trial result
                 pass
