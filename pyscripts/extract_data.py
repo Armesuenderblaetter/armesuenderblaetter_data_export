@@ -644,8 +644,6 @@ class Person:
         nmbrs = re.search(".*?([0-9]+).*", self.age)
         if nmbrs:
             self.age = nmbrs.group(1)
-        elif re.search(".*?([0-9]+).*", self.decade_age):
-            self.age = f"~{self.decade_age}0"
         else:
             self.age = "k.A."
         if int(self.decade_age) < 1:
