@@ -313,6 +313,11 @@ def process_element(element, verticals: list):
     elif element_name in SPECIAL_ELEMENTS:
         current_function = SPECIAL_ELEMENTS[element_name]
         element = current_function(element)
+        # Continue processing the modified element
+        verticals = process_element(
+            verticals=verticals,
+            element=element
+        )
     # elements that should (hypothetically only
     # contain one and only one textnode as child
     elif element_name in TOKEN_TAGS:
