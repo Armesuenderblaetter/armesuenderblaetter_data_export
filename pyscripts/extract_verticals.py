@@ -67,7 +67,7 @@ CONTAINER_ELEMENTS = [
     "div",
     'seg',
     'pubPlace',
-    'corr'
+    'corr',
     'sic',
     'ref',
     'rendition',
@@ -84,7 +84,12 @@ CONTAINER_ELEMENTS = [
     "lem",
     "app",
     "unclear",
-    "hi"
+    "hi",
+    "titlePage",
+    "milestone",
+    "figure",
+    "figDesc",
+    "rdg"
 ]
 # other elements are completely ignored ar
 
@@ -126,17 +131,18 @@ def clean_string(string: str):
 
 
 def handle_parent_choice(choice) -> ET._Element:
+    # Try to find a <w> tag, if not, return the choice element itself
     w_tags = choice.xpath(".//tei:w", namespaces=NS)
-    try:
-        wtag = w_tags[0]
-    except IndexError:
-        input(ET.tostring(choice.getparent().getparent().getparent()).decode())
-    return wtag
+    if w_tags:
+        return w_tags[0]
+    return choice
 
 
 def handle_parent_app(app) -> ET._Element:
     w_tags = app.xpath(".//tei:w", namespaces=NS)
-    return w_tags[0]
+    if w_tags:
+        return w_tags[0]
+    return ET.Element("dummy")
 
 
 SPECIAL_ELEMENTS = {
@@ -182,7 +188,7 @@ def load_xml_files(input_dir: str) -> list:
 
 def extract_structure_tag(
         element_name,
-        attributes=str,
+        attributes="",
         open=False) -> str:
     if attributes and not open:
         raise ValueError
@@ -292,8 +298,8 @@ def process_element(element, verticals: list):
             )
         close_structure = extract_structure_tag(
             element_name,
-            open=False,
-            attributes=False
+            attributes="",
+            open=False
         )
         if verticals[-1] == open_structure:
             # happens in some cases due to data complexity,
@@ -312,12 +318,20 @@ def process_element(element, verticals: list):
     # elements you need an extra function to deal with
     elif element_name in SPECIAL_ELEMENTS:
         current_function = SPECIAL_ELEMENTS[element_name]
-        element = current_function(element)
-        # Continue processing the modified element
-        verticals = process_element(
-            verticals=verticals,
-            element=element
-        )
+        new_element = current_function(element)
+        if new_element is element:
+            # Handler returned the same element, treat as a container to avoid recursion
+            for subelement in element:
+                verticals = process_element(
+                    verticals=verticals,
+                    element=subelement
+                )
+        else:
+            # Handler returned a new element, process it
+            verticals = process_element(
+                verticals=verticals,
+                element=new_element
+            )
     # elements that should (hypothetically only
     # contain one and only one textnode as child
     elif element_name in TOKEN_TAGS:
@@ -331,6 +345,7 @@ def process_element(element, verticals: list):
     # if an element doesn't fit into one of the above categories
     # its name gets logged
     else:
+        # Only log ignored elements, do NOT recurse into children
         if element_name not in ignored_elements:
             ignored_elements.append(element_name)
     return verticals
@@ -340,7 +355,7 @@ def create_verticals(doc: TeiReader, output_filename) -> None:
     verticals = []
     docstructure_opening = mk_docstructure_open(doc)
     verticals.append(docstructure_opening)
-    roots = doc.any_xpath("//tei:body/*")
+    roots = doc.any_xpath("//tei:front/* | //tei:body/*")
     for root in roots:
         verticals += process_element(
             verticals=[],
