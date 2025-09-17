@@ -37,6 +37,11 @@ fi
 # remove the archive file, if existing
 if [ -f $output_archive ]; then rm $output_archive; fi
 
+#Remove non Vienna places
+for i in "Brünn" "Linz" "Pressburg"; do
+	rm -f `grep -l '<pubPlace>'${i}'</pubPlace>' 303_annot_tei/*xml`
+done
+
 # rename some files for arche/processing
 pyscripts/renameFiles.py
 add-attributes -g $custom_output_dir"/303_annot_tei/*.xml" -b "."
