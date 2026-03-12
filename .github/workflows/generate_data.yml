@@ -18,11 +18,16 @@ jobs:
         run: rm -rf out cloned_repo
       - name: produce data
         run: |
-          python -m pip config set global.break-system-packages true
-          pip install -r pyscripts/requirements.txt
-          ./shellscripts/dl_and_prepare_gl_data.sh
-          ./pyscripts/extract_data.py
-          ./pyscripts/extract_verticals.py
+          # python -m pip config set global.break-system-packages true
+          pip install -U pip
+          pip install uv
+          uv add -r pyscripts/requirements.txt
+          uv run ./shellscripts/dl_and_prepare_gl_data.sh
+          uv run ./pyscripts/tidy_rdgs.py
+          uv run ./shellscripts/split_milestone_gesamt.sh
+          uv run ./pyscripts/add_facsimiles.py
+          uv run ./pyscripts/extract_data.py
+          uv run ./pyscripts/extract_verticals.py
       - name: clone target repo
         run: |
           git config --global user.email "${GH_USERMAIL}"

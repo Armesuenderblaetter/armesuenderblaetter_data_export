@@ -14,7 +14,7 @@ from acdh_tei_pyutils.utils import extract_fulltext
 
 # import mk_verticals
 from label_translator import label_dict
-from tidy_rdgs import tidy_readings
+# from tidy_rdgs import tidy_readings
 
 xmlns = "http://www.w3.org/XML/1998/namespace"
 
@@ -98,7 +98,7 @@ tei_nsmp = {"tei": "http://www.tei-c.org/ns/1.0", "xml": xmlns}
 # # xml factory
 teiMaker = builder.ElementMaker(namespace="http://www.tei-c.org/ns/1.0", nsmap=tei_nsmp)
 
-cases_dir = "./asb_master/303_annot_tei/*.xml"
+cases_dir = "./asb_master/303_annot_tei/output/*.xml"
 error_docs = {}
 all_missing_fields = []
 events_with_missing_field = 0
@@ -899,7 +899,10 @@ def extract_person(
     )[0]
     faith = person_element.xpath("./tei:faith/text()", namespaces=nsmap)[0]
     occupation = person_element.xpath("./tei:occupation/text()", namespaces=nsmap)
-    thumbnail = doc.any_xpath("//tei:pb/@facs")[0]
+    try:
+        thumbnail = doc.any_xpath("//tei:pb/@facs")[0]
+    except IndexError:
+        thumbnail = "IndexError: @facs not found in //tei:pb"
     person_obj = Person(
         xml_id=xml_id[0] if xml_id else "",
         roles=roles,
@@ -1245,7 +1248,10 @@ class XmlDocument:
         self.get_archive_data()
 
     def return_thumbnail_name(self):
-        return self.xml_tree.any_xpath("//tei:pb/@facs")[0]
+        try:
+            return self.xml_tree.any_xpath("//tei:pb/@facs")[0]
+        except IndexError:
+            return "IndexError: @facs not found in //tei:pb"
 
     # def export_verticals(self, output_dir: str):
     #     verticals = mk_verticals.export_verticals_from_doc(
@@ -1419,7 +1425,7 @@ class XmlDocument:
     def write_changes(self):
         filename = self.path.split("/")[-1]
         new_path = f"{xml_editions_output}/{filename}"
-        tidy_readings(self.xml_tree)
+        # tidy_readings(self.xml_tree)
         print(f"creating {new_path}")
         self.xml_tree.tree_to_file(new_path)
 

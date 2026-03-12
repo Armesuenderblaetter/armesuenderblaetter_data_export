@@ -2,6 +2,7 @@
 import glob
 import lxml.etree as etree
 import lxml.builder as builder
+from tqdm import tqdm
 from acdh_tei_pyutils.tei import TeiReader
 
 xmlns = "http://www.w3.org/XML/1998/namespace"
@@ -149,9 +150,10 @@ def tidy_readings(doc: TeiReader):
             list_wit[0].append(x)
 
 
-testpath = "./armesuenderblaetter_master/303_annot_tei/*.xml"
+testpath = "./asb_master/303_annot_tei/*.xml"
 if __name__ == "__main__":
     xml_path = testpath
-    for path in glob.glob(xml_path):
+    for path in tqdm(glob.glob(xml_path), total=len(glob.glob(xml_path))):
         doc = TeiReader(path)
         tidy_readings(doc)
+        doc.tree_to_file(path)

@@ -1,0 +1,11 @@
+[project]
+name = "armesuenderblaetter-data-export"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "acdh-tei-pyutils>=2.3.0",
+    "lxml>=6.0.2",
+    "pre-commit>=4.5.1",
+]
