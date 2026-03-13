@@ -69,13 +69,6 @@ if __name__ == '__main__':
             f"{os.path.dirname(file).split("/")[1]}_{os.path.basename(file)}")
         with open(output_path, 'w') as f:
             f.write(text)
-    # with open('data/editions/output/Insel-02-04-11_n0236.xml', 'r') as f:
-    #     text = f.read()
-    #     text = re.sub(r'<fw place="bottom_left" type="pageNum" n="236">236</fw>\n\n</lg>',
-    #                   r'<fw place="bottom_left" type="pageNum" n="236">236</fw>\n\n',
-    #                   text)
-    # with open('data/editions/output/Insel-02-04-11_n0236.xml', 'w') as f:
-    #     f.write(text)
     if not debug:
         shutil.rmtree(INPUT_DIR)
         shutil.rmtree(MODIFIED_DIR)

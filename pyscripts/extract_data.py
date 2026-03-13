@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import sys
 import typing
 import glob
 import re
@@ -99,13 +100,15 @@ tei_nsmp = {"tei": "http://www.tei-c.org/ns/1.0", "xml": xmlns}
 teiMaker = builder.ElementMaker(namespace="http://www.tei-c.org/ns/1.0",
                                 nsmap=tei_nsmp)
 
-cases_dir = "./asb_master/303_annot_tei/output/*.xml"
+split_edition = "./asb_master/303_annot_tei/output/*.xml"
+unsplit_edition = "./asb_master/303_annot_tei/*.xml"
+cases_dir = split_edition if int(sys.argv[1]) == 1 else unsplit_edition
 error_docs = {}
 all_missing_fields = []
 events_with_missing_field = 0
 used_ids = []
-json_file_output = "out_refactored/json"
-xml_file_output = "out_refactored/xml"
+json_file_output = "out_refactored/json"if int(sys.argv[1]) == 1 else "out/json"
+xml_file_output = "out_refactored/xml" if int(sys.argv[1]) == 1 else "out/xml"
 xml_index_output = f"{xml_file_output}/indices"
 xml_editions_output = f"{xml_file_output}/editions"
 Path(f"./{json_file_output}").mkdir(parents=True, exist_ok=True)

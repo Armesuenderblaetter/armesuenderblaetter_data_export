@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # creates verticals from xml to import data to NoSketch engine
 
+import sys
 import os
 import glob
 import shutil
@@ -27,8 +28,10 @@ morph_keys = [
 ]
 
 ignored_elements = []
-INPUT_PATH = "./asb_master/303_annot_tei/output"
-OUTPUT_PATH = "./out_refactored"
+split_edition = "./asb_master/303_annot_tei/output"
+unsplit_edition = "./asb_master/303_annot_tei"
+INPUT_PATH = split_edition if int(sys.argv[1]) == 1 else unsplit_edition
+OUTPUT_PATH = "./out_refactored" if int(sys.argv[1]) == 1 else "./out"
 
 NS = {
     "tei": "http://www.tei-c.org/ns/1.0",
