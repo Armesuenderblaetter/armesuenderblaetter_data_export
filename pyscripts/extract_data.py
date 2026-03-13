@@ -96,15 +96,16 @@ places_dict = {
 tei_nsmp = {"tei": "http://www.tei-c.org/ns/1.0", "xml": xmlns}
 
 # # xml factory
-teiMaker = builder.ElementMaker(namespace="http://www.tei-c.org/ns/1.0", nsmap=tei_nsmp)
+teiMaker = builder.ElementMaker(namespace="http://www.tei-c.org/ns/1.0",
+                                nsmap=tei_nsmp)
 
 cases_dir = "./asb_master/303_annot_tei/output/*.xml"
 error_docs = {}
 all_missing_fields = []
 events_with_missing_field = 0
 used_ids = []
-json_file_output = "out/json"
-xml_file_output = "out/xml"
+json_file_output = "out_refactored/json"
+xml_file_output = "out_refactored/xml"
 xml_index_output = f"{xml_file_output}/indices"
 xml_editions_output = f"{xml_file_output}/editions"
 Path(f"./{json_file_output}").mkdir(parents=True, exist_ok=True)

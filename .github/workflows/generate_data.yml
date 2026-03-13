@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Clean up
-        run: rm -rf out cloned_repo
+        run: rm -rf out out_refactored cloned_repo
       - name: produce data
         run: |
           # python -m pip config set global.break-system-packages true
@@ -25,7 +25,7 @@ jobs:
           uv run ./shellscripts/dl_and_prepare_gl_data.sh
           uv run ./pyscripts/tidy_rdgs.py
           uv run ./shellscripts/split_milestone_gesamt.sh
-          uv run ./pyscripts/add_facsimiles.py
+          uv run ./pyscripts/enrich_xml.py
           uv run ./pyscripts/extract_data.py
           uv run ./pyscripts/extract_verticals.py
       - name: clone target repo
@@ -38,7 +38,7 @@ jobs:
           ls -la cloned_repo
       - name: push data to target repo
         run: |
-          cp -r out/* cloned_repo/
+          cp -r out_refactored/* cloned_repo/
           cd cloned_repo
           git add .
           git commit -m "$(date) new data"

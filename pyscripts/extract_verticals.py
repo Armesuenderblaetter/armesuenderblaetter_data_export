@@ -28,7 +28,7 @@ morph_keys = [
 
 ignored_elements = []
 INPUT_PATH = "./asb_master/303_annot_tei/output"
-OUTPUT_PATH = "./out"
+OUTPUT_PATH = "./out_refactored"
 
 NS = {
     "tei": "http://www.tei-c.org/ns/1.0",
